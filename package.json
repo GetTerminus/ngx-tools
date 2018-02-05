@@ -1,7 +1,7 @@
 {
-  "name": "angular-library-starter",
-  "version": "1.0.0",
-  "description": "An Angular Library Starter kit.",
+  "name": "@terminus/ngx-tools",
+  "version": "0.0.1",
+  "description": "A collection of tools and utilities for Terminus (Angular/NGRX) applications",
   "keywords": [
     "angular",
     "webpack",
@@ -206,7 +206,10 @@
     "webpack-dev-server": "^2.9.4",
     "webpack-dll-bundles-plugin": "^1.0.0-beta.5",
     "webpack-merge": "~4.1.0",
-    "zone.js": "^0.8.12"
+    "zone.js": "^0.8.12",
+    "@semantic-release/github": "4.0.2",
+    "@semantic-release/npm": "3.0.0",
+    "commitizen": "2.9.6"
   },
   "repository": {
     "type": "git",
@@ -217,6 +220,7 @@
   },
   "engines": {
     "node": ">= 8.0.0",
+    "npm": ">= 5.0.0",
     "yarn": ">= 1.0.0"
   },
   "libConfig": {
@@ -244,17 +248,13 @@
     "publish": [
       {
         "path": "@semantic-release/npm",
-        "npmPublish": false
+        "npmPublish": true,
+        "pkgRoot": "dist_package/@terminus/ngx-tools"
       },
       {
         "path": "@semantic-release/github",
         "npmPublish": false
       }
     ]
-  },
-  "dependencies": {
-    "@semantic-release/github": "4.0.2",
-    "@semantic-release/npm": "3.0.0",
-    "commitizen": "2.9.6"
   }
 }

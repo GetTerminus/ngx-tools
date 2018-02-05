@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A set of TypeScript utilities used by Terminus",
   "libConfig": {
       "entry": "public_api",
