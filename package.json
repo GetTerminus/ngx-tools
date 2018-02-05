@@ -1,7 +1,7 @@
 {
   "name": "@terminus/ngx-tools",
   "version": "0.0.1",
-  "description": "A collection of tools and utilities for Terminus (Angular/NGRX) applications",
+  "description": "A collection of tools and utilities for the Terminus (Angular/NGRX) applications",
   "keywords": [
     "angular",
     "webpack",
@@ -95,6 +95,8 @@
     "@angular/platform-server": "^5.0.2",
     "@angular/router": "^5.0.2",
     "@ngtools/webpack": "^1.8.0",
+    "@semantic-release/github": "4.0.2",
+    "@semantic-release/npm": "3.0.0",
     "@types/chalk": "^0.4.31",
     "@types/deep-equal": "^0.0.30",
     "@types/del": "^2.2.32",
@@ -117,12 +119,14 @@
     "awesome-typescript-loader": "~3.1.2",
     "chalk": "^1.1.3",
     "codelyzer": "4.1.0",
+    "commitizen": "2.9.6",
     "condition-circle": "2.0.1",
     "convert-source-map": "^1.5.0",
     "copy-webpack-plugin": "^4.0.1",
     "core-js": "^2.4.1",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
+    "cz-customizable": "5.2.0",
     "deep-equal": "^1.0.1",
     "deepcopy": "^0.6.3",
     "del": "^3.0.0",
@@ -206,10 +210,7 @@
     "webpack-dev-server": "^2.9.4",
     "webpack-dll-bundles-plugin": "^1.0.0-beta.5",
     "webpack-merge": "~4.1.0",
-    "zone.js": "^0.8.12",
-    "@semantic-release/github": "4.0.2",
-    "@semantic-release/npm": "3.0.0",
-    "commitizen": "2.9.6"
+    "zone.js": "^0.8.12"
   },
   "repository": {
     "type": "git",
@@ -235,7 +236,7 @@
       "path": "./node_modules/cz-customizable"
     },
     "cz-customizable": {
-      "config": "./tooling/cz-config.js"
+      "config": "./config/cz-config.js"
     }
   },
   "release": {
