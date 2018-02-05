@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "description": "A set of TypeScript utilities used by Terminus",
+  "libConfig": {
+      "entry": "public_api",
+      "libExtensions": [
+        {
+          "name": "testing",
+          "entry": "public_api.ts"
+        },
+        {
+          "name": "regex",
+          "dir": "regex",
+          "entry": "public_api.ts"
+        },
+        {
+          "name": "utilities",
+          "dir": "utilities",
+          "entry": "public_api.ts"
+        }
+      ]
+    }
+}
