@@ -3,7 +3,7 @@ import { AngularCompilerOptions } from '@angular/compiler-cli';
 
 export interface GlobalLibConfig {
   scope?: string;
-  packages: string[]
+  packages: string[];
 }
 
 export interface LocalLibConfig {
@@ -52,7 +52,7 @@ export interface PackageMetadata {
   /**
    * A list of the names of external dependencies (based on package.json)
    */
-  externals: string[],
+  externals: string[];
 
   /**
    * A list of regexp of external dependencies (based on package.json)

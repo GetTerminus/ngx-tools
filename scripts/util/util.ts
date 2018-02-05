@@ -6,7 +6,6 @@ import * as jsonfile from 'jsonfile';
 
 const uglify = require('uglify-js');
 const zlib = require('zlib');
-const deepcopy = require('deepcopy');
 
 import { root, FS_REF } from './fs';
 import { PackageMetadata, LocalLibConfig } from './types';

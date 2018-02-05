@@ -4,7 +4,7 @@ const webpack = require('webpack');
 /**
  * Webpack Plugins
  */
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');
 const BannerPlugin = webpack.BannerPlugin;
 const NgcWebpackPlugin = require('ngc-webpack').NgcWebpackPlugin;
 
@@ -30,12 +30,12 @@ module.exports = function(metadata: PackageMetadata) {
    */
   const entry = {
     // [metadata.umd]: path.join(getOutDir(metadata, true, getMainOutputFileName(metadata) + '.js'))
-    [metadata.umd]: metadata.tsConfigObj.files[0]
+    [metadata.umd]: metadata.tsConfigObj.files[0],
   };
 
   const ngcWebpackConfig = {
     mainPath: metadata.tsConfigObj.files[0],
-    tsConfigPath: metadata.tsConfig
+    tsConfigPath: metadata.tsConfig,
   };
 
   return {
@@ -47,8 +47,8 @@ module.exports = function(metadata: PackageMetadata) {
       modules: [root('src'), root('node_modules')],
       alias: Object.assign(webpackAlias(), webpackAlias(metadata.parent
         ? metadata.parent.dirName + '/' + metadata.extension.dir
-        : metadata.dirName
-      ))
+        : metadata.dirName,
+      )),
     },
 
     entry,
@@ -58,7 +58,7 @@ module.exports = function(metadata: PackageMetadata) {
       publicPath: '/',
       filename: `${getCopyInstruction(metadata).toBundle.substr(root().length + 1)}/[name].webpack.umd.js`,
       libraryTarget: 'umd',
-      library: metadata.moduleName
+      library: metadata.moduleName,
     },
 
     // require those dependencies but don't bundle them
@@ -68,12 +68,12 @@ module.exports = function(metadata: PackageMetadata) {
       rules: [
         {
           test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-          use: [ '@ngtools/webpack' ]
+          use: [ '@ngtools/webpack' ],
         },
         {
           test: /\.css$/,
           use: ['to-string-loader', 'css-loader'],
-          exclude: [root('src', 'demo')]
+          exclude: [root('src', 'demo')],
         },
 
         /*
@@ -84,7 +84,7 @@ module.exports = function(metadata: PackageMetadata) {
         {
           test: /\.scss$/,
           use: ['to-string-loader', 'css-loader', 'sass-loader'],
-          exclude: [root('src', 'demo')]
+          exclude: [root('src', 'demo')],
         },
 
         /* Raw loader support for *.html
@@ -95,9 +95,9 @@ module.exports = function(metadata: PackageMetadata) {
         {
           test: /\.html$/,
           use: 'raw-loader',
-          exclude: [root('src/demo/index.html')]
+          exclude: [root('src/demo/index.html')],
         },
-      ]
+      ],
     },
 
     plugins: [
@@ -106,12 +106,12 @@ module.exports = function(metadata: PackageMetadata) {
       new BannerPlugin({
         banner: banner,
         raw: true,
-        entryOnly: true
+        entryOnly: true,
       }),
 
-      new CopyWebpackPlugin([
+      new copyWebpackPlugin([
         { from: 'README.md', to: helpers.root(`./${FS_REF.PKG_DIST}/${metadata.dir}`) },
-      ])
-    ]
+      ]),
+    ],
   };
 };

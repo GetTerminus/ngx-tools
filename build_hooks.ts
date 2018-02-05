@@ -1,16 +1,14 @@
 const globals = {
-  'tslib': 'tslib',
+  tslib: 'tslib',
 
-  /*
-   *'@angular/animations': 'ng.animations',
-   *'@angular/core': 'ng.core',
-   *'@angular/common': 'ng.common',
-   *'@angular/forms': 'ng.forms',
-   *'@angular/http': 'ng.http',
-   *'@angular/platform-browser': 'ng.platformBrowser',
-   *'@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
-   *'@angular/platform-browser/animations': 'ng.platformBrowser.animations'
-   */
+  '@angular/animations': 'ng.animations',
+  '@angular/core': 'ng.core',
+  '@angular/common': 'ng.common',
+  '@angular/forms': 'ng.forms',
+  '@angular/http': 'ng.http',
+  '@angular/platform-browser': 'ng.platformBrowser',
+  '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
+  '@angular/platform-browser/animations': 'ng.platformBrowser.animations',
 };
 
 export function jestConfig(config): void {
