@@ -26,12 +26,19 @@
     "node_modules/(?!@ngrx)"
   ],
   "moduleNameMapper": {
-    "^ngx-tools$": "<rootDir>/src/@terminus/ngx-tools/src/public_api.ts",
-    "^ngx-tools/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/src/$1",
-    "^ngx-tools/regex": "<rootDir>/src/@terminus/ngx-tools/regex/src/public_api.ts",
+    "^@terminus/ngx-tools$": "<rootDir>/src/@terminus/ngx-tools/src/public_api.ts",
+    "^@terminus/ngx-tools/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/src/$1",
+    "^@terminus/ngx-tools/testing$": "<rootDir>/src/@terminus/ngx-tools/testing/src/public_api.ts",
+    "^@terminus/ngx-tools/testing/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/testing/src/$1",
+    "^@terminus/ngx-tools/keycodes$": "<rootDir>/src/@terminus/ngx-tools/keycodes/src/public_api.ts",
+    "^@terminus/ngx-tools/keycodes/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/keycodes/src/$1",
+    "^@terminus/ngx-tools/regex$": "<rootDir>/src/@terminus/ngx-tools/regex/src/public_api.ts",
+    "^@terminus/ngx-tools/regex/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/regex/src/$1",
     "(.*)": "<rootDir>/src/$1"
   },
   "collectCoverageFrom": [
-    "src/@terminus/ngx-tools/**/!(public_api).ts"
+    "src/@terminus/ngx-tools/**/!(public_api).ts",
+    "!src/@terminus/ngx-tools/testing/src/mocks/**/*",
+    "!src/@terminus/ngx-tools/keycodes/**/*"
   ]
 }
