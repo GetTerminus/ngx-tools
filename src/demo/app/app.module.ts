@@ -22,8 +22,9 @@ import '../styles/headings.css';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
 ];
+
 
 import { debounce } from '@terminus/ngx-tools';
 console.log('debounce: ', debounce);
@@ -34,6 +35,11 @@ console.log('emailRegex: ', emailRegex);
 import { ElementRefMock } from '@terminus/ngx-tools/testing';
 console.log('ElementRefMock: ', ElementRefMock);
 
+
+import { ZERO } from '@terminus/ngx-tools/keycodes';
+console.log('ZERO: ', ZERO);
+
+
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -42,7 +48,7 @@ console.log('ElementRefMock: ', ElementRefMock);
   declarations: [
     AppComponent,
     HomeComponent,
-    NoContentComponent
+    NoContentComponent,
   ],
   /**
    * Import Angular's modules.
@@ -58,7 +64,7 @@ console.log('ElementRefMock: ', ElementRefMock);
    */
   providers: [
     environment.ENV_PROVIDERS,
-    APP_PROVIDERS
-  ]
+    APP_PROVIDERS,
+  ],
 })
 export class AppModule { }

@@ -9,6 +9,10 @@
           "entry": "public_api.ts"
         },
         {
+          "name": "keycodes",
+          "entry": "public_api.ts"
+        },
+        {
           "name": "regex",
           "dir": "regex",
           "entry": "public_api.ts"
