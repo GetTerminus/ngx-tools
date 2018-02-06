@@ -24,7 +24,6 @@
     ]
   },
   "exclude": [
-    "examples/**/*.ts",
     "scripts",
     "node_modules",
     "dist",

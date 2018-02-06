@@ -12,11 +12,6 @@
           "name": "regex",
           "dir": "regex",
           "entry": "public_api.ts"
-        },
-        {
-          "name": "utilities",
-          "dir": "utilities",
-          "entry": "public_api.ts"
         }
       ]
     }

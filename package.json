@@ -40,7 +40,7 @@
     "jest": "jest",
     "lib:build": "gulp build",
     "lib:build:sim": "gulp build && yarn run build:aot:prod -- --env.sim",
-    "lib:test": "yarn run jest -- --config jest.library.config.json",
+    "lib:test": "yarn run jest -- --config jest.library.config.json --coverage",
     "lib:test:watch": "yarn run jest -- --config jest.library.config.json --watch",
     "lib:start:sim": "gulp build && yarn run server:dev -- --env.sim",
     "lib:sync": "gulp misc:syncConfig",

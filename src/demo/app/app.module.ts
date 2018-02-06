@@ -25,7 +25,7 @@ const APP_PROVIDERS = [
   AppState
 ];
 
-import { debounce } from '@terminus/ngx-tools/utilities';
+import { debounce } from '@terminus/ngx-tools';
 console.log('debounce: ', debounce);
 
 import { emailRegex } from '@terminus/ngx-tools/regex';

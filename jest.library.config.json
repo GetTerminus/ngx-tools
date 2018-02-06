@@ -26,8 +26,12 @@
     "node_modules/(?!@ngrx)"
   ],
   "moduleNameMapper": {
-    "^my-lib$": "<rootDir>/src/my-lib/src/index.ts",
-    "^my-lib/src/(.*)": "<rootDir>/src/my-lib/src/$1",
+    "^ngx-tools$": "<rootDir>/src/@terminus/ngx-tools/src/public_api.ts",
+    "^ngx-tools/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/src/$1",
+    "^ngx-tools/regex": "<rootDir>/src/@terminus/ngx-tools/regex/src/public_api.ts",
     "(.*)": "<rootDir>/src/$1"
-  }
+  },
+  "collectCoverageFrom": [
+    "src/@terminus/ngx-tools/**/!(public_api).ts"
+  ]
 }

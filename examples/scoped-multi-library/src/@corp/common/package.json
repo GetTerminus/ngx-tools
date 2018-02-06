@@ -1,8 +1,0 @@
-{
-  "version": "1.0.0",
-  "description": "Common Library",
-  "keywords": [ "corp", "common" ],
-  "libConfig": {
-    "inlineResources": true
-  }
-}

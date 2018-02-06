@@ -3,6 +3,7 @@ const globals = {
 
   '@angular/animations': 'ng.animations',
   '@angular/core': 'ng.core',
+  '@angular/core/testing': 'ng.core.testing',
   '@angular/common': 'ng.common',
   '@angular/forms': 'ng.forms',
   '@angular/http': 'ng.http',
