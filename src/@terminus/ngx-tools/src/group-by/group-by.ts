@@ -28,5 +28,4 @@ export function groupBy<T, K extends (keyof T & (number | string))>(array: T[], 
 
     return accumulator;
   }, initalValue);
-
 }
