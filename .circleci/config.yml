@@ -33,7 +33,7 @@ jobs:
 
       - run:
           name: Lint
-          command: yarn run lint:lib
+          command: yarn run lint:lib:ci
 
       - run:
           name: Run Tests
