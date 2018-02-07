@@ -5,6 +5,7 @@ import * as glob from 'glob';
 import { runCli } from 'ngc-webpack';
 const mv = require('mv');
 const sorcery = require('sorcery');
+const fs = require('fs-extra');
 
 import { cleanOnNext } from '../util';
 import * as util from '../util';
@@ -74,7 +75,7 @@ export class Gulpfile {
       format: 'es',
       external: rollupConfig.external,
       globals: rollupConfig.globals,
-    }).then( () => remapSourceMap(dest, { inline: false, includeContent: true }) );
+    }).then(() => remapSourceMap(dest, { inline: false, includeContent: true }));
   }
 
   @util.GulpClass.Task('!build:fesm:es5')
@@ -121,7 +122,7 @@ export class Gulpfile {
       format: 'umd',
       external: rollupConfig.external,
       globals: rollupConfig.globals,
-    }).then( () => remapSourceMap(dest, { inline: false, includeContent: true }));
+    }).then(() => remapSourceMap(dest, { inline: false, includeContent: true }));
   }
 
   @util.GulpClass.Task('!minifyAndGzip')
@@ -135,5 +136,30 @@ export class Gulpfile {
     } catch (err) {
       done(err);
     }
+  }
+
+  @util.GulpClass.Task('!build:copy:files')
+  buildCopyFiles() {
+    const meta = util.currentPackage();
+    const copyInst = util.getCopyInstruction(meta);
+
+    const rollupConfig: any = {
+      external: meta.externals,
+      moduleName: meta.moduleName,
+    };
+
+    util.tryRunHook(meta.dir, 'rollupFESM', rollupConfig);
+
+    const dest = Path.join(copyInst.toBundle, `${meta.umd}.js`);
+    const file1 = '/Users/bc/code/Terminus/ngx-tools/README.md';
+    const file2 = '/Users/bc/code/Terminus/ngx-tools/LICENSE';
+
+    return fs.copy(file1, Path.join(copyInst.to, 'README.md'))
+      .then(() => {
+        return fs.copy(file2, Path.join(copyInst.to, 'LICENSE'))
+          .then(() => console.log('success!'))
+          .catch((err) => console.error(err))
+      })
+      .catch((err) => console.error(err))
   }
 }
