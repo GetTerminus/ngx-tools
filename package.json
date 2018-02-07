@@ -74,6 +74,8 @@
     "cm": "./node_modules/.bin/git-cz",
     "semantic-release": "semantic-release",
     "check:next-release": "cd dist_package/ && ../node_modules/.bin/semantic-release --dry-run",
+    "precommit": "lint-staged",
+    "lint-staged": "lint-staged",
     "//=> Section: Library": "",
     "build:lib": "gulp build",
     "build:lib:sim": "gulp build && yarn run build:aot:prod --env.sim",
@@ -166,6 +168,7 @@
     "karma-remap-coverage": "^0.1.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.5",
+    "lint-staged": "6.1.0",
     "mkdirp": "^0.5.1",
     "mv": "^2.1.1",
     "ng-router-loader": "^2.1.0",
@@ -231,6 +234,16 @@
     "scope": "@terminus",
     "packages": [
       "ngx-tools"
+    ]
+  },
+  "lint-staged": {
+    "src/@terminus/ngx-tools/**/*.spec.ts": [
+      "lint:lib",
+      "git add"
+    ],
+    "src/@terminus/ngx-tools/**/!(*.spec|*.mock).ts": [
+      "lint:lib",
+      "git add"
     ]
   },
   "config": {
