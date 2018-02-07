@@ -4,6 +4,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    "noImplicitAny": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "lib": [

@@ -16,6 +16,8 @@ export interface FluentLog {
   log: (msg: string, newLineAfter?: number, newLineBefore?: number) => FluentLog;
 }
 
+const fluentLog: FluentLog = { log };
+
 export function log(msg: string, newLineAfter: number = 1, newLineBefore: number = 0): FluentLog {
   for (let i = 0; i < newLineBefore; i++) { process.stdout.write('\n'); }
   process.stdout.write(msg);
@@ -24,7 +26,6 @@ export function log(msg: string, newLineAfter: number = 1, newLineBefore: number
   return fluentLog;
 }
 
-const fluentLog: FluentLog = { log };
 
 /**
  * Returns the package name.
@@ -70,7 +71,7 @@ export function saveTempTsConfig(meta: PackageMetadata): void {
 }
 
 export function resolveWebpackConfig(config: string | any, ...args: any[]): any {
-  if(typeof config === 'string') {
+  if (typeof config === 'string') {
     return resolveWebpackConfig(require(config), ...args);
   } else if (typeof config === 'function') {
     return config(...args);
@@ -101,7 +102,7 @@ export function minifyAndGzip(destDir: string, srcNameNoExt: string) {
   const minified = uglify.minify(unminified, {
     sourceMap: {
       content: fs.readFileSync(sourcePath + '.map').toString(),
-      url: Path.basename(sourcePath + '.map')
+      url: Path.basename(sourcePath + '.map'),
     },
     parse: {
       bare_returns: true,
@@ -109,8 +110,8 @@ export function minifyAndGzip(destDir: string, srcNameNoExt: string) {
     ie8: true,
     warnings: true,
     output: {
-      comments: 'some'
-    }
+      comments: 'some',
+    },
   });
 
   const gzipBuffer = zlib.gzipSync(Buffer.from(minified.code));
@@ -120,15 +121,20 @@ export function minifyAndGzip(destDir: string, srcNameNoExt: string) {
   zipStream.write(gzipBuffer);
   zipStream.end();
 
-  const pct = num => 100 * Math.round(10000 * (1-num)) / 10000;
+  // tslint:disable: binary-expression-operand-order
+  const pct = (num: number) => 100 * Math.round(10000 * (1 - num)) / 10000;
+  // tslint:enable: binary-expression-operand-order
+  const lenPercent = pct(gzipBuffer.length / unminified.length);
+  const minLenPercent = pct(gzipBuffer.length / minified.code.length);
+  const minUnMinLen = pct(minified.code.length / unminified.length);
 
   console.log(`
           --------------------------------------
           UMD Bundle info: ${srcNameNoExt}
           --------------------------------------
           unminified: \t${unminified.length / 1000} KB
-          minified: \t${minified.code.length / 1000} KB \t(${pct(minified.code.length / unminified.length)} %)
-          gzipped: \t${gzipBuffer.length / 1000} KB \t(${pct(gzipBuffer.length / unminified.length)}) %, ${pct(gzipBuffer.length / minified.code.length)} %)
+          minified: \t${minified.code.length / 1000} KB \t(${minUnMinLen} %)
+          gzipped: \t${gzipBuffer.length / 1000} KB \t(${lenPercent}) %, ${minLenPercent} %)
           --------------------------------------
         `);
 }
@@ -141,6 +147,10 @@ export function getModuleName(dirName: string): string {
 }
 
 
+// Interface for reduce curr param
+interface Icurr {
+  [key: string]: string;
+}
 
 /**
  * Returns an alias list for webpack's configuration resolve property based on a packages list.
@@ -154,13 +164,13 @@ export function webpackAlias(...packages: string[]): { [id: string]: string } {
 
   const scope = libConfig.scope ? `${libConfig.scope}/` : '';
 
-  return packages.reduce((curr, pkg) => {
+  return packages.reduce((curr: Icurr, pkg) => {
     const pkgJson = getLocalPackageJSON(pkg);
     const entry = pkgJson.libConfig && pkgJson.libConfig.entry || 'index';
     curr[scope + pkg + '$'] = `${scope + pkg}/src/${entry}.ts`;
 
     if (pkgJson.libConfig && Array.isArray(pkgJson.libConfig.libExtensions)) {
-      pkgJson.libConfig.libExtensions.forEach( ext => {
+      pkgJson.libConfig.libExtensions.forEach((ext) => {
         normalizeLibExtension(ext);
         // TODO: remove object 'ext', only string... move everything to local package.json of extension
         curr[`${scope + pkg}/${ext.dir}$`] = `${scope + pkg}/${ext.dir}/src/${ext.entry}`;
@@ -179,14 +189,14 @@ export function jestAlias(...packages: string[]): { [id: string]: string } {
 
   const scope = libConfig.scope ? `${libConfig.scope}/` : '';
 
-  return packages.reduce((curr, pkg) => {
+  return packages.reduce((curr: Icurr, pkg) => {
     const pkgJson = getLocalPackageJSON(pkg);
     const entry = pkgJson.libConfig && pkgJson.libConfig.entry || 'index';
     curr[`^${scope + pkg}$`] = `<rootDir>/src/${scope + pkg}/src/${entry}.ts`;
     curr[`^${scope + pkg}/src/(.*)`] = `<rootDir>/src/${scope + pkg}/src/$1`;
 
     if (pkgJson.libConfig && Array.isArray(pkgJson.libConfig.libExtensions)) {
-      pkgJson.libConfig.libExtensions.forEach( ext => {
+      pkgJson.libConfig.libExtensions.forEach((ext) => {
         normalizeLibExtension(ext);
         // TODO: remove object 'ext', only string... move everything to local package.json of extension
         curr[`^${scope + pkg}/${ext.dir}$`] = `<rootDir>/src/${scope + pkg}/${ext.dir}/src/${ext.entry}`;
@@ -198,10 +208,15 @@ export function jestAlias(...packages: string[]): { [id: string]: string } {
   }, {})
 }
 
-export type Promisify<T> = { promise: Promise<T>; resolve: (value?: T) => void; reject: (err: any) => void };
+export interface Promisify<T> {
+  promise: Promise<T>;
+  resolve: (value?: T) => void;
+  reject: (err: any) => void;
+}
 
 export function promisify<T>(): Promisify<T> {
-  let resolve, reject;
-  const promise = new Promise( (rs, rj) => { resolve = rs; reject = rj; });
-  return <any>{ promise, resolve, reject };
+  let resolve;
+  let reject;
+  const promise = new Promise((rs, rj) => { resolve = rs; reject = rj; });
+  return { promise, resolve, reject } as any;
 }

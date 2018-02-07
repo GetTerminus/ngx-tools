@@ -1,11 +1,11 @@
 import {
   root,
-  FS_REF
+  FS_REF,
 } from './fs';
 
 export type HOOKS = 'rollupUMD' | 'rollupFESM' | 'packageJSON' | 'tsconfig' | 'jestConfig' | 'done';
 const constraints: { [hook: string]: 'global' | 'local'} = {
-  'jestConfig': 'global'
+  jestConfig: 'global',
 };
 
 export function tryRunHook(pkgDir: string,

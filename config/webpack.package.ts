@@ -11,7 +11,7 @@ const NgcWebpackPlugin = require('ngc-webpack').NgcWebpackPlugin;
 import { PackageMetadata, FS_REF, webpackAlias, getCopyInstruction, root } from '../scripts/util';
 
 module.exports = function(metadata: PackageMetadata) {
-  const banner = `/** 
+  const banner = `/**
  * ${metadata.name} Copyright ${new Date().getFullYear()}
  * Licensed under MIT
  */`;

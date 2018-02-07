@@ -2,14 +2,14 @@
 import * as rollup from 'rollup';
 import * as resolve from 'rollup-plugin-node-resolve';
 
-export type BundleConfig = {
+export interface BundleConfig {
   entry: string;
   dest: string;
   format: string;
   moduleName: string;
   external?: string[];
   globals?: { [key: string]: string };
-};
+}
 
 /**
  * Creates a rollup bundle of a specified JavaScript file.

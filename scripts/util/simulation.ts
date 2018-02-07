@@ -1,22 +1,22 @@
 import * as Path from 'path';
 import * as tsConfigLoader from 'tsconfig';
-import { CompilerOptions, MapLike } from 'typescript';
-import { Configuration, NewModule, NewResolve, Rule, Plugin } from 'webpack';
+import { Configuration, NewResolve, Plugin } from 'webpack';
 import { NgcWebpackPlugin } from 'ngc-webpack';
+import { CompilerOptions, MapLike } from 'typescript';
 
 import { root, FS_REF, jsonPatch, cleanOnNext } from './fs';
 import { tsConfigPaths, tsConfigPathsForSimulation } from './config';
 import { webpackAlias } from './util';
 
 function findPluginIndex<T>(plugins: Plugin[], type: new(...args: any[]) => T): number {
-  return <any>plugins.findIndex( p => p instanceof type);
+  return plugins.findIndex((p) => p instanceof type) as any;
 }
 
 function assignNonLibPaths(oldPaths: MapLike<string[]>, paths: MapLike<string[]>): void {
   const automatedPaths = tsConfigPaths();
   Object.keys(oldPaths)
-    .filter( k => !automatedPaths.hasOwnProperty(k) )
-    .forEach( k => paths[k] = oldPaths[k] );
+    .filter((k) => !automatedPaths.hasOwnProperty(k))
+    .forEach((k) => paths[k] = oldPaths[k]);
 }
 
 /**
@@ -32,7 +32,7 @@ export function applySimulation(webpackConfig: Configuration, isProd: boolean): 
     This should fix webpack dev mode.
    */
   (webpackConfig.resolve as NewResolve).modules.unshift(root(FS_REF.PKG_DIST));
-  Object.keys(webpackAlias()).forEach( k => {
+  Object.keys(webpackAlias()).forEach((k) => {
     delete webpackConfig.resolve.alias[k];
   });
 
@@ -48,7 +48,7 @@ export function applySimulation(webpackConfig: Configuration, isProd: boolean): 
 
 
   const ngcWebpackPluginIdx = findPluginIndex(webpackConfig.plugins, NgcWebpackPlugin);
-  const ngcWebpackPlugin: NgcWebpackPlugin = <any> webpackConfig.plugins[ngcWebpackPluginIdx];
+  const ngcWebpackPlugin: NgcWebpackPlugin = webpackConfig.plugins[ngcWebpackPluginIdx] as any;
   const compilerOptions = tsConfigLoader.loadSync(ngcWebpackPlugin.tsConfigPath).config.compilerOptions;
   const simulatorTsConfigPath = Path.join(Path.dirname(ngcWebpackPlugin.tsConfigPath), '.tsconfig.webpack.sim.json');
 
@@ -68,8 +68,8 @@ export function applySimulation(webpackConfig: Configuration, isProd: boolean): 
     Create a new "tsconfig" json file, extending the original one used by ATL but with
     different paths, we use the same paths we created in the first phase.
  */
-  jsonPatch<{ extends: string, compilerOptions: CompilerOptions }>(ngcWebpackPlugin.tsConfigPath)
-    .update( tsConfig => {
+  jsonPatch<{ extends: string; compilerOptions: CompilerOptions }>(ngcWebpackPlugin.tsConfigPath)
+    .update((tsConfig) => {
       tsConfig.extends = `./${Path.basename(ngcWebpackPlugin.tsConfigPath, '.json')}`;
       tsConfig.compilerOptions.paths = paths;
     })
@@ -77,8 +77,8 @@ export function applySimulation(webpackConfig: Configuration, isProd: boolean): 
 
   const plugin = NgcWebpackPlugin.clone(ngcWebpackPlugin, {
     options: {
-      tsConfigPath: simulatorTsConfigPath
-    }
+      tsConfigPath: simulatorTsConfigPath,
+    },
   });
   webpackConfig.plugins.splice(ngcWebpackPluginIdx, 1, plugin);
 

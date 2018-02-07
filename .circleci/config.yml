@@ -31,17 +31,17 @@ jobs:
           paths:
             - ./node_modules
 
-      #- run:
-          #name: Lint TypeScript
-          #command: tooling/ci/lint-typescript.sh
+      - run:
+          name: Lint
+          command: yarn run lint:lib
 
-      #- run:
-          #name: Run Tests
-          #command: tooling/ci/test-unit.sh
+      - run:
+          name: Run Tests
+          command: yarn run test:lib:ci
 
       - run:
           name: Build Project
-          command: yarn run lib:build
+          command: yarn run build:lib
 
       - run:
           name: Release

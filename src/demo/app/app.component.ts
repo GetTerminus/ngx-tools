@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './app.component.css'
+    './app.component.css',
   ],
   template: `
     <nav>
@@ -22,6 +22,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
       <router-outlet></router-outlet>
     </main>
 
-  `
+  `,
 })
 export class AppComponent { }

@@ -16,11 +16,11 @@ export function getLastCommit(dirName: string): string {
 
 export function createLibVersionMap(): { [pkgName: string]: CommitVersion } {
   return libConfig.packages
-    .reduce( (versionCache, dirName) => {
+    .reduce((versionCache, dirName) => {
       const version = fs.readJsonSync(getPackageRoot(dirName, 'package.json')).version;
       versionCache[dirName] = {
         commit: getLastCommit(dirName),
-        version
+        version,
       };
       return versionCache;
     }, {});
@@ -32,7 +32,7 @@ export function detectVersionBump(): { [pkgName: string]: CommitVersion } {
   try {
     const lastKnownState = fs.readJsonSync(root(FS_REF.VERSION_CACHE));
 
-    Object.keys(currState).forEach( pkg => {
+    Object.keys(currState).forEach((pkg) => {
       const last = lastKnownState[pkg];
       if (last) {
         const curr = currState[pkg];

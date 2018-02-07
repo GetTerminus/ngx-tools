@@ -18,7 +18,7 @@ export const FS_REF = {
   SRC_CONTAINER: 'src',
   NG_FLAT_MODULE_EXT: '.ng-flat',
   TEMP_DIR: '.tmp',
-  VERSION_CACHE: 'version_cache.json'
+  VERSION_CACHE: 'version_cache.json',
 };
 
 const cleanOnNextItems: string[] = [];
@@ -29,7 +29,7 @@ const cleanOnNextItems: string[] = [];
  * @param filePath
  */
 export function cleanOnNext(...filePath: string[]): void {
-  filePath.forEach( p => {
+  filePath.forEach((p) => {
     cleanOnNextItems.push(Path.isAbsolute(p) ? p :  root(p));
   });
 }
@@ -48,7 +48,9 @@ export function cleanup(): Promise<string[]> {
  * @param readPath
  * @return {any}
  */
-export function jsonPatch<T>(readPath: string): { update: (handler: (data: T) => (T | null | void)) => { save: (savePath: string) => void } } {
+export function jsonPatch<T>(readPath: string): {
+  update: (handler: (data: T) => (T | null | void)) => { save: (savePath: string) => void };
+} {
   return {
     update(handler: (data: T) => T): any {
       const tsconfig = jsonfile.readFileSync(readPath);
@@ -58,8 +60,8 @@ export function jsonPatch<T>(readPath: string): { update: (handler: (data: T) =>
           if (data !== null) {
             jsonfile.writeFileSync(savePath, data || tsconfig, {spaces: 2});
           }
-        }
+        },
       };
-    }
+    },
   };
 }

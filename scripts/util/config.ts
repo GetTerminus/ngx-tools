@@ -30,7 +30,7 @@ export function buildPackageMetadata(dirName: string): PackageMetadata {
     externalsWebpack: [/^\@angular\//].concat(getExternalsWebpack(getPackageName(dirName), ...getExternalsRaw(pkgJson))),
     tsConfig: `./${FS_REF.TS_CONFIG_TMP}`,
     tsConfigObj: undefined,
-    moduleName: getModuleName(dirName)
+    moduleName: getModuleName(dirName),
   };
 
   if (pkgJson.libConfig && Array.isArray(pkgJson.libConfig.libExtensions)) {
@@ -45,7 +45,7 @@ export function buildPackageMetadata(dirName: string): PackageMetadata {
 }
 
 export function buildExtensionMetadata(pkg: PackageMetadata): Array<PackageMetadata> {
-  return pkg.libExtensions.map( ext => {
+  return pkg.libExtensions.map((ext) => {
     normalizeLibExtension(ext);
 
     const meta: PackageMetadata = deepcopy(pkg);
@@ -95,7 +95,7 @@ function getExternalsRaw(packageJson): string[] {
  */
 function getExternalsWebpack(...packageNames: string[]): RegExp[] {
   return packageNames
-    .reduce( (arr, name) => {
+    .reduce((arr, name) => {
       arr.push(new RegExp('^' + name.replace(`\\`, '\/')));
       return arr;
     }, []);
@@ -132,7 +132,7 @@ export function tsConfigUpdate<T extends any>(config: T, meta: PackageMetadata):
     skipTemplateCodegen: true,
     strictMetadataEmit: true,
     flatModuleOutFile: `${meta.umd}${FS_REF.NG_FLAT_MODULE_EXT}.js`,
-    flatModuleId: meta.dir // needs to be the dir name, if has scope add it as well.
+    flatModuleId: meta.dir, // needs to be the dir name, if has scope add it as well.
   };
 
   config.compilerOptions.baseUrl = `./${FS_REF.SRC_CONTAINER}`;
@@ -160,7 +160,12 @@ export function getMainOutputFileName(meta: PackageMetadata): string {
  * @param meta
  * @return {{from: string, to: string}}
  */
-export function getCopyInstruction(meta: PackageMetadata): { from: string; to: string, toSrc: string, toBundle: string } {
+export function getCopyInstruction(meta: PackageMetadata): {
+  from: string;
+  to: string;
+  toSrc: string;
+  toBundle: string;
+} {
   const from = getOutDir(meta, true);
   const to = root(FS_REF.PKG_DIST, meta.dir);
   const toSrc = root(FS_REF.PKG_DIST, meta.dir, FS_REF.SRC_CONTAINER);
@@ -170,11 +175,17 @@ export function getCopyInstruction(meta: PackageMetadata): { from: string; to: s
   return { from, to, toSrc, toBundle };
 }
 
+// Interface for reduce curr param
+interface Icurr {
+  [key: string]: string[];
+}
+
 /**
  * Returns an alias list for tsConfig's configuration path property based on a packages list.
  * If no list supplied the whole list from package.json is used.
  * @param packages
  */
+// tslint:disable: no-implicit-any
 export function tsConfigPaths(...packages: string[]): { [id: string]: string } {
   if (packages.length === 0) {
     packages = libConfig.packages;
@@ -182,14 +193,14 @@ export function tsConfigPaths(...packages: string[]): { [id: string]: string } {
 
   const scope = libConfig.scope ? `${libConfig.scope}/` : '';
 
-  return packages.reduce((curr, pkg) => {
+  return packages.reduce((curr: Icurr, pkg) => {
     const pkgJson = getLocalPackageJSON(pkg);
     const entry = pkgJson.libConfig && pkgJson.libConfig.entry || 'index';
 
     curr[scope + pkg] = [`${scope + pkg}/src/${entry}.ts`];      // main package export
 
     if (pkgJson.libConfig && Array.isArray(pkgJson.libConfig.libExtensions)) {
-      pkgJson.libConfig.libExtensions.forEach( ext => {
+      pkgJson.libConfig.libExtensions.forEach((ext) => {
         normalizeLibExtension(ext);
         // TODO: remove object 'ext', only string... move everything to local package.json of extension
         curr[`${scope + pkg}/${ext.dir}`] = [`${scope + pkg}/${ext.dir}/src/${ext.entry}`];
@@ -217,13 +228,15 @@ export function tsConfigPathsForSimulation(...packages: string[]): { [id: string
 
   return packages.reduce((curr, pkg) => {
     const pkgJson = getLocalPackageJSON(pkg);
-    const entry = pkgJson.libConfig && pkgJson.libConfig.entry || 'index';
+    /*
+     *const entry = pkgJson.libConfig && pkgJson.libConfig.entry || 'index';
+     */
 
     // "paths" are relative to baseUrl so we ..
     curr[scope + pkg] = [`../${FS_REF.PKG_DIST}/${scope + pkg}`];
 
     if (pkgJson.libConfig && Array.isArray(pkgJson.libConfig.libExtensions)) {
-      pkgJson.libConfig.libExtensions.forEach( ext => {
+      pkgJson.libConfig.libExtensions.forEach((ext) => {
         normalizeLibExtension(ext);
         // TODO: remove object 'ext', only string... move everything to local package.json of extension
         curr[`${scope + pkg}/${ext.dir}`] = [`../${FS_REF.PKG_DIST}/${scope + pkg}/${ext.dir}`];

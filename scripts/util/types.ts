@@ -1,5 +1,5 @@
-import { CompilerOptions } from 'typescript';
 import { AngularCompilerOptions } from '@angular/compiler-cli';
+import { CompilerOptions } from 'typescript';
 
 export interface GlobalLibConfig {
   scope?: string;
@@ -80,7 +80,7 @@ export interface PackageMetadata {
   entry: string;
 
   tsConfig: string;
-  tsConfigObj: { compilerOptions: CompilerOptions, angularCompilerOptions: AngularCompilerOptions, files: string[] };
+  tsConfigObj: { compilerOptions: CompilerOptions; angularCompilerOptions: AngularCompilerOptions; files: string[] };
 
   /**
    * Internal extensions for the library.
