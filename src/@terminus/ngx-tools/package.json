@@ -2,21 +2,21 @@
   "version": "0.0.1",
   "description": "A set of TypeScript utilities used by Terminus",
   "libConfig": {
-      "entry": "public_api",
+      "entry": "public-api",
       "libExtensions": [
         {
           "name": "testing",
-          "entry": "public_api.ts"
+          "entry": "public-api.ts"
         },
         {
           "name": "keycodes",
           "dir": "keycodes",
-          "entry": "public_api.ts"
+          "entry": "public-api.ts"
         },
         {
           "name": "regex",
           "dir": "regex",
-          "entry": "public_api.ts"
+          "entry": "public-api.ts"
         }
       ]
     }

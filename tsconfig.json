@@ -24,22 +24,22 @@
     "baseUrl": "./src",
     "paths": {
       "@terminus/ngx-tools": [
-        "@terminus/ngx-tools/src/public_api.ts"
+        "@terminus/ngx-tools/src/public-api.ts"
       ],
       "@terminus/ngx-tools/testing": [
-        "@terminus/ngx-tools/testing/src/public_api.ts"
+        "@terminus/ngx-tools/testing/src/public-api.ts"
       ],
       "@terminus/ngx-tools/testing/src/*": [
         "@terminus/ngx-tools/testing/src/*"
       ],
       "@terminus/ngx-tools/keycodes": [
-        "@terminus/ngx-tools/keycodes/src/public_api.ts"
+        "@terminus/ngx-tools/keycodes/src/public-api.ts"
       ],
       "@terminus/ngx-tools/keycodes/src/*": [
         "@terminus/ngx-tools/keycodes/src/*"
       ],
       "@terminus/ngx-tools/regex": [
-        "@terminus/ngx-tools/regex/src/public_api.ts"
+        "@terminus/ngx-tools/regex/src/public-api.ts"
       ],
       "@terminus/ngx-tools/regex/src/*": [
         "@terminus/ngx-tools/regex/src/*"
