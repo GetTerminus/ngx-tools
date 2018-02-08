@@ -53,7 +53,7 @@ jobs:
 
       - store_artifacts:
           path: dist/
-          destination: ~/dist/
+          destination: ~/dist_package/
 
       - store_artifacts:
           path: /home/circleci/.npm/_logs/
