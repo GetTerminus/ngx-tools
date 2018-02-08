@@ -89,7 +89,8 @@
     "start:lib:sim": "gulp build && yarn run server:dev --env.sim",
     "lib:sync": "gulp misc:syncConfig",
     "lint:lib": "./node_modules/.bin/tslint --fix --project ./tsconfig.lint.json",
-    "lint:lib:ci": "./node_modules/.bin/tslint --project ./tsconfig.lint.json"
+    "lint:lib:ci": "./node_modules/.bin/tslint --project ./tsconfig.lint.json",
+    "codecov:upload": "./node_modules/.bin/codecov -f coverage/*.json"
   },
   "devDependencies": {
     "@angular-devkit/build-optimizer": "^0.0.32",

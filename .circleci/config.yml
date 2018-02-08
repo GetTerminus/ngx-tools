@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: Run Tests
-          command: yarn run test:lib:ci
+          command: yarn run test:lib:ci && yarn run codecov:upload
 
       - run:
           name: Build Project
