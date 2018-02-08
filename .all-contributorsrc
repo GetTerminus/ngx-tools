@@ -1,0 +1,23 @@
+{
+  "projectName": "ngx-tools",
+  "projectOwner": "GetTerminus",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "benjamincharity",
+      "name": "Benjamin Charity",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/270193?v=4",
+      "profile": "http://benjamincharity.com",
+      "contributions": [
+        "code",
+        "tool",
+        "ideas",
+        "doc"
+      ]
+    }
+  ]
+}
