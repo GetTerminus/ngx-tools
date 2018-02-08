@@ -16,4 +16,4 @@ yarn run test:lib:ci || {
 }
 
 # Upload coverage report
-bash <(curl -s https://codecov.io/bash)
+codecov -f coverage/*.json
