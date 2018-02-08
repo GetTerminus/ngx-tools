@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 
 
 /**
- * Reusable Query helper function
+ * Helper to query a fixture for a selector
  *
  * @param fixture - The test fixture
  * @return The query result

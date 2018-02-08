@@ -2,7 +2,7 @@ import { ComponentFixture } from '@angular/core/testing';
 
 
 /**
- * Reusable expect to check for the nativeElement
+ * Reusable expect statement to check for the nativeElement
  *
  * Note: this helper only accesses the 1st-level child within a component
  *       A different helper method is need to access deep-level DOM nodes

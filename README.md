@@ -14,10 +14,145 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Usage](#usage)
+- [Library Structure](#library-structure)
+- [Features](#features)
+  - [Basic Utilities](#basic-utilities)
+  - [Regex](#regex)
+  - [Test Helpers](#test-helpers)
+  - [Key Codes](#key-codes)
 - [Contributors](#contributors)
 - [Resources](#resources)
+- [Contributing](#contributing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## Usage
+
+1. Install: `yarn add @terminus/ngx-tools --exact`
+1. Import: `import { debounce } from '@terminus/ngx-tools';`
+
+
+## Library Structure
+
+1. `@terminus/ngx-tools/`
+    - Basic utilities (`debounce`, `groupBy`..)
+1. `@terminus/ngx-tools/regex`
+    - Regex definitions (`creditCard`, `email`..)
+1. `@terminus/ngx-tools/testing`
+    - Test helpers and test mocks (`dispatchEvent`, `ElementRefMock`..)
+
+## Features
+
+
+### Basic Utilities
+
+**Import from:** `@terminus/ngx-tools`
+
+| Name       | Description                                          |
+|------------|------------------------------------------------------|
+| `debounce` | Provides a debounced function                        |
+| `groupBy`  | Return an object containing arrays split by property |
+| `noop`     | Placeholder function                                 |
+
+**Example:**
+
+```typescript
+import { groupBy } from '@terminus/ngx-tools';
+
+const splitArrays = groupBy(myArray, 'myProperty');
+```
+
+
+### Regex
+
+**Import from:** `@terminus/ngx-tools/regex`
+
+| Name              | Description                                                      |
+|-------------------|------------------------------------------------------------------|
+| `creditCardRegex` | Visa, MasterCard, American Express, Diners Club, Discover, JCB   |
+| `emailRegex`      | Any valid email                                                  |
+| `passwordRegex`   | Between 6 and 100 characters, is a string, has at least 1 number |
+
+**Example:**
+
+```typescript
+import { emailRegex } from '@terminus/ngx-tools/regex';
+
+const isTrue = emailRegex.test('foo@bar.com');
+```
+
+
+### Test Helpers
+
+**Import from:** `@terminus/ngx-tools/testing`
+
+| Name                    | Description                                                                                |
+|-------------------------|--------------------------------------------------------------------------------------------|
+| `ChangeDetectorRefMock` | A mock of the Angular `ChangeDetectorRefMock` class                                        |
+| `ElementRefMock`        | A mock of the Angular ElementRef class                                                     |
+| `rendererMock`          | A mock of the Angular Renderer                                                             |
+| `dispatchEvent`         | Utility to dispatch any event on a Node                                                    |
+| `dispatchFakeEvent`     | Shorthand to dispatch a fake event on a specified node                                     |
+| `dispatchKeyboardEvent` | Shorthand to dispatch a keyboard event with a specified key code                           |
+| `dispatchMouseEvent`    | Shorthand to dispatch a mouse event on the specified coordinates                           |
+| `dispatchTouchEvent`    | Shorthand to dispatch a touch event on the specified coordinates                           |
+| `createMouseEvent`      | Creates a browser MouseEvent with the specified options                                    |
+| `createTouchEvent`      | Creates a browser TouchEvent with the specified pointer coordinates                        |
+| `createKeyboardEvent`   | Dispatches a keydown event from an element                                                 |
+| `createFakeEvent`       | Creates a fake event object with any desired event type                                    |
+| `typeInElement`         | Focuses an input, sets it's value and dispatches the `input` event, simulating user typing |
+| `expectNativeEl`        | Reusable expect statement to check for the nativeElement                                   |
+| `queryFor`              | Helper to query a fixture for a selector                                                   |
+| `wrappedErrorMessage`   | Gets a RegExp used to detect an angular wrapped error message                              |
+
+**Example:**
+
+```typescript
+import { ElementRefMock } from '@terminus/ngx-tools/testing';
+import { dispatchFakeEvent } from '@terminus/ngx-tools/testing';
+
+this.directive = new MyDirective(
+  new ElementRefMock(),
+);
+
+dispatchFakeEvent(window, 'resize')
+```
+
+
+### Key Codes
+
+**Import from:** `@terminus/ngx-tools/keycodes`
+
+| Name          | Description |
+|---------------|-------------|
+| `UP_ARROW`    | Key code    |
+| `DOWN_ARROW`  | Key code    |
+| `RIGHT_ARROW` | Key code    |
+| `LEFT_ARROW`  | Key code    |
+| `PAGE_UP`     | Key code    |
+| `PAGE_DOWN`   | Key code    |
+| `HOME`        | Key code    |
+| `END`         | Key code    |
+| `ENTER`       | Key code    |
+| `SPACE`       | Key code    |
+| `TAB`         | Key code    |
+| `BACKSPACE`   | Key code    |
+| `DELETE`      | Key code    |
+| `A`           | Key code    |
+| `Z`           | Key code    |
+| `ZERO`        | Key code    |
+| `NINE`        | Key code    |
+| `COMMA`       | Key code    |
+
+**Example:**
+
+```typescript
+import { DELETE } from '@terminus/ngx-tools/keycodes';
+
+const isTrue = DELETE === 46;
+```
 
 
 ## Contributors
@@ -36,8 +171,14 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 ## Resources
 
 - [Angular Library Starter][library-starter]
+- [Semantic Release][semantic-release]
+- [`ngx-tools` on unpkg][unpkg-tools]
+- [Commitizen][commitizen]
 
 
+## Contributing
+
+See the development workflow for the `@terminus/ui` library: [Terminus Library Contribution Docs][dev-wiki]
 
 
 <!-- LINKS -->
@@ -54,3 +195,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: https://github.com/GetTerminus/ngx-tools/blob/master/LICENSE
 [library-starter]: https://github.com/shlomiassaf/angular-library-starter
+[semantic-release]: https://github.com/semantic-release/semantic-release
+[unpkg-tools]: https://unpkg.com/@terminus/ngx-tools/
+[commitizen]: https://github.com/commitizen
+[dev-wiki]: https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow
