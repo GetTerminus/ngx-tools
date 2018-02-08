@@ -52,7 +52,7 @@ jobs:
           destination: ~/coverage/
 
       - store_artifacts:
-          path: dist/
+          path: dist_package/
           destination: ~/dist_package/
 
       - store_artifacts:
