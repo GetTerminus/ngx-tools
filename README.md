@@ -7,16 +7,18 @@
 [![MIT License][license-image]][license-url]
 [![All Contributors][all-contributors-badge]](#contributors)
 
-
 A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 
----
 
-## Angular Library Starter
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
 
-The complete Angular Library starter.
+- [Contributors](#contributors)
+- [Resources](#resources)
 
-https://github.com/shlomiassaf/angular-library-starter
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## Contributors
 
@@ -29,6 +31,13 @@ Thanks goes to these wonderful people ([emoji key][all-contributors-key]):
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+
+
+## Resources
+
+- [Angular Library Starter][library-starter]
+
+
 
 
 <!-- LINKS -->
@@ -44,3 +53,4 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [npm-version-image]: http://img.shields.io/npm/v/@terminus/ngx-tools.svg
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: https://github.com/GetTerminus/ngx-tools/blob/master/LICENSE
+[library-starter]: https://github.com/shlomiassaf/angular-library-starter

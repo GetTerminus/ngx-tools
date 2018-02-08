@@ -1,3 +1,6 @@
+/**
+ * A mock of the Angular Renderer
+ */
 export const rendererMock = {
   setElementStyle: () => {},
   setElementClass: () => {},
