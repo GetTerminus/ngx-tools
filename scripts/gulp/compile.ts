@@ -63,6 +63,7 @@ export class Gulpfile {
 
   private run() {
     const curPkg = util.currentPackage();
+    const baseLibDir = '@terminus/ngx-tools';
 
     util.saveTempTsConfig(curPkg);
 
@@ -85,8 +86,9 @@ Compiling library ${curPkg.dirName}
       '!build:fesm:es5',
       '!build:rollup:umd',
       '!minifyAndGzip',
-      '!build:copy:files',
       '!manifest',
+      // If building the base library, copy the license/readme
+      curPkg.dir === baseLibDir ? '!copyPackageFiles' : '!dummyTask',
       (err) => this.handleRunEnd(err),
     );
   };

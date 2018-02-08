@@ -1,3 +1,4 @@
+declare var Promise: any;
 import * as Path from 'path';
 import { ScriptTarget, ModuleKind } from 'typescript';
 import * as del from 'del';
@@ -138,7 +139,7 @@ export class Gulpfile {
     }
   }
 
-  @util.GulpClass.Task('!build:copy:files')
+  @util.GulpClass.Task('!copyPackageFiles')
   buildCopyFiles() {
     const meta = util.currentPackage();
     const copyInst = util.getCopyInstruction(meta);
@@ -151,15 +152,20 @@ export class Gulpfile {
     util.tryRunHook(meta.dir, 'rollupFESM', rollupConfig);
 
     const dest = Path.join(copyInst.toBundle, `${meta.umd}.js`);
-    const file1 = '/Users/bc/code/Terminus/ngx-tools/README.md';
-    const file2 = '/Users/bc/code/Terminus/ngx-tools/LICENSE';
+    const file1 = './README.md';
+    const file2 = './LICENSE';
 
     return fs.copy(file1, Path.join(copyInst.to, 'README.md'))
       .then(() => {
         return fs.copy(file2, Path.join(copyInst.to, 'LICENSE'))
-          .then(() => console.log('success!'))
+          .then(() => console.log('Successfully copied files!'))
           .catch((err) => console.error(err))
       })
       .catch((err) => console.error(err))
+  }
+
+  @util.GulpClass.Task('!dummyTask')
+  dummyTask() {
+    return Promise.resolve();
   }
 }
