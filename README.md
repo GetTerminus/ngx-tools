@@ -107,6 +107,9 @@ const isTrue = emailRegex.test('foo@bar.com');
 
 **Import from:** `@terminus/ngx-tools/testing`
 
+> **NOTE:** The three mocks currently do not work. They are currently being compiled during the
+> build process.
+
 | Name                    | Description                                                                                |
 |-------------------------|--------------------------------------------------------------------------------------------|
 | `ChangeDetectorRefMock` | A mock of the Angular `ChangeDetectorRefMock` class                                        |
