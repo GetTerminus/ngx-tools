@@ -89,8 +89,8 @@
     "test:lib": "yarn run jest --config jest.library.config.json --watch",
     "start:lib:sim": "gulp build && yarn run server:dev --env.sim",
     "lib:sync": "gulp misc:syncConfig",
-    "lint:lib": "./node_modules/.bin/tslint --fix --project ./tsconfig.package.json",
-    "lint:lib:ci": "./node_modules/.bin/tslint --project ./tsconfig.package.json"
+    "lint:lib": "./node_modules/.bin/tslint --fix --project ./tsconfig.lint.json",
+    "lint:lib:ci": "./node_modules/.bin/tslint --project ./tsconfig.lint.json"
   },
   "devDependencies": {
     "@angular-devkit/build-optimizer": "^0.0.32",

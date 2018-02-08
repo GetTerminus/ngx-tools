@@ -9,6 +9,11 @@
           "entry": "public-api.ts"
         },
         {
+          "name": "coercion",
+          "dir": "coercion",
+          "entry": "public-api.ts"
+        },
+        {
           "name": "keycodes",
           "dir": "keycodes",
           "entry": "public-api.ts"

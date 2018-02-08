@@ -16,13 +16,15 @@ module.exports = {
   ],
 
   scopes: [
+    {name: 'Coercion'},
     {name: 'Regex'},
     {name: 'Testing'},
-    {name: 'Utilities'},
+    {name: 'Utility'},
 
     {name: 'Build'},
     {name: 'CI'},
     {name: 'Demo'},
+    {name: 'Docs'},
     {name: 'Packages'},
   ],
 

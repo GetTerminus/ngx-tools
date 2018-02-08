@@ -26,20 +26,6 @@ const APP_PROVIDERS = [
 ];
 
 
-import { debounce } from '@terminus/ngx-tools';
-console.log('debounce: ', debounce);
-
-import { emailRegex } from '@terminus/ngx-tools/regex';
-console.log('emailRegex: ', emailRegex);
-
-import { ElementRefMock } from '@terminus/ngx-tools/testing';
-console.log('ElementRefMock: ', ElementRefMock);
-
-
-import { ZERO } from '@terminus/ngx-tools/keycodes';
-console.log('ZERO: ', ZERO);
-
-
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
