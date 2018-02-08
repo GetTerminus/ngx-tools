@@ -22,6 +22,7 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
   - [Regex](#regex)
   - [Test Helpers](#test-helpers)
   - [Key Codes](#key-codes)
+  - [Coercion](#coercion)
 - [Contributors](#contributors)
 - [Resources](#resources)
 - [Contributing](#contributing)
@@ -34,6 +35,8 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 1. Install: `yarn add @terminus/ngx-tools --exact`
 1. Import: `import { debounce } from '@terminus/ngx-tools';`
 
+> You can also play with the library live on StackBlitz:
+> https://stackblitz.com/edit/angular-ngx-tools-starter
 
 ### Basic Commands
 
@@ -174,6 +177,25 @@ dispatchFakeEvent(window, 'resize')
 import { DELETE } from '@terminus/ngx-tools/keycodes';
 
 const isTrue = DELETE === 46;
+```
+
+
+### Coercion
+
+**Import from:** `@terminus/ngx-tools/coercion`
+
+| Name                    | Description                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|
+| `coerceArray`           | Wraps the provided value in an array, unless the provided value is an array |
+| `coerceBooleanProperty` | Coerces a data-bound value to a boolean                                     |
+| `coerceNumberProperty`  | Coerces a data-bound value to a number                                      |
+
+**Example:**
+
+```typescript
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+
+const isTrue: boolean = coerceBooleanProperty('foo');
 ```
 
 
