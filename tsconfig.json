@@ -33,6 +33,12 @@
       "@terminus/ngx-tools/testing/src/*": [
         "@terminus/ngx-tools/testing/src/*"
       ],
+      "@terminus/ngx-tools/coercion": [
+        "@terminus/ngx-tools/coercion/src/public-api.ts"
+      ],
+      "@terminus/ngx-tools/coercion/src/*": [
+        "@terminus/ngx-tools/coercion/src/*"
+      ],
       "@terminus/ngx-tools/keycodes": [
         "@terminus/ngx-tools/keycodes/src/public-api.ts"
       ],

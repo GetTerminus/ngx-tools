@@ -15,6 +15,7 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 **Table of Contents**
 
 - [Usage](#usage)
+  - [Basic Commands](#basic-commands)
 - [Library Structure](#library-structure)
 - [Features](#features)
   - [Basic Utilities](#basic-utilities)
@@ -34,14 +35,32 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 1. Import: `import { debounce } from '@terminus/ngx-tools';`
 
 
+### Basic Commands
+
+| Command                  | Function                                                      |
+|--------------------------|---------------------------------------------------------------|
+| `yarn run build:lib`     | Build release                                                 |
+| `yarn run lib:build:sim` | Build release and start demo app in AoT                       |
+| `test:lib`               | Run unit tests                                                |
+| `test:lib:ci`            | Run unit tests and output coverage                            |
+| `start:lib:sim`          | Build release and start demo app in JiT                       |
+| `lib:sync`               | Sync configuration files (needed after any structural change) |
+| `lint:lib`               | Lint TS files and attempt to fix issues                       |
+| `lint:lib:ci`            | Lint TS files                                                 |
+
+> See [package.json][package-json] for the full list of commands.
+
+
 ## Library Structure
 
-1. `@terminus/ngx-tools/`
-    - Basic utilities (`debounce`, `groupBy`..)
-1. `@terminus/ngx-tools/regex`
-    - Regex definitions (`creditCard`, `email`..)
-1. `@terminus/ngx-tools/testing`
-    - Test helpers and test mocks (`dispatchEvent`, `ElementRefMock`..)
+
+| Import location                | Resources                                                                |
+|--------------------------------|--------------------------------------------------------------------------|
+| `@terminus/ngx-tools`          | Basic utilities (`debounce`, `groupBy`..)                                |
+| `@terminus/ngx-tools/regex`    | Regex definitions (`creditCardRegex`, `emailRegex`..)                    |
+| `@terminus/ngx-tools/testing`  | Test helpers and test mocks (`dispatchEvent`, `ElementRefMock`..)        |
+| `@terminus/ngx-tools/coercion` | Functions to coerce values to specific types (`coerceBooleanProperty`..) |
+
 
 ## Features
 
@@ -155,6 +174,7 @@ const isTrue = DELETE === 46;
 ```
 
 
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key][all-contributors-key]):
@@ -199,3 +219,4 @@ See the development workflow for the `@terminus/ui` library: [Terminus Library C
 [unpkg-tools]: https://unpkg.com/@terminus/ngx-tools/
 [commitizen]: https://github.com/commitizen
 [dev-wiki]: https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow
+[package-json]: ./package.json

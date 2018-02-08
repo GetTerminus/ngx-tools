@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.package",
+  "exclude": [
+    "scripts",
+    "node_modules",
+    "dist",
+    "dist_package",
+    "e2e",
+    "src/demo"
+  ]
+}

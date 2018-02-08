@@ -30,6 +30,8 @@
     "^@terminus/ngx-tools/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/src/$1",
     "^@terminus/ngx-tools/testing$": "<rootDir>/src/@terminus/ngx-tools/testing/src/public-api.ts",
     "^@terminus/ngx-tools/testing/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/testing/src/$1",
+    "^@terminus/ngx-tools/coercion$": "<rootDir>/src/@terminus/ngx-tools/coercion/src/public-api.ts",
+    "^@terminus/ngx-tools/coercion/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/coercion/src/$1",
     "^@terminus/ngx-tools/keycodes$": "<rootDir>/src/@terminus/ngx-tools/keycodes/src/public-api.ts",
     "^@terminus/ngx-tools/keycodes/src/(.*)": "<rootDir>/src/@terminus/ngx-tools/keycodes/src/$1",
     "^@terminus/ngx-tools/regex$": "<rootDir>/src/@terminus/ngx-tools/regex/src/public-api.ts",
@@ -38,6 +40,8 @@
   },
   "collectCoverageFrom": [
     "src/@terminus/ngx-tools/**/!(public-api).ts",
+    "src/@terminus/ngx-tools/coercion/src/**/*.ts",
+    "!src/@terminus/ngx-tools/coercion/src/public-api.ts",
     "!src/@terminus/ngx-tools/testing/src/mocks/**/*",
     "!src/@terminus/ngx-tools/keycodes/**/*"
   ]
