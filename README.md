@@ -42,8 +42,8 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 
 | Command                  | Function                                                      |
 |--------------------------|---------------------------------------------------------------|
-| `yarn run build:lib`     | Build release                                                 |
-| `yarn run lib:build:sim` | Build release and start demo app in AoT                       |
+| `build:lib`     | Build release                                                 |
+| `build:lib:sim` | Build release and start demo app in AoT                       |
 | `test:lib`               | Run unit tests                                                |
 | `test:lib:ci`            | Run unit tests and output coverage                            |
 | `start:lib:sim`          | Build release and start demo app in JiT                       |
