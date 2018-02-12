@@ -72,18 +72,27 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 
 **Import from:** `@terminus/ngx-tools`
 
-| Name       | Description                                          |
-|------------|------------------------------------------------------|
-| `debounce` | Provides a debounced function                        |
-| `groupBy`  | Return an object containing arrays split by property |
-| `noop`     | Placeholder function                                 |
+| Name         | Description                                          |
+|--------------|------------------------------------------------------|
+| `debounce`   | Provides a debounced function                        |
+| `groupBy`    | Return an object containing arrays split by property |
+| `noop`       | Placeholder function                                 |
+| `isArray`    | Check if value is an Array                           |
+| `isBoolean`  | Check if value is a Boolean                          |
+| `isFunction` | Check if value is a function                         |
+| `isObject`   | Check if value is an Object                          |
+| `isString`   | Check if value is a String                           |
 
 **Example:**
 
 ```typescript
-import { groupBy } from '@terminus/ngx-tools';
+import {
+  groupBy,
+  isArray,
+} from '@terminus/ngx-tools';
 
-const splitArrays = groupBy(myArray, 'myProperty');
+const groupedArrays = groupBy(myArray, 'myProperty'); // {foo: [...], bar: [...]}
+const isValidArray = isArray([]); // true
 ```
 
 
