@@ -14,6 +14,8 @@ describe(`isString`, () => {
   const nonString1 = {};
   const nonString2 = [];
   const nonString3 = () => true;
+  const nonString4 = null;
+  const nonString5 = undefined;
 
 
   test(`should return true for string values`, () => {
@@ -28,6 +30,8 @@ describe(`isString`, () => {
     expect(isString(nonString1)).toEqual(false);
     expect(isString(nonString2)).toEqual(false);
     expect(isString(nonString3)).toEqual(false);
+    expect(isString(nonString4)).toEqual(false);
+    expect(isString(nonString5)).toEqual(false);
   });
 
 });
