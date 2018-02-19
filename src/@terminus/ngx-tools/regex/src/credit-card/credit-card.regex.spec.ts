@@ -20,20 +20,16 @@ const invalidNumbers = [
 describe(`creditCardRegex`, () => {
 
   test(`should return true for valid card numbers`, () => {
-    expect(creditCardRegex.test(validNumbers[0])).toEqual(true);
-    expect(creditCardRegex.test(validNumbers[1])).toEqual(true);
-    expect(creditCardRegex.test(validNumbers[2])).toEqual(true);
-    expect(creditCardRegex.test(validNumbers[3])).toEqual(true);
+    for (const num of validNumbers) {
+      expect(creditCardRegex.test(num)).toEqual(true);
+    }
   });
 
 
   test(`should return false for invalid card numbers`, () => {
-    expect(creditCardRegex.test(invalidNumbers[0])).toEqual(false);
-    expect(creditCardRegex.test(invalidNumbers[1])).toEqual(false);
-    expect(creditCardRegex.test(invalidNumbers[2])).toEqual(false);
-    expect(creditCardRegex.test(invalidNumbers[3])).toEqual(false);
-    expect(creditCardRegex.test(invalidNumbers[4])).toEqual(false);
-    expect(creditCardRegex.test(invalidNumbers[5])).toEqual(false);
+    for (const num of invalidNumbers) {
+      expect(creditCardRegex.test(num)).toEqual(false);
+    }
   });
 
 });
