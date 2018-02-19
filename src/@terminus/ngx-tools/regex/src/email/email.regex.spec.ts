@@ -17,17 +17,16 @@ const invalidEmails = [
 describe(`emailRegex`, () => {
 
   test(`should return true for valid emails`, () => {
-    expect(emailRegex.test(validEmails[0])).toEqual(true);
-    expect(emailRegex.test(validEmails[1])).toEqual(true);
+    for (const email of validEmails) {
+      expect(emailRegex.test(email)).toEqual(true);
+    }
   });
 
 
   test(`should return false for invalid emails`, () => {
-    expect(emailRegex.test(invalidEmails[0])).toEqual(false);
-    expect(emailRegex.test(invalidEmails[1])).toEqual(false);
-    expect(emailRegex.test(invalidEmails[2])).toEqual(false);
-    expect(emailRegex.test(invalidEmails[3])).toEqual(false);
-    expect(emailRegex.test(invalidEmails[4])).toEqual(false);
+    for (const email of invalidEmails) {
+      expect(emailRegex.test(email)).toEqual(false);
+    }
   });
 
 });

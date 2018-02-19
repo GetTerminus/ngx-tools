@@ -29,20 +29,16 @@ const invalidPasswords = [
 describe(`passwordRegex`, () => {
 
   test(`should return true for valid passwords`, () => {
-    expect(passwordRegex.test(validPasswords[0])).toEqual(true);
-    expect(passwordRegex.test(validPasswords[1])).toEqual(true);
-    expect(passwordRegex.test(validPasswords[2])).toEqual(true);
-    expect(passwordRegex.test(validPasswords[3])).toEqual(true);
+    for (const password of validPasswords) {
+      expect(passwordRegex.test(password)).toEqual(true);
+    }
   });
 
 
   test(`should return false for invalid passwords`, () => {
-    expect(passwordRegex.test(invalidPasswords[0])).toEqual(false);
-    expect(passwordRegex.test(invalidPasswords[1])).toEqual(false);
-    expect(passwordRegex.test(invalidPasswords[2])).toEqual(false);
-    expect(passwordRegex.test(invalidPasswords[3])).toEqual(false);
-    expect(passwordRegex.test(invalidPasswords[4])).toEqual(false);
-    expect(passwordRegex.test(invalidPasswords[5])).toEqual(false);
+    for (const password of invalidPasswords) {
+      expect(passwordRegex.test(password)).toEqual(false);
+    }
   });
 
 });
