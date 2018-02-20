@@ -1,7 +1,9 @@
+export { arrayContainsObject } from './array-contains-object/array-contains-object';
 export { debounce } from './debounce/debounce';
 export { groupBy } from './group-by/group-by';
 export { noop } from './noop/noop';
-export { arrayContainsObject } from './array-contains-object/array-contains-object';
+export * from './retry-with-backoff/retry-with-backoff';
+export * from './retry-with-backoff/delay-calculator';
 
 export { isArray } from './verify-types/is-array/is-array';
 export { isBoolean } from './verify-types/is-boolean/is-boolean';
