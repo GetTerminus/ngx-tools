@@ -74,15 +74,16 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 
 | Name                  | Description                                          |
 |-----------------------|------------------------------------------------------|
+| `arrayContainsObject` | Check if an object exists in an array                |
 | `debounce`            | Provides a debounced function                        |
 | `groupBy`             | Return an object containing arrays split by property |
-| `noop`                | Placeholder function                                 |
 | `isArray`             | Check if value is an Array                           |
 | `isBoolean`           | Check if value is a Boolean                          |
 | `isFunction`          | Check if value is a function                         |
 | `isObject`            | Check if value is an Object                          |
 | `isString`            | Check if value is a String                           |
-| `arrayContainsObject` | Check if an object exists in an array                |
+| `noop`                | Placeholder function                                 |
+| `retryWithBackoff`    | Helper to retry an Observable stream (x) times       |
 
 **Example:**
 
@@ -221,8 +222,8 @@ Thanks goes to these wonderful people ([emoji key][all-contributors-key]):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars3.githubusercontent.com/u/270193?v=4" width="100px;"/><br /><sub><b>Benjamin Charity</b></sub>](http://benjamincharity.com)<br />[💻](https://github.com/GetTerminus/ngx-tools/commits?author=benjamincharity "Code") [🔧](#tool-benjamincharity "Tools") [🤔](#ideas-benjamincharity "Ideas, Planning, & Feedback") [📖](https://github.com/GetTerminus/ngx-tools/commits?author=benjamincharity "Documentation") |
-| :---: |
+| [<img src="https://avatars3.githubusercontent.com/u/270193?v=4" width="100px;"/><br /><sub><b>Benjamin Charity</b></sub>](http://benjamincharity.com)<br />[💻](https://github.com/GetTerminus/ngx-tools/commits?author=benjamincharity "Code") [🔧](#tool-benjamincharity "Tools") [🤔](#ideas-benjamincharity "Ideas, Planning, & Feedback") [📖](https://github.com/GetTerminus/ngx-tools/commits?author=benjamincharity "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/19909708?v=4" width="100px;"/><br /><sub><b>Brian Malinconico</b></sub>](https://github.com/bmalinconico)<br />[💻](https://github.com/GetTerminus/ngx-tools/commits?author=bmalinconico "Code") [🤔](#ideas-bmalinconico "Ideas, Planning, & Feedback") |
+| :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
