@@ -105,7 +105,12 @@ const isValidArray = isArray([]); // true
 |-------------------|------------------------------------------------------------------|
 | `creditCardRegex` | Visa, MasterCard, American Express, Diners Club, Discover, JCB   |
 | `emailRegex`      | Any valid email                                                  |
+| `lettersRegex`    | Only English letters                                             |
+| `numbersRegex`    | Only numbers                                                     |
 | `passwordRegex`   | Between 6 and 100 characters, is a string, has at least 1 number |
+| `phoneRegex`      | Any valid US phone number                                        |
+| `postalRegex`     | Any valid US postal code                                         |
+| `urlRegex`        | Any valid URL (http/ftp/unicode/IP/etc)                          |
 
 **Example:**
 
@@ -126,20 +131,20 @@ const isTrue = emailRegex.test('foo@bar.com');
 | Name                    | Description                                                                                |
 |-------------------------|--------------------------------------------------------------------------------------------|
 | `ChangeDetectorRefMock` | A mock of the Angular `ChangeDetectorRefMock` class                                        |
-| `ElementRefMock`        | A mock of the Angular ElementRef class                                                     |
-| `rendererMock`          | A mock of the Angular Renderer                                                             |
+| `createFakeEvent`       | Creates a fake event object with any desired event type                                    |
+| `createKeyboardEvent`   | Dispatches a keydown event from an element                                                 |
+| `createMouseEvent`      | Creates a browser MouseEvent with the specified options                                    |
+| `createTouchEvent`      | Creates a browser TouchEvent with the specified pointer coordinates                        |
 | `dispatchEvent`         | Utility to dispatch any event on a Node                                                    |
 | `dispatchFakeEvent`     | Shorthand to dispatch a fake event on a specified node                                     |
 | `dispatchKeyboardEvent` | Shorthand to dispatch a keyboard event with a specified key code                           |
 | `dispatchMouseEvent`    | Shorthand to dispatch a mouse event on the specified coordinates                           |
 | `dispatchTouchEvent`    | Shorthand to dispatch a touch event on the specified coordinates                           |
-| `createMouseEvent`      | Creates a browser MouseEvent with the specified options                                    |
-| `createTouchEvent`      | Creates a browser TouchEvent with the specified pointer coordinates                        |
-| `createKeyboardEvent`   | Dispatches a keydown event from an element                                                 |
-| `createFakeEvent`       | Creates a fake event object with any desired event type                                    |
-| `typeInElement`         | Focuses an input, sets it's value and dispatches the `input` event, simulating user typing |
+| `ElementRefMock`        | A mock of the Angular ElementRef class                                                     |
 | `expectNativeEl`        | Reusable expect statement to check for the nativeElement                                   |
 | `queryFor`              | Helper to query a fixture for a selector                                                   |
+| `rendererMock`          | A mock of the Angular Renderer                                                             |
+| `typeInElement`         | Focuses an input, sets it's value and dispatches the `input` event, simulating user typing |
 | `wrappedErrorMessage`   | Gets a RegExp used to detect an angular wrapped error message                              |
 
 **Example:**
