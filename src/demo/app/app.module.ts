@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 
@@ -30,27 +31,22 @@ const APP_PROVIDERS = [
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    NoContentComponent,
-  ],
-  /**
-   * Import Angular's modules.
-   */
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    HttpClientModule,
   ],
-  /**
-   * Expose our Services and Providers into Angular's dependency injection.
-   */
   providers: [
     environment.ENV_PROVIDERS,
     APP_PROVIDERS,
   ],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NoContentComponent,
+  ],
+  bootstrap: [ AppComponent ],
 })
 export class AppModule { }

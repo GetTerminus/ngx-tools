@@ -2,9 +2,20 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs/observable/of';
+import { tap } from 'rxjs/operators/tap';
+import { map } from 'rxjs/operators/map';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
-import { VERSION } from '@terminus/ngx-tools';
-console.log('VERSION: ', VERSION)
+/*
+ *import { VERSION } from '@terminus/ngx-tools';
+ *console.log('VERSION: ', VERSION)
+ */
+
+import { retryWithBackoff, exponentialBackoffDelayCalculator, DelayCalculator } from '@terminus/ngx-tools';
 
 /*
  *import { debounce } from '@terminus/ngx-tools';
@@ -27,6 +38,9 @@ console.log('VERSION: ', VERSION)
 import { AppState } from '../app.service';
 
 
+
+
+
 // tslint:disable: component-selector
 @Component({
   selector: 'home',
@@ -41,28 +55,105 @@ import { AppState } from '../app.service';
 })
 export class HomeComponent implements OnInit {
   value: number;
+  localState = { value: '' };
+  exampleDatabase: ExampleHttpDao | null;
+  issues$: any;
+  totalCount: number;
 
-  /**
-   * Set our default values
-   */
-  public localState = { value: '' };
-  /**
-   * TypeScript public modifiers
-   */
   constructor(
     public appState: AppState,
+    private http: HttpClient,
   ) {}
 
   public ngOnInit() {
     console.log('hello `Home` component');
+    const seenValues: {[idx: number]: number} = {}
+    const linearBackoff = (attempt: number) => 1;
+    this.exampleDatabase = new ExampleHttpDao(this.http);
+
     /**
      * this.title.getData().subscribe(data => this.data = data);
      */
+
+    this.issues$ = this.getIssues();
+
+    this.issues$.subscribe((v: any) => {
+      console.log('v: ', v)
+      this.totalCount = v.total_count;
+    })
+
   }
+
+
 
   public submitState(value: string) {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';
+  }
+
+
+  public getIssues(): Observable<GithubApi | null> {
+    const calcOpts: DelayCalculator = {
+      jitter: true,
+      jitterFactor: .3,
+      backOffFactor: 2,
+      baseWaitTime: 100,
+    }
+
+    return this.exampleDatabase.getRepoIssues()
+      .pipe(
+        map((res: GithubApi) => {
+          if (res) {
+            console.log('getIssues: res: ', res)
+            return res;
+
+          } else {
+            console.log('getIssues: no res')
+            return null;
+          }
+        }),
+        retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)}),
+      )
+    ;
+  }
+
+}
+
+
+export interface GithubApi {
+  items: GithubIssue[];
+  total_count: number;
+}
+
+export interface GithubIssue {
+  created_at: string;
+  number: string;
+  state: string;
+  title: string;
+}
+
+/**
+ * An example database that the data source uses to retrieve data for the table.
+ */
+export class ExampleHttpDao {
+  tries: number = 0;
+
+  constructor(private http: HttpClient) {}
+
+  getRepoIssues(): any {
+    const href = 'https://api.github.com/search/issues?q=repo:GetTerminus/terminus-ui';
+    this.tries = 0;
+    return this.http.get<GithubApi>(`${href}`)
+      .pipe(
+        map((i) => {
+          console.log('in API: this.tries: ', this.tries)
+          this.tries++;
+          if (this.tries < 3) {
+            throw new Error('no soup for you');
+          }
+          return i
+        }),
+      );
   }
 }
