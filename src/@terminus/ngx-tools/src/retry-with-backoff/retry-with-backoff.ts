@@ -32,18 +32,15 @@ export function retryWithBackoff<T>({
   retries = 3,
   delayCalculator = exponentialBackoffDelayCalculator({}),
 }: Partial<RetryWithBackoff>): MonoTypeOperatorFunction<T> {
-  console.log('RETRY retries: ', retries)
 
   return retryWhen((errors) =>
     errors.pipe(
       zip(range(1, retries)),
       mergeMap(([err, retry]) => {
         if (retry >= retries) {
-          console.log('RETRY return error')
           return ErrorObservable.create(err);
         }
 
-        console.warn('RETRY returning: ', delayCalculator(retry))
         return timer(delayCalculator(retry));
       }),
     ),
