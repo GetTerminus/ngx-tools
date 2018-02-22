@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
+// tslint:disable: component-selector
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,

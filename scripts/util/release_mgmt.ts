@@ -16,7 +16,7 @@ export function getLastCommit(dirName: string): string {
 
 export function createLibVersionMap(): { [pkgName: string]: CommitVersion } {
   return libConfig.packages
-    .reduce((versionCache, dirName) => {
+    .reduce((versionCache: any, dirName: any) => {
       const version = fs.readJsonSync(getPackageRoot(dirName, 'package.json')).version;
       versionCache[dirName] = {
         commit: getLastCommit(dirName),
