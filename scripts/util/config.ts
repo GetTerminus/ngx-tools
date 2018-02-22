@@ -83,7 +83,7 @@ export function buildExtensionMetadata(pkg: PackageMetadata): Array<PackageMetad
  * @param packageJson
  * @return {string[]}
  */
-function getExternalsRaw(packageJson): string[] {
+function getExternalsRaw(packageJson: any): string[] {
   const deps = Object.assign({}, packageJson.dependencies || {}, packageJson.peerDependencies || {});
   return Object.keys(deps)
 }
@@ -101,7 +101,7 @@ function getExternalsWebpack(...packageNames: string[]): RegExp[] {
     }, []);
 }
 
-function titleCamelCase(value) {
+function titleCamelCase(value: string) {
   return value[0].toUpperCase() + voca.camelCase(value).substr(1);
 }
 
@@ -226,7 +226,7 @@ export function tsConfigPathsForSimulation(...packages: string[]): { [id: string
 
   const scope = libConfig.scope ? `${libConfig.scope}/` : '';
 
-  return packages.reduce((curr, pkg) => {
+  return packages.reduce((curr: any, pkg: any) => {
     const pkgJson = getLocalPackageJSON(pkg);
     /*
      *const entry = pkgJson.libConfig && pkgJson.libConfig.entry || 'index';

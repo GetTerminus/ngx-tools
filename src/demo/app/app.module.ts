@@ -5,6 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 
+import {
+  TsWindowService,
+  TsDocumentService,
+} from '@terminus/ngx-tools';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -41,6 +46,8 @@ const APP_PROVIDERS = [
   providers: [
     environment.ENV_PROVIDERS,
     APP_PROVIDERS,
+    TsWindowService,
+    TsDocumentService,
   ],
   declarations: [
     AppComponent,

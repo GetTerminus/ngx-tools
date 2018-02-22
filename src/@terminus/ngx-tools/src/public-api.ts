@@ -12,3 +12,6 @@ export { isObject } from './verify-types/is-object/is-object';
 export { isString } from './verify-types/is-string/is-string';
 
 export { Version, VERSION } from './version/version';
+
+export { TsWindowService } from './window/window.service';
+export { TsDocumentService } from './document/document.service';

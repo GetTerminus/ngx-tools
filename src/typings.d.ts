@@ -4,3 +4,4 @@ declare namespace jest {
     rejects: Matchers;
   }
 }
+

@@ -10,12 +10,19 @@ import { switchMap } from 'rxjs/operators/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
+
 /*
  *import { VERSION } from '@terminus/ngx-tools';
  *console.log('VERSION: ', VERSION)
  */
 
-import { retryWithBackoff, exponentialBackoffDelayCalculator, DelayCalculator } from '@terminus/ngx-tools';
+import {
+  retryWithBackoff,
+  exponentialBackoffDelayCalculator,
+  DelayCalculator,
+  TsWindowService,
+  TsDocumentService,
+} from '@terminus/ngx-tools';
 
 /*
  *import { debounce } from '@terminus/ngx-tools';
@@ -35,35 +42,30 @@ import { retryWithBackoff, exponentialBackoffDelayCalculator, DelayCalculator } 
  */
 
 
-import { AppState } from '../app.service';
-
-
-
 
 
 // tslint:disable: component-selector
 @Component({
   selector: 'home',
-  /**
-   * Our list of styles in our component. We may add more to compose many styles together.
-   */
   styleUrls: [ './home.component.css' ],
-  /**
-   * Every Angular template is first compiled by the browser before Angular runs it's compiler.
-   */
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
   value: number;
-  localState = { value: '' };
   exampleDatabase: ExampleHttpDao | null;
   issues$: any;
   totalCount: number;
+  window: any;
+  document: any;
 
   constructor(
-    public appState: AppState,
     private http: HttpClient,
-  ) {}
+    private windowService: TsWindowService,
+    private documentService: TsDocumentService,
+  ) {
+    this.window = this.windowService.nativeWindow;
+    this.document = this.documentService.document;
+  }
 
   public ngOnInit() {
     console.log('hello `Home` component');
@@ -71,25 +73,14 @@ export class HomeComponent implements OnInit {
     const linearBackoff = (attempt: number) => 1;
     this.exampleDatabase = new ExampleHttpDao(this.http);
 
-    /**
-     * this.title.getData().subscribe(data => this.data = data);
-     */
+    console.log('this.document: ', this.document)
 
     this.issues$ = this.getIssues();
 
     this.issues$.subscribe((v: any) => {
-      console.log('v: ', v)
       this.totalCount = v.total_count;
     })
 
-  }
-
-
-
-  public submitState(value: string) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
   }
 
 
