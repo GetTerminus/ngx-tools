@@ -5,7 +5,6 @@
 [![Library size][file-size-badge]][raw-distribution-js]
 [![semantic-release][semantic-release-badge]][semantic-release]
 [![MIT License][license-image]][license-url]
-[![All Contributors][all-contributors-badge]](#contributors)
 
 A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 
@@ -245,8 +244,6 @@ See the development workflow for the `@terminus/ui` library: [Terminus Library C
 
 
 <!-- LINKS -->
-[all-contributors-badge]: https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square
-[all-contributors-key]: https://github.com/kentcdodds/all-contributors#emoji-key
 [circle-badge]: https://circleci.com/gh/GetTerminus/ngx-tools/tree/master.svg?style=shield
 [circle-link]: https://circleci.com/gh/GetTerminus/ngx-tools/tree/master
 [file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundle/ngx-tools.umd.min.js?compression=gzip
