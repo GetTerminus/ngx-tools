@@ -27,6 +27,13 @@ describe(`controlHasRequiredField`, () => {
   });
 
 
+  test(`should return false if no control is passed in `, () => {
+    const actual = controlHasRequiredField(undefined);
+
+    expect(actual).toEqual(false);
+  });
+
+
   test(`should return true if the form control has a required validator`, () => {
     const actual = controlHasRequiredField(myForm.get('second'));
 
