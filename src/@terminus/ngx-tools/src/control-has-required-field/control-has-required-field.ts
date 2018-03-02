@@ -9,7 +9,7 @@ import { AbstractControl } from '@angular/forms';
  * @return If the control is required
  */
 export function controlHasRequiredField(control: AbstractControl): boolean {
-  if (control.validator) {
+  if (control && control.validator) {
     const validator = control.validator({} as AbstractControl);
 
     if (validator && validator.required) {

@@ -13,14 +13,14 @@ import { controlHasRequiredField } from './../control-has-required-field/control
  * @return If the any nested control is required
  */
 export function formGroupHasRequiredControl(group: FormGroup): boolean {
-  if (!group || !Object.keys(group.controls).length) {
-    return;
+  if (!group || !group.controls || !Object.keys(group.controls).length) {
+    return false;
   }
+
   let isRequired = false;
 
   for (let i = 0; i < Object.keys(group.controls).length; i += 1) {
     const control: AbstractControl = group.controls[Object.keys(group.controls)[i]];
-    console.log('control: ', control)
     isRequired = controlHasRequiredField(control);
 
     if (isRequired) {

@@ -33,7 +33,16 @@ describe(`formGroupHasRequiredControl`, () => {
           null,
         ],
       }),
+      third: formBuilder.group({
+      }),
     });
+  });
+
+
+  test(`should return false if no form group was passed in`, () => {
+    const actual = formGroupHasRequiredControl(undefined);
+
+    expect(actual).toEqual(false);
   });
 
 
@@ -46,6 +55,13 @@ describe(`formGroupHasRequiredControl`, () => {
 
   test(`should return false if no nested controls are required`, () => {
     const actual = formGroupHasRequiredControl(myForm.get('second'));
+
+    expect(actual).toEqual(false);
+  });
+
+
+  test(`should return false if an empty form group was passed in`, () => {
+    const actual = formGroupHasRequiredControl(myForm.get('third'));
 
     expect(actual).toEqual(false);
   });
