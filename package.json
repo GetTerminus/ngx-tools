@@ -85,7 +85,7 @@
     "build:lib": "gulp build",
     "build:lib:sim": "gulp build && yarn run build:aot:prod --env.sim",
     "test:lib:ci": "yarn run jest --config jest.library.config.json --coverage",
-    "test:lib": "yarn run jest --config jest.library.config.json --watch",
+    "test:lib": "yarn run jest --config jest.library.config.json --watch --verbose",
     "start:lib:sim": "gulp build && yarn run server:dev --env.sim",
     "lib:sync": "gulp misc:syncConfig",
     "lint:lib": "./node_modules/.bin/tslint --fix --project ./tsconfig.lint.json",
