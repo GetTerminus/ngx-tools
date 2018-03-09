@@ -16,7 +16,7 @@ const defaults = {
 export class ElementRefMock implements ElementRef {
   public nativeElement: any;
 
-  constructor(nativeElementAdditions: {[key: string]: any}) {
-    this.nativeElement = Object.assign({}, defaults, nativeElementAdditions);
+  constructor(nativeElementAdditions?: {[key: string]: any}) {
+    this.nativeElement = Object.assign({}, defaults, nativeElementAdditions || {});
   }
 }
