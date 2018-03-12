@@ -1,17 +1,45 @@
 {
   "name": "@terminus/ngx-tools",
-  "version": "1.0.0-alpha.1",
-  "repository": "https://github.com/GetTerminus/ngx-tools.git",
+  "version": "0.0.0-PLACEHOLDER",
   "license": "MIT",
-  "peerDependencies": {
-    "@angular/core": "^5.0.0",
-    "@angular/common": "^5.0.0",
-    "typescript": "^2.6.0"
+  "author": "@terminus",
+  "homepage": "https://github.com/GetTerminus/ngx-tools",
+  "repository": "https://github.com/GetTerminus/ngx-tools.git",
+  "bugs": {
+    "url": "https://github.com/GetTerminus/ngx-tools/issues"
+  },
+  "release": {
+    "verifyConditions": [
+      "condition-circle",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "getLastRelease": "@semantic-release/npm",
+    "publish": [
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "./tools/inject-version.sh ${nextRelease.version}"
+      },
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": true,
+        "pkgRoot": "dist/ngx-tools"
+      },
+      {
+        "path": "@semantic-release/github",
+        "npmPublish": false
+      }
+    ]
   },
   "engines": {
     "node": ">= 8.0.0",
     "npm": ">= 5.0.0",
     "yarn": ">= 1.0.0"
+  },
+  "peerDependencies": {
+    "@angular/core": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "typescript": "^2.6.0"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
