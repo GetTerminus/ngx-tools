@@ -53,7 +53,6 @@ describe(`dispatch-events`, () => {
   });
 
 
-  // TODO: this test is causing Jest to hang
   describe(`dispatchKeyboardEvent`, () => {
 
     test(`should do something`, () => {

@@ -29,7 +29,7 @@
     "//=> Section: Library:Test": "",
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
     "test:config": "jest --showConfig",
-    "test": "jest --watch --verbose",
+    "test": "jest --watch",
     "test:ci": "jest --runInBand --coverage",
     "test:debug": "jest --debug --runInBand",
     "lint": "npx tslint --fix --project ./ngx-tools/tsconfig.lint.json",
@@ -40,7 +40,7 @@
     "globals": {
       "ts-jest": {
         "tsConfigFile": "ngx-tools/tsconfig.spec.json",
-        "enableTsDiagnostics": false
+        "enableTsDiagnostics": true
       },
       "__TRANSFORM_HTML__": true
     },
