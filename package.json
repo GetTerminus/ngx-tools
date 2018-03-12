@@ -2,6 +2,13 @@
   "name": "ng-packaged",
   "version": "0.0.0-PLACEHOLDER",
   "license": "MIT",
+  "description": "A collection of tools and utilities for the Terminus (Angular/NGRX) applications",
+  "author": "@terminus",
+  "homepage": "https://github.com/GetTerminus/ngx-tools",
+  "repository": "https://github.com/GetTerminus/ngx-tools.git",
+  "bugs": {
+    "url": "https://github.com/GetTerminus/ngx-tools/issues"
+  },
   "scripts": {
     "//=> Section: Demo App": "______________________________",
     "ng": "ng",
