@@ -77,13 +77,11 @@
       "config": "./tools/cz-config.js"
     }
   },
-  "release": {
-    "branch": "wip"
-  },
   "publishConfig": {
     "tag": "wip"
   },
   "release": {
+    "branch": "wip",
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/npm",
