@@ -78,6 +78,12 @@
     }
   },
   "release": {
+    "branch": "wip"
+  },
+  "publishConfig": {
+    "tag": "wip"
+  },
+  "release": {
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/npm",
