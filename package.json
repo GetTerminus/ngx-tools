@@ -26,6 +26,7 @@
     "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
     "//=> Section: Library:Build": "",
     "build": "rimraf dist && ng-packagr -p ngx-tools/package.json",
+    "postbuild": "cp README.md dist/ngx-tools/ && cp LICENSE dist/ngx-tools/",
     "//=> Section: Library:Test": "",
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
     "test:config": "jest --showConfig",
@@ -76,33 +77,6 @@
     "cz-customizable": {
       "config": "./tools/cz-config.js"
     }
-  },
-  "publishConfig": {
-    "tag": "wip"
-  },
-  "release": {
-    "branch": "wip",
-    "verifyConditions": [
-      "condition-circle",
-      "@semantic-release/npm",
-      "@semantic-release/github"
-    ],
-    "getLastRelease": "@semantic-release/npm",
-    "publish": [
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "./tools/inject-version.sh ${nextRelease.version}"
-      },
-      {
-        "path": "@semantic-release/npm",
-        "npmPublish": true,
-        "pkgRoot": "dist/ngx-tools"
-      },
-      {
-        "path": "@semantic-release/github",
-        "npmPublish": false
-      }
-    ]
   },
   "engines": {
     "node": ">= 8.0.0",
