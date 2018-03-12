@@ -72,20 +72,19 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 
 **Import from:** `@terminus/ngx-tools`
 
-| Name                          | Description                                                         |
-|-------------------------------|---------------------------------------------------------------------|
-| `arrayContainsObject`         | Check if an object exists in an array                               |
-| `controlHasRequiredField`     | Check if an `AbstractControl` has a required validator              |
-| `debounce`                    | Provides a debounced function                                       |
-| `groupBy`                     | Return an object containing arrays split by property                |
-| `formGroupHasRequiredControl` | Check if a `FormGroup` contains a control with a required validator |
-| `isArray`                     | Check if value is an Array                                          |
-| `isBoolean`                   | Check if value is a Boolean                                         |
-| `isFunction`                  | Check if value is a function                                        |
-| `isObject`                    | Check if value is an Object                                         |
-| `isString`                    | Check if value is a String                                          |
-| `noop`                        | Placeholder function                                                |
-| `retryWithBackoff`            | Helper to retry an Observable stream (x) times                      |
+| Name                          | Description                                                           |
+|-------------------------------|-----------------------------------------------------------------------|
+| `arrayContainsObject`         | Check if an object exists in an array                                 |
+| `debounce`                    | Provides a debounced function                                         |
+| `groupBy`                     | Return an object containing arrays split by property                  |
+| `hasRequiredControl`          | Check if an `AbstractControl` or `FormGroup` has a required validator |
+| `isArray`                     | Check if value is an Array                                            |
+| `isBoolean`                   | Check if value is a Boolean                                           |
+| `isFunction`                  | Check if value is a function                                          |
+| `isObject`                    | Check if value is an Object                                           |
+| `isString`                    | Check if value is a String                                            |
+| `noop`                        | Placeholder function                                                  |
+| `retryWithBackoff`            | Helper to retry an Observable stream (x) times                        |
 
 **Example:**
 

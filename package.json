@@ -78,6 +78,33 @@
       "config": "./tools/cz-config.js"
     }
   },
+  "publishConfig": {
+    "tag": "wip"
+  },
+  "release": {
+    "branch": "wip",
+    "verifyConditions": [
+      "condition-circle",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "getLastRelease": "@semantic-release/npm",
+    "publish": [
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "./tools/inject-version.sh ${nextRelease.version}"
+      },
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": true,
+        "pkgRoot": "dist/ngx-tools"
+      },
+      {
+        "path": "@semantic-release/github",
+        "npmPublish": false
+      }
+    ]
+  },
   "engines": {
     "node": ">= 8.0.0",
     "npm": ">= 5.0.0",
