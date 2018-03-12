@@ -1,72 +1,26 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
+    "sourceMap": true,
+    "declaration": false,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "noImplicitAny": true,
     "emitDecoratorMetadata": true,
-    "allowSyntheticDefaultImports": true,
-    "lib": [
-      "es2015",
-      "dom"
-    ],
+    "experimentalDecorators": true,
+    "target": "es5",
     "typeRoots": [
       "node_modules/@types"
     ],
-    "types": [
-      "jasmine",
-      "hammerjs",
-      "node",
-      "source-map",
-      "uglify-js",
-      "webpack"
+    "lib": [
+      "es2016",
+      "dom"
     ],
-    "baseUrl": "./src",
     "paths": {
-      "@terminus/ngx-tools": [
-        "@terminus/ngx-tools/src/public-api.ts"
-      ],
-      "@terminus/ngx-tools/testing": [
-        "@terminus/ngx-tools/testing/src/public-api.ts"
-      ],
-      "@terminus/ngx-tools/testing/src/*": [
-        "@terminus/ngx-tools/testing/src/*"
-      ],
-      "@terminus/ngx-tools/coercion": [
-        "@terminus/ngx-tools/coercion/src/public-api.ts"
-      ],
-      "@terminus/ngx-tools/coercion/src/*": [
-        "@terminus/ngx-tools/coercion/src/*"
-      ],
-      "@terminus/ngx-tools/keycodes": [
-        "@terminus/ngx-tools/keycodes/src/public-api.ts"
-      ],
-      "@terminus/ngx-tools/keycodes/src/*": [
-        "@terminus/ngx-tools/keycodes/src/*"
-      ],
-      "@terminus/ngx-tools/regex": [
-        "@terminus/ngx-tools/regex/src/public-api.ts"
-      ],
-      "@terminus/ngx-tools/regex/src/*": [
-        "@terminus/ngx-tools/regex/src/*"
-      ],
-      "@terminus/ngx-tools/src/*": [
-        "@terminus/ngx-tools/src/*"
-      ]
+      "@my/lib": [ "dist/my-lib" ]
     }
   },
   "exclude": [
-    "scripts/**/*.ts",
-    "node_modules",
-    "dist",
-    "dist_package",
-    "e2e",
-    "src/**/*.spec.ts"
-  ],
-  "compileOnSave": false,
-  "buildOnSave": false,
-  "atom": {
-    "rewriteTsconfig": false
-  }
+    ".ng_build"
+  ]
 }
