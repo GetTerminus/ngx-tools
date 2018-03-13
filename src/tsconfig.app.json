@@ -2,7 +2,11 @@
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
     "paths": {
-      "@my/lib": [ "../my-lib/src/public_api.ts" ]
+      "@terminus/ngx-tools": ["../ngx-tools/src/public-api.ts"],
+      "@terminus/ngx-tools/coercion": ["../ngx-tools/coercion/public-api.ts"],
+      "@terminus/ngx-tools/keycodes": ["../ngx-tools/keycodes/public-api.ts"],
+      "@terminus/ngx-tools/regex": ["../ngx-tools/regex/public-api.ts"],
+      "@terminus/ngx-tools/testing": ["../ngx-tools/testing/public-api.ts"]
     }
   },
   "compilerOptions": {
@@ -11,7 +15,11 @@
     "baseUrl": "",
     "types": [],
     "paths": {
-      "@my/lib": [ "../my-lib/src/public_api.ts" ]
+      "@terminus/ngx-tools": ["../ngx-tools/src/public-api.ts"],
+      "@terminus/ngx-tools/coercion": ["../ngx-tools/coercion/public-api.ts"],
+      "@terminus/ngx-tools/keycodes": ["../ngx-tools/keycodes/public-api.ts"],
+      "@terminus/ngx-tools/regex": ["../ngx-tools/regex/public-api.ts"],
+      "@terminus/ngx-tools/testing": ["../ngx-tools/testing/public-api.ts"]
     }
   },
   "exclude": [

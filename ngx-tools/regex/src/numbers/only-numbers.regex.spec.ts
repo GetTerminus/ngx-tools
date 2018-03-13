@@ -1,4 +1,5 @@
-import { numberRegex } from './numbers.regex';
+import { onlyNumbersRegex } from './only-numbers.regex';
+
 
 const validNumbers = [
   '0',
@@ -23,18 +24,18 @@ const invalidNumbers: any = [
 ];
 
 
-describe(`numberRegex`, () => {
+describe(`onlyNumbersRegex`, () => {
 
   test(`should return true for strings containing only numbers`, () => {
     for (const num of validNumbers) {
-      expect(numberRegex.test(num)).toEqual(true);
+      expect(onlyNumbersRegex.test(num)).toEqual(true);
     }
   });
 
 
   test(`should return false for strings containing anything other than only numbers`, () => {
     for (const num of invalidNumbers) {
-      expect(numberRegex.test(num)).toEqual(false);
+      expect(onlyNumbersRegex.test(num)).toEqual(false);
     }
   });
 
