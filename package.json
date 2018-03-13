@@ -58,7 +58,7 @@
     "transform": {
       "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
     },
-    "testMatch": ["**/ngx-tools/ngx-tools/**/?(*.)(spec|test).ts?(x)"],
+    "testMatch": ["<rootDir>/ngx-tools/**/?(*.)(spec|test).ts?(x)"],
     "moduleFileExtensions": [
       "ts",
       "js",
