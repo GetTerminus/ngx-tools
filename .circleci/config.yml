@@ -33,15 +33,15 @@ jobs:
 
       - run:
           name: Lint
-          command: yarn run lint:lib:ci
+          command: yarn run lint
 
       - run:
           name: Run Tests
-          command: yarn run test:lib:ci && yarn run codecov:upload
+          command: yarn run test:ci && yarn run codecov:upload
 
       - run:
           name: Build Project
-          command: yarn run build:lib
+          command: yarn run build
 
       - run:
           name: Release
@@ -52,8 +52,8 @@ jobs:
           destination: ~/coverage/
 
       - store_artifacts:
-          path: dist_package/
-          destination: ~/dist_package/
+          path: dist/
+          destination: ~/dist/
 
       - store_artifacts:
           path: /home/circleci/.npm/_logs/
@@ -69,5 +69,4 @@ deployment:
     tag: /.*/
     commands:
       - echo "make tags run in 2.0"
-
 

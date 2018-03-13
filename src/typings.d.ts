@@ -1,7 +1,5 @@
-declare namespace jest {
-  interface Matchers {
-    resolves: Matchers;
-    rejects: Matchers;
-  }
+/* SystemJS module definition */
+declare var module: NodeModule;
+interface NodeModule {
+  id: string;
 }
-
