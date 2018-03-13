@@ -8,4 +8,5 @@ export * from './src/numbers/contains-numbers.regex';
 export * from './src/password/password.regex';
 export * from './src/phone/usa-phone.regex';
 export * from './src/postal/usa-postal.regex';
+export * from './src/special-characters/special-characters.regex';
 export * from './src/url/url.regex';

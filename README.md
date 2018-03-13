@@ -103,18 +103,24 @@ const isValidArray = isArray([]); // true
 
 **Import from:** `@terminus/ngx-tools/regex`
 
-| Name                           | Description                                                      |
-|--------------------------------|------------------------------------------------------------------|
-| `creditCardRegex`              | Visa, MasterCard, American Express, Diners Club, Discover, JCB   |
-| `emailRegex`                   | Any valid email                                                  |
-| `onlyLettersRegex`             | Only English letters                                             |
-| `containsLowercaseRegex`       | Contains at least 1 lowercase letter                             |
-| `createContainsLowercaseRegex` | Create a regex that requires at least X lowercase letters        |
-| `numbersRegex`                 | Only numbers                                                     |
-| `passwordRegex`                | Between 6 and 100 characters, is a string, has at least 1 number |
-| `phoneRegex`                   | Any valid US phone number                                        |
-| `postalRegex`                  | Any valid US postal code                                         |
-| `urlRegex`                     | Any valid URL (http/ftp/unicode/IP/etc)                          |
+| Name                                  | Description                                                      |
+|---------------------------------------|------------------------------------------------------------------|
+| `creditCardRegex`                     | Visa, MasterCard, American Express, Diners Club, Discover, JCB   |
+| `emailRegex`                          | Any valid email                                                  |
+| `onlyLettersRegex`                    | Only English letters                                             |
+| `containsLowercaseRegex`              | Contains at least 1 lowercase letter                             |
+| `createContainsLowercaseRegex`        | Create a regex that requires at least X lowercase letters        |
+| `containsUppercaseRegex`              | Contains at least 1 uppercase letter                             |
+| `createContainsUppercaseRegex`        | Create a regex that requires at least X uppercase letters        |
+| `onlyNumbersRegex`                    | Only numbers                                                     |
+| `containsNumbersRegex`                | Contains at least 1 number                                       |
+| `createContainsNumbersRegex`          | Create a regex that requires at least X numbers                  |
+| `passwordRegex`                       | Between 6 and 100 characters, is a string, has at least 1 number |
+| `phoneRegex`                          | Any valid US phone number                                        |
+| `postalRegex`                         | Any valid US postal code                                         |
+| `containsSpecialCharacterRegex`       | Contains at least 1 special character                            |
+| `createContainsSpecialCharacterRegex` | Create a regex that requires at least X special characters       |
+| `urlRegex`                            | Any valid URL (http/ftp/unicode/IP/etc)                          |
 
 **Example:**
 

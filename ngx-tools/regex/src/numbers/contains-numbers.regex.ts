@@ -1,5 +1,5 @@
 /**
- * Define a regex to validate a string contains only numbers
+ * Define a regex to validate a string contains at least one number
  */
 export const containsNumbersRegex = /(.*([0-9]+\.?[0-9]*).*)/;
 
