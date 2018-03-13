@@ -4,6 +4,7 @@ export * from './debounce/debounce';
 export * from './document/document.service';
 export * from './group-by/group-by';
 export * from './noop/noop';
+export * from './retry-with-backoff/delay-calculator';
 export * from './retry-with-backoff/retry-with-backoff';
 export * from './verify-types/index';
 export * from './version/version';

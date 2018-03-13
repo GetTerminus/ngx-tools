@@ -16,7 +16,7 @@
     "//=> Section: Demo App": "______________________________",
     "ng": "ng",
     "start:app": "ng serve",
-    "build:app": "cpr dist/ngx-tools src/@terminus/ngx-tools && ng build --app packages && rimraf src/@terminus",
+    "build:app": "cpr dist/ngx-tools src/@terminus/ngx-tools --overwrite && ng build --app packages && rimraf src/@terminus",
     "test:app": "ng test",
     "lint:app": "ng lint",
     "e2e:app": "ng e2e",
