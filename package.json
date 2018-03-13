@@ -5,7 +5,10 @@
   "description": "A collection of tools and utilities for the Terminus (Angular/NGRX) applications",
   "author": "@terminus",
   "homepage": "https://github.com/GetTerminus/ngx-tools",
-  "repository": "https://github.com/GetTerminus/ngx-tools.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GetTerminus/ngx-tools.git"
+  },
   "bugs": {
     "url": "https://github.com/GetTerminus/ngx-tools/issues"
   },
@@ -21,14 +24,14 @@
     "docs": "yarn run docs:toc",
     "commitmsg": "validate-commit-msg",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
-    "cm": "./node_modules/.bin/git-cz",
+    "cm": "npx git-cz",
     "semantic-release": "semantic-release",
-    "check:next-release": "cd dist_package/ && ../node_modules/.bin/semantic-release --dry-run",
+    "check:next-release": "cd dist/ && npx semantic-release --dry-run",
     "precommit": "lint-staged",
     "lint-staged": "lint-staged",
-    "contributors:add": "./node_modules/.bin/all-contributors add",
-    "contributors:generate": "./node_modules/.bin/all-contributors generate",
-    "contributors:check": "./node_modules/.bin/all-contributors check",
+    "contributors:add": "npx all-contributors add",
+    "contributors:generate": "npx all-contributors generate",
+    "contributors:check": "npx all-contributors check",
     "//=> Section: Documentation": "",
     "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
     "//=> Section: Library:Build": "",
