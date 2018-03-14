@@ -9,7 +9,7 @@
 [![NPM version][npm-version-image]][npm-url]
 [![Github release][gh-release-badge]][gh-releases]
 
-A collection of tools and utilities for Terminus (Angular/NGRX) applications.
+A collection of tools and utilities for Terminus applications.
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -163,7 +163,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 ## Resources
 
-- [Angular Library Starter][library-starter]
 - [Semantic Release][semantic-release]
 - [`ngx-tools` on unpkg][unpkg-tools]
 - [Commitizen][commitizen]
@@ -180,7 +179,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [npm-version-image]: http://img.shields.io/npm/v/@terminus/ngx-tools.svg
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: https://github.com/GetTerminus/ngx-tools/blob/master/LICENSE
-[library-starter]: https://github.com/shlomiassaf/angular-library-starter
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [unpkg-tools]: https://unpkg.com/@terminus/ngx-tools/
 [commitizen]: https://github.com/commitizen
