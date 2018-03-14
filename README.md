@@ -127,7 +127,7 @@ coerceBooleanProperty('true'); // Returns: true
 
 ## Contributing
 
-See the development workflow for the `@terminus/ui` library: [Terminus Library Contribution Docs][dev-wiki]
+See the development workflow for the `@terminus/ui` library: [Terminus Library Contribution Docs][contributing]
 
 
 ## Contributors
@@ -184,7 +184,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [unpkg-tools]: https://unpkg.com/@terminus/ngx-tools/
 [commitizen]: https://github.com/commitizen
-[dev-wiki]: https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow
+[contributing]: https://github.com/GetTerminus/terminus-ui/blob/master/CONTRIBUTING.md
 [package-json]: ./package.json
 
 <!-- Docs -->
