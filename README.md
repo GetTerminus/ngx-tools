@@ -188,8 +188,8 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [package-json]: ./package.json
 
 <!-- Docs -->
-[docs-utilities]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/src/README.md
-[docs-coercion]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/coercion/README.md
-[docs-keycodes]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/keycodes/README.md
-[docs-regex]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/regex/README.md
-[docs-testing]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/testing/README.md
+[docs-utilities]: ngx-tools/src/README.md
+[docs-coercion]: ngx-tools/coercion/README.md
+[docs-keycodes]: ngx-tools/keycodes/README.md
+[docs-regex]: ngx-tools/regex/README.md
+[docs-testing]: ngx-tools/testing/README.md
