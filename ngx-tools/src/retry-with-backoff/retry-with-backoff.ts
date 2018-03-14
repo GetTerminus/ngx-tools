@@ -23,6 +23,20 @@ export interface RetryWithBackoff {
 /**
  * Return the difference in time in words
  *
+ * @example
+ * return this.exampleDatabase.getSomething()
+ *   .pipe(
+ *     map((res: MyResponse) => {
+ *       if (res) {
+ *         return res;
+ *       } else {
+ *         return null;
+ *       }
+ *     }),
+ *     retryWithBackoff({}), // Using default options
+ *   )
+ * ;
+ *
  * @param options - The options object
  *   - `retries`: How many times it should retry before throwing an error
  *   - `delayCalculator`: The calculator to determine the delay timing

@@ -15,6 +15,16 @@ export interface DelayCalculator {
  * `jitter`: "Slight irregular movement, variation, or unsteadiness,
  * especially in an electrical signal or electronic device"
  *
+ * @example
+ * const calcOpts: DelayCalculator = {
+ *   jitter: true,
+ *   jitterFactor: .3,
+ *   backOffFactor: 2,
+ *   baseWaitTime: 100,
+ * }
+ * // Create a retrier with a custom backoff
+ * retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)})
+ *
  * @param options - The options object
  *   - `jitter`: If the duration should be affected by a jitter effect
  *   - `jitterFactor`: How widely the jitter effect should vary

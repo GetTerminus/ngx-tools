@@ -10,7 +10,7 @@ import {
  * @example
  * const ctrl = new FormControl(null, [Validators.required];
  * hasRequiredControl(ctrl); // returns true
- * const group = new FormGroup({first: [null, [Validators.required]]});
+ * const group = new FormGroup({myControl: [null, [Validators.required]]});
  * hasRequiredControl(group); // returns true
  *
  * @param formItem - The control or form group to check
