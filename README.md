@@ -2,10 +2,12 @@
 
 
 [![CircleCI][circle-badge]][circle-link]
-[![NPM version][npm-version-image]][npm-url]
-[![Library size][file-size-badge]][raw-distribution-js]
+[![codecov][codecov-badge]][codecov-project]
 [![semantic-release][semantic-release-badge]][semantic-release]
 [![MIT License][license-image]][license-url]
+<br>
+[![NPM version][npm-version-image]][npm-url]
+[![Github release][gh-release-badge]][gh-releases]
 
 A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 
@@ -42,13 +44,13 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 ## Library Structure
 
 
-| Import location                | Resources                                                 | Docs                      |
-|--------------------------------|-----------------------------------------------------------|:-------------------------:|
-| `@terminus/ngx-tools`          | Basic utilities (`debounce`, `groupBy`..)                 | [:books:][docs-utilities] |
-| `@terminus/ngx-tools/coercion` | Functions to coerce values to specific types  (`Array`..) | [:books:][docs-coercion]  |
-| `@terminus/ngx-tools/keycodes` | Constants for commonly needed key codes (`ESC`..)         | [:books:][docs-keycodes]  |
-| `@terminus/ngx-tools/regex`    | Regex definitions (`creditCardRegex`..)                   | [:books:][docs-regex]     |
-| `@terminus/ngx-tools/testing`  | Test helpers and test mocks (`dispatchFakeEvent`..)       | [:books:][docs-testing]   |
+| Import location                | Description                                               | Docs                      | Size                                           |
+|:-------------------------------|:----------------------------------------------------------|:-------------------------:|:----------------------------------------------:|
+| `@terminus/ngx-tools`          | Basic utilities (`debounce`, `groupBy`..)                 | [:books:][docs-utilities] | [![File size][fs-badge-utilities]][js-bundles] |
+| `@terminus/ngx-tools/coercion` | Functions to coerce values to specific types  (`Array`..) | [:books:][docs-coercion]  | [![File size][fs-badge-coercion]][js-bundles]  |
+| `@terminus/ngx-tools/keycodes` | Constants for commonly needed key codes (`ESC`..)         | [:books:][docs-keycodes]  | [![File size][fs-badge-keycodes]][js-bundles]  |
+| `@terminus/ngx-tools/regex`    | Regex definitions (`creditCardRegex`..)                   | [:books:][docs-regex]     | [![File size][fs-badge-regex]][js-bundles]     |
+| `@terminus/ngx-tools/testing`  | Test helpers and test mocks (`dispatchFakeEvent`..)       | [:books:][docs-testing]   | [![File size][fs-badge-testing]][js-bundles]   |
 
 
 ## Features
@@ -172,8 +174,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 <!-- LINKS -->
 [circle-badge]: https://circleci.com/gh/GetTerminus/ngx-tools/tree/master.svg?style=shield
 [circle-link]: https://circleci.com/gh/GetTerminus/ngx-tools/tree/master
-[file-size-badge]: http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundle/ngx-tools.umd.min.js?compression=gzip
-[raw-distribution-js]: https://unpkg.com/@terminus/ngx-tools/bundle/ngx-tools.umd.min.js
 [semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [npm-url]: https://npmjs.org/package/@terminus/ngx-tools
@@ -186,6 +186,18 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [commitizen]: https://github.com/commitizen
 [contributing]: https://github.com/GetTerminus/terminus-ui/blob/master/CONTRIBUTING.md
 [package-json]: ./package.json
+[gh-release-badge]: https://img.shields.io/github/release/GetTerminus/ngx-tools.svg
+[gh-releases]: https://github.com/GetTerminus/ngx-tools/releases/
+[codecov-badge]: https://codecov.io/gh/GetTerminus/ngx-tools/branch/master/graph/badge.svg
+[codecov-project]: https://codecov.io/gh/GetTerminus/ngx-tools
+
+<!-- FILE SIZE -->
+[fs-badge-utilities]: http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundles/terminus-ngx-tools.umd.min.js?compression=gzip
+[fs-badge-regex]: http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundles/terminus-ngx-tools-regex.umd.min.js?compression=gzip
+[fs-badge-keycodes]: http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundles/terminus-ngx-tools-keycodes.umd.min.js?compression=gzip
+[fs-badge-testing]: http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundles/terminus-ngx-tools-testing.umd.min.js?compression=gzip
+[fs-badge-coercion]: http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundles/terminus-ngx-tools-coercion.umd.min.js?compression=gzip
+[js-bundles]: https://unpkg.com/@terminus/ngx-tools/bundles/
 
 <!-- Docs -->
 [docs-utilities]: ngx-tools/src/README.md
