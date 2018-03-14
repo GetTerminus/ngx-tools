@@ -15,54 +15,40 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 **Table of Contents**
 
 - [Usage](#usage)
-  - [Basic Commands](#basic-commands)
 - [Library Structure](#library-structure)
 - [Features](#features)
   - [Basic Utilities](#basic-utilities)
   - [Regex](#regex)
-  - [Test Helpers](#test-helpers)
+  - [Testing Utilities](#testing-utilities)
   - [Key Codes](#key-codes)
   - [Coercion](#coercion)
-- [Contributors](#contributors)
-- [Resources](#resources)
 - [Contributing](#contributing)
+- [Contributors](#contributors)
+- [Basic Commands](#basic-commands)
+- [Resources](#resources)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
 ## Usage
 
-1. Install: `yarn add @terminus/ngx-tools --exact`
+1. Install: `yarn add @terminus/ngx-tools`
 1. Import: `import { debounce } from '@terminus/ngx-tools';`
 
 > You can also play with the library live on StackBlitz:
-> https://stackblitz.com/edit/angular-ngx-tools-starter
-
-### Basic Commands
-
-| Command                  | Function                                                      |
-|--------------------------|---------------------------------------------------------------|
-| `build:lib`     | Build release                                                 |
-| `build:lib:sim` | Build release and start demo app in AoT                       |
-| `test:lib`               | Run unit tests                                                |
-| `test:lib:ci`            | Run unit tests and output coverage                            |
-| `start:lib:sim`          | Build release and start demo app in JiT                       |
-| `lib:sync`               | Sync configuration files (needed after any structural change) |
-| `lint:lib`               | Lint TS files and attempt to fix issues                       |
-| `lint:lib:ci`            | Lint TS files                                                 |
-
-> See [package.json][package-json] for the full list of commands.
+> https://stackblitz.com/github/GetTerminus/ngx-tools
 
 
 ## Library Structure
 
 
-| Import location                | Resources                                                                |
-|--------------------------------|--------------------------------------------------------------------------|
-| `@terminus/ngx-tools`          | Basic utilities (`debounce`, `groupBy`..)                                |
-| `@terminus/ngx-tools/regex`    | Regex definitions (`creditCardRegex`, `emailRegex`..)                    |
-| `@terminus/ngx-tools/testing`  | Test helpers and test mocks (`dispatchEvent`, `ElementRefMock`..)        |
-| `@terminus/ngx-tools/coercion` | Functions to coerce values to specific types (`coerceBooleanProperty`..) |
+| Import location                | Resources                                                 | Docs                      |
+|--------------------------------|-----------------------------------------------------------|:-------------------------:|
+| `@terminus/ngx-tools`          | Basic utilities (`debounce`, `groupBy`..)                 | [:books:][docs-utilities] |
+| `@terminus/ngx-tools/coercion` | Functions to coerce values to specific types  (`Array`..) | [:books:][docs-coercion]  |
+| `@terminus/ngx-tools/keycodes` | Constants for commonly needed key codes (`ESC`..)         | [:books:][docs-keycodes]  |
+| `@terminus/ngx-tools/regex`    | Regex definitions (`creditCardRegex`..)                   | [:books:][docs-regex]     |
+| `@terminus/ngx-tools/testing`  | Test helpers and test mocks (`dispatchFakeEvent`..)       | [:books:][docs-testing]   |
 
 
 ## Features
@@ -70,159 +56,78 @@ A collection of tools and utilities for Terminus (Angular/NGRX) applications.
 
 ### Basic Utilities
 
-**Import from:** `@terminus/ngx-tools`
+Import from: `@terminus/ngx-tools`
 
-| Name                          | Description                                                           |
-|-------------------------------|-----------------------------------------------------------------------|
-| `arrayContainsObject`         | Check if an object exists in an array                                 |
-| `debounce`                    | Provides a debounced function                                         |
-| `groupBy`                     | Return an object containing arrays split by property                  |
-| `hasRequiredControl`          | Check if an `AbstractControl` or `FormGroup` has a required validator |
-| `isArray`                     | Check if value is an Array                                            |
-| `isBoolean`                   | Check if value is a Boolean                                           |
-| `isFunction`                  | Check if value is a function                                          |
-| `isObject`                    | Check if value is an Object                                           |
-| `isString`                    | Check if value is a String                                            |
-| `noop`                        | Placeholder function                                                  |
-| `retryWithBackoff`            | Helper to retry an Observable stream (x) times                        |
-
-**Example:**
+[:books: Utilities Documentation][docs-utilities]
 
 ```typescript
-import {
-  groupBy,
-  isArray,
-} from '@terminus/ngx-tools';
+// Example usage:
+import { isArray } from '@terminus/ngx-tools';
 
-const groupedArrays = groupBy(myArray, 'myProperty'); // {foo: [...], bar: [...]}
-const isValidArray = isArray([]); // true
+isArray([]); // Returns: true
 ```
 
 
 ### Regex
 
-**Import from:** `@terminus/ngx-tools/regex`
+Import from: `@terminus/ngx-tools/regex`
 
-| Name                                  | Description                                                      |
-|---------------------------------------|------------------------------------------------------------------|
-| `creditCardRegex`                     | Visa, MasterCard, American Express, Diners Club, Discover, JCB   |
-| `emailRegex`                          | Any valid email                                                  |
-| `onlyLettersRegex`                    | Only English letters                                             |
-| `containsLowercaseRegex`              | Contains at least 1 lowercase letter                             |
-| `createContainsLowercaseRegex`        | Create a regex that requires at least X lowercase letters        |
-| `containsUppercaseRegex`              | Contains at least 1 uppercase letter                             |
-| `createContainsUppercaseRegex`        | Create a regex that requires at least X uppercase letters        |
-| `onlyNumbersRegex`                    | Only numbers                                                     |
-| `containsNumbersRegex`                | Contains at least 1 number                                       |
-| `createContainsNumbersRegex`          | Create a regex that requires at least X numbers                  |
-| `passwordRegex`                       | Between 6 and 100 characters, is a string, has at least 1 number |
-| `phoneRegex`                          | Any valid US phone number                                        |
-| `postalRegex`                         | Any valid US postal code                                         |
-| `containsSpecialCharacterRegex`       | Contains at least 1 special character                            |
-| `createContainsSpecialCharacterRegex` | Create a regex that requires at least X special characters       |
-| `urlRegex`                            | Any valid URL (http/ftp/unicode/IP/etc)                          |
-
-**Example:**
+[:books: RegEx Documentation][docs-regex]
 
 ```typescript
+// Example usage:
 import { emailRegex } from '@terminus/ngx-tools/regex';
 
-const isTrue = emailRegex.test('foo@bar.com');
+emailRegex.test('foo@bar.com'); // Returns: true
 ```
 
 
-### Test Helpers
+### Testing Utilities
 
-**Import from:** `@terminus/ngx-tools/testing`
+Import from: `@terminus/ngx-tools/testing`
 
-> **NOTE:** The three mocks currently do not work. They are currently being compiled during the
-> build process.
-
-| Name                    | Description                                                                                |
-|-------------------------|--------------------------------------------------------------------------------------------|
-| `ChangeDetectorRefMock` | A mock of the Angular `ChangeDetectorRefMock` class                                        |
-| `createFakeEvent`       | Creates a fake event object with any desired event type                                    |
-| `createKeyboardEvent`   | Dispatches a keydown event from an element                                                 |
-| `createMouseEvent`      | Creates a browser MouseEvent with the specified options                                    |
-| `createTouchEvent`      | Creates a browser TouchEvent with the specified pointer coordinates                        |
-| `dispatchEvent`         | Utility to dispatch any event on a Node                                                    |
-| `dispatchFakeEvent`     | Shorthand to dispatch a fake event on a specified node                                     |
-| `dispatchKeyboardEvent` | Shorthand to dispatch a keyboard event with a specified key code                           |
-| `dispatchMouseEvent`    | Shorthand to dispatch a mouse event on the specified coordinates                           |
-| `dispatchTouchEvent`    | Shorthand to dispatch a touch event on the specified coordinates                           |
-| `ElementRefMock`        | A mock of the Angular ElementRef class                                                     |
-| `expectNativeEl`        | Reusable expect statement to check for the nativeElement                                   |
-| `queryFor`              | Helper to query a fixture for a selector                                                   |
-| `rendererMock`          | A mock of the Angular Renderer                                                             |
-| `typeInElement`         | Focuses an input, sets it's value and dispatches the `input` event, simulating user typing |
-| `wrappedErrorMessage`   | Gets a RegExp used to detect an angular wrapped error message                              |
-
-**Example:**
+[:books: Testing Documentation][docs-testing]
 
 ```typescript
-import { ElementRefMock } from '@terminus/ngx-tools/testing';
+// Example usage:
 import { dispatchFakeEvent } from '@terminus/ngx-tools/testing';
 
-this.directive = new MyDirective(
-  new ElementRefMock(),
-);
-
-dispatchFakeEvent(window, 'resize')
+dispatchFakeEvent(window, 'resize');
 ```
 
 
 ### Key Codes
 
-**Import from:** `@terminus/ngx-tools/keycodes`
+Import from: `@terminus/ngx-tools/keycodes`
 
-| Name          | Description |
-|---------------|-------------|
-| `UP_ARROW`    | Key code    |
-| `DOWN_ARROW`  | Key code    |
-| `RIGHT_ARROW` | Key code    |
-| `LEFT_ARROW`  | Key code    |
-| `PAGE_UP`     | Key code    |
-| `PAGE_DOWN`   | Key code    |
-| `HOME`        | Key code    |
-| `END`         | Key code    |
-| `ENTER`       | Key code    |
-| `SPACE`       | Key code    |
-| `TAB`         | Key code    |
-| `BACKSPACE`   | Key code    |
-| `DELETE`      | Key code    |
-| `A`           | Key code    |
-| `Z`           | Key code    |
-| `ZERO`        | Key code    |
-| `NINE`        | Key code    |
-| `COMMA`       | Key code    |
-
-**Example:**
+[:books: Key Code Documentation][docs-keycodes]
 
 ```typescript
+// Example usage:
 import { DELETE } from '@terminus/ngx-tools/keycodes';
+import { dispatchKeyboardEvent } from '@terminus/ngx-tools/testing';
 
-const isTrue = DELETE === 46;
+dispatchKeyboardEvent(myElementRef, 'keyup', DELETE);
 ```
 
 
 ### Coercion
 
-**Import from:** `@terminus/ngx-tools/coercion`
+Import from: `@terminus/ngx-tools/coercion`
 
-| Name                    | Description                                                                 |
-|-------------------------|-----------------------------------------------------------------------------|
-| `coerceArray`           | Wraps the provided value in an array, unless the provided value is an array |
-| `coerceBooleanProperty` | Coerces a data-bound value to a boolean                                     |
-| `coerceNumberProperty`  | Coerces a data-bound value to a number                                      |
-
-**Example:**
+[:books: Coercion Documentation][docs-coercion]
 
 ```typescript
+// Example usage:
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 
-const isTrue: boolean = coerceBooleanProperty('foo');
+coerceBooleanProperty('true'); // Returns: true
 ```
 
+
+## Contributing
+
+See the development workflow for the `@terminus/ui` library: [Terminus Library Contribution Docs][dev-wiki]
 
 
 ## Contributors
@@ -238,6 +143,22 @@ Thanks goes to these wonderful people ([emoji key][all-contributors-key]):
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
 
 
+## Basic Commands
+
+| Command     | Function                                        |
+|-------------|-------------------------------------------------|
+| `build`     | Build release                                   |
+| `test`      | Run unit tests                                  |
+| `test:ci`   | Run unit tests and output coverage              |
+| `start:app` | Start demo project                              |
+| `lint`      | Lint TS library files and attempt to fix issues |
+| `lint:ci`   | Lint TS library files                           |
+| `docs`      | Update library documentation                    |
+| `cm`        | Commit with commitizen cli                      |
+
+> See [package.json][package-json] for the full list of commands.
+
+
 ## Resources
 
 - [Angular Library Starter][library-starter]
@@ -246,9 +167,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 - [Commitizen][commitizen]
 
 
-## Contributing
-
-See the development workflow for the `@terminus/ui` library: [Terminus Library Contribution Docs][dev-wiki]
 
 
 <!-- LINKS -->
@@ -268,3 +186,10 @@ See the development workflow for the `@terminus/ui` library: [Terminus Library C
 [commitizen]: https://github.com/commitizen
 [dev-wiki]: https://github.com/GetTerminus/terminus-ui/wiki/Development-Workflow
 [package-json]: ./package.json
+
+<!-- Docs -->
+[docs-utilities]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/src/README.md
+[docs-coercion]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/coercion/README.md
+[docs-keycodes]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/keycodes/README.md
+[docs-regex]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/regex/README.md
+[docs-testing]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/testing/README.md

@@ -12,3 +12,7 @@ export class ChangeDetectorRefMock {
   checkNoChanges = () => {};
   reattach = () => {};
 }
+
+beforeEach(() => {
+
+});

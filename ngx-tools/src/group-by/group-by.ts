@@ -2,8 +2,12 @@
  * Return an object containing arrays split by property
  *
  * @example
- * const arr = [{a: 'foo', b: 1}, {a: 'bar', b: 6}, {a: 'foo', b: 6}];
- * const result = groupBy(arr, 'a');
+ * interface MyObj {
+ *   a: string;
+ *   b: number;
+ * }
+ * const myArray: MyObj[] = [{a: 'foo', b: 1}, {a: 'bar', b: 6}, {a: 'foo', b: 6}];
+ * groupBy<MyObj, keyof MyObj>(myArray, 'a');
  * // Return is `{foo: [{a: 'foo', b: 1}, {a: 'foo', b: 6}], bar: [{a: 'bar', b: 6}]}`
  *
  * @param array - The array to split
