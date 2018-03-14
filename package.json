@@ -21,19 +21,20 @@
     "lint:app": "ng lint",
     "e2e:app": "ng e2e",
     "//=> Section: Library": "______________________________",
-    "docs": "yarn run docs:toc",
-    "commitmsg": "validate-commit-msg",
-    "validate:circleci": "circleci config validate -c .circleci/config.yml",
-    "cm": "npx git-cz",
     "semantic-release": "semantic-release",
     "check:next-release": "cd dist/ && npx semantic-release --dry-run",
+    "validate:circleci": "circleci config validate -c .circleci/config.yml",
+    "//=> Section: Release": "______________________________",
+    "commitmsg": "validate-commit-msg",
+    "cm": "npx git-cz",
     "precommit": "lint-staged",
     "lint-staged": "lint-staged",
     "contributors:add": "npx all-contributors add",
     "contributors:generate": "npx all-contributors generate",
     "contributors:check": "npx all-contributors check",
     "//=> Section: Documentation": "",
-    "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 ./README.md",
+    "docs": "yarn run docs:toc",
+    "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 .",
     "//=> Section: Library:Build": "",
     "build": "rimraf dist && ng-packagr -p ngx-tools/package.json",
     "postbuild": "cp README.md dist/ngx-tools/ && cp LICENSE dist/ngx-tools/",
@@ -58,7 +59,9 @@
     "transform": {
       "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
     },
-    "testMatch": ["<rootDir>/ngx-tools/**/?(*.)(spec|test).ts?(x)"],
+    "testMatch": [
+      "<rootDir>/ngx-tools/**/?(*.)(spec|test).ts?(x)"
+    ],
     "moduleFileExtensions": [
       "ts",
       "js",
@@ -137,6 +140,7 @@
     "@semantic-release/exec": "^2.2.3",
     "@semantic-release/github": "^4.2.7",
     "@semantic-release/npm": "^3.2.2",
+    "@terminus/ngx-tools": "^2.3.0",
     "@types/jasmine": "~2.8.6",
     "@types/node": "~9.4.7",
     "all-contributors-cli": "^4.11.1",
@@ -166,7 +170,7 @@
     "ts-node": "~5.0.1",
     "tsickle": "^0.27.2",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2",
+    "typescript": "^2.7.2",
     "validate-commit-msg": "^2.14.0"
   }
 }
