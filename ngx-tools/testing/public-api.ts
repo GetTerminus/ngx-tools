@@ -1,6 +1,6 @@
 export * from './src/mocks/change-detector-ref.mock';
 export * from './src/mocks/elementRef.mock';
-export * from './src/mocks/renderer.mock';
+export * from './src/mocks/renderer2.mock';
 export * from './src/mocks/document.service.mock';
 export * from './src/mocks/window.service.mock';
 
