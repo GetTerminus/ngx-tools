@@ -8,4 +8,5 @@ export * from './src/utilities/dispatch-events';
 export * from './src/utilities/event-objects';
 export * from './src/utilities/expect-native-el';
 export * from './src/utilities/query-for';
+export * from './src/utilities/type-in-element';
 export * from './src/utilities/wrapped-error-message';
