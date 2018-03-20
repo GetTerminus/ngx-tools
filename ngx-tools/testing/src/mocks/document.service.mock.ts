@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { noop } from './../../../src/noop/noop';
+
+// TODO: Replace with ngx-tools import once https://github.com/dherges/ng-packagr/pull/685 has
+// landed.
+const noop = () => {};
 
 
 @Injectable()
