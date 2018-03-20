@@ -15,6 +15,9 @@
     "baseUrl": "",
     "types": [],
     "paths": {
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ],
       "@terminus/ngx-tools": ["../ngx-tools/src/public-api.ts"],
       "@terminus/ngx-tools/coercion": ["../ngx-tools/coercion/public-api.ts"],
       "@terminus/ngx-tools/keycodes": ["../ngx-tools/keycodes/public-api.ts"],

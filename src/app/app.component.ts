@@ -18,7 +18,7 @@ import {
 } from '@terminus/ngx-tools';
 
 import { emailRegex } from '@terminus/ngx-tools/regex';
-console.log('emailRegex: ', emailRegex);
+console.log('emailRegex: ', emailRegex.test('foo@bar.com'), emailRegex.test('foo'));
 
 import { ZERO } from '@terminus/ngx-tools/keycodes';
 console.log('ZERO: ', ZERO);

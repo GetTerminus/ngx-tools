@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
     "paths": {
-      "@terminus/ngx-tools": ["./../dist/ngx-tools/src/public-api.ts"],
+      "@terminus/ngx-tools": ["./../dist/ngx-tools/public-api.ts"],
       "@terminus/ngx-tools/coercion": ["./../dist/ngx-tools/coercion/public-api.ts"],
       "@terminus/ngx-tools/keycodes": ["./../dist/ngx-tools/keycodes/public-api.ts"],
       "@terminus/ngx-tools/regex": ["./../dist/ngx-tools/regex/public-api.ts"],
@@ -15,7 +15,7 @@
     "baseUrl": "",
     "types": [],
     "paths": {
-      "@terminus/ngx-tools": ["./../dist/ngx-tools/src/public-api.ts"],
+      "@terminus/ngx-tools": ["./../dist/ngx-tools/public-api.ts"],
       "@terminus/ngx-tools/coercion": ["./../dist/ngx-tools/coercion/public-api.ts"],
       "@terminus/ngx-tools/keycodes": ["./../dist/ngx-tools/keycodes/public-api.ts"],
       "@terminus/ngx-tools/regex": ["./../dist/ngx-tools/regex/public-api.ts"],
