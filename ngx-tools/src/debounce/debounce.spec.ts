@@ -7,7 +7,7 @@ describe(`debounce`, () => {
   let debounced;
 
   beforeEach(() => {
-    func = jasmine.createSpy('func');
+    func = jest.fn();
     debounced = debounce(func, 200);
   });
 
