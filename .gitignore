@@ -70,6 +70,7 @@ dll/
 *.css.shim.ts
 *.ngsummary.json
 *.shim.ngstyle.ts
+.ng_build
 
 dist_package
 .tmp

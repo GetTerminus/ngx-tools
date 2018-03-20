@@ -48,7 +48,8 @@
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
     "workingDirectory": "../.ng_build",
     "lib": {
-      "entryFile": "src/public-api.ts"
+      "entryFile": "src/public-api.ts",
+      "comments": "none"
     },
     "dest": "../dist/ngx-tools"
   }

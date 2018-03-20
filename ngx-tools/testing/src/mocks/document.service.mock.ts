@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 
+// TODO: Replace with ngx-tools import once https://github.com/dherges/ng-packagr/pull/685 has
+// landed.
+const noop = () => {};
+
 
 @Injectable()
 export class TsDocumentServiceMock {
 
   public document = {
     body: {
-      createTextRange: jasmine.createSpy('createTextRange'),
-      appendChild: jasmine.createSpy('appendChild'),
+      createTextRange: noop,
+      appendChild: noop,
     },
-    createRange: jasmine.createSpy('createRange').and.returnValue({
-      selectNodeContents: jasmine.createSpy('selectNodeContents'),
-    }),
-    execCommand: jasmine.createSpy('execCommand'),
-    createElement: jasmine.createSpy('createElement'),
+    createRange: () => {
+      return {
+        selectNodeContents: noop,
+      }
+    },
+    execCommand: noop,
+    createElement: noop,
   };
 
 }

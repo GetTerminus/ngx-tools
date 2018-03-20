@@ -72,7 +72,8 @@
     ],
     "clearMocks": true,
     "collectCoverageFrom": [
-      "ngx-tools/**/!(public-api|index).ts"
+      "ngx-tools/**/!(public-api|index).ts",
+      "!ngx-tools/testing/src/mocks/*.ts"
     ],
     "setupTestFrameworkScriptFile": "./tools/jest-setup.ts"
   },
