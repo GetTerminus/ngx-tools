@@ -18,6 +18,7 @@ isArray([]); // Returns: true
 - [`debounce`](#debounce)
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
+- [`inputHasChanged`](#inputhaschanged)
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [Services](#services)
@@ -105,6 +106,30 @@ const group = new FormGroup({myControl: [null, [Validators.required]]});
 
 hasRequiredControl(control); // Returns: true
 hasRequiredControl(group); // Returns: true
+```
+
+
+### `inputHasChanged`
+
+Helper function to determine if an input has changed.
+
+```typescript
+import { SimpleChanges } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { inputHasChanged } from '@terminus/ngx-tools';
+
+...
+  @Input
+  public myInput;
+
+  ngOnChanges(changes: SimpleChanges) {
+    // This will verify that the `myInput` change object exists and the current value
+    // is not the same as the previous value
+    if (inputHasChanged(changes, 'myInput')) {
+      // My input changed.. do something
+    }
+  }
+...
 ```
 
 
