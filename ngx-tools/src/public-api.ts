@@ -3,6 +3,7 @@ export * from './has-required-control/has-required-control';
 export * from './debounce/debounce';
 export * from './document/document.service';
 export * from './group-by/group-by';
+export * from './input-has-changed/input-has-changed';
 export * from './noop/noop';
 export * from './retry-with-backoff/delay-calculator';
 export * from './retry-with-backoff/retry-with-backoff';
