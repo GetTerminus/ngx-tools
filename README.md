@@ -188,6 +188,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [gh-releases]: https://github.com/GetTerminus/ngx-tools/releases/
 [codecov-badge]: https://codecov.io/gh/GetTerminus/ngx-tools/branch/master/graph/badge.svg
 [codecov-project]: https://codecov.io/gh/GetTerminus/ngx-tools
+[all-contributors-key]: https://github.com/kentcdodds/all-contributors#emoji-key
 
 <!-- FILE SIZE -->
 [fs-badge-utilities]: http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundles/terminus-ngx-tools.umd.min.js?compression=gzip
