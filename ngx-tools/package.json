@@ -42,6 +42,7 @@
   "peerDependencies": {
     "@angular/core": "^5.0.0",
     "@angular/common": "^5.0.0",
+    "@ngrx/store": "^5.2.0",
     "typescript": "^2.6.0"
   },
   "ngPackage": {

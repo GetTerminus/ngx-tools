@@ -139,6 +139,7 @@
     "@angular/cli": "~1.7.3",
     "@angular/compiler-cli": "~5.2.5",
     "@angular/language-service": "~5.2.5",
+    "@ngrx/store": "^5.2.0",
     "@semantic-release/exec": "^2.2.3",
     "@semantic-release/github": "^4.2.7",
     "@semantic-release/npm": "^3.2.2",
