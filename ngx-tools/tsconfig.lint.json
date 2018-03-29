@@ -6,6 +6,6 @@
     "dist",
     "dist_package",
     "e2e",
-    "src/demo"
+    "demo"
   ]
 }
