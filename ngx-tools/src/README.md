@@ -15,6 +15,7 @@ isArray([]); // Returns: true
 **Table of Contents**
 
 - [`arrayContainsObject`](#arraycontainsobject)
+- [`compactArray`](#compactarray)
 - [`debounce`](#debounce)
 - [`getFormControlValue`](#getformcontrolvalue)
 - [`getStoreValue`](#getstorevalue)
@@ -52,6 +53,20 @@ const arr = [{id: 1}, {id: 2}, {id: 3}];
 const comparator = (v) => v.id;
 
 arrayContainsObject(object, array, comparator); // Returns: true
+```
+
+
+### `compactArray`
+
+Remove `undefined` or `null` items from an array:
+
+```typescript
+import { compactArray } from '@terminus/ngx-tools';
+
+const myArray: string[] = ['foo', null, 'bar', undefined, 'baz'];
+
+compactArray<string>(myArray);
+// Returns: `['foo', 'bar', 'baz']`
 ```
 
 

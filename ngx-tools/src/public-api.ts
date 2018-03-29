@@ -1,5 +1,6 @@
 export * from './array-contains-object/array-contains-object';
 export * from './has-required-control/has-required-control';
+export * from './compact-array/compact-array';
 export * from './debounce/debounce';
 export * from './document/document.service';
 export * from './get-form-control-value/get-form-control-value';
