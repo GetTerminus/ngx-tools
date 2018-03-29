@@ -1,3 +1,4 @@
+export * from './apply-mixins/apply-mixins';
 export * from './array-contains-object/array-contains-object';
 export * from './has-required-control/has-required-control';
 export * from './compact-array/compact-array';

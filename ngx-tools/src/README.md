@@ -14,6 +14,7 @@ isArray([]); // Returns: true
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [`applyMixins`](#applymixins)
 - [`arrayContainsObject`](#arraycontainsobject)
 - [`compactArray`](#compactarray)
 - [`debounce`](#debounce)
@@ -35,6 +36,61 @@ isArray([]); // Returns: true
   - [`isString`](#isstring)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+### `applyMixins`
+
+A helper function to apply TypeScript mixins to a base class:
+
+```typescript
+import { applyMixins } from '@terminus/ngx-tools';
+
+
+// Disposable Mixin
+class Disposable {
+  isDisposed: boolean;
+  dispose() {
+    this.isDisposed = true;
+  }
+
+}
+
+// Activatable Mixin
+class Activatable {
+  isActive: boolean;
+  activate() {
+    this.isActive = true;
+  }
+  deactivate() {
+    this.isActive = false;
+  }
+}
+
+// Base class
+class SmartObject implements Disposable, Activatable {
+  // Disposable
+  isDisposed: boolean = false;
+  dispose: () => void;
+  // Activatable
+  isActive: boolean = false;
+  activate: () => void;
+  deactivate: () => void;
+
+  interact() {
+    this.activate();
+  }
+}
+
+// Apply the mixins
+applyMixins(SmartObject, [Disposable, Activatable]);
+
+// Initialize the base class
+const smartObj = new SmartObject();
+smartObj.interact();
+
+smartObj.isActive
+// Returns: `true`
+```
 
 
 ### `arrayContainsObject`
