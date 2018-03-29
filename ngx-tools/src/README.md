@@ -16,6 +16,7 @@ isArray([]); // Returns: true
 
 - [`arrayContainsObject`](#arraycontainsobject)
 - [`debounce`](#debounce)
+- [`getStoreValue`](#getstorevalue)
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
 - [`inputHasChanged`](#inputhaschanged)
@@ -68,6 +69,18 @@ for (const value of [1, 2, 3]) {
   myDebouncedFunc();
 }
 // 'Hi!' will only be logged to the console once
+```
+
+
+### `getStoreValue`
+
+Helper function to retrieve the current value of an entry from the store:
+
+```typescript
+import { getStoreValue } from '@terminus/ngx-tools';
+
+getStoreValue(storeMock.select('users'));
+// Returns: User[];
 ```
 
 
