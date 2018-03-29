@@ -16,6 +16,7 @@ isArray([]); // Returns: true
 
 - [`arrayContainsObject`](#arraycontainsobject)
 - [`debounce`](#debounce)
+- [`getFormControlValue`](#getformcontrolvalue)
 - [`getStoreValue`](#getstorevalue)
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
@@ -72,6 +73,29 @@ for (const value of [1, 2, 3]) {
 ```
 
 
+### `getFormControlValue`
+
+Helper function to retrieve the current value of a control within a form group:
+
+```typescript
+import { FormGroup } from '@angular/forms';
+import { getFormControlValue } from '@terminus/ngx-tools';
+
+// Create a form group
+const formBuilder = new FormBuilder();
+const myForm = formBuilder.group({
+  control1: ['foo'],
+  control2: [null],
+});
+
+getFormControlValue(myForm, 'control1');
+// Returns: `foo`
+
+getFormControlValue(myForm, 'control2');
+// Returns: `null`
+```
+
+
 ### `getStoreValue`
 
 Helper function to retrieve the current value of an entry from the store:
@@ -80,7 +104,7 @@ Helper function to retrieve the current value of an entry from the store:
 import { getStoreValue } from '@terminus/ngx-tools';
 
 getStoreValue(storeMock.select('users'));
-// Returns: User[];
+// Returns: `User[]`
 ```
 
 

@@ -2,7 +2,8 @@ export * from './array-contains-object/array-contains-object';
 export * from './has-required-control/has-required-control';
 export * from './debounce/debounce';
 export * from './document/document.service';
-export * from './get-store-value/get-store-value'
+export * from './get-form-control-value/get-form-control-value';
+export * from './get-store-value/get-store-value';
 export * from './group-by/group-by';
 export * from './input-has-changed/input-has-changed';
 export * from './noop/noop';
