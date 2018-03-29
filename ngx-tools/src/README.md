@@ -63,10 +63,11 @@ Remove `undefined` or `null` items from an array:
 ```typescript
 import { compactArray } from '@terminus/ngx-tools';
 
-const myArray: string[] = ['foo', null, 'bar', undefined, 'baz'];
+const myArray: (string | undefined | null)[] = ['foo', null, 'bar', undefined, 'baz'];
 
-compactArray<string>(myArray);
+compactArray(myArray);
 // Returns: `['foo', 'bar', 'baz']`
+// Return Type: `string[]`
 ```
 
 
