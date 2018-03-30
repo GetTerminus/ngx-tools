@@ -38,7 +38,6 @@
     "//=> Section: Library:Build": "",
     "build": "rimraf dist && ng-packagr -p ngx-tools/package.json",
     "postbuild": "cp README.md dist/ngx-tools/ && cp LICENSE dist/ngx-tools/",
-
     "//=> Section: Library:Test": "",
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
     "test:config": "jest --config ./ngx-tools/jest.all.config.js --showConfig",
