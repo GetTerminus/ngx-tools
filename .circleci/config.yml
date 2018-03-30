@@ -35,9 +35,31 @@ jobs:
           name: Lint
           command: yarn run lint
 
+
+
+
       - run:
-          name: Run Tests
-          command: yarn run test:ci && yarn run codecov:upload
+          name: TEST utilities
+          command: yarn run test:utilities:ci && npx codecov -f coverage/utilities/*.json -F utilities
+
+      - run:
+          name: TEST coercion
+          command: yarn run test:coercion:ci && npx codecov -f coverage/coercion/*.json -F coercion
+
+      - run:
+          name: TEST keycodes
+          command: yarn run test:keycodes:ci && npx codecov -f coverage/keycodes/*.json -F keycodes
+
+      - run:
+          name: TEST regex
+          command: yarn run test:regex:ci && npx codecov -f coverage/regex/*.json -F regex
+
+      - run:
+          name: TEST testing
+          command: yarn run test:testing:ci && npx codecov -f coverage/testing/*.json -F testing
+
+
+
 
       - run:
           name: Build Project

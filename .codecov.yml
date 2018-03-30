@@ -1,0 +1,31 @@
+codecov:
+  notify:
+    require_ci_to_pass: yes
+
+flags:
+  coercion:
+    paths:
+      - ngx-tools/coercion/
+  keycodes:
+    paths:
+      - ngx-tools/keycodes/
+  regex:
+    paths:
+      - ngx-tools/regex/
+  utilities:
+    paths:
+      - ngx-tools/src/
+  testing:
+    paths:
+      - ngx-tools/testing/
+
+ignore:
+  - "coverage"
+  - "dist"
+  - "demo"
+  - "docs"
+  - "e2e"
+  - "node_modules"
+  - "tools"
+  - "ngx-tools/**/*.spec.ts"
+  - "ngx-tools/!(testing)/*.mock.ts"

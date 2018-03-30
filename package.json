@@ -38,44 +38,26 @@
     "//=> Section: Library:Build": "",
     "build": "rimraf dist && ng-packagr -p ngx-tools/package.json",
     "postbuild": "cp README.md dist/ngx-tools/ && cp LICENSE dist/ngx-tools/",
+
     "//=> Section: Library:Test": "",
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
-    "test:config": "jest --showConfig",
-    "test": "jest --watch",
-    "test:ci": "jest --runInBand --coverage",
-    "test:debug": "jest --debug --runInBand",
+    "test:config": "jest --config ./ngx-tools/jest.all.config.js --showConfig",
+    "test": "jest --config ./ngx-tools/jest.all.config.js --watch",
+    "test:ci": "jest --runInBand --coverage --config ./ngx-tools/jest.all.config.js",
+    "test:utilities": "jest --config ./ngx-tools/jest.utilities.config.js",
+    "test:utilities:ci": "yarn run test:utilities --runInBand --coverage",
+    "test:coercion": "jest --config ./ngx-tools/jest.coercion.config.js",
+    "test:coercion:ci": "yarn run test:coercion --runInBand --coverage",
+    "test:keycodes": "jest --config ./ngx-tools/jest.keycodes.config.js",
+    "test:keycodes:ci": "yarn run test:keycodes --runInBand --coverage",
+    "test:regex": "jest --config ./ngx-tools/jest.regex.config.js",
+    "test:regex:ci": "yarn run test:regex --runInBand --coverage",
+    "test:testing": "jest --config ./ngx-tools/jest.testing.config.js",
+    "test:testing:ci": "yarn run test:testing --runInBand --coverage",
+    "test:debug": "jest --config ./ngx-tools/jest.all.config.js --debug --runInBand",
     "lint": "npx tslint --fix --project ./ngx-tools/tsconfig.lint.json",
     "lint:ci": "npx tslint --project ./ngx-tools/tsconfig.lint.json",
     "codecov:upload": "npx codecov -f coverage/*.json"
-  },
-  "jest": {
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "ngx-tools/tsconfig.spec.json",
-        "enableTsDiagnostics": true
-      },
-      "__TRANSFORM_HTML__": true
-    },
-    "transform": {
-      "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
-    },
-    "testMatch": [
-      "<rootDir>/ngx-tools/**/?(*.)(spec|test).ts?(x)"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "html"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!@ngrx)"
-    ],
-    "clearMocks": true,
-    "collectCoverageFrom": [
-      "ngx-tools/**/!(public-api|index).ts",
-      "!ngx-tools/testing/src/mocks/*.ts"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/tools/jest-setup.ts"
   },
   "lint-staged": {
     "ngx-tools/**/*.ts": [
