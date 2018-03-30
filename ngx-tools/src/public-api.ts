@@ -11,6 +11,7 @@ export * from './input-has-changed/input-has-changed';
 export * from './noop/noop';
 export * from './retry-with-backoff/delay-calculator';
 export * from './retry-with-backoff/retry-with-backoff';
+export * from './to-camel-case/to-camel-case';
 export * from './verify-types/index';
 export * from './version/version';
 export * from './window/window.service';

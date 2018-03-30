@@ -25,6 +25,7 @@ isArray([]); // Returns: true
 - [`inputHasChanged`](#inputhaschanged)
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
+- [`toCamelCase`](#tocamelcase)
 - [Services](#services)
   - [Document Service](#document-service)
   - [Window Service](#window-service)
@@ -298,6 +299,20 @@ const calcOpts: DelayCalculator = {
 
 // Create a retrier with a custom delay calculator:
 retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)})
+```
+
+
+### `toCamelCase`
+
+Convert a string to `camelCase`:
+
+```typescript
+import { toCamelCase } from '@terminus/ngx-tools';
+
+toCamelCase('EQUIPMENT_CLASS_NAME')
+toCamelCase('equipment class name')
+toCamelCase('equipment__class--name')
+// All return: `equipmentClassName`
 ```
 
 
