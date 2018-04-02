@@ -32,6 +32,7 @@ dispatchFakeEvent(window, 'resize')
   - [`dispatchMouseEvent`](#dispatchmouseevent)
   - [`dispatchTouchEvent`](#dispatchtouchevent)
 - [Angular Test Helpers](#angular-test-helpers)
+  - [`configureTestBed`](#configuretestbed)
   - [`expectNativeEl`](#expectnativeel)
   - [`queryFor`](#queryfor)
   - [`typeInElement`](#typeinelement)
@@ -370,6 +371,54 @@ dispatchTouchEvent(myNativeElement, 'touchstart');
 
 
 ## Angular Test Helpers
+
+
+### `configureTestBed`
+
+By default, Angular does not strip out any white space when compiling templates for the `TestBed`. This
+can make snapshot testing more difficult to visually parse. This helper will configure the `TestBed`
+and compile the components with extra white space stripped.
+
+```typescript
+import {
+  ConfigureTestBedFn,
+  configureTestBed,
+} from '@terminus/ngx-tools/testing';
+
+describe(`MyComponentSnapshot`, () => {
+  let fixture: ComponentFixture<MyComponent>;
+  let component: MyComponent;
+
+  beforeEach(async(() => {
+    // Define your configuration just as you would using the standard TestBed,
+    // except now it's inside a `ConfigureTestBedFn` function:
+    const configure: ConfigureTestBedFn = (testBed) => {
+      testBed.configureTestingModule({
+        ...
+        declarations: [
+          TsCopyComponent,
+        ],
+        ...
+      });
+    };
+
+    // Pass the configuration in and receive a TestBed instance:
+    configureTestBed(configure).then((testBed) => {
+      fixture = testBed.createComponent(MyComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+  }));
+
+
+  test(`should match the snapshot`, () => {
+    expect(fixture).toMatchSnapshot();
+  });
+
+});
+```
+
 
 ### `expectNativeEl`
 
