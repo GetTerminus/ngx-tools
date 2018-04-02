@@ -1,4 +1,10 @@
 {
+  "extends": [
+    "monorepo:angular",
+    "monorepo:ngrx",
+    "group:definitelyTyped",
+    "schedule:nonOfficeHours"
+  ],
   "pinVersions": false,
   "ignoreUnstable": false,
   "semanticCommits": true,
@@ -6,33 +12,33 @@
   "commitMessage": "{{semanticPrefix}}update {{depName}} to version {{newVersion}}",
   "packageFiles": [
     "package.json",
-    "my-lib/package.json"
+    "ngx-tools/package.json"
   ],
   "packages": [
     {
-      "packagePattern": "^@angular\/.*",
-      "groupName": "angular",
-      "pinVersions": false
+      "groupName": "release",
+      "packagePatterns": [
+        "semantic-release"
+      ]
     },
     {
-      "packagePattern": "^@types\/.*",
-      "groupName": "type definitions",
-      "pinVersions": false
-    },
-    {
-      "packagePattern": "^jasmine.*",
-      "groupName": "jasmine",
-      "pinVersions": false
-    },
-    {
-      "packagePattern": "^karma.*",
       "groupName": "karma",
-      "pinVersions": false
+      "packagePatterns": [
+        "karma",
+        "jasmine"
+      ]
     },
     {
-      "packagePattern": "^protractor.*",
+      "groupName": "jest",
+      "packagePatterns": [
+        "jest"
+      ]
+    },
+    {
       "groupName": "protractor",
-      "pinVersions": false
+      "packagePatterns": [
+        "protractor"
+      ]
     }
   ]
 }
