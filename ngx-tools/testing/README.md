@@ -18,6 +18,7 @@ dispatchFakeEvent(window, 'resize')
   - [`ChangeDetectorRefMock`](#changedetectorrefmock)
   - [`ElementRefMock`](#elementrefmock)
   - [`rendererMock`](#renderermock)
+  - [`renderer2Mock`](#renderer2mock)
   - [`TsDocumentServiceMock`](#tsdocumentservicemock)
   - [`TsWindowServiceMock`](#tswindowservicemock)
 - [Event Objects](#event-objects)
@@ -107,7 +108,7 @@ beforeEach(() => {
 
 ### `rendererMock`
 
-A mock of the Angular Renderer.
+A mock of the Angular Renderer with properties initialized with `noop` function.
 
 ```typescript
 // my.component.ts
@@ -131,6 +132,7 @@ beforeEach(async(() => {
       MyNeededModule,
     ],
     providers: [
+      // rendererMock is a value:
       {
         provide: Renderer,
         useValue: rendererMock,
@@ -141,6 +143,57 @@ beforeEach(async(() => {
     ],
   }).compileComponents();
 }));
+```
+
+### `renderer2Mock`
+
+A mock of the Angular Renderer2 with all properties stubbed.
+
+```typescript
+// my.component.ts
+import { Renderer2 } from '@angular/core';
+
+@Component({...})
+export class MyComponent {
+  constructor(
+    private renderer2: Renderer2,
+  ) {}
+}
+```
+
+```typescript
+// my.component.spec.ts
+import { Renderer2Mock } from '@terminus/ngx-tools/testing';
+
+beforeEach(async(() => {
+  TestBed.configureTestingModule({
+    ...
+    providers: [
+      // Renderer2Mock is a class:
+      {
+        provide: Renderer,
+        useClass: Renderer2Mock,
+      },
+    ],
+    declarations: [
+      MyComponent,
+    ],
+  }).compileComponents();
+}));
+```
+
+Or for `new`ed classes:
+
+```typescript
+import { Renderer2Mock } from '@terminus/ngx-tools/testing';
+
+let component: MyComponent;
+
+beforeEach(() => {
+  component = new MyComponent(
+    new Renderer2Mock(),
+  );
+});
 ```
 
 
