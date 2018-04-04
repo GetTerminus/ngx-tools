@@ -26,6 +26,7 @@ isArray([]); // Returns: true
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`toCamelCase`](#tocamelcase)
+- [`updateControlOnInputChanges`](#updatecontroloninputchanges)
 - [Services](#services)
   - [Document Service](#document-service)
   - [Window Service](#window-service)
@@ -315,6 +316,28 @@ toCamelCase('equipment__class--name')
 // All return: `equipmentClassName`
 ```
 
+### `updateControlOnInputChanges`
+
+Helper function to set value to a form control if an input has changed.
+
+```typescript
+import { SimpleChanges } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { updateControlOnInputChanges } from '@terminus/ngx-tools';
+
+...
+  @Input
+  public myInput;
+  @Input
+  public myFormControl;
+
+  ngOnChanges(changes: SimpleChanges) {
+    // This will verify that whether an input has been changed. If it's changed
+    // and there is a form control, form control's value will be updated to latest value
+    updateControlOnInputChanges(changes, 'myInput', this.myFormControl));
+  }
+...
+```
 
 ### Services
 
@@ -430,8 +453,6 @@ import { isString } from '@terminus/ngx-tools';
 isString('foo'); // Returns: true
 isString({}); // Returns: false
 ```
-
-
 
 
 <!-- LINKS -->
