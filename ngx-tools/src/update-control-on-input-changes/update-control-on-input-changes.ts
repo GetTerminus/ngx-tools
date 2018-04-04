@@ -15,7 +15,7 @@ import { inputHasChanged } from './../input-has-changed/input-has-changed';
 export function updateControlOnInputChanges(
   changes: SimpleChanges,
   key: string,
-  control: AbstractControl,
+  control: AbstractControl | null,
 ): boolean {
   if (!changes || !key || !control) {
     return false;
