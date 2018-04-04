@@ -18,6 +18,9 @@ describe(`updateControlOnInputChanges`, () => {
     expect(updateControlOnInputChanges(null, 'foo', control)).toEqual(false);
   });
 
+  test(`should return false if control is null`, () => {
+    expect(updateControlOnInputChanges(changed, 'item1', null)).toEqual(false);
+  })
 
   test(`should return true if the value has changed`, () => {
     expect(updateControlOnInputChanges(changed, 'item1', control)).toEqual(true);
