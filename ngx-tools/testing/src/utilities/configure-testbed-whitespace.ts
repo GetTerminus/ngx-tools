@@ -25,7 +25,7 @@ export type ConfigureTestBedFn = (testBed: typeof TestBed) => void;
  * @param configureFn - The configuration function for the TestBed
  * @return A promise-wrapped TestBed instance
  */
-export function configureTestBed(
+export function configureTestBedWhitespace(
   configureFn: ConfigureTestBedFn,
   compilerOptions: TestBedCompilerOptions = {},
 ): Promise<typeof TestBed> {
