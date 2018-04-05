@@ -33,7 +33,8 @@ dispatchFakeEvent(window, 'resize')
   - [`dispatchMouseEvent`](#dispatchmouseevent)
   - [`dispatchTouchEvent`](#dispatchtouchevent)
 - [Angular Test Helpers](#angular-test-helpers)
-  - [`configureTestBed`](#configuretestbed)
+  - [`configureTestBedWhitespace`](#configuretestbedwhitespace)
+  - [`configureTestBedWithoutReset`](#configuretestbedwithoutreset)
   - [`expectNativeEl`](#expectnativeel)
   - [`queryFor`](#queryfor)
   - [`typeInElement`](#typeinelement)
@@ -426,7 +427,7 @@ dispatchTouchEvent(myNativeElement, 'touchstart');
 ## Angular Test Helpers
 
 
-### `configureTestBed`
+### `configureTestBedWhitespace`
 
 By default, Angular does not strip out any white space when compiling templates for the `TestBed`. This
 can make snapshot testing more difficult to visually parse. This helper will configure the `TestBed`
@@ -456,7 +457,7 @@ describe(`MyComponentSnapshot`, () => {
     };
 
     // Pass the configuration in and receive a TestBed instance:
-    configureTestBed(configure).then((testBed) => {
+    configureTestBedWhitespace(configure).then((testBed) => {
       fixture = testBed.createComponent(MyComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
@@ -469,6 +470,41 @@ describe(`MyComponentSnapshot`, () => {
     expect(fixture).toMatchSnapshot();
   });
 
+});
+```
+
+
+### `configureTestBedWithoutReset`
+
+By default, Angular resets the TestBed between each test. While this can be useful if
+components or services have shared state or create side-effects, it can slow down tests quite a bit.
+When the TestBed doesn't need to be reset, we can improve testing time by disabling this reset
+functionality.
+
+> NOTE: This function makes use of `beforeAll` and `afterAll` so it must be called inside your
+> outermost `describe` block.
+
+```typescript
+import { TestModuleMetadata } from '@angular/core/testing';
+import { configureTestBedWithoutReset } from '@terminus/ngx-tools/testing';
+
+describe(`MyComponent`, () => {
+  let fixture: ComponentFixture<MyComponent>;
+  let component: MyComponent;
+  const moduleDefinition: TestModuleMetadata = {
+    imports: [
+      ...
+    ],
+    declarations: [
+      ...
+    ],
+  };
+
+  setUpTestBed(moduleDefinition);
+
+  it(`should...`, () => {
+    ...
+  });
 });
 ```
 
@@ -502,6 +538,7 @@ it(`should have a native element`, () => {
   expectNativeEl(fixture).toBeTruthy();
 })
 ```
+
 
 ### `queryFor`
 
@@ -542,6 +579,7 @@ import { typeInElement } from '@terminus/ngx-tools/testing';
 
 typeInElement('test@test.com', myEmailInputElement);
 ```
+
 
 ### `wrappedErrorMessage`
 

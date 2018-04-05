@@ -76,10 +76,14 @@
   "release": {
     "verifyConditions": [
       "condition-circle",
+      "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/github"
     ],
     "getLastRelease": "@semantic-release/npm",
+    "prepare": [
+      "@semantic-release/changelog"
+    ],
     "publish": [
       {
         "path": "@semantic-release/exec",
@@ -92,6 +96,7 @@
       },
       {
         "path": "@semantic-release/github",
+        "assets": ["CHANGELOG.md"],
         "npmPublish": false
       }
     ]
@@ -121,6 +126,7 @@
     "@angular/compiler-cli": "^5.2.5",
     "@angular/language-service": "^5.2.5",
     "@ngrx/store": "^5.2.0",
+    "@semantic-release/changelog": "^2.0.1",
     "@semantic-release/exec": "^2.2.3",
     "@semantic-release/github": "^4.2.8",
     "@semantic-release/npm": "^3.2.4",
