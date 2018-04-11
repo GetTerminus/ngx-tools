@@ -25,6 +25,7 @@ isArray([]); // Returns: true
 - [`inputHasChanged`](#inputhaschanged)
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
+- [`returnValuesByKeys`](#returnValuesByKeys)
 - [`toCamelCase`](#tocamelcase)
 - [`updateControlOnInputChanges`](#updatecontroloninputchanges)
 - [Services](#services)
@@ -300,6 +301,29 @@ const calcOpts: DelayCalculator = {
 
 // Create a retrier with a custom delay calculator:
 retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)})
+```
+
+### `returnValuesByKeys`
+
+Helper function to return an array of values from an hash object
+
+```typescript
+import { returnValuesByKeys } from '@terminus/ngx-tools';
+
+  const tactic1: Tactic = {
+    id: 1,
+    name: 'tactic1',
+    goal: 'goal1',
+  }
+  const tactic2: Tactic = {
+    id: 2,
+    name: 'tactic2',
+    goal: 'goal2',
+  }
+  const tactics = { 1: tactic1, 2: tactic2 }
+
+returnValuesByKeys([1], tactics)
+// Would return `[tactic1]`
 ```
 
 
