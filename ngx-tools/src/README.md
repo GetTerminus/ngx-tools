@@ -25,7 +25,7 @@ isArray([]); // Returns: true
 - [`inputHasChanged`](#inputhaschanged)
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
-- [`returnValuesByKeys`](#returnValuesByKeys)
+- [`returnValuesByKeys`](#returnvaluesbykeys)
 - [`toCamelCase`](#tocamelcase)
 - [`updateControlOnInputChanges`](#updatecontroloninputchanges)
 - [Services](#services)
