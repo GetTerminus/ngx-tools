@@ -1,3 +1,4 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -8,6 +9,6 @@ import { By } from '@angular/platform-browser';
  * @param fixture - The test fixture
  * @return The query result
  */
-export function queryFor(fixture: ComponentFixture<any>, selector: string): any {
+export function queryFor(fixture: ComponentFixture<any>, selector: string): DebugElement {
   return fixture.debugElement.query(By.css(selector));
 }

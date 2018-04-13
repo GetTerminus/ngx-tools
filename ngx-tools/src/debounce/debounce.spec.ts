@@ -3,8 +3,8 @@ import { debounce } from './debounce';
 
 
 describe(`debounce`, () => {
-  let func;
-  let debounced;
+  let func: Function;
+  let debounced: Function;
 
   beforeEach(() => {
     func = jest.fn();

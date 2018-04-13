@@ -12,32 +12,31 @@ import * as KEYCODES from './../../../keycodes/public-api';
 
 
 describe(`dispatch-events`, () => {
-  let eventMock;
-  let nodeMock;
+  let nodeMock: Element;
 
   beforeEach(() => {
-    eventMock = createFakeEvent('keydown');
     nodeMock = window.document.createElement('div');
     nodeMock.dispatchEvent = jest.fn();
-  });
-
-  afterEach(() => {
-    nodeMock.dispatchEvent.mockClear();
   });
 
 
   describe(`dispatchEvent`, () => {
 
     test(`should trigger the dispatch and return the event`, () => {
+      const eventMock = createFakeEvent('keydown');
       dispatchEvent(nodeMock, eventMock);
 
-      // NOTE(B$): At some point this changed and the returned event doesn't perfectly match the
-      // event mock. Don't want to spend much time on it since a) it's a testing util and b) it's
-      // created via a deprecated API:
-      // https://developer.mozilla.org/en-US/docs/Web/API/Event/initEvent
-      // expect(actual).toEqual(eventMock);
       expect(nodeMock.dispatchEvent).toHaveBeenCalled();
     });
+
+
+    test(`should trigger the dispatch and return the event for bubbled events`, () => {
+      const eventMockBubble = createFakeEvent('keydown', true, true);
+      dispatchEvent(nodeMock, eventMockBubble);
+
+      expect(nodeMock.dispatchEvent).toHaveBeenCalled();
+    });
+
 
   });
 
@@ -45,7 +44,7 @@ describe(`dispatch-events`, () => {
   describe(`dispatchFakeEvent`, () => {
 
     test(`should trigger the dispatch and return the event`, () => {
-      dispatchFakeEvent(nodeMock, eventMock);
+      dispatchFakeEvent(nodeMock, 'keydown');
 
       expect(nodeMock.dispatchEvent).toHaveBeenCalled();
     });

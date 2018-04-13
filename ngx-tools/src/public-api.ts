@@ -5,7 +5,6 @@ export * from './compact-array/compact-array';
 export * from './debounce/debounce';
 export * from './document/document.service';
 export * from './get-form-control-value/get-form-control-value';
-export * from './get-store-value/get-store-value';
 export * from './group-by/group-by';
 export * from './input-has-changed/input-has-changed';
 export * from './noop/noop';

@@ -14,8 +14,8 @@ describe(`inputHasChanged`, () => {
 
 
   test(`should return undefined if the changes object or key are missing`, () => {
-    expect(inputHasChanged(null, 'foo')).toEqual(undefined);
-    expect(inputHasChanged(null, 'foo')).toEqual(undefined);
+    expect(inputHasChanged(null as any, 'foo')).toEqual(undefined);
+    expect(inputHasChanged(null as any, 'foo')).toEqual(undefined);
   });
 
 

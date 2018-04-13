@@ -10,17 +10,20 @@
  * @param wait - The length of time to wait between calls (ms)
  * @return The debounced function
  */
-export function debounce(func: Function, wait: number): Function {
+export function debounce(func: Function, wait: number, windowRef: Window = window): Function {
   let timer: number | null = null;
 
-  return function() {
-    const context = this;
+  return function(this: any) {
     const args = arguments;
 
-    clearTimeout(timer);
+    // istanbul ignore else
+    if (timer) {
+      clearTimeout(timer);
+    }
 
-    timer = window.setTimeout(function() {
-      func.apply(context, args);
+    timer = windowRef.setTimeout(function(this: any) {
+      func.apply(this, args);
     }, wait);
   };
 };
+

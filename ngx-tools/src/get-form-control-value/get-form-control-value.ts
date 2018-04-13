@@ -6,5 +6,7 @@ export function getFormControlValue(form: FormGroup, controlName: string): any {
     return;
   }
 
-  return form.get(controlName) ? form.get(controlName).value : null;
+  const control = form.get(controlName);
+
+  return control ? control.value : null;
 }

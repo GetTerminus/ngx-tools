@@ -2,10 +2,20 @@ import { isObject } from './is-object';
 
 
 describe(`isObject`, () => {
-  function Car(make, model, year) {
-    this.make = make;
-    this.model = model;
-    this.year = year;
+  class Car {
+    make: string;
+    model: string;
+    year: number;
+
+    constructor(
+      make: string,
+      model: string,
+      year: number,
+    ) {
+      this.make = make;
+      this.model = model;
+      this.year = year;
+    }
   }
   const validObjects: any[] = [
     {},
