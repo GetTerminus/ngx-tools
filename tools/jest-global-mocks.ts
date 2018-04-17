@@ -1,6 +1,5 @@
-
 const mock = () => {
-  let storage = {};
+  let storage: {[key: string]: any} = {};
   return {
     getItem: (key: string) => key in storage ? storage[key] : null,
     setItem: (key: string, value: any) => storage[key] = value || '',

@@ -20,8 +20,8 @@ describe(`getFormControlValue`, () => {
 
 
   test(`should return undefined if the form or control name is not passed in`, () => {
-    expect(getFormControlValue(null, 'control1')).toEqual(undefined);
-    expect(getFormControlValue(formGroup, null)).toEqual(undefined);
+    expect(getFormControlValue(null as any, 'control1')).toEqual(undefined);
+    expect(getFormControlValue(formGroup, null as any)).toEqual(undefined);
   });
 
 

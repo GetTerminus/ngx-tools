@@ -3,7 +3,7 @@ import { applyMixins } from './apply-mixins';
 
 // Disposable Mixin
 class Disposable {
-  isDisposed: boolean;
+  isDisposed!: boolean;
   dispose() {
     this.isDisposed = true;
   }
@@ -12,7 +12,7 @@ class Disposable {
 
 // Activatable Mixin
 class Activatable {
-  isActive: boolean;
+  isActive!: boolean;
   activate() {
     this.isActive = true;
   }
@@ -25,11 +25,11 @@ class Activatable {
 class SmartObject implements Disposable, Activatable {
   // Disposable
   isDisposed: boolean = false;
-  dispose: () => void;
+  dispose!: () => void;
   // Activatable
   isActive: boolean = false;
-  activate: () => void;
-  deactivate: () => void;
+  activate!: () => void;
+  deactivate!: () => void;
 
   interact() {
     this.activate();

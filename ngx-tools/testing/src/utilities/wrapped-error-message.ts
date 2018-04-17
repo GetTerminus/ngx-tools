@@ -13,7 +13,7 @@
  * @param e - The error
  * @return The regex
  */
-export function wrappedErrorMessage(e: Error) {
+export function wrappedErrorMessage(e: Error): RegExp {
   const escapedMessage = e.message.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
   return new RegExp(escapedMessage);
 }

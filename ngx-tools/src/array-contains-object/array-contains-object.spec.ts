@@ -8,12 +8,8 @@ describe(`arrayContainsObject`, () => {
   const obj4 = { id: 4 };
   const obj5 = { id: 5 }; // not in array
   const array = [obj1, obj2, obj3, obj4];
-  const fn = (v) => v.id;
+  const fn = (v: any) => v.id;
   const filterTestFn = jest.fn(fn);
-
-  afterEach(() => {
-    filterTestFn.mockReset();
-  });
 
 
   test(`should return true if a match is found`, () => {

@@ -4,7 +4,7 @@
  * @param arr - The array to compact
  * @return The compacted array
  */
-export function compactArray<T>(arr: (T | null | undefined)[]): T[] {
+export function compactArray<T>(arr: (T | null | undefined)[]): T[] | undefined {
   if (!arr || arr.length < 1) {
     return;
   }

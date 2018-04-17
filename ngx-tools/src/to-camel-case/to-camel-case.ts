@@ -1,4 +1,3 @@
-
 /*
  * 'Inspired' by https://github.com/sindresorhus/camelcase
  */
@@ -51,7 +50,7 @@ function postProcess(x: string, pascalCase: boolean): string {
  * @param value - The string to convert
  * @return The camelCase version of the string
  */
-export function toCamelCase(input: string, pascalCase: boolean = false): string {
+export function toCamelCase(input: string, pascalCase: boolean = false): string | undefined {
   if (!input) {
     return;
   }

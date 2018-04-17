@@ -28,6 +28,18 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "atlwendy",
+      "name": "Wendy",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/377552?v=4",
+      "profile": "https://github.com/atlwendy",
+      "contributions": [
+        "code",
+        "doc",
+        "test"
+      ]
     }
-  ]
+  ],
+  "repoType": "github"
 }

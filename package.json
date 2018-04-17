@@ -43,6 +43,7 @@
     "test:config": "jest --config ./ngx-tools/jest.all.config.js --showConfig",
     "test": "jest --config ./ngx-tools/jest.all.config.js --watch",
     "test:ci": "jest --runInBand --coverage --config ./ngx-tools/jest.all.config.js",
+    "test:ci:local": "jest --coverage --config ./ngx-tools/jest.all.config.js",
     "test:utilities": "jest --config ./ngx-tools/jest.utilities.config.js",
     "test:utilities:ci": "yarn run test:utilities --runInBand --coverage",
     "test:coercion": "jest --config ./ngx-tools/jest.coercion.config.js",

@@ -450,7 +450,7 @@ describe(`MyComponentSnapshot`, () => {
       testBed.configureTestingModule({
         ...
         declarations: [
-          TsCopyComponent,
+          MyComponent,
         ],
         ...
       });

@@ -171,18 +171,6 @@ getFormControlValue(myForm, 'control2');
 ```
 
 
-### `getStoreValue`
-
-Helper function to retrieve the current value of an entry from the store:
-
-```typescript
-import { getStoreValue } from '@terminus/ngx-tools';
-
-getStoreValue(storeMock.select('users'));
-// Returns: `User[]`
-```
-
-
 ### `groupBy`
 
 Return an object containing arrays split by property.

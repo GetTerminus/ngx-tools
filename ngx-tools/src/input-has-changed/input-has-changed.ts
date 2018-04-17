@@ -8,7 +8,7 @@ import { SimpleChanges } from '@angular/core';
  * @param key - The object key in question
  * @return True if the value has changed
  */
-export function inputHasChanged(changes: SimpleChanges, key: string): boolean {
+export function inputHasChanged(changes: SimpleChanges, key: string): boolean | undefined {
   if (!changes || !key) {
     return;
   }

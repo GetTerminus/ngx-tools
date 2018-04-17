@@ -15,7 +15,7 @@ describe(`updateControlOnInputChanges`, () => {
 
 
   test(`should return false if the changes object or key are missing`, () => {
-    expect(updateControlOnInputChanges(null, 'foo', control)).toEqual(false);
+    expect(updateControlOnInputChanges(null as any, 'foo', control)).toEqual(false);
   });
 
   test(`should return false if control is null`, () => {
