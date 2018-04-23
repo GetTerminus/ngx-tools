@@ -22,7 +22,6 @@ isArray([]); // Returns: true
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
 - [`inputHasChanged`](#inputhaschanged)
-- [`merge`](#merge)
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`returnValuesByKeys`](#returnvaluesbykeys)
@@ -230,17 +229,6 @@ import { inputHasChanged } from '@terminus/ngx-tools';
     }
   }
 ...
-```
-
-
-### `merge`
-
-Helper to deep merge any number of objects.
-
-```typescript
-import { merge } from '@terminus/ngx-tools';
-
-const myMergedObject = merge([obj1, obj2, obj3]);
 ```
 
 
