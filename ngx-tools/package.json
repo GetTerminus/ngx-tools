@@ -43,6 +43,7 @@
     "@angular/core": "^5.2.0",
     "@angular/common": "^5.2.0",
     "@ngrx/store": "^5.2.0",
+    "deepmerge": "^2.1.0",
     "typescript": "^2.7.0"
   },
   "ngPackage": {
