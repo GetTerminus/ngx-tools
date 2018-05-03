@@ -40,7 +40,7 @@
     "yarn": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@angular/core": "^5.2.0",
+    "@angular/core": "^6.0.0",
     "@angular/common": "^5.2.0",
     "@ngrx/store": "^5.2.0",
     "deepmerge": "^2.1.0",
