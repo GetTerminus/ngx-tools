@@ -125,7 +125,7 @@
   },
   "devDependencies": {
     "@angular-devkit/schematics": "^0.5.0",
-    "@angular/cli": "^1.7.3",
+    "@angular/cli": "^6.0.0",
     "@angular/compiler-cli": "^5.2.5",
     "@angular/language-service": "^5.2.5",
     "@ngrx/store": "^5.2.0",
