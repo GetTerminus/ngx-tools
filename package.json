@@ -116,7 +116,7 @@
     "@angular/forms": "^5.2.5",
     "@angular/http": "^5.2.5",
     "@angular/platform-browser": "^5.2.5",
-    "@angular/platform-browser-dynamic": "^5.2.5",
+    "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^5.2.5",
     "@terminus/ngx-tools": "^2.12.0",
     "core-js": "^2.5.4",
