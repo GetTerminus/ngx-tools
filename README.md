@@ -147,16 +147,16 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 ## Basic Commands
 
-| Command     | Function                                        |
-|-------------|-------------------------------------------------|
-| `build`     | Build release                                   |
-| `test`      | Run unit tests                                  |
-| `test:ci`   | Run unit tests and output coverage              |
-| `start:app` | Start demo project                              |
-| `lint`      | Lint TS library files and attempt to fix issues |
-| `lint:ci`   | Lint TS library files                           |
-| `docs`      | Update library documentation                    |
-| `cm`        | Commit with commitizen cli                      |
+| Command         | Function                                        |
+|-----------------|-------------------------------------------------|
+| `build`         | Build release                                   |
+| `test`          | Run unit tests                                  |
+| `test:ci:local` | Run unit tests and output coverage              |
+| `start:app`     | Start demo project                              |
+| `lint`          | Lint TS library files and attempt to fix issues |
+| `lint:ci`       | Lint TS library files                           |
+| `docs`          | Update library documentation                    |
+| `cm`            | Commit with commitizen cli                      |
 
 > See [package.json][package-json] for the full list of commands.
 
