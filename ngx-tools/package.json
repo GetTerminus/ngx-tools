@@ -11,7 +11,11 @@
   "bugs": {
     "url": "https://github.com/GetTerminus/ngx-tools/issues"
   },
+  "publishConfig": {
+    "tag": "next"
+  },
   "release": {
+    "branch": "master",
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/npm",
