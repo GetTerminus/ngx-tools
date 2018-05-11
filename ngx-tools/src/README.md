@@ -25,6 +25,7 @@ isArray([]); // Returns: true
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`returnValuesByKeys`](#returnvaluesbykeys)
+- [`setFormControlValue`](#setformcontrolvalue)
 - [`toCamelCase`](#tocamelcase)
 - [`updateControlOnInputChanges`](#updatecontroloninputchanges)
 - [Services](#services)
@@ -313,6 +314,27 @@ returnValuesByKeys([1], tactics)
 // Would return `[tactic1]`
 ```
 
+### `setFormControlValue`
+
+Helper function to set a control value within a form group:
+
+```typescript
+import { FormGroup } from '@angular/forms';
+import { setFormControlValue } from '@terminus/ngx-tools';
+
+// Create a form group
+const formBuilder = new FormBuilder();
+const myForm = formBuilder.group({
+  control1: ['foo'],
+  control2: [null],
+});
+
+setFormControlValue(myForm, 'control1');
+// Set control1's value
+
+setFormControlValue(myForm, 'control2');
+// Returns: `undefined`
+```
 
 ### `toCamelCase`
 
