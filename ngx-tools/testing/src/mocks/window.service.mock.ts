@@ -14,6 +14,7 @@ const windowMock: Window = {
   open: noop,
   location: {
     href: 'foo/bar',
+    protocol: 'https:',
   },
   alert: noop,
   getSelection: () => {
