@@ -16,7 +16,7 @@ export class TsDocumentServiceMock {
     createRange: () => {
       return {
         selectNodeContents: noop,
-      }
+      };
     },
     execCommand: noop,
     createElement: noop,

@@ -40,4 +40,4 @@ export function configureTestBedWhitespace(
   configureFn(configuredTestBed);
 
   return configuredTestBed.compileComponents().then(() => configuredTestBed);
-};
+}

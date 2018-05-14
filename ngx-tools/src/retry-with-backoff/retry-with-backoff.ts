@@ -1,4 +1,4 @@
-import { MonoTypeOperatorFunction } from 'rxjs/interfaces'
+import { MonoTypeOperatorFunction } from 'rxjs/interfaces';
 // NOTE(B$): Rollup seems to choke when using `_throw` with an error saying `'_throw' is not
 // exported by node_modules/rxjs/observable/throw.js
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
@@ -59,4 +59,4 @@ export function retryWithBackoff<T>({
       }),
     ),
   );
-};
+}

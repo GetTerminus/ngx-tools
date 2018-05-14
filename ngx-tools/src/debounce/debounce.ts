@@ -25,5 +25,5 @@ export function debounce(func: Function, wait: number, windowRef: Window = windo
       func.apply(this, args);
     }, wait);
   };
-};
+}
 

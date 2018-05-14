@@ -10,7 +10,7 @@ describe(`retryWithBackoff`, () => {
   test(`should retry for x retries and then throw`, (done) => {
     const linearBackoff = (attempt: number) => 1;
     const error = new Error('bar');
-    const seenValues: {[idx: number]: number} = {}
+    const seenValues: {[idx: number]: number} = {};
 
     of(1, 2, 3).pipe(
       tap((v) => {
@@ -34,7 +34,7 @@ describe(`retryWithBackoff`, () => {
         1: 2,
         2: 2,
       });
-      done()
+      done();
     });
   });
 

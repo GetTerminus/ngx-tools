@@ -9,7 +9,7 @@ const windowMock: Window = {
   getComputedStyle: () => {
     return {
       getPropertyValue: () => 'static',
-    }
+    };
   },
   open: noop,
   location: {
@@ -20,7 +20,7 @@ const windowMock: Window = {
     return {
       removeAllRanges: noop,
       addRange: noop,
-    }
+    };
   },
   prompt: noop,
   // Note: mocking setTimeout/clearTimeout here makes it very hard to test items that use

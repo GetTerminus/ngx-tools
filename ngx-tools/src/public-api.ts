@@ -14,5 +14,5 @@ export * from './return-array-value-from-hash/return-array-value-from-hash';
 export * from './to-camel-case/to-camel-case';
 export * from './verify-types/index';
 export * from './version/version';
-export * from './update-control-on-input-changes/update-control-on-input-changes'
+export * from './update-control-on-input-changes/update-control-on-input-changes';
 export * from './window/window.service';

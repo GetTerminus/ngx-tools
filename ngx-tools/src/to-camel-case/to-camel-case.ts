@@ -36,12 +36,12 @@ function preserveCamelCase(input: string): string {
   }
 
   return input;
-};
+}
 
 
 function postProcess(x: string, pascalCase: boolean): string {
   return pascalCase ? x.charAt(0).toUpperCase() + x.slice(1) : x;
-};
+}
 
 
 /**
