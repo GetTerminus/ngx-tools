@@ -25,6 +25,7 @@ isArray([]); // Returns: true
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`returnValuesByKeys`](#returnvaluesbykeys)
+- [`roundNumber`](#roundnumber)
 - [`setFormControlValue`](#setformcontrolvalue)
 - [`toCamelCase`](#tocamelcase)
 - [`updateControlOnInputChanges`](#updatecontroloninputchanges)
@@ -35,6 +36,7 @@ isArray([]); // Returns: true
   - [`isArray`](#isarray)
   - [`isBoolean`](#isboolean)
   - [`isFunction`](#isfunction)
+  - [`isNumber`](#isnumber)
   - [`isObject`](#isobject)
   - [`isString`](#isstring)
 
@@ -291,6 +293,7 @@ const calcOpts: DelayCalculator = {
 retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)})
 ```
 
+
 ### `returnValuesByKeys`
 
 Helper function to return an array of values from an hash object
@@ -314,6 +317,20 @@ returnValuesByKeys([1], tactics)
 // Would return `[tactic1]`
 ```
 
+
+### `roundNumber`
+
+Helper function to round a number.
+
+```typescript
+import { roundNumber } from '@terminus/ngx-tools';
+
+roundNumber(1.050) // Returns `1`
+roundNumber(1.005, 2) // Returns `1.01`
+roundNumber(3456.3456, -2) // Returns `3500`
+```
+
+
 ### `setFormControlValue`
 
 Helper function to set a control value within a form group:
@@ -336,6 +353,7 @@ setFormControlValue(myForm, 'control2');
 // Returns: `undefined`
 ```
 
+
 ### `toCamelCase`
 
 Convert a string to `camelCase`:
@@ -348,6 +366,7 @@ toCamelCase('equipment class name')
 toCamelCase('equipment__class--name')
 // All return: `equipmentClassName`
 ```
+
 
 ### `updateControlOnInputChanges`
 
@@ -371,6 +390,7 @@ import { updateControlOnInputChanges } from '@terminus/ngx-tools';
   }
 ...
 ```
+
 
 ### Services
 
@@ -430,7 +450,7 @@ Consistent, tested, and well performing checks for various types.
 
 #### `isArray`
 
-Check if value is an Array.
+Check if a value is an Array.
 
 ```typescript
 import { isArray } from '@terminus/ngx-tools';
@@ -442,7 +462,7 @@ isArray('hi'); // Returns: false
 
 #### `isBoolean`
 
-Check if value is a Boolean.
+Check if a value is a Boolean.
 
 ```typescript
 import { isBoolean } from '@terminus/ngx-tools';
@@ -454,7 +474,7 @@ isBoolean('true'); // Returns: false
 
 #### `isFunction`
 
-Check if value is a Function.
+Check if a value is a Function.
 
 ```typescript
 import { isFunction } from '@terminus/ngx-tools';
@@ -464,9 +484,21 @@ isFunction('foo'); // Returns: false
 ```
 
 
+#### `isNumber`
+
+Check if a value is a Number.
+
+```typescript
+import { isNumber } from '@terminus/ngx-tools';
+
+isNumber(12); // Returns: true
+isNumber('foo'); // Returns: false
+```
+
+
 #### `isObject`
 
-Check if value is an Object.
+Check if a value is an Object.
 
 ```typescript
 import { isObject } from '@terminus/ngx-tools';
@@ -478,7 +510,7 @@ isObject('foo'); // Returns: false
 
 #### `isString`
 
-Check if value is a String.
+Check if a value is a String.
 
 ```typescript
 import { isString } from '@terminus/ngx-tools';

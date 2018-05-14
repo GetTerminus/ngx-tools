@@ -11,6 +11,7 @@ export * from './noop/noop';
 export * from './retry-with-backoff/delay-calculator';
 export * from './retry-with-backoff/retry-with-backoff';
 export * from './return-array-value-from-hash/return-array-value-from-hash';
+export * from './round-number/round-number';
 export * from './set-form-control-value/set-form-control-value';
 export * from './to-camel-case/to-camel-case';
 export * from './verify-types/index';
