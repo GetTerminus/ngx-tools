@@ -36,6 +36,7 @@ dispatchFakeEvent(window, 'resize')
   - [`configureTestBedWhitespace`](#configuretestbedwhitespace)
   - [`configureTestBedWithoutReset`](#configuretestbedwithoutreset)
   - [`expectNativeEl`](#expectnativeel)
+  - [`getChildComponentInstanceFromFixture`](#getchildcomponentinstancefromfixture)
   - [`queryFor`](#queryfor)
   - [`typeInElement`](#typeinelement)
   - [`wrappedErrorMessage`](#wrappederrormessage)
@@ -537,6 +538,63 @@ beforeEach(async(() => {
 it(`should have a native element`, () => {
   expectNativeEl(fixture).toBeTruthy();
 })
+```
+
+
+### `getChildComponentInstanceFromFixture`
+
+Returns a component instance from a TestBed fixture:
+
+```typescript
+import { getChildComponentInstanceFromFixture } from '@terminus/ngx-tools/testing';
+import { Component } from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+
+import { getChildComponentInstanceFromFixture } from './get-child-component-instance-from-fixture';
+
+// The component we will want a reference too:
+@Component({
+  selector: `my-test`,
+  template: `<h1>foo</h1>`,
+})
+class TestComponent {
+  myString = 'foo';
+}
+
+// The parent component (fixture):
+@Component({
+  template: `<my-test></my-test>`,
+})
+class TestHostComponent {}
+
+
+describe(`my test`, () => {
+  let fixture: ComponentFixture<TestHostComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        TestComponent,
+        TestHostComponent,
+      ],
+    });
+
+    // Create the fixture:
+    fixture = TestBed.createComponent(TestHostComponent);
+  });
+
+
+  test(`should ...`, () => {
+    // Get the instance:
+    const instance: TestComponent = getChildComponentInstanceFromFixture(fixture, TestComponent);
+    console.log(instance.myString); // logs out: `foo`
+  });
+
+});
 ```
 
 
