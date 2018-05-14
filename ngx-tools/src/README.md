@@ -25,6 +25,7 @@ isArray([]); // Returns: true
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`returnValuesByKeys`](#returnvaluesbykeys)
+- [`roundNumber`](#roundnumber)
 - [`setFormControlValue`](#setformcontrolvalue)
 - [`toCamelCase`](#tocamelcase)
 - [`updateControlOnInputChanges`](#updatecontroloninputchanges)
@@ -292,6 +293,7 @@ const calcOpts: DelayCalculator = {
 retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)})
 ```
 
+
 ### `returnValuesByKeys`
 
 Helper function to return an array of values from an hash object
@@ -314,6 +316,20 @@ import { returnValuesByKeys } from '@terminus/ngx-tools';
 returnValuesByKeys([1], tactics)
 // Would return `[tactic1]`
 ```
+
+
+### `roundNumber`
+
+Helper function to round a number.
+
+```typescript
+import { roundNumber } from '@terminus/ngx-tools';
+
+roundNumber(1.050) // Returns `1`
+roundNumber(1.005, 2) // Returns `1.01`
+roundNumber(3456.3456, -2) // Returns `3500`
+```
+
 
 ### `setFormControlValue`
 
