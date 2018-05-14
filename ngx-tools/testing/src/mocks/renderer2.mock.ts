@@ -6,24 +6,24 @@ import { Renderer2 } from '@angular/core';
  */
 export class Renderer2Mock implements Renderer2 {
   _data: any;
-  addClass() {};
-  appendChild() {};
-  createComment() {};
-  set data(v: any) {this._data = v};
-  get data(): any {return this._data};
-  destroy() {};
-  destroyNode() {};
-  insertBefore() {};
-  nextSibling() {};
-  parentNode() {};
-  removeAttribute() {};
-  removeChild() {};
-  removeClass() {};
-  removeStyle() {};
-  setAttribute() {};
-  setProperty() {};
-  setStyle() {};
-  setValue() {};
+  addClass() {}
+  appendChild() {}
+  createComment() {}
+  set data(v: any) { this._data = v; }
+  get data(): any { return this._data; }
+  destroy() {}
+  destroyNode() {}
+  insertBefore() {}
+  nextSibling() {}
+  parentNode() {}
+  removeAttribute() {}
+  removeChild() {}
+  removeClass() {}
+  removeStyle() {}
+  setAttribute() {}
+  setProperty() {}
+  setStyle() {}
+  setValue() {}
   animate() {}
   attachViewAfter() {}
   createElement() {}

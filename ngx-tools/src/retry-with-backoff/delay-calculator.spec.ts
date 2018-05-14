@@ -11,7 +11,7 @@ describe(`exponentialBackoffDelaycalculatorulator`, () => {
 
 
   test(`should have sane defaults`, () => {
-    expect(calculator({})(1)).toBeLessThanOrEqual(200)
+    expect(calculator({})(1)).toBeLessThanOrEqual(200);
   });
 
 
@@ -44,13 +44,13 @@ describe(`exponentialBackoffDelaycalculatorulator`, () => {
       ...baseParams,
       jitter: false,
     })(1);
-    expect(expected1).toEqual(200)
+    expect(expected1).toEqual(200);
 
     const expected2 = calculator({
       ...baseParams,
       jitter: true,
     })(1);
-    expect(expected2).toBeLessThan(200)
+    expect(expected2).toBeLessThan(200);
 
   });
 

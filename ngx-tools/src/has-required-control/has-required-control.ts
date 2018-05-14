@@ -41,7 +41,7 @@ export function hasRequiredControl(formItem: AbstractControl): boolean {
     // Dealing with AbstractControl
     return controlHasRequiredField(formItem);
   }
-};
+}
 
 
 

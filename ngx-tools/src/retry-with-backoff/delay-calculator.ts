@@ -46,5 +46,5 @@ export const exponentialBackoffDelayCalculator = ({
     }
 
     return sleepDuration;
-  }
-}
+  };
+};
