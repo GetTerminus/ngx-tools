@@ -4,7 +4,6 @@
  * @param keys The array containing the key values (number|string) to retrieve from the hash
  * @param hash The object to pull values from
  * @return The array of values that match keys
- *
  */
 export function returnValuesByKeys<T>(keys: Array<string|number>, hash: {[key: string]: T}): T[] {
   const stringyKeys: string[] = keys.map((id: number | string): string => {

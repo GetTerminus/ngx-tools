@@ -23,6 +23,8 @@ coerceBooleanProperty('true'); // Returns: true
 
 ### `coerceArray`
 
+[[source]](src/array/array.ts)
+
 Wraps the provided value in an array, unless the provided value is an array.
 
 ```typescript
@@ -34,6 +36,8 @@ coerceArray('foo'); // Returns: ['foo']
 
 ### `coerceBooleanProperty`
 
+[[source]](src/boolean/boolean-property.ts)
+
 Coerces a value to a boolean.
 
 ```typescript
@@ -44,6 +48,8 @@ coerceBooleanProperty('true'); // Returns: true
 
 
 ### `coerceNumberProperty`
+
+[[source]](src/number/number-property.ts)
 
 Coerces a value to a number.
 

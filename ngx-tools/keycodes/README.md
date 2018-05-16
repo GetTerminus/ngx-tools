@@ -21,6 +21,8 @@ dispatchKeyboardEvent(myElementRef, 'keyup', ESC);
 
 ## Available Key Codes
 
+[[source]](src/keycodes.const.ts)
+
 | Name          |
 |---------------|
 | `UP_ARROW`    |
