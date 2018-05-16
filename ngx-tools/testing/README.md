@@ -16,10 +16,10 @@ dispatchFakeEvent(window, 'resize')
 
 - [Mocks](#mocks)
   - [`ChangeDetectorRefMock`](#changedetectorrefmock)
+  - [`TsDocumentServiceMock`](#tsdocumentservicemock)
   - [`ElementRefMock`](#elementrefmock)
   - [`rendererMock`](#renderermock)
   - [`renderer2Mock`](#renderer2mock)
-  - [`TsDocumentServiceMock`](#tsdocumentservicemock)
   - [`TsWindowServiceMock`](#tswindowservicemock)
 - [Event Objects](#event-objects)
   - [`createFakeEvent`](#createfakeevent)
@@ -47,6 +47,8 @@ dispatchFakeEvent(window, 'resize')
 ## Mocks
 
 ### `ChangeDetectorRefMock`
+
+[[source]](src/mocks/change-detector-ref.mock.ts)
 
 A mock of the Angular `ChangeDetectorRefMock` class.
 
@@ -77,7 +79,40 @@ beforeEach(() => {
 ```
 
 
+### `TsDocumentServiceMock`
+
+[[source]](src/mocks/document.service.mock.ts)
+
+```typescript
+// my.component.ts
+import { TsDocumentService } from '@terminus/ngx-tools';
+
+@Component({...})
+export class MyComponent {
+  constructor(
+    private documentService: TsDocumentService,
+  ) {}
+}
+```
+
+```typescript
+// my.component.spec.ts
+import { TsDocumentServiceMock } from '@terminus/ngx-tools/testing';
+import { MyComponent } from './my.component';
+
+let component: MyComponent;
+
+beforeEach(() => {
+  component = new MyComponent(
+    new TsDocumentServiceMock(),
+  );
+});
+```
+
+
 ### `ElementRefMock`
+
+[[source]](src/mocks/elementRef.mock.ts)
 
 A mock of the Angular `ElementRef` class.
 
@@ -109,6 +144,8 @@ beforeEach(() => {
 
 
 ### `rendererMock`
+
+[[source]](src/mocks/renderer.mock.ts)
 
 A mock of the Angular Renderer with properties initialized with `noop` function.
 
@@ -148,6 +185,8 @@ beforeEach(async(() => {
 ```
 
 ### `renderer2Mock`
+
+[[source]](src/mocks/renderer2.mock.ts)
 
 A mock of the Angular Renderer2 with all properties stubbed.
 
@@ -199,36 +238,9 @@ beforeEach(() => {
 ```
 
 
-### `TsDocumentServiceMock`
-
-```typescript
-// my.component.ts
-import { TsDocumentService } from '@terminus/ngx-tools';
-
-@Component({...})
-export class MyComponent {
-  constructor(
-    private documentService: TsDocumentService,
-  ) {}
-}
-```
-
-```typescript
-// my.component.spec.ts
-import { TsDocumentServiceMock } from '@terminus/ngx-tools/testing';
-import { MyComponent } from './my.component';
-
-let component: MyComponent;
-
-beforeEach(() => {
-  component = new MyComponent(
-    new TsDocumentServiceMock(),
-  );
-});
-```
-
-
 ### `TsWindowServiceMock`
+
+[[source]](src/mocks/window.service.mock.ts)
 
 ```typescript
 // my.component.ts
@@ -258,6 +270,8 @@ beforeEach(() => {
 
 
 ## Event Objects
+
+[[source]](src/utilities/event-objects.ts)
 
 > For more complex examples, [search for the function in question within `@angular/material`][material-search].
 
@@ -334,6 +348,8 @@ const touchEventAtLocation = createTouchEvent('touchstart', 212, 433);
 
 
 ## Dispatch Events
+
+[[source]](src/utilities/dispatch-events.ts)
 
 > For more complex examples, [search for the function in question within `@angular/material`][material-search].
 
@@ -427,8 +443,9 @@ dispatchTouchEvent(myNativeElement, 'touchstart');
 
 ## Angular Test Helpers
 
-
 ### `configureTestBedWhitespace`
+
+[[source]](src/utilities/configure-testbed-whitespace.ts)
 
 By default, Angular does not strip out any white space when compiling templates for the `TestBed`. This
 can make snapshot testing more difficult to visually parse. This helper will configure the `TestBed`
@@ -477,9 +494,11 @@ describe(`MyComponentSnapshot`, () => {
 
 ### `configureTestBedWithoutReset`
 
-By default, Angular resets the TestBed between each test. While this can be useful if
+[[source]](src/utilities/configure-testbed-without-reset.ts)
+
+By default, Angular resets the `TestBed` between each test. While this can be useful if
 components or services have shared state or create side-effects, it can slow down tests quite a bit.
-When the TestBed doesn't need to be reset, we can improve testing time by disabling this reset
+When the `TestBed` doesn't need to be reset, we can improve testing time by disabling this reset
 functionality.
 
 > NOTE: This function makes use of `beforeAll` and `afterAll` so it must be called inside your
@@ -512,6 +531,8 @@ describe(`MyComponent`, () => {
 
 ### `expectNativeEl`
 
+[[source]](src/utilities/expect-native-el.ts)
+
 Reusable expect statement to check for the `nativeElement`.
 
 ```typescript
@@ -542,6 +563,8 @@ it(`should have a native element`, () => {
 
 
 ### `getChildComponentInstanceFromFixture`
+
+[[source]](src/utilities/get-child-component-instance-from-fixture.ts)
 
 Returns a component instance from a TestBed fixture:
 
@@ -600,6 +623,8 @@ describe(`my test`, () => {
 
 ### `queryFor`
 
+[[source]](src/utilities/query-for.ts)
+
 Helper to query a fixture for a selector.
 
 ```typescript
@@ -630,6 +655,8 @@ beforeEach(async(() => {
 
 ### `typeInElement`
 
+[[source]](src/utilities/type-in-element.ts)
+
 Focuses an input, sets it's value and dispatches the `input` event, simulating user typing.
 
 ```typescript
@@ -640,6 +667,8 @@ typeInElement('test@test.com', myEmailInputElement);
 
 
 ### `wrappedErrorMessage`
+
+[[source]](src/utilities/wrapped-error-message.ts)
 
 Gets a RegExp used to detect an Angular wrapped error message. This allows testing for specific
 thrown errors in tests.

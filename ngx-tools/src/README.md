@@ -39,11 +39,14 @@ isArray([]); // Returns: true
   - [`isNumber`](#isnumber)
   - [`isObject`](#isobject)
   - [`isString`](#isstring)
+- [`VERSION`](#version)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
 ### `applyMixins`
+
+[[source]](apply-mixins/apply-mixins.ts)
 
 A helper function to apply TypeScript mixins to a base class:
 
@@ -100,6 +103,8 @@ smartObj.isActive
 
 ### `arrayContainsObject`
 
+[[source]](array-contains-object/array-contains-object.ts)
+
 Check if an object exists in an array.
 
 ```typescript
@@ -119,6 +124,8 @@ arrayContainsObject(object, array, comparator); // Returns: true
 
 ### `compactArray`
 
+[[source]](compact-array/compact-array.ts)
+
 Remove `undefined` or `null` items from an array:
 
 ```typescript
@@ -133,6 +140,8 @@ compactArray(myArray);
 
 
 ### `debounce`
+
+[[source]](debounce/debounce.ts)
 
 Create a debounced function.
 
@@ -151,6 +160,8 @@ for (const value of [1, 2, 3]) {
 
 
 ### `getFormControlValue`
+
+[[source]](get-form-control-value/get-form-control-value.ts)
 
 Helper function to retrieve the current value of a control within a form group:
 
@@ -175,6 +186,8 @@ getFormControlValue(myForm, 'control2');
 
 ### `groupBy`
 
+[[source]](group-by/group-by.ts)
+
 Return an object containing arrays split by property.
 
 ```typescript
@@ -197,6 +210,8 @@ groupBy<MyObj, keyof MyObj>(myArray, 'a');
 
 ### `hasRequiredControl`
 
+[[source]](has-required-control/has-required-control.ts)
+
 Check if an `AbstractControl` or `FormGroup` has a required validator.
 
 ```typescript
@@ -212,6 +227,8 @@ hasRequiredControl(group); // Returns: true
 
 
 ### `inputHasChanged`
+
+[[source]](input-has-changed/input-has-changed.ts)
 
 Helper function to determine if an input has changed.
 
@@ -237,6 +254,8 @@ import { inputHasChanged } from '@terminus/ngx-tools';
 
 ### `noop`
 
+[[source]](noop/noop.ts)
+
 Provides a placeholder function.
 
 ```typescript
@@ -248,6 +267,8 @@ myFunc(); // Returns: undefined
 
 
 ### `retryWithBackoff`
+
+[[source]](retry-with-backoff/retry-with-backoff.ts)
 
 Helper to retry an Observable stream [X] times.
 
@@ -296,6 +317,8 @@ retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator
 
 ### `returnValuesByKeys`
 
+[[source]](return-array-value-from-hash/return-array-value-from-hash.ts)
+
 Helper function to return an array of values from an hash object
 
 ```typescript
@@ -320,6 +343,8 @@ returnValuesByKeys([1], tactics)
 
 ### `roundNumber`
 
+[[source]](round-number/round-number.ts)
+
 Helper function to round a number.
 
 ```typescript
@@ -332,6 +357,8 @@ roundNumber(3456.3456, -2) // Returns `3500`
 
 
 ### `setFormControlValue`
+
+[[source]](set-form-control-value/set-form-control-value.ts)
 
 Helper function to set a control value within a form group:
 
@@ -356,6 +383,8 @@ setFormControlValue(myForm, 'control2');
 
 ### `toCamelCase`
 
+[[source]](to-camel-case/to-camel-case.ts)
+
 Convert a string to `camelCase`:
 
 ```typescript
@@ -369,6 +398,8 @@ toCamelCase('equipment__class--name')
 
 
 ### `updateControlOnInputChanges`
+
+[[source]](update-control-on-input-changes/update-control-on-input-changes.ts)
 
 Helper function to set value to a form control if an input has changed.
 
@@ -396,6 +427,8 @@ import { updateControlOnInputChanges } from '@terminus/ngx-tools';
 
 #### Document Service
 
+[[source]](document/document.service.ts)
+
 An injectable Angular service that provides access to the Document object.
 
 ```typescript
@@ -420,6 +453,8 @@ export class MyComponent implements OnInit {
 
 
 #### Window Service
+
+[[source]](window/window.service.ts)
 
 An injectable Angular service that provides access to the global Window object.
 
@@ -450,6 +485,8 @@ Consistent, tested, and well performing checks for various types.
 
 #### `isArray`
 
+[[source]](verify-types/is-array/is-array.ts)
+
 Check if a value is an Array.
 
 ```typescript
@@ -461,6 +498,8 @@ isArray('hi'); // Returns: false
 
 
 #### `isBoolean`
+
+[[source]](verify-types/is-boolean/is-boolean.ts)
 
 Check if a value is a Boolean.
 
@@ -474,6 +513,8 @@ isBoolean('true'); // Returns: false
 
 #### `isFunction`
 
+[[source]](verify-types/is-function/is-function.ts)
+
 Check if a value is a Function.
 
 ```typescript
@@ -485,6 +526,8 @@ isFunction('foo'); // Returns: false
 
 
 #### `isNumber`
+
+[[source]](verify-types/is-number/is-number.ts)
 
 Check if a value is a Number.
 
@@ -498,6 +541,8 @@ isNumber('foo'); // Returns: false
 
 #### `isObject`
 
+[[source]](verify-types/is-object/is-object.ts)
+
 Check if a value is an Object.
 
 ```typescript
@@ -510,6 +555,8 @@ isObject('foo'); // Returns: false
 
 #### `isString`
 
+[[source]](verify-types/is-string/is-string.ts)
+
 Check if a value is a String.
 
 ```typescript
@@ -518,6 +565,24 @@ import { isString } from '@terminus/ngx-tools';
 isString('foo'); // Returns: true
 isString({}); // Returns: false
 ```
+
+
+### `VERSION`
+
+[[source]](version/version.ts)
+
+An object containing the current version of the library.
+
+```typescript
+import { VERSION } from '@terminus/ngx-tools';
+
+VERSION.full // Returns: 1.2.3
+VERSION.major // Returns: 1
+VERSION.minor // Returns: 2
+VERSION.patch // Returns: 3
+```
+
+
 
 
 <!-- LINKS -->
