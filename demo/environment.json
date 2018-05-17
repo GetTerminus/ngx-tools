@@ -1,0 +1,8 @@
+{
+  "BACKEND_DELEGATION_URL": "http://foo.com:8000",
+  "API_URL": "//foo.com:8000/api",
+  "MAINTENANCE_MODE": false,
+  "LINKEDIN_SERVICE_URL": "http://bar.com",
+  "FRONTEND_HOSTNAME": "my.foo.me:4200"
+}
+

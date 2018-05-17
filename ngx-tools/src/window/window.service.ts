@@ -1,4 +1,11 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+} from '@angular/core';
+
+
+export const ENV = new InjectionToken<any>('env');
 
 
 /**
@@ -17,6 +24,16 @@ function _window(): Window {
  */
 @Injectable()
 export class TsWindowService {
+
+  constructor(
+    @Inject(ENV) public env: any,
+  ) {}
+
+
+  get environment() {
+    return this.env.value || 'no env';
+  }
+
 
   /**
    * Return a function that returns the native window object

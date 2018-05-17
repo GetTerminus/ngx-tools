@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators/map';
 import { Observable } from 'rxjs/Observable';
 
 import { VERSION } from '@terminus/ngx-tools';
-console.log('ngx-tools VERSION: ', VERSION)
+console.log('ngx-tools VERSION: ', VERSION);
 
 import {
   retryWithBackoff,
@@ -18,13 +18,19 @@ import {
 } from '@terminus/ngx-tools';
 
 import { emailRegex } from '@terminus/ngx-tools/regex';
-console.log('emailRegex: ', emailRegex.test('foo@bar.com'), emailRegex.test('foo'));
+/*
+ *console.log('emailRegex: ', emailRegex.test('foo@bar.com'), emailRegex.test('foo'));
+ */
 
 import { ZERO } from '@terminus/ngx-tools/keycodes';
-console.log('ZERO: ', ZERO);
+/*
+ *console.log('ZERO: ', ZERO);
+ */
 
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
-console.log('coerceBooleanProperty: ', coerceBooleanProperty(''));
+/*
+ *console.log('coerceBooleanProperty: ', coerceBooleanProperty(''));
+ */
 
 
 
@@ -55,12 +61,12 @@ export class ExampleHttpDao {
     return this.http.get<GithubApi>(`${href}`)
       .pipe(
         map((i) => {
-          console.log('in API: this.tries: ', this.tries)
+          console.log('in API: this.tries: ', this.tries);
           this.tries++;
           if (this.tries < 3) {
             throw new Error('no soup for you');
           }
-          return i
+          return i;
         }),
       );
   }
@@ -75,10 +81,9 @@ export class ExampleHttpDao {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  value: number;
-  exampleDatabase: ExampleHttpDao | null;
+  exampleDatabase!: ExampleHttpDao | null;
   issues$: any;
-  totalCount: number;
+  totalCount!: number;
   window: any;
   document: any;
 
@@ -90,19 +95,19 @@ export class AppComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    console.log('hello `Home` component');
     this.exampleDatabase = new ExampleHttpDao(this.http);
     this.window = this.windowService.nativeWindow;
     this.document = this.documentService.document;
 
-    console.log('this.document: ', this.document)
-    console.log('this.window: ', this.window)
+    console.log('this.document: ', this.document);
+    console.log('this.window: ', this.window);
+    console.log('Injected ENV: ', this.windowService.environment);
 
     this.issues$ = this.getIssues();
 
     this.issues$.subscribe((v: any) => {
       this.totalCount = v.total_count;
-    })
+    });
 
   }
 
@@ -112,22 +117,24 @@ export class AppComponent implements OnInit {
       jitterFactor: .3,
       backOffFactor: 2,
       baseWaitTime: 100,
-    }
+    };
 
-    return this.exampleDatabase.getRepoIssues()
+    // tslint:disable: no-non-null-assertion
+    return this.exampleDatabase!.getRepoIssues()
       .pipe(
         map((res: GithubApi) => {
           if (res) {
-            console.log('getIssues: res: ', res)
+            console.log('getIssues: res: ', res);
             return res;
 
           } else {
-            console.log('getIssues: no res')
+            console.log('getIssues: no res');
             return null;
           }
         }),
         retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)}),
       )
     ;
+    // tslint:enable: no-non-null-assertion
   }
 }
