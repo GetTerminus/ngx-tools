@@ -4,26 +4,45 @@
  *
  * @example
  * const myFunc = () => {console.log('hi!')};
- * const myDebouncedFunc = debounce(myFunc, 200); // Will debounce all calls within 200ms
+ * const myDebouncedFunc = debounce(myFunc, 200);
+ * myDebouncedFunc();
+ * myDebouncedFunc();
+ * myDebouncedFunc();
+ * // 'hi!' will only be logged once
  *
  * @param func - The function to call after the debounce period
  * @param wait - The length of time to wait between calls (ms)
+ * @param immediate - Whether the debounced function should be fired immediately
+ * @param windowRef - A reference to the global window object
  * @return The debounced function
  */
-export function debounce(func: Function, wait: number, windowRef: Window = window): Function {
-  let timer: number | null = null;
+export function debounce<Context>(
+  func: Function,
+  wait: number,
+  immediate = false,
+  windowRef: Window = window,
+): Function {
+  let timeout: number | null = null;
 
-  return function(this: any) {
+  return function(this: Context) {
+    const context: Context = this;
     const args = arguments;
+    const later = function() {
+      timeout = null;
+      if (!immediate) {
+        func.apply(context, args);
+      }
+    };
+    const callNow = immediate && !timeout;
 
-    // istanbul ignore else
-    if (timer) {
-      clearTimeout(timer);
+    if (timeout) {
+      clearTimeout(timeout);
     }
 
-    timer = windowRef.setTimeout(function(this: any) {
-      func.apply(this, args);
-    }, wait);
+    timeout = windowRef.setTimeout(later, wait);
+
+    if (callNow) {
+      func.apply(context, args);
+    }
   };
 }
-
