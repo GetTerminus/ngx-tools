@@ -44,8 +44,8 @@
     "yarn": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@angular/core": "^5.2.0",
-    "@angular/common": "^5.2.0",
+    "@angular/core": "^6.0.0",
+    "@angular/common": "^6.0.0",
     "@ngrx/store": "^5.2.0",
     "typescript": "^2.7.0"
   },
