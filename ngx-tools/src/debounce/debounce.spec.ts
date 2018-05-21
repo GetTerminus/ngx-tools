@@ -89,4 +89,29 @@ describe(`debounce`, () => {
     jest.runAllTimers();
   });
 
+
+  test(`should retain this context`, () => {
+    class TestClass {
+      debouncedFunc: Function;
+      arr: number[];
+      foo = 'bar';
+      func = function(this: any) {
+        this.arr.push(new Date().getTime());
+      };
+
+      constructor() {
+        this.arr = [];
+        this.debouncedFunc = debounce(this.func, 100);
+      }
+    }
+    const classMock = new TestClass();
+    jest.useFakeTimers();
+    for (let i = 0; i < [1, 2, 3].length; i += 1) {
+      classMock.debouncedFunc();
+    }
+    jest.runAllTimers();
+
+    expect(classMock.arr.length).toEqual(1);
+  });
+
 });
