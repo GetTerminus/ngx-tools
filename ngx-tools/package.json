@@ -44,10 +44,11 @@
     "yarn": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@angular/core": "^5.2.0",
-    "@angular/common": "^5.2.0",
-    "@ngrx/store": "^5.2.0",
-    "typescript": "^2.7.0"
+    "@angular/core": "^6.0.3",
+    "@angular/common": "^6.0.3",
+    "@ngrx/store": "^6.0.1",
+    "rxjs": "^6.1.0",
+    "typescript": "2.7.x"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",

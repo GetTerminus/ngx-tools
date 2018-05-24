@@ -3,8 +3,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators/map';
-import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { VERSION } from '@terminus/ngx-tools';
 console.log('ngx-tools VERSION: ', VERSION)
