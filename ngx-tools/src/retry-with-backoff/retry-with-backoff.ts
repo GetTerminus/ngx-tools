@@ -1,12 +1,5 @@
-import { MonoTypeOperatorFunction } from 'rxjs/interfaces';
-// NOTE(B$): Rollup seems to choke when using `_throw` with an error saying `'_throw' is not
-// exported by node_modules/rxjs/observable/throw.js
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { mergeMap } from 'rxjs/operators/mergeMap';
-import { range } from 'rxjs/observable/range';
-import { retryWhen } from 'rxjs/operators/retryWhen';
-import { timer } from 'rxjs/observable/timer';
-import { zip } from 'rxjs/operators/zip';
+import { MonoTypeOperatorFunction, range, timer , throwError } from 'rxjs';
+import { mergeMap, retryWhen, zip } from 'rxjs/operators';
 
 import { exponentialBackoffDelayCalculator } from './delay-calculator';
 
@@ -52,7 +45,7 @@ export function retryWithBackoff<T>({
       zip(range(1, retries)),
       mergeMap(([err, retry]) => {
         if (retry >= retries) {
-          return ErrorObservable.create(err);
+          return throwError(err);
         }
 
         return timer(delayCalculator(retry));

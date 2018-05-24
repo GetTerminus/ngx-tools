@@ -1,6 +1,5 @@
-import { of } from 'rxjs/observable/of';
-import { tap } from 'rxjs/operators/tap';
-import { map } from 'rxjs/operators/map';
+import { of } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 
 import { retryWithBackoff } from './retry-with-backoff';
 
