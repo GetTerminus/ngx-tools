@@ -150,7 +150,7 @@
     "husky": "^0.14.3",
     "jasmine-core": "2.99.1",
     "jasmine-spec-reporter": "^4.2.0",
-    "jest": "^22.4.3",
+    "jest": "^23.0.0",
     "jest-preset-angular": "^5.2.1",
     "karma": "2.0.0",
     "karma-chrome-launcher": "~2.2.0",
