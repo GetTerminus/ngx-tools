@@ -37,4 +37,35 @@ describe(`retryWithBackoff`, () => {
     });
   });
 
+
+  test.only(`should retry for x retries and then throw`, (done) => {
+    const error = new Error('bar');
+    const seenValues: {[idx: number]: number} = {};
+
+    of(1, 2, 3, 4).pipe(
+      tap((v) => {
+        if (!seenValues[v]) {
+          seenValues[v] = 0;
+        }
+
+        seenValues[v]++;
+      }),
+      map((v) => {
+        if (v === 3) {
+          throw error;
+        } else {
+          return v;
+        }
+      }),
+      retryWithBackoff({}),
+    ).subscribe(() => {}, (err: any) => {
+      expect(err).toEqual(error);
+      expect(seenValues).toEqual({
+        1: 3,
+        2: 3,
+        3: 3,
+      });
+      done();
+    });
+  });
 });
