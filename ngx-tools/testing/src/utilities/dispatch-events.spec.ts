@@ -7,6 +7,7 @@ import {
 } from './dispatch-events';
 import {
   createFakeEvent,
+  createMouseEvent,
 } from './event-objects';
 import * as KEYCODES from './../../../keycodes/public-api';
 
@@ -26,7 +27,7 @@ describe(`dispatch-events`, () => {
       const eventMock = createFakeEvent('keydown');
       dispatchEvent(nodeMock, eventMock);
 
-      expect(nodeMock.dispatchEvent).toHaveBeenCalled();
+      expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
     });
 
 
@@ -34,7 +35,7 @@ describe(`dispatch-events`, () => {
       const eventMockBubble = createFakeEvent('keydown', true, true);
       dispatchEvent(nodeMock, eventMockBubble);
 
-      expect(nodeMock.dispatchEvent).toHaveBeenCalled();
+      expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
     });
 
 
@@ -46,7 +47,7 @@ describe(`dispatch-events`, () => {
     test(`should trigger the dispatch and return the event`, () => {
       dispatchFakeEvent(nodeMock, 'keydown');
 
-      expect(nodeMock.dispatchEvent).toHaveBeenCalled();
+      expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
     });
 
   });
@@ -57,7 +58,7 @@ describe(`dispatch-events`, () => {
     test(`should do something`, () => {
       dispatchKeyboardEvent(nodeMock, 'keydown', KEYCODES.A);
 
-      expect(nodeMock.dispatchEvent).toHaveBeenCalled();
+      expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
     });
 
   });
@@ -66,9 +67,16 @@ describe(`dispatch-events`, () => {
   describe(`dispatchMouseEvent`, () => {
 
     test(`should trigger the dispatch and return the event`, () => {
-      dispatchMouseEvent(nodeMock, 'mousedown', 10, 10);
+      dispatchMouseEvent(nodeMock, 'mousedown');
 
-      expect(nodeMock.dispatchEvent).toHaveBeenCalled();
+      expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
+    });
+
+
+    test(`should trigger the dispatch and return a custom event with custom locations`, () => {
+      dispatchMouseEvent(nodeMock, 'mousedown', 10, 10, createMouseEvent('click'));
+
+      expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
     });
 
   });
@@ -79,7 +87,14 @@ describe(`dispatch-events`, () => {
     test(`should trigger the dispatch and return the event`, () => {
       dispatchTouchEvent(nodeMock, 'touchstart');
 
-      expect(nodeMock.dispatchEvent).toHaveBeenCalled();
+      expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
+    });
+
+
+    test(`should trigger the dispatch and return the event with custom locations`, () => {
+      dispatchTouchEvent(nodeMock, 'touchstart', 10, 10);
+
+      expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
     });
 
   });
