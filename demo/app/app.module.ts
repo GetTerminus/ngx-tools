@@ -7,22 +7,28 @@ import {
   TsDocumentService,
 } from '@terminus/ngx-tools';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChildComponent } from './child/child.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     TsWindowService,
     TsDocumentService,
   ],
+  declarations: [
+    AppComponent,
+    ChildComponent,
+    HomeComponent,
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
