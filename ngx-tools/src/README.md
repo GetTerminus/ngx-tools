@@ -28,6 +28,7 @@ isArray([]); // Returns: true
 - [`roundNumber`](#roundnumber)
 - [`setFormControlValue`](#setformcontrolvalue)
 - [`toCamelCase`](#tocamelcase)
+- [`untilComponentDestroyed`](#untilcomponentdestroyed)
 - [`updateControlOnInputChanges`](#updatecontroloninputchanges)
 - [Services](#services)
   - [Document Service](#document-service)
@@ -394,6 +395,36 @@ toCamelCase('EQUIPMENT_CLASS_NAME')
 toCamelCase('equipment class name')
 toCamelCase('equipment__class--name')
 // All return: `equipmentClassName`
+```
+
+
+### `untilComponentDestroyed`
+
+[[source]](until-component-destroyed/until-component-destroyed.ts)
+
+A helper `pipe` operator to unsubscribe from Observables when the component `ngOnDestroy` lifecycle
+event is fired.
+
+> NOTE: the component **must define the `ngOnDestroy` function.** Angular will only call lifecycle
+> events if they exist at compilation time.
+
+```typescript
+import { untilComponentDestroyed } from '@terminus/ngx-tools';
+
+@Component({
+  ...
+})
+class TestHostDoubleComponent implements OnDestroy, OnInit {
+  this.myInterval = interval(200).pipe(
+    // Pass in the `this` context:
+    untilComponentDestroyed(this),
+  ).subscribe((v: number) => {
+    // This will continue until the component is destroyed
+  });
+
+  // This must be present! (even if empty)
+  ngOnDestroy() {}
+}
 ```
 
 
