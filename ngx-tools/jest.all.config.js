@@ -23,7 +23,8 @@ module.exports = {
   "clearMocks": true,
   "collectCoverageFrom": [
     "<rootDir>/**/!(public-api|index).ts",
-    "!<rootDir>/testing/src/mocks/*.ts"
+    "!<rootDir>/testing/src/mocks/*.ts",
+    "!<rootDir>/**/*.mock.ts"
   ],
   "coverageDirectory": "<rootDir>/../coverage/",
   "setupTestFrameworkScriptFile": "./../tools/jest-setup.ts"
