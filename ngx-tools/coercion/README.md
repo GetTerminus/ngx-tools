@@ -17,6 +17,7 @@ coerceBooleanProperty('true'); // Returns: true
 - [`coerceArray`](#coercearray)
 - [`coerceBooleanProperty`](#coercebooleanproperty)
 - [`coerceNumberProperty`](#coercenumberproperty)
+- [`coerceDateProperty`](#coercedateproperty)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

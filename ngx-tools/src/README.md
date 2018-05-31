@@ -25,6 +25,7 @@ isArray([]); // Returns: true
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`httpRetryer`](#httpretryer)
+  - [Retry conditions](#retry-conditions)
 - [`returnValuesByKeys`](#returnvaluesbykeys)
 - [`roundNumber`](#roundnumber)
 - [`setFormControlValue`](#setformcontrolvalue)
