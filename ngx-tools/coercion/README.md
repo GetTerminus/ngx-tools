@@ -56,5 +56,17 @@ Coerces a value to a number.
 ```typescript
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 
-coerceBooleanProperty('12'); // Returns: 12
+coerceNumberProperty('12'); // Returns: 12
+```
+
+### `coerceDateProperty`
+
+[[source]](src/date/date-property.ts)
+
+Coerces a value to a date. Tested against strings of RFC2822 & RFC1123
+
+```typescript
+import { coerceDateProperty } from '@terminus/ngx-tools/coercion';
+
+coerceDateProperty('12'); // Returns: 12
 ```
