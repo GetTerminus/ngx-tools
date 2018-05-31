@@ -24,6 +24,7 @@ isArray([]); // Returns: true
 - [`inputHasChanged`](#inputhaschanged)
 - [`noop`](#noop)
 - [`retryWithBackoff`](#retrywithbackoff)
+- [`httpRetryer`](#httpretryer)
 - [`returnValuesByKeys`](#returnvaluesbykeys)
 - [`roundNumber`](#roundnumber)
 - [`setFormControlValue`](#setformcontrolvalue)
@@ -315,6 +316,41 @@ const calcOpts: DelayCalculator = {
 retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)})
 ```
 
+### `httpRetryer`
+
+[[source]](http-retryer/http-retryer.ts)
+
+Helper to retry an Observable stream only when it sees an HttpError it recognizes.
+
+Number of retries is configurable, and the first attempt is not counted. A reties
+value of 3 will result in the first attempt, plus 3 retries for a total of 4 attempts.
+
+```typescript
+import { httpRetryer } from '@terminus/ngx-tools';
+
+return this.http.get('/foo')
+  .pipe(
+    map((res: MyResponse) => {
+      doDomainBusniessLogic(res);
+    }),
+    // If `get()` fails, the connection will be retried 2 times by default
+    httpRetryer({}),
+  )
+;
+
+return this.http.get('/foo')
+  .pipe(
+    map((res: MyResponse) => {
+      doDomainBusniessLogic(res);
+    }),
+    httpRetryer({retries: 4}), // specify number of allowed retries
+;
+```
+
+#### Retry conditions
+1. HTTP Error code from 500 to 599
+2. HTTP Error Code 429
+  * Respects the `Retry-After` header as a Date string or MS delay.
 
 ### `returnValuesByKeys`
 

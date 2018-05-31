@@ -6,6 +6,7 @@ export * from './document/document.service';
 export * from './get-form-control-value/get-form-control-value';
 export * from './group-by/group-by';
 export * from './has-required-control/has-required-control';
+export * from './http-retryer/public-api';
 export * from './input-has-changed/input-has-changed';
 export * from './noop/noop';
 export * from './retry-with-backoff/delay-calculator';

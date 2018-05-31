@@ -68,5 +68,5 @@ Coerces a value to a date. Tested against strings of RFC2822 & RFC1123
 ```typescript
 import { coerceDateProperty } from '@terminus/ngx-tools/coercion';
 
-coerceDateProperty('12'); // Returns: 12
+coerceDateProperty('Wed, 21 Oct 2015 07:28:00 GMT'); // Returns: Date object
 ```
