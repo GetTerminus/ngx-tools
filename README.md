@@ -55,6 +55,12 @@ A collection of tools and utilities for Terminus applications.
 
 ## Features
 
+### NGRX Utilities
+
+#### JWT Token Managment
+Store, escalate, renew and use a named set of JWT tokens with ease!
+
+[:books: Utilities Documentation](ngx-tools/src/jwt-token-managment/README.md)
 
 ### Basic Utilities
 
