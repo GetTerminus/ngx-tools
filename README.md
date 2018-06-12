@@ -5,6 +5,7 @@
 [![codecov][codecov-badge]][codecov-project]
 [![semantic-release][semantic-release-badge]][semantic-release]
 [![MIT License][license-image]][license-url]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGetTerminus%2Fngx-tools.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FGetTerminus%2Fngx-tools?ref=badge_shield)
 <br>
 [![NPM version][npm-version-image]][npm-url]
 [![Github release][gh-release-badge]][gh-releases]
@@ -214,3 +215,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [docs-keycodes]: ngx-tools/keycodes/README.md
 [docs-regex]: ngx-tools/regex/README.md
 [docs-testing]: ngx-tools/testing/README.md
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGetTerminus%2Fngx-tools.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FGetTerminus%2Fngx-tools?ref=badge_large)
