@@ -42,6 +42,7 @@ isArray([]); // Returns: true
   - [`isNumber`](#isnumber)
   - [`isObject`](#isobject)
   - [`isString`](#isstring)
+  - [`arrayHasAllElementsSet`](#arrayhasallelementsset)
 - [`VERSION`](#version)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -632,6 +633,29 @@ import { isString } from '@terminus/ngx-tools';
 
 isString('foo'); // Returns: true
 isString({}); // Returns: false
+```
+
+#### `arrayHasAllElementsSet`
+
+[[source]](verify-types/array-has-all-elements-set/array-has-all-elements-set.ts)
+
+Check if a value is an array and has all of its value as non-null non-undefined
+values. Provides strongly typed conditional checks
+
+```typescript
+import { arrayHasAllElementsSet } from '@terminus/ngx-tools';
+
+arrayHasAllElementsSet([1, false]); // Returns: true
+arrayHasAllElementsSet([1, null]); // Returns: false
+
+function foo(x: [string | undefined, number | undefined]) {
+  if (arrayHasAllElementsSet(x)) {
+    x[0].substring(1,4) // no compiler error since TS knows all elements are not undefined
+  }
+}
+
+// Can also be used in the `filter` lettable operator
+filter(arrayHasAllElementsSet) // next operator receives strongly typed inputs
 ```
 
 
