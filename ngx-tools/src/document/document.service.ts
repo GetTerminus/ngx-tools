@@ -14,7 +14,9 @@ export function _document(): any {
 /**
  * Define a service that exposes the DOCUMENT object
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TsDocumentService {
 
   /**
