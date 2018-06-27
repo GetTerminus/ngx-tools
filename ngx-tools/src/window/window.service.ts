@@ -15,7 +15,9 @@ function _window(): Window {
 /**
  * Define a service that exposes the native window object
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TsWindowService {
 
   /**
