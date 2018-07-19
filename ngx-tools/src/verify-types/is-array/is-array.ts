@@ -12,6 +12,6 @@
  * @param item - The item to test
  * @return The result
  */
-export function isArray(item: any): boolean {
+export function isArray<T>(item: T[] | any): item is Array<T> {
   return !!(item && item.constructor === Array);
 }
