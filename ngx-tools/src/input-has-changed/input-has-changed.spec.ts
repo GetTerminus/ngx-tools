@@ -23,6 +23,10 @@ describe(`inputHasChanged`, () => {
       expect(inputHasChanged(changed, 'item1')).toEqual(true);
       expect(inputHasChanged(changed, 'item2')).toEqual(false);
     });
+
+    test(`should return false if the changes object doesn't contain provided key`, () => {
+      expect(inputHasChanged(changed, 'item3')).toEqual(false);
+    });
   });
 
   describe(`with object input`, () => {
