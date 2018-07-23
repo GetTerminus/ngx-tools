@@ -142,7 +142,7 @@
     "@types/jest": "^23.1.0",
     "@types/node": "^10.5.1",
     "all-contributors-cli": "^5.2.1",
-    "codecov": "^3.0.0",
+    "codecov": "^4.0.0-0",
     "codelyzer": "^4.4.2",
     "commitizen": "^2.9.6",
     "condition-circle": "^2.0.1",
