@@ -15,8 +15,9 @@ describe(`NgChangeObjectValueParser`, () => {
       expect(NgChangeObjectValueParser.getOldValue(changed, 'item2.foo.bar.baz')).toEqual('xyz');
     });
 
-    test(`should return original object if no path passed in`, () => {
-      expect(NgChangeObjectValueParser.getOldValue(changed, '')).toEqual(changed);
+    test(`should return undefined if no path or no matched key passed in`, () => {
+      expect(NgChangeObjectValueParser.getOldValue(changed, '')).toEqual(undefined);
+      expect(NgChangeObjectValueParser.getOldValue(changed, 'item3')).toEqual(undefined);
     });
 
   });
@@ -28,8 +29,9 @@ describe(`NgChangeObjectValueParser`, () => {
       expect(NgChangeObjectValueParser.getNewValue(changed, 'item2.foo.bar.baz')).toEqual('abc');
     });
 
-    test(`should return original object if no path passed in`, () => {
-      expect(NgChangeObjectValueParser.getOldValue(changed, '')).toEqual(changed);
+    test(`should return undefined if no path or no matched key passed in`, () => {
+      expect(NgChangeObjectValueParser.getOldValue(changed, '')).toEqual(undefined);
+      expect(NgChangeObjectValueParser.getOldValue(changed, 'item3')).toEqual(undefined);
     });
 
   });

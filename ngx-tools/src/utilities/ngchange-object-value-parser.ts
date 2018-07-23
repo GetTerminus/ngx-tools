@@ -15,7 +15,7 @@ export class NgChangeObjectValueParser {
     let key: string;
 
     [keys, key] = this.parsePath(path);
-    return key ? objectDeepParse(changes[key].previousValue, keys) : changes;
+    return (key && changes[key]) ? objectDeepParse(changes[key].previousValue, keys) : undefined;
   }
 
   /**
@@ -30,7 +30,7 @@ export class NgChangeObjectValueParser {
     let key: string;
 
     [keys, key] = this.parsePath(path);
-    return key ? objectDeepParse(changes[key].currentValue, keys) : changes;
+    return (key && changes[key]) ? objectDeepParse(changes[key].currentValue, keys) : undefined;
   }
 
   /**
