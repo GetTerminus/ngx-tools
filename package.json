@@ -123,7 +123,7 @@
     "@angular/platform-browser-dynamic": "^6.0.7",
     "@angular/router": "^6.0.7",
     "@terminus/ngx-tools": "^2.23.0",
-    "core-js": "^2.5.5",
+    "core-js": "^3.0.0-beta",
     "rxjs": "^6.2.1",
     "zone.js": "^0.8.26"
   },
