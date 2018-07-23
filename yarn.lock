@@ -252,13 +252,13 @@
     semver "^5.3.0"
     semver-intersect "^1.1.2"
 
-"@semantic-release/changelog@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-2.1.1.tgz#b95a0bfe55894e0ffb1bf074885998310ef08694"
+"@semantic-release/changelog@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-3.0.0.tgz#e01514b517e775cea47aef7df5f5685c7aff2bf2"
   dependencies:
     "@semantic-release/error" "^2.1.0"
     aggregate-error "^1.0.0"
-    fs-extra "^6.0.0"
+    fs-extra "^7.0.0"
     lodash "^4.17.4"
 
 "@semantic-release/commit-analyzer@^5.0.0":
@@ -308,18 +308,21 @@
     parse-github-url "^1.0.1"
     url-join "^4.0.0"
 
-"@semantic-release/github@^4.2.18":
-  version "4.2.18"
-  resolved "https://registry.yarnpkg.com/@semantic-release/github/-/github-4.2.18.tgz#d0298aad116c97d1d3bb3ba2954f3d8b83dbbd12"
+"@semantic-release/github@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@semantic-release/github/-/github-5.0.1.tgz#7be94947b4a32604ffda8e8f59b70ff5c04bea35"
   dependencies:
     "@octokit/rest" "^15.2.0"
     "@semantic-release/error" "^2.2.0"
     aggregate-error "^1.0.0"
     bottleneck "^2.0.1"
     debug "^3.1.0"
-    fs-extra "^6.0.0"
+    dir-glob "^2.0.0"
+    fs-extra "^7.0.0"
     globby "^8.0.0"
-    issue-parser "^2.0.0"
+    http-proxy-agent "^2.1.0"
+    https-proxy-agent "^2.2.1"
+    issue-parser "^2.2.0"
     lodash "^4.17.4"
     mime "^2.0.3"
     p-filter "^1.0.0"
@@ -344,20 +347,21 @@
     read-pkg "^3.0.0"
     registry-auth-token "^3.3.1"
 
-"@semantic-release/npm@^3.3.4":
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/@semantic-release/npm/-/npm-3.3.4.tgz#5a282877d55106e211d8a9a1d289103b67b4f2dc"
+"@semantic-release/npm@^4.0.0":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@semantic-release/npm/-/npm-4.0.1.tgz#366a9ed0c36d34e6c6c72d4a751f551a7128ebb6"
   dependencies:
     "@semantic-release/error" "^2.2.0"
     aggregate-error "^1.0.0"
     detect-indent "^5.0.0"
     detect-newline "^2.1.0"
     execa "^0.10.0"
-    fs-extra "^6.0.0"
+    fs-extra "^7.0.0"
     lodash "^4.17.4"
     nerf-dart "^1.0.0"
     normalize-url "^3.0.0"
     parse-json "^4.0.0"
+    rc "^1.2.8"
     read-pkg "^4.0.0"
     registry-auth-token "^3.3.1"
 
@@ -3704,6 +3708,14 @@ fs-extra@^6.0.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
+fs-extra@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.0.tgz#8cc3f47ce07ef7b3593a11b9fb245f7e34c041d6"
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
+
 fs-minipass@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
@@ -4956,6 +4968,15 @@ issue-parser@^2.0.0:
   dependencies:
     lodash "^4.17.4"
 
+issue-parser@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/issue-parser/-/issue-parser-2.2.0.tgz#9385c8b55c134c7e5a5944a5b53c188dee6d1aac"
+  dependencies:
+    lodash.capitalize "^4.2.1"
+    lodash.escaperegexp "^4.1.2"
+    lodash.isplainobject "^4.0.6"
+    lodash.isstring "^4.0.1"
+
 istanbul-api@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/istanbul-api/-/istanbul-api-1.3.1.tgz#4c3b05d18c0016d1022e079b98dc82c40f488954"
@@ -5966,9 +5987,25 @@ lodash.assign@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
 
+lodash.capitalize@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/lodash.capitalize/-/lodash.capitalize-4.2.1.tgz#f826c9b4e2a8511d84e3aca29db05e1a4f3b72a9"
+
 lodash.clonedeep@^4.3.2, lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+
+lodash.escaperegexp@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/lodash.escaperegexp/-/lodash.escaperegexp-4.1.2.tgz#64762c48618082518ac3df4ccf5d5886dae20347"
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+
+lodash.isstring@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
 
 lodash.map@^4.5.1:
   version "4.6.0"
@@ -7733,7 +7770,7 @@ raw-loader@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-0.5.1.tgz#0c3d0beaed8a01c966d9787bf778281252a979aa"
 
-rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
+rc@^1.0.1, rc@^1.1.6, rc@^1.1.7, rc@^1.2.8:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.8.tgz#cd924bf5200a075b83c188cd6b9e211b7fc0d3ed"
   dependencies:
