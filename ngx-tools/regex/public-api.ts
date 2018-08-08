@@ -1,4 +1,5 @@
 export * from './src/credit-card/credit-card.regex';
+export * from './src/date/date.regex';
 export * from './src/email/email.regex';
 export * from './src/letters/contains-lower.regex';
 export * from './src/letters/contains-upper.regex';

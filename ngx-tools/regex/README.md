@@ -15,6 +15,7 @@ emailRegex.test('foo@bar.com'); // Returns true
 **Table of Contents**
 
 - [Credit Card](#credit-card)
+- [Date](#date)
 - [Email](#email)
 - [Numbers](#numbers)
   - [`onlyNumbersRegex`](#onlynumbersregex)
@@ -43,6 +44,25 @@ import { creditCardRegex } from '@terminus/ngx-tools/regex';
 
 creditCardRegex.test('3852000023237'); // false
 creditCardRegex.test('4242424242424242'); // true
+```
+
+
+## Date
+
+[[source]](src/date/date.regex.ts)
+
+`dateRegex`: Regex requiring a valid date in the format `(M)M/(D)D/(YY)YY`.
+
+- Only supports four digit years beginning with `19` or `20`.
+- Month and day allow an optional leading `0` and can be one or two digits.
+- Dashes (`-`) are also allowed instead of slashes (`/`).
+
+```typescript
+import { dateRegex } from '@terminus/ngx-tools/regex';
+
+dateRegex.test('3/3/1642'); // false
+dateRegex.test('3/3/18'); // true
+dateRegex.test('01-22-1998'); // true
 ```
 
 
@@ -255,4 +275,3 @@ import { urlRegex } from '@terminus/ngx-tools/regex';
 urlRegex.test('http://0.0.0.0'); // false
 urlRegex.test('http://foo.com/blah_blah/'); // true
 ```
-

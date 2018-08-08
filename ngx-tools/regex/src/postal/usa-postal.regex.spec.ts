@@ -21,7 +21,7 @@ describe(`usaPostalRegex`, () => {
   });
 
 
-  test(`should return false for all valid US postal codes`, () => {
+  test(`should return false for all invalid US postal codes`, () => {
     for (const num of invalidNumbers) {
       expect(usaPostalRegex.test(num)).toEqual(false);
     }
