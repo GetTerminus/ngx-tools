@@ -10,7 +10,7 @@
  * @param value - The value to test
  * @return The result
  */
-export function isBoolean(value: any): boolean {
+export function isBoolean(value: any): value is boolean {
   return value === true || value === false ||
     Object.prototype.toString.call(value) === '[object Boolean]';
 }

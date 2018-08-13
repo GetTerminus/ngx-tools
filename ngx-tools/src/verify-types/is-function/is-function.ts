@@ -11,6 +11,6 @@
  * @param item - The item to test
  * @return The result
  */
-export function isFunction(item: any): boolean {
+export function isFunction(item: any): item is Function {
   return !!(item && item.constructor && item.call && item.apply);
 }
