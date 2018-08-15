@@ -7,7 +7,7 @@ export function arrayHasAllElementsSet<A, B, C, D>(
   arr: [A | undefined | null, B | undefined | null, C | undefined | null, D | undefined | null],
 ): arr is [A, B, C, D];
 
-export function arrayHasAllElementsSet(arr: any): boolean {
+export function arrayHasAllElementsSet<T>(arr: any): arr is Array<T> {
   if (!isArray(arr)) {
     return false;
   }

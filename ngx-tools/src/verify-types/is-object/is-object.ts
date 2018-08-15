@@ -8,6 +8,6 @@
  * @param item - The item to test
  * @return The result
  */
-export function isObject(item: any): boolean {
+export function isObject(item: any): item is object {
   return Object.prototype.toString.call(item) === '[object Object]';
 }
