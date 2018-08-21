@@ -577,7 +577,6 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { getChildComponentInstanceFromFixture } from './get-child-component-instance-from-fixture';
 
 // The component we will want a reference too:
 @Component({
