@@ -38,7 +38,7 @@ describe(`retryWithBackoff`, () => {
   });
 
 
-  test(`should retry for x retries and then throw`, (done) => {
+  test.only(`should retry for x retries and then throw`, (done) => {
     const error = new Error('bar');
     const seenValues: {[idx: number]: number} = {};
 
