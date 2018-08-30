@@ -2,7 +2,7 @@ import { SimpleChanges } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 import { inputHasChanged } from './../input-has-changed/input-has-changed';
-import { NgChangeObjectValueParser } from '../utilities/ngchange-object-value-parser';
+import { NgChangeObjectValueParser } from './../utilities/ngchange-object-value-parser/ngchange-object-value-parser';
 
 
 /**

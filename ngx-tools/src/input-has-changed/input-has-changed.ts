@@ -1,5 +1,6 @@
 import { SimpleChanges } from '@angular/core';
-import { NgChangeObjectValueParser } from '../utilities/ngchange-object-value-parser';
+
+import { NgChangeObjectValueParser } from './../utilities/ngchange-object-value-parser/ngchange-object-value-parser';
 
 
 /**
