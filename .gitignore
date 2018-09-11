@@ -75,3 +75,4 @@ dll/
 dist_package
 .tmp
 .tsconfig.*.json
+.vscode

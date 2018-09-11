@@ -270,6 +270,33 @@ myFunc(); // Returns: undefined
 ```
 
 
+### Object deep get & deep set
+
+[[get source]](object-deep-get/object-deep-get.ts)
+[[set source]](object-deep-set/object-deep-set.ts)
+
+Retrieve or set deep object values.
+
+```typescript
+import { objectDeepGet, objectDeepSet } from '@terminus/ngx-tools';
+
+const myObj = {
+  foo: {
+    bar: {
+      baz: true,
+    },
+  },
+};
+
+// Get the value of `baz`
+const valueFromObject: boolean = objectDeepGet(myObj, 'foo.bar.baz');
+
+// Update `baz` to be `false`
+const updatedObject = objectDeepSet(myObj, 'foo.bar.baz', false);
+```
+
+
+
 ### `retryWithBackoff`
 
 [[source]](retry-with-backoff/retry-with-backoff.ts)

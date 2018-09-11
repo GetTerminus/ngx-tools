@@ -11,6 +11,8 @@ export * from './input-has-changed/input-has-changed';
 export * from './jwt-token-managment/index';
 export * from './jwt-token-managment/testing-public-api';
 export * from './noop/noop';
+export * from './object-deep-get/object-deep-get';
+export * from './object-deep-set/object-deep-set';
 export * from './retry-with-backoff/delay-calculator';
 export * from './retry-with-backoff/retry-with-backoff';
 export * from './return-array-value-from-hash/return-array-value-from-hash';
