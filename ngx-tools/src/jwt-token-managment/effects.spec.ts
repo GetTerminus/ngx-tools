@@ -1,7 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { ROOT_EFFECTS_INIT } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject  } from 'rxjs';
-
 import {
   hot,
   cold,
@@ -14,8 +15,7 @@ import {
   SECONDS_BEFORE_EXPIRATION_TO_NOTIFY,
 } from './effects';
 import * as Actions from './actions';
-import { ROOT_EFFECTS_INIT } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
+import { MinimalClaimMap } from './effects';
 
 
 function createFakeJwt(
@@ -29,12 +29,12 @@ function createFakeJwt(
   ].join('.');
 }
 
+
 describe(`JWT Token Effects`, () => {
   let actions: any;
   let effects: JwtTokenProviderEffects;
   let mockStore: {select: jest.MockInstance<any>};
   let selectOutput: BehaviorSubject<any>;
-
   const currentEpoch = () => Math.ceil((new Date).getTime() / 1000);
 
   beforeEach(async(() => {
@@ -55,15 +55,17 @@ describe(`JWT Token Effects`, () => {
     effects = TestBed.get(JwtTokenProviderEffects);
   }));
 
+
   describe(`initializationCleanup$`, () => {
-    it(`should dispatch a nothing if the exp is unset`, () => {
+
+    test(`should dispatch a nothing if the exp is unset`, () => {
       actions = hot('a', {
         a: {type: ROOT_EFFECTS_INIT},
       });
 
       const expected = cold('-'.repeat(10) + '(ab|)', {
-        a: new Actions.StoreToken({tokenName: 'foo', token: 'abc'}),
-        b: new Actions.StoreToken({tokenName: 'bar', token: 'abc'}),
+        a: new Actions.StoreToken<MinimalClaimMap>({tokenName: 'foo', token: 'abc'}),
+        b: new Actions.StoreToken<MinimalClaimMap>({tokenName: 'bar', token: 'abc'}),
       });
 
       selectOutput.next({
@@ -76,13 +78,14 @@ describe(`JWT Token Effects`, () => {
       ) as any).toBeObservable(expected);
     });
 
-    it(`should dispatch only truthy values`, () => {
+
+    test(`should dispatch only truthy values`, () => {
       actions = hot('a', {
         a: {type: ROOT_EFFECTS_INIT},
       });
 
       const expected = cold('-'.repeat(10) + '(a|)', {
-        a: new Actions.StoreToken({tokenName: 'foo', token: 'abc'}),
+        a: new Actions.StoreToken<MinimalClaimMap>({tokenName: 'foo', token: 'abc'}),
       });
 
       selectOutput.next({
@@ -96,10 +99,12 @@ describe(`JWT Token Effects`, () => {
     });
   });
 
+
   describe(`allTokensExpired$`, () => {
-    it(`should dispatch a message when the last token expires`, () => {
+
+    test(`should dispatch a message when the last token expires`, () => {
       actions = hot('a', {
-        a: new Actions.TokenExpired({tokenName: 'bar', token: 'foo'}),
+        a: new Actions.TokenExpired<MinimalClaimMap>({tokenName: 'bar', token: 'foo'}),
       });
 
       const expected = cold('-a', {
@@ -113,9 +118,10 @@ describe(`JWT Token Effects`, () => {
       ) as any).toBeObservable(expected);
     });
 
-    it(`should not dispatch a message when a token remains`, () => {
+
+    test(`should not dispatch a message when a token remains`, () => {
       actions = hot('a', {
-        a: new Actions.TokenExpired({tokenName: 'bar', token: 'foo'}),
+        a: new Actions.TokenExpired<MinimalClaimMap>({tokenName: 'bar', token: 'foo'}),
       });
 
       const expected = cold('--', { });
@@ -126,10 +132,13 @@ describe(`JWT Token Effects`, () => {
         effects.allTokensExpired$,
       ) as any).toBeObservable(expected);
     });
+
   });
 
+
   describe('notifyOfTokenExpiration$', () => {
-    it(`should dispatch a nothing if the exp is unset`, () => {
+
+    test(`should dispatch a nothing if the exp is unset`, () => {
       actions = hot('a', {
         a: new Actions.StoreToken<{Foobr: string}>({
           tokenName: 'Foobr',
@@ -143,7 +152,8 @@ describe(`JWT Token Effects`, () => {
       ) as any).toBeObservable(expected);
     });
 
-    it(`should dispatch a token expired action if the exp is  in the past`, () => {
+
+    test(`should dispatch a token expired action if the exp is  in the past`, () => {
       const params = {
         tokenName: 'Foobar',
         token: createFakeJwt({
@@ -152,10 +162,10 @@ describe(`JWT Token Effects`, () => {
         }),
       };
       actions = hot('a', {
-        a: new Actions.StoreToken(params),
+        a: new Actions.StoreToken<MinimalClaimMap>(params),
       });
       const expected = cold('b', {
-        b: new Actions.TokenExpired(params),
+        b: new Actions.TokenExpired<MinimalClaimMap>(params),
       });
 
       (expect(
@@ -163,7 +173,8 @@ describe(`JWT Token Effects`, () => {
       ) as any).toBeObservable(expected);
     });
 
-    it(`should dispatch expiration and nearing expiration actions`, () => {
+
+    test(`should dispatch expiration and nearing expiration actions`, () => {
       getTestScheduler().maxFrames = 3500;
       const params = {
         tokenName: 'Foobr',
@@ -173,13 +184,13 @@ describe(`JWT Token Effects`, () => {
         }),
       };
 
-      const action = new Actions.StoreToken(params);
+      const action = new Actions.StoreToken<MinimalClaimMap>(params);
 
       actions = hot('a', {a: action});
 
       const expected = cold(`-${'-'.repeat(99)}a${'-'.repeat(199)}b` , {
-        a: new Actions.TokenNearingExpiration(params),
-        b: new Actions.TokenExpired(params),
+        a: new Actions.TokenNearingExpiration<MinimalClaimMap>(params),
+        b: new Actions.TokenExpired<MinimalClaimMap>(params),
       });
 
       (expect(
@@ -187,7 +198,8 @@ describe(`JWT Token Effects`, () => {
       ) as any).toBeObservable(expected);
     });
 
-    it(`should dispatch nearing expiration right away if within the timeout`, () => {
+
+    test(`should dispatch nearing expiration right away if within the timeout`, () => {
       getTestScheduler().maxFrames = 2500;
       const params = {
         tokenName: 'Foobr',
@@ -197,19 +209,20 @@ describe(`JWT Token Effects`, () => {
         }),
       };
 
-      const action = new Actions.StoreToken(params);
+      const action = new Actions.StoreToken<MinimalClaimMap>(params);
 
       actions = hot('a', {a: action});
 
       const expected = cold(`${'-'.repeat(100)}(ab)` , {
-        a: new Actions.TokenNearingExpiration(params),
-        b: new Actions.TokenExpired(params),
+        a: new Actions.TokenNearingExpiration<MinimalClaimMap>(params),
+        b: new Actions.TokenExpired<MinimalClaimMap>(params),
       });
 
       (expect(
         effects.notifyOfTokenExpiration$,
       ) as any).toBeObservable(expected);
     });
-  });
-});
 
+  });
+
+});

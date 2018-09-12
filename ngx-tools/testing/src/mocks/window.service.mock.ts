@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 // landed.
 const noop = () => {};
 
-
 const windowMock: Window = {
   getComputedStyle: () => {
     return {

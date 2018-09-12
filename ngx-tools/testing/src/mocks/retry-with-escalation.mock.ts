@@ -5,17 +5,19 @@ import {
 import { HttpErrorResponse } from '@angular/common/http';
 import {
   Observable,
-  throwError,
   Scheduler,
+  throwError,
 } from 'rxjs';
-
 import {
   mergeMap,
   retryWhen,
 } from 'rxjs/operators';
 
-import { ClaimMap } from '../claim-map';
-import { RetryWithEscalation } from './retry-with-escalation';
+import {
+  ClaimMap,
+  RetryWithEscalation,
+} from '@terminus/ngx-tools';
+
 
 export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const ESCALATION_WAIT_TIME = new InjectionToken<number>('wait time');
@@ -34,7 +36,7 @@ export class RetryWithEscalationMock<CM = ClaimMap> extends RetryWithEscalation 
     };
   }
 
-  public retryWithEscalation(tokenName: keyof CM) {
+  public retryWithEscalation(tokenName: Extract<keyof CM, string>) {
     return (source: Observable<any>) => {
       return source.pipe(
         retryWhen((errors: Observable<HttpErrorResponse | Error>) => {
@@ -65,6 +67,7 @@ export class RetryWithEscalationMock<CM = ClaimMap> extends RetryWithEscalation 
     };
   }
 }
+
 
 export function retryWithEscalationFactory() {
   return new RetryWithEscalationMock(undefined as any, undefined as any, undefined as any, undefined as any);

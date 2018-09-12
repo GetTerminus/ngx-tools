@@ -2,18 +2,16 @@ import {
   Injectable,
 } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import {
-  Observable,
-} from 'rxjs';
-
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { ClaimMap } from '../claim-map';
 import { StoreTokenConstructor, StoreToken } from '../actions';
 
+
 export interface ExtractTokenParams<C = ClaimMap> extends Partial<StoreTokenConstructor<C>> {
-  tokenName: keyof C;
+  tokenName: Extract<keyof C, string>;
 }
 
 interface TokenResponse {
@@ -23,11 +21,13 @@ interface TokenResponse {
 function isTokenResponse<T>(x: Object | TokenResponse | HttpResponse<T>): x is TokenResponse {
   return x.hasOwnProperty('token');
 }
+
 function isHttpResponse<T>(x: Object | TokenResponse | HttpResponse<T>): x is HttpResponse<T> {
   return x.hasOwnProperty('headers');
 }
 
 export const TOKEN_NOT_FOUND = new Error('Token Not found in response');
+
 
 @Injectable()
 export class TokenExtractor<CM = ClaimMap> {
@@ -68,9 +68,9 @@ export class TokenExtractor<CM = ClaimMap> {
 
     return token;
   }
+
   constructor(
     public store: Store<any>,
   ) {}
 
 }
-

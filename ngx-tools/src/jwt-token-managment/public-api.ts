@@ -15,6 +15,7 @@ export {
   TokenNearingExpiration as JwtTokenNearingExpiration,
   AllTokensExpired as AllJwtTokensExpired,
   EscalateToken as EscalateJwtToken,
+  StoreTokenConstructor,
 } from './actions';
 
 

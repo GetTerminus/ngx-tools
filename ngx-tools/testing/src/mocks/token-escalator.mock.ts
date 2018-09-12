@@ -5,32 +5,35 @@ import {
 import { HttpClient } from '@angular/common/http';
 import {
   Observable,
-  Scheduler,
-  of,
   Observer,
+  of,
+  Scheduler,
   timer,
 } from 'rxjs';
-
 import {
   switchMap,
-  withLatestFrom,
   takeUntil,
+  withLatestFrom,
 } from 'rxjs/operators';
 import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 
-import { ClaimMap } from '../claim-map';
-import * as JwtActions from '../actions';
-import { TokenExtractor } from './token-extractor';
-import { TokenEscalator } from './token-escalator';
+import {
+  ClaimMap,
+  StoreTokenConstructor,
+  TokenExtractor,
+  TokenEscalator,
+} from '@terminus/ngx-tools';
+
 
 export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const ESCALATION_WAIT_TIME = new InjectionToken<number>('wait time');
 
-export interface EscalateToken<CM = ClaimMap> extends Partial<JwtActions.StoreTokenConstructor<CM>> {
+export interface EscalateToken<CM = ClaimMap> extends Partial<StoreTokenConstructor<CM>> {
   authorizeUrl: Observable<string>;
-  tokenName: keyof CM;
+  tokenName: Extract<keyof CM, string>;
 }
+
 
 @Injectable()
 export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
@@ -45,7 +48,7 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
     };
   }
 
-  public simulateEsclationRequest(tokenName: keyof CM) {
+  public simulateEsclationRequest(tokenName: Extract<keyof CM, string>) {
     if (this.escalators[tokenName]) {
       this.escalators[tokenName].next({});
     } else {

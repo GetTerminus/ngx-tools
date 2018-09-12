@@ -5,23 +5,22 @@ import {
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   Observable,
-  Scheduler,
   of,
+  Scheduler,
 } from 'rxjs';
-
 import {
+  catchError,
   filter,
+  map,
   switchMap,
   withLatestFrom,
-  catchError,
-  map,
 } from 'rxjs/operators';
 import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 
-import { ClaimMap } from '../claim-map';
-import { tokenFor } from '../selectors';
-import * as JwtActions from '../actions';
+import { ClaimMap } from './../claim-map';
+import { tokenFor } from './../selectors';
+import * as JwtActions from './../actions';
 import { TokenExtractor } from './token-extractor';
 
 export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
@@ -29,8 +28,9 @@ export const ESCALATION_WAIT_TIME = new InjectionToken<number>('wait time');
 
 export interface EscalateToken<CM = ClaimMap> extends Partial<JwtActions.StoreTokenConstructor<CM>> {
   authorizeUrl: Observable<string>;
-  tokenName: keyof CM;
+  tokenName: Extract<keyof CM, string>;
 }
+
 
 @Injectable()
 export class TokenEscalator<CM = ClaimMap> {

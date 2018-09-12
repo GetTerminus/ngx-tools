@@ -3,7 +3,7 @@ import * as JwtTokenProviderActions from './actions';
 
 export interface JwtTokenProviderState<C = ClaimMap>  {
   defaultToken?: string;
-  tokens: { [P in keyof C]?: string };
+  tokens: { [P in Extract<keyof C, string>]?: string };
 }
 
 export const initialState: JwtTokenProviderState = {
