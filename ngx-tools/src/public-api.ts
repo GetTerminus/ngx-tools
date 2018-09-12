@@ -9,7 +9,6 @@ export * from './has-required-control/has-required-control';
 export * from './http-retryer/public-api';
 export * from './input-has-changed/input-has-changed';
 export * from './jwt-token-managment/index';
-export * from './jwt-token-managment/testing-public-api';
 export * from './noop/noop';
 export * from './object-deep-get/object-deep-get';
 export * from './object-deep-set/object-deep-set';

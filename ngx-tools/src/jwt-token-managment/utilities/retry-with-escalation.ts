@@ -36,7 +36,7 @@ const DEFAULT_ESCALATION_WAIT_TIME = 30000;
 @Injectable()
 export class RetryWithEscalation<CM = ClaimMap> {
 
-  public retryWithEscalation(tokenName: keyof CM) {
+  public retryWithEscalation(tokenName: Extract<keyof CM, string>) {
     return (source: Observable<any>) => {
       return source.pipe(
         retryWhen((errors: Observable<HttpErrorResponse | Error>) => {
@@ -70,7 +70,7 @@ export class RetryWithEscalation<CM = ClaimMap> {
     };
   }
 
-  private waitForResult(tokenName: keyof CM) {
+  private waitForResult(tokenName: Extract<keyof CM, string>) {
     return this.actions$
       .ofType<JwtActions.EscalationFailed<CM> | JwtActions.EscalationSuccess<CM>>(
         JwtActions.ActionTypes.EscalationFailed,

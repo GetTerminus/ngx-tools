@@ -1,26 +1,24 @@
-import {
-  Injectable,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import {
-  Observable,
-} from 'rxjs';
-
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { ClaimMap } from '../claim-map';
-import { StoreTokenConstructor } from '../actions';
-import { TokenExtractor } from './token-extractor';
+import {
+  ClaimMap,
+  StoreTokenConstructor,
+  TokenExtractor,
+} from '@terminus/ngx-tools';
+
 
 export interface ExtractTokenParams<C = ClaimMap> extends Partial<StoreTokenConstructor<C>> {
-  tokenName: keyof C;
+  tokenName: Extract<keyof C, string>;
 }
 
 export const TOKEN_NOT_FOUND = new Error('Token Not found in response');
 
+
 @Injectable()
 export class TokenExtractorMock<CM = ClaimMap> extends TokenExtractor {
-
   public extractedTokens: string[] = [];
 
   static forTestBed() {
@@ -47,6 +45,7 @@ export class TokenExtractorMock<CM = ClaimMap> extends TokenExtractor {
     };
   }
 }
+
 
 export function tokenExtractorMockFactory() {
   return new TokenExtractorMock(undefined as any);

@@ -12,19 +12,25 @@ export enum ActionTypes  {
   AllTokensExpired       = '[ngx-tools-jwt-token-provider] All Tokens have Expired',
 }
 // tslint:enable: variable-name
+
 defineTypeEnum(ActionTypes);
 
+
 export interface StoreTokenConstructor<C> {
-  tokenName: keyof C;
+  tokenName: Extract<keyof C, string>;
   token: string;
   isDefaultToken?: boolean;
   resetAllOtherTokens?: boolean;
 }
 
+
+/**
+ * StoreToken
+ */
 export class StoreToken<C> implements Action {
   type: typeof ActionTypes.StoreToken = ActionTypes.StoreToken;
 
-  public tokenName: keyof C;
+  public tokenName: Extract<keyof C, string>;
   public token: string;
   public isDefaultToken: boolean;
   public resetAllOtherTokens: boolean;
@@ -43,62 +49,87 @@ export class StoreToken<C> implements Action {
     this.resetAllOtherTokens = !!resetAllOtherTokens;
   }
 }
+
+
+/**
+ * TokenExpired
+ */
 export class TokenExpired<C> implements Action {
   type: typeof ActionTypes.TokenExpired = ActionTypes.TokenExpired;
 
-  public tokenName: keyof C;
+  public tokenName: Extract<keyof C, string>;
   public token: string;
 
   constructor(
     {
       tokenName,
       token,
-    }: {tokenName: keyof C; token: string},
+    }: {tokenName: Extract<keyof C, string>; token: string},
   ) {
-    this.tokenName = tokenName;
+    this.tokenName = tokenName as Extract<keyof C, string>;
     this.token = token;
   }
 }
 
+
+/**
+ * AllTokensExpired
+ */
 export class AllTokensExpired implements Action {
   type: typeof ActionTypes.AllTokensExpired = ActionTypes.AllTokensExpired;
 }
 
 
+/**
+ * TokenNearingExpiration
+ */
 export class TokenNearingExpiration<C> implements Action {
   type: typeof ActionTypes.TokenNearingExpiration = ActionTypes.TokenNearingExpiration;
 
-  public tokenName: keyof C;
+  public tokenName: Extract<keyof C, string>;
   public token: string;
 
   constructor(
     {
       tokenName,
       token,
-    }: {tokenName: keyof C; token: string},
+    }: {tokenName: Extract<keyof C, string>; token: string},
   ) {
     this.tokenName = tokenName;
     this.token = token;
   }
 }
 
+
+/**
+ * EscalateToken
+ */
 export class EscalateToken<C> implements Action {
   type: typeof ActionTypes.EscalateToken = ActionTypes.EscalateToken;
 
-  constructor(public tokenName: keyof C) {}
+  constructor(public tokenName: Extract<keyof C, string>) {}
 }
 
+
+/**
+ * EscalationSuccess
+ */
 export class EscalationSuccess<C> implements Action {
   type: typeof ActionTypes.EscalationSuccess = ActionTypes.EscalationSuccess;
 
-  constructor(public tokenName: keyof C) {}
+  constructor(public tokenName: Extract<keyof C, string>) {}
 }
 
+
+/**
+ * EscalationFailed
+ */
 export class EscalationFailed<C> implements Action {
   type: typeof ActionTypes.EscalationFailed = ActionTypes.EscalationFailed;
 
-  constructor(public tokenName: keyof C) {}
+  constructor(public tokenName: Extract<keyof C, string>) {}
 }
+
 
 export type Actions<C>
   = AllTokensExpired
@@ -109,5 +140,3 @@ export type Actions<C>
   | TokenExpired<C>
   | TokenNearingExpiration<C>
 ;
-
-

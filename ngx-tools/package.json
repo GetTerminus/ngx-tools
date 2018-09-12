@@ -44,14 +44,14 @@
     "yarn": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@angular/core": "^6.0.3",
-    "@angular/common": "^6.0.3",
-    "@angular/forms": "^6.0.7",
-    "@angular/platform-browser": "^6.0.7",
-    "@ngrx/store": "^6.0.1",
-    "@ngrx/effects": "^6.0.1",
-    "rxjs": "^6.1.0",
-    "typescript": "2.7.x"
+    "@angular/core": "^6.1.7",
+    "@angular/common": "^6.1.7",
+    "@angular/forms": "^6.1.7",
+    "@angular/platform-browser": "^6.1.7",
+    "@ngrx/store": "^6.1.0",
+    "@ngrx/effects": "^6.1.0",
+    "rxjs": "^6.3.2",
+    "typescript": "~2.9.x"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",

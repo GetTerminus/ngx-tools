@@ -1,14 +1,12 @@
-import { Observable } from 'rxjs'; // tslint:disable-line no-unused-variable
-
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { of, Scheduler, merge, timer } from 'rxjs';
 import { mergeMap, map, take, filter, withLatestFrom, flatMap, delay } from 'rxjs/operators';
+import { async } from 'rxjs/internal/scheduler/async';
 
 import { getTokens } from './selectors';
 import * as JwtTokenProviderActions from './actions';
-import { async } from 'rxjs/internal/scheduler/async';
-import { Store } from '@ngrx/store';
 import { jwtDecode } from '../jwt-decode/index';
 
 export interface Claims { exp: number; }
@@ -21,6 +19,7 @@ export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const SECONDS_BEFORE_EXPIRATION_TO_NOTIFY = new InjectionToken<number>('wait time');
 
 const DEFAULT_SECONDS_BEFORE_EXPIRATION_TO_NOTIFY = 5 * 60;
+
 type PartialClaimTuple = [
   JwtTokenProviderActions.StoreToken<MinimalClaimMap>,
   Partial<Claims>
@@ -30,6 +29,7 @@ type FullClaimsTuple = [
   JwtTokenProviderActions.StoreToken<MinimalClaimMap>,
   Claims
 ];
+
 
 @Injectable()
 export class JwtTokenProviderEffects {
@@ -102,7 +102,7 @@ export class JwtTokenProviderEffects {
             this.buildDelayedExpirationObservable(expiresIn * 1000, action, true),
           );
         } else {
-          return of(new JwtTokenProviderActions.TokenExpired({
+          return of(new JwtTokenProviderActions.TokenExpired<MinimalClaimMap>({
             tokenName: action.tokenName,
             token: action.token,
           }));
@@ -130,8 +130,8 @@ export class JwtTokenProviderEffects {
     return timer(emitTime, this.scheduler || async).pipe(
       take(1),
       map(() => expired ?
-        new JwtTokenProviderActions.TokenExpired(outputActionArgs) :
-        new JwtTokenProviderActions.TokenNearingExpiration(outputActionArgs),
+        new JwtTokenProviderActions.TokenExpired<MinimalClaimMap>(outputActionArgs) :
+        new JwtTokenProviderActions.TokenNearingExpiration<MinimalClaimMap>(outputActionArgs),
       ),
     );
   }

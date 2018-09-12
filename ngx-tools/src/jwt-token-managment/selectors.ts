@@ -35,7 +35,7 @@ export function getDefaultToken() {
 
 export function tokenForWithoutDefault<
   CM,
-  ServiceName extends keyof CM
+  ServiceName extends Extract<keyof CM, string>
   >(serviceName: ServiceName) {
     return createSelector(
       getTokens<CM>(),
@@ -45,7 +45,7 @@ export function tokenForWithoutDefault<
 
 export function tokenFor<
   CM,
-  ServiceName extends keyof CM
+  ServiceName extends Extract<keyof CM, string>
   >(serviceName: ServiceName) {
     return createSelector(
       getDefaultToken(),
@@ -56,7 +56,7 @@ export function tokenFor<
 
 export function claimsFor<
   CM,
-  ServiceName extends keyof CM
+  ServiceName extends Extract<keyof CM, string>
   >(serviceName: ServiceName) {
   return createSelector(
     tokenFor<CM, ServiceName>(serviceName),
@@ -81,9 +81,9 @@ export function claimsFor<
 
 export function claimValue<
   CM,
-  ServiceName extends keyof CM,
+  ServiceName extends Extract<keyof CM, string>,
   ClaimName extends keyof CM[ServiceName]
-  >(serviceName: ServiceName, claimName: ClaimName) {
+>(serviceName: ServiceName, claimName: ClaimName) {
     return createSelector(
       claimsFor<CM, ServiceName>(serviceName),
       (claims): CM[ServiceName][ClaimName] | null => {
