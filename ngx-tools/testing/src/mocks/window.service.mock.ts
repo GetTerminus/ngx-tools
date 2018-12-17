@@ -22,6 +22,8 @@ const windowMock: Window = {
       addRange: noop,
     };
   },
+  scrollTo: (x: number, y: number) => {
+  },
   prompt: noop,
   // Note: mocking setTimeout/clearTimeout here makes it very hard to test items that use
   // setTimeout. It seems to be easier to add these two spies as needed.
