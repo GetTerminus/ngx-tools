@@ -98,7 +98,8 @@ import { TokenExtractor } from '@terminus/ngx-tools';
 
   // ..snip
   @Effect()
-  performLogin$ = this.actions$.ofType<Actions.LoginRequest>(Actions.ActionTypes.LoginRequest).pipe(
+  performLogin$ = this.actions$.pipe(
+    ofType<Actions.LoginRequest>(Actions.ActionTypes.LoginRequest),
     switchMap((a) => {
       return this.http.post('/api/login', {
         username: a.username,
@@ -137,7 +138,8 @@ import { tokenFor } from '@terminus/ngx-tools';
 
   // ..snip
   @Effect()
-  performLogin$ = this.actions$.ofType<Actions.LoginRequest>(Actions.ActionTypes.LoginRequest).pipe(
+  performLogin$ = this.actions$.pipe(
+    ofType<Actions.LoginRequest>(Actions.ActionTypes.LoginRequest),
     switchMap((a) => {
       return this.store.select(tokenFor<ClaimMap, 'Service 1'>('Service 1'))
         .pipe(
@@ -248,8 +250,8 @@ import {
 
 @Effect()
 public renewService$ = this.actions$
-  .ofType<JwtTokenNearingExpiration<ClaimMap>>(JwtTokenManagementActionTypes.TokenNearingExpiration)
   .pipe(
+    ofType<JwtTokenNearingExpiration<ClaimMap>>(JwtTokenManagementActionTypes.TokenNearingExpiration),
     filter((a) => a.tokenName === 'Service1'), // Limit work to only  the service we care about
     withLatestFrom(this.store.select(tokenFor<ClaimMap, 'Service1'>('Service1'))),
     filter(([a, existingToken]) => a.token === existingToken), // If the token nearing expiration isn't the current one
@@ -283,8 +285,8 @@ import {
 
 @Effect()
 public logoutWhenAllTokensExpire$ = this.actions$
-  .ofType<AllJwtTokensExpired>(JwtTokenManagementActionTypes.AllTokensExpired)
   .pipe(
+    ofType<AllJwtTokensExpired>(JwtTokenManagementActionTypes.AllTokensExpired),
     mergeMap(() => [
       new Logout(), // Take any actions required to log the user out
     ]),
@@ -301,8 +303,9 @@ import {
 } from '@terminus/ngx-tools';
 
 @Effect()
-preescalateToken$ = this.actions$.ofType<SomeAction>(SomeActionType)
+preescalateToken$ = this.actions$
  .pipe(
+   ofType<SomeAction>(SomeActionType),
    withLatestFrom(this.store.select(tokenForWithoutDefault('Service1'))),
    filter(([_, token]) => !token),
    map(() => new JwtTokenManagementActions<ClaimMap>.EscalateToken('Service1'))
