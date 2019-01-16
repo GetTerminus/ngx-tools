@@ -15,7 +15,7 @@ import {
   switchMap,
   withLatestFrom,
 } from 'rxjs/operators';
-import { Actions, ofType } from '@ngrx/effects';
+import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 
 import { ClaimMap } from './../claim-map';
@@ -36,9 +36,10 @@ export interface EscalateToken<CM = ClaimMap> extends Partial<JwtActions.StoreTo
 export class TokenEscalator<CM = ClaimMap> {
 
   public escalateToken({tokenName, authorizeUrl, isDefaultToken}: EscalateToken<CM>): Observable<any> {
-    return this.actions$
+    return this.actions$.ofType<
+        JwtActions.EscalateToken<CM>
+      >(JwtActions.ActionTypes.EscalateToken)
       .pipe(
-        ofType<JwtActions.EscalateToken<CM>>(JwtActions.ActionTypes.EscalateToken),
         filter((a) => a.tokenName === tokenName),
         withLatestFrom(
           authorizeUrl,

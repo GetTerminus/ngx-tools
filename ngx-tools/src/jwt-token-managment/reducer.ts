@@ -1,7 +1,5 @@
 import { ClaimMap } from './claim-map';
-
 import * as JwtTokenProviderActions from './actions';
-
 
 export interface JwtTokenProviderState<C = ClaimMap>  {
   defaultToken?: string;

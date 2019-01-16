@@ -1,32 +1,32 @@
 import {
-  Inject,
   Injectable,
-  InjectionToken,
   Optional,
+  Inject,
+  InjectionToken,
 } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import {
-  merge,
   Observable,
-  Scheduler,
   throwError,
   timer,
+  Scheduler,
+  merge,
 } from 'rxjs';
+
 import {
-  delay,
   filter,
-  mergeMap,
-  retryWhen,
   switchMap,
   take,
+  mergeMap,
+  retryWhen,
+  delay,
 } from 'rxjs/operators';
-import { Actions, ofType } from '@ngrx/effects';
+import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { async } from 'rxjs/internal/scheduler/async';
 
 import { ClaimMap } from '../claim-map';
 import * as JwtActions from '../actions';
-
+import { async } from 'rxjs/internal/scheduler/async';
 
 export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const ESCALATION_WAIT_TIME = new InjectionToken<number>('wait time');
@@ -72,11 +72,11 @@ export class RetryWithEscalation<CM = ClaimMap> {
 
   private waitForResult(tokenName: Extract<keyof CM, string>) {
     return this.actions$
+      .ofType<JwtActions.EscalationFailed<CM> | JwtActions.EscalationSuccess<CM>>(
+        JwtActions.ActionTypes.EscalationFailed,
+        JwtActions.ActionTypes.EscalationSuccess,
+      )
       .pipe(
-        ofType<JwtActions.EscalationFailed<CM> | JwtActions.EscalationSuccess<CM>>(
-          JwtActions.ActionTypes.EscalationFailed,
-          JwtActions.ActionTypes.EscalationSuccess,
-        ),
         filter((a) => a.tokenName === tokenName),
         switchMap((escResult) => {
           if (escResult.type === JwtActions.ActionTypes.EscalationSuccess) {
