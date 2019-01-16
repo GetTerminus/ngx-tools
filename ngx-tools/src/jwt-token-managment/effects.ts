@@ -1,8 +1,30 @@
-import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  Optional,
+} from '@angular/core';
+import {
+  Actions,
+  Effect,
+  ofType,
+} from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { of, Scheduler, merge, timer } from 'rxjs';
-import { mergeMap, map, take, filter, withLatestFrom, flatMap, delay } from 'rxjs/operators';
+import {
+  merge,
+  of,
+  Scheduler,
+  timer,
+} from 'rxjs';
+import {
+  delay,
+  filter,
+  flatMap,
+  map,
+  mergeMap,
+  take,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { async } from 'rxjs/internal/scheduler/async';
 
 import { getTokens } from './selectors';
@@ -63,8 +85,8 @@ export class JwtTokenProviderEffects {
 
   @Effect()
   allTokensExpired$ = this.actions$
-    .ofType<never>(JwtTokenProviderActions.ActionTypes.TokenExpired)
     .pipe(
+      ofType<never>(JwtTokenProviderActions.ActionTypes.TokenExpired),
       delay(10, this.scheduler || async),
       withLatestFrom(
         this.store.select(getTokens<MinimalClaimMap>()),
@@ -77,8 +99,8 @@ export class JwtTokenProviderEffects {
 
   @Effect()
   notifyOfTokenExpiration$ = this.actions$
-    .ofType<JwtTokenProviderActions.StoreToken<MinimalClaimMap>>(JwtTokenProviderActions.ActionTypes.StoreToken)
     .pipe(
+      ofType<JwtTokenProviderActions.StoreToken<MinimalClaimMap>>(JwtTokenProviderActions.ActionTypes.StoreToken),
       map((action: JwtTokenProviderActions.StoreToken<MinimalClaimMap>): PartialClaimTuple => {
         return [action, jwtDecode<Partial<Claims>>(action.token)];
       }),
@@ -150,4 +172,3 @@ export class JwtTokenProviderEffects {
     private timeToWaitBeforeExpiration: number,
   ) {}
 }
-

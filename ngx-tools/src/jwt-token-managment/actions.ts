@@ -1,5 +1,7 @@
-import { defineTypeEnum } from '../define-type/define-type';
 import { Action } from '@ngrx/store';
+
+import { defineTypeEnum } from '../define-type/define-type';
+
 
 // tslint:disable: variable-name
 export enum ActionTypes  {
