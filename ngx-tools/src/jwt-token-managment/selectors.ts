@@ -1,6 +1,6 @@
 import {
-  createFeatureSelector,
   createSelector,
+  createFeatureSelector,
   MemoizedSelector, // tslint:disable-line no-unused-variable
 } from '@ngrx/store';
 
