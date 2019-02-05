@@ -25,9 +25,7 @@
     "check:next-release": "cd dist/ && npx semantic-release --dry-run",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
     "//=> Section: Release": "______________________________",
-    "commitmsg": "validate-commit-msg",
     "cm": "npx git-cz",
-    "precommit": "lint-staged",
     "lint-staged": "lint-staged",
     "contributors:add": "npx all-contributors add",
     "contributors:generate": "npx all-contributors generate",
@@ -90,6 +88,10 @@
       "@semantic-release/changelog"
     ],
     "publish": [
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "./tooling/ci/inject-version-number.sh ${nextRelease.version}"
+      },
       {
         "path": "@semantic-release/npm",
         "npmPublish": true,
@@ -167,5 +169,11 @@
     "tslint": "^5.12.1",
     "typescript": "3.1.6",
     "validate-commit-msg": "^2.14.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": "lint-staged"
+    }
   }
 }
