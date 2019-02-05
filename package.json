@@ -90,7 +90,7 @@
     "publish": [
       {
         "path": "@semantic-release/exec",
-        "cmd": "./tooling/ci/inject-version-number.sh ${nextRelease.version}"
+        "cmd": "./tools/ci/inject-version-number.sh ${nextRelease.version}"
       },
       {
         "path": "@semantic-release/npm",
