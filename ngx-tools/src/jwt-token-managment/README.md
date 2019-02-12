@@ -111,6 +111,7 @@ import { TokenExtractor } from '@terminus/ngx-tools';
                             //  2. A new token in the `Authorization` header.
                             //     in order to parse this response, `observe: 'response'` is require
       }).pipe(
+        this.tokenExtractor.extractJwtToken({
           tokenName: 'Service 1',    // Will thrown TS error if not in ClaimMap
           isDefaultToken: true,      // Uses this token as the base escalation point
         }),
