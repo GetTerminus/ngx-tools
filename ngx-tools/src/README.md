@@ -23,6 +23,7 @@ isArray([]); // Returns: true
 - [`hasRequiredControl`](#hasrequiredcontrol)
 - [`inputHasChanged`](#inputhaschanged)
 - [`noop`](#noop)
+- [Object deep get & deep set](#object-deep-get--deep-set)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`httpRetryer`](#httpretryer)
   - [Retry conditions](#retry-conditions)

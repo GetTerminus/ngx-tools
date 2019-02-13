@@ -29,6 +29,7 @@ emailRegex.test('foo@bar.com'); // Returns true
 - [Postal Code](#postal-code)
 - [Special Characters](#special-characters)
 - [URL](#url)
+  - [URL with optional protocol](#url-with-optional-protocol)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -274,4 +275,19 @@ import { urlRegex } from '@terminus/ngx-tools/regex';
 
 urlRegex.test('http://0.0.0.0'); // false
 urlRegex.test('http://foo.com/blah_blah/'); // true
+```
+
+
+### URL with optional protocol
+
+[[source]](src/url-optional-protocol/url-optional-protocol.regex.ts)
+
+This regex can be used when a URL needs to be validated but the protocol (ie `http`) is not required.
+
+```typescript
+import { urlRegex } from '@terminus/ngx-tools/regex';
+
+urlOptionalProtocolRegex.test('http://0.0.0.0'); // false
+urlOptionalProtocolRegex.test('foo.com/blah_blah/'); // true
+urlOptionalProtocolRegex.test('http://foo.com/blah_blah/'); // true
 ```
