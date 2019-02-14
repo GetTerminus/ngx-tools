@@ -1,6 +1,7 @@
 export * from './apply-mixins/apply-mixins';
 export * from './array-contains-object/array-contains-object';
 export * from './compact-array/compact-array';
+export * from './cookie-service/cookie.service';
 export * from './debounce/debounce';
 export * from './document/document.service';
 export * from './get-form-control-value/get-form-control-value';
