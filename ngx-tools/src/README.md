@@ -23,6 +23,7 @@ isArray([]); // Returns: true
 - [`hasRequiredControl`](#hasrequiredcontrol)
 - [`inputHasChanged`](#inputhaschanged)
 - [`noop`](#noop)
+- [Object deep get & deep set](#object-deep-get--deep-set)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`httpRetryer`](#httpretryer)
   - [Retry conditions](#retry-conditions)
@@ -33,6 +34,7 @@ isArray([]); // Returns: true
 - [`untilComponentDestroyed`](#untilcomponentdestroyed)
 - [`updateControlOnInputChanges`](#updatecontroloninputchanges)
 - [Services](#services)
+  - [Cookie Service](#cookie-service)
   - [Document Service](#document-service)
   - [Window Service](#window-service)
 - [Verify Types](#verify-types)
@@ -520,6 +522,32 @@ import { updateControlOnInputChanges } from '@terminus/ngx-tools';
 
 
 ### Services
+
+#### Cookie Service
+
+[[source]](cookie-service/cookie.service.ts)
+
+An injectable Angular service that provides control over a browser cookie.
+
+```typescript
+import { TsCookieService } from '@terminus/ngx-tools';
+
+@Component({...})
+export class MyComponent implements OnInit {
+  value: string;
+
+  constructor(private cookieService: TsCookieService) {}
+
+  public ngOnInit(): void {
+    this.cookieService.set('Foo', 'My cookie contents');
+    this.value = this.cookieService.get('Foo');
+  }
+}
+```
+
+> Note: This service was based off of [ngx-cookie-service](https://github.com/7leads/ngx-cookie-service) which in turn was
+> based off of [ng2-cookies](https://github.com/BCJTI/ng2-cookies).
+
 
 #### Document Service
 
