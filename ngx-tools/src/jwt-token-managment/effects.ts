@@ -8,6 +8,7 @@ import {
   Actions,
   Effect,
   ofType,
+  ROOT_EFFECTS_INIT,
 } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import {
@@ -24,12 +25,15 @@ import {
   mergeMap,
   take,
   withLatestFrom,
+  tap,
 } from 'rxjs/operators';
 import { async } from 'rxjs/internal/scheduler/async';
 
-import { getTokens } from './selectors';
+import { getTokens, getDefaultToken, getJwtTokenRoot } from './selectors';
 import * as JwtTokenProviderActions from './actions';
 import { jwtDecode } from '../jwt-decode/index';
+import { TsCookieService } from '../cookie-service/cookie.service';
+import { INITIAL_TOKEN_NAME } from './tokens';
 
 export interface Claims { exp: number; }
 
@@ -57,7 +61,7 @@ type FullClaimsTuple = [
 export class JwtTokenProviderEffects {
 
   @Effect()
-  initializationCleanup$ = this.actions$
+  initializationCleanup$ = of(true)
     .pipe(
       delay(100, this.scheduler || async),
       withLatestFrom(
@@ -133,6 +137,31 @@ export class JwtTokenProviderEffects {
     )
   ;
 
+  @Effect()
+  initialCookieLoader$ = ({
+    currentState = this.store.select(getJwtTokenRoot()),
+  } = {}) => of(true).pipe(
+    take(1),
+    withLatestFrom(currentState),
+    filter(([_, state]) => !!(state && state.jwtTokens.initialTokenStatus === 'uninitialized')),
+    mergeMap(([a, _]) => {
+      const cookie = this.cookieService.get('jwt_cookie');
+      if (cookie.length > 0) {
+        return [
+          new JwtTokenProviderActions.InitialTokenExtracted(cookie),
+          new JwtTokenProviderActions.StoreToken({
+            tokenName: this.initialTokenName,
+            token: cookie,
+            isDefaultToken: true,
+          }),
+        ];
+      } else {
+        return [
+          new JwtTokenProviderActions.InitialTokenExtracted(cookie),
+        ];
+      }
+    }),
+  )
 
   /*
    * This next function is being excluded from coverage due the complexities of
@@ -160,8 +189,12 @@ export class JwtTokenProviderEffects {
 
   /* istanbul ignore next */
   constructor(
-    private actions$: Actions,
+    private actions$: Actions<JwtTokenProviderActions.Actions<MinimalClaimMap>>,
     private store: Store<any>,
+    private cookieService: TsCookieService,
+
+    @Inject(INITIAL_TOKEN_NAME)
+    private initialTokenName: string,
 
     @Optional()
     @Inject(SCHEDULER)

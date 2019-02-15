@@ -94,7 +94,6 @@ describe(`TokenExtractor`, () => {
       extractor.extractJwtToken({
         tokenName: 'foo',
         isDefaultToken: true,
-        resetAllOtherTokens: true,
       }),
     );
 
@@ -105,7 +104,6 @@ describe(`TokenExtractor`, () => {
         tokenName: 'foo',
         token: 'asdfkjlslfd',
         isDefaultToken: true,
-        resetAllOtherTokens: true,
       }),
     );
   });

@@ -4,11 +4,13 @@ import * as JwtTokenProviderActions from './actions';
 
 
 export interface JwtTokenProviderState<C = ClaimMap>  {
+  initialTokenStatus: 'uninitialized' | 'loaded' | 'empty';
   defaultToken?: string;
   tokens: { [P in Extract<keyof C, string>]?: string };
 }
 
 export const initialState: JwtTokenProviderState = {
+  initialTokenStatus: 'uninitialized',
   tokens: {},
 };
 
@@ -17,19 +19,34 @@ export function jwtTokenProviderReducer<C = ClaimMap>(
   action: JwtTokenProviderActions.Actions<C>,
 ): JwtTokenProviderState {
   switch (action.type) {
+    case JwtTokenProviderActions.ActionTypes.InitialTokenExtracted: {
+      if (state.initialTokenStatus !== 'uninitialized') {
+        return state;
+      }
+
+      if (action.token.length === 0) {
+        return {
+          initialTokenStatus: 'empty',
+          tokens: {},
+        };
+      } else {
+        return {
+          initialTokenStatus: 'loaded',
+          defaultToken: action.token,
+          tokens: {},
+        };
+      }
+    }
     case JwtTokenProviderActions.ActionTypes.StoreToken: {
-      let newState: JwtTokenProviderState = {
+      const newState: JwtTokenProviderState = {
         ...state,
         tokens: {...state.tokens},
       };
 
-      if (action.resetAllOtherTokens) {
-        newState = {tokens: {}};
-      }
-
 
       if (action.isDefaultToken) {
         newState.defaultToken = action.token;
+        newState.tokens = {};
       }
 
       newState.tokens[action.tokenName] = action.token;

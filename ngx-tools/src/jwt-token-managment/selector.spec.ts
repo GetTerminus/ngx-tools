@@ -23,7 +23,7 @@ describe('JWT Selectors', () => {
   let tokenStorageState: JwtTokenProviderState<MockClaimMap>;
 
   beforeEach(() => {
-    tokenStorageState = {tokens: {}};
+    tokenStorageState = {initialTokenStatus: 'loaded', tokens: {}};
     state = {[JWT_TOKEN_MANAGEMENT_STATE_TOKEN]: {jwtTokens: tokenStorageState}};
   });
 

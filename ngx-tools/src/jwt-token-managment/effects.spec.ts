@@ -2,7 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ROOT_EFFECTS_INIT } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject  } from 'rxjs';
+import { BehaviorSubject, of  } from 'rxjs';
 import {
   hot,
   cold,
@@ -16,6 +16,9 @@ import {
 } from './effects';
 import * as Actions from './actions';
 import { MinimalClaimMap } from './effects';
+import { State } from './state';
+import { TsCookieService } from '../cookie-service/cookie.service';
+import { INITIAL_TOKEN_NAME } from './tokens';
 
 
 function createFakeJwt(
@@ -35,17 +38,21 @@ describe(`JWT Token Effects`, () => {
   let effects: JwtTokenProviderEffects;
   let mockStore: {select: jest.MockInstance<any>};
   let selectOutput: BehaviorSubject<any>;
+  let mockCookieService: {get: jest.MockInstance<any>};
   const currentEpoch = () => Math.ceil((new Date).getTime() / 1000);
 
   beforeEach(async(() => {
     selectOutput = new BehaviorSubject({});
     mockStore = {select: jest.fn() };
     mockStore.select.mockReturnValue(selectOutput);
+    mockCookieService = {get: jest.fn()};
 
     TestBed.configureTestingModule({
       providers: [
         JwtTokenProviderEffects,
         provideMockActions(() => actions),
+        { provide: INITIAL_TOKEN_NAME, useValue: 'initToken' },
+        { provide: TsCookieService, useValue: mockCookieService },
         { provide: SCHEDULER, useFactory: getTestScheduler },
         { provide: SECONDS_BEFORE_EXPIRATION_TO_NOTIFY, useValue: 2 },
         { provide: Store, useValue: mockStore },
@@ -55,6 +62,81 @@ describe(`JWT Token Effects`, () => {
     effects = TestBed.get(JwtTokenProviderEffects);
   }));
 
+
+  describe(`initialCookieLoader$`, () => {
+    const blankState: State = {
+      jwtTokens: {
+        initialTokenStatus: 'uninitialized',
+        tokens: {},
+      },
+    };
+
+    test(`should provide a cookie and store cookie message if the cookie is set`, () => {
+      const currentState = of<State>(blankState);
+      mockCookieService.get.mockReturnValue('abcd');
+
+      const expected = cold('(ab|)', {
+        a: new Actions.InitialTokenExtracted('abcd'),
+        b: new Actions.StoreToken({
+          tokenName: 'initToken',
+          token: 'abcd',
+          isDefaultToken: true,
+        }),
+      });
+
+      expect(
+        effects.initialCookieLoader$({currentState: currentState}),
+      ).toBeObservable(expected);
+    });
+
+    test(`should emit nothing if state is loaded`, () => {
+      const currentState = of<State>({
+        ...blankState,
+        jwtTokens: {
+          ...blankState.jwtTokens,
+          initialTokenStatus: 'loaded',
+        },
+      });
+      mockCookieService.get.mockReturnValue('abcd');
+
+      const expected = cold('|');
+
+      expect(
+        effects.initialCookieLoader$({currentState}),
+      ).toBeObservable(expected);
+    });
+
+    test(`should emit nothing if state is empty`, () => {
+      const currentState = of<State>({
+        ...blankState,
+        jwtTokens: {
+          ...blankState.jwtTokens,
+          initialTokenStatus: 'empty',
+        },
+      });
+
+      mockCookieService.get.mockReturnValue('abcd');
+
+      const expected = cold('|');
+
+      expect(
+        effects.initialCookieLoader$({currentState: currentState}),
+      ).toBeObservable(expected);
+    });
+
+    it(`it should only announce the initial if the cookie is empty`, () => {
+      const currentState = of<State>(blankState);
+      mockCookieService.get.mockReturnValue('');
+
+      const expected = cold('(a|)', {
+        a: new Actions.InitialTokenExtracted(''),
+      });
+
+      expect(
+        effects.initialCookieLoader$({currentState: currentState}),
+      ).toBeObservable(expected);
+    });
+  });
 
   describe(`initializationCleanup$`, () => {
 

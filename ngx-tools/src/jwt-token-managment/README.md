@@ -54,27 +54,7 @@
 This JWT management module provides everything you will need for the common JWT
 use case in NGRX.
 
-
-### Step 1: The Module
-
-Import the module into your main application:
-
-```typescript
-import { JwtTokenManagementModule } from '@terminus/ngx-tools';
-
-@NgModule({
-  imports: [
-    JwtTokenManagementModule.forRoot(),
-  ],
-})
-export class AppModule {}
-```
-
-Check out your Redux Dev tools, you should now see the tokens store content and
-effects have been setup.
-
-
-### Step 2: Setup your claim map
+### Step 1: Setup your claim map
 
 The claim map provides strong types for your JWT token interaction.
 
@@ -89,6 +69,27 @@ export interface ClaimMap {
 }
 ```
 
+### Step 2: The Module
+
+Import the module into your main application:
+
+```typescript
+import { JwtTokenManagementModule } from '@terminus/ngx-tools';
+import { ClaimMap } from './somwhere';
+
+@NgModule({
+  imports: [
+    JwtTokenManagementModule.forRoot<ClaimMap>({
+      initialTokenName: 'Service 1' // When a token is found on startup it is
+                                    // stored with this token name
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+Check out your Redux Dev tools, you should now see the tokens store content and
+effects have been setup.
 
 ### Step 3: Start collecting you token
 
@@ -128,7 +129,6 @@ import { TokenExtractor } from '@terminus/ngx-tools';
 ```
 
 After you perform this login, you will see that the new token is stored in your state.
-
 
 ### Step 4: Use the token for a service.
 
@@ -206,7 +206,6 @@ It will wait for a maximum of 30 seconds for success, then it will throw.
 
 *Note:* You are using an [http retryer too right?](https://github.com/GetTerminus/ngx-tools/blob/master/ngx-tools/src/README.md#httpretryer)
 
-
 ### Step 6: Escalate a token when requested
 
 After the first 403 is received, you need to provide instructions on how to escalate
@@ -231,13 +230,80 @@ constructor(
 ) { }
 ```
 
-
 ### Step 7: Profit!
 
 At this point you have a full suite of helpers to manage JWT Escalation.
 
+## Initial Acquisition of a token
+A common pattern for sharing the JWT Token between services on a common top
+level domain is store the token in a Cookie. This module will eager load the
+value of the cookie and store it as the default token & the token named on module
+setup (See the forRoot call in step 1).
+
+NOTE: This token will only be stored if the JWT Token Management module state
+is in it's initial state, if you are storing the state in localStorage, it
+will only pick up the cookie once.
 
 ## Other common patterns
+
+### Ensure a JWT Token is present
+The library exports a DefaultTokenRequired route guard which can be used to
+ensure a JWT Token has been loaded. This guard ONLY checks for the presence of
+a default token.
+
+```typescript
+import { DefaultTokenRequired } from '@terminus/ngx-tools';
+
+const routes = [
+  {
+    path: '/only_for_loggedin_visitors',
+    component: SomeComponent,
+    canActivate: [DefaultTokenRequired],
+  },
+]
+```
+
+This guard will prevent route activation if the default JWT token is not set.
+It will wait to respond until the Cookie has had a chance to have been read.
+
+If the route fails to activate, the guard will dispatch an event
+FailedToActivateRoute. You probably want to redirect the user to the login page
+when this happens.
+
+```typescript
+import { JwtTokenManagmentActions } from '@terminus/ngx-tools';
+
+@Effect()
+navigatedWithoutToken$ = this.actions.pipe(
+  ofType(JwtTokenManagmentActions.FailedToActivateRoute)
+  tap(() => this.router.redirect('/login'))
+)
+```
+
+**WARNING**: The default token required waits for the state to transition from
+uninitialized. If you are using meta reducers that clear the state (such as on
+logout), you should be restoring the JWT Module state to an empty state. If you
+do not do this, you will need to re-initialize the module yourself
+(unsupported).
+
+```typescript
+import { jwtEmptyStateReset } from '@terminus/ngx-tools';
+
+export function clearStateOnLogout(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function(
+    state: AppState,
+    action: Action,
+  ) {
+    if (action.type === ActionTypes.Clear) {
+      return reducer({
+        ...jwtEmptyStateReset,
+      }, action);
+    } else {
+      return reducer(state, action);
+    }
+  }
+}
+```
 
 ### Renewal of a token
 
@@ -288,9 +354,7 @@ import {
 public logoutWhenAllTokensExpire$ = this.actions$
   .pipe(
     ofType<AllJwtTokensExpired>(JwtTokenManagementActionTypes.AllTokensExpired),
-    mergeMap(() => [
-      new Logout(), // Take any actions required to log the user out
-    ]),
+    map(() => new Logout()), // Take any actions required to log the user out)
   )
 ```
 

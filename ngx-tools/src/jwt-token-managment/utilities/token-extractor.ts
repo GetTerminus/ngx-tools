@@ -30,7 +30,7 @@ export const TOKEN_NOT_FOUND = new Error('Token Not found in response');
 @Injectable()
 export class TokenExtractor<CM = ClaimMap> {
 
-  public extractJwtToken<T extends Object | HttpResponse<any>>({tokenName, resetAllOtherTokens, isDefaultToken}: ExtractTokenParams<CM>) {
+  public extractJwtToken<T extends Object | HttpResponse<any>>({tokenName, isDefaultToken}: ExtractTokenParams<CM>) {
     return (source: Observable<T>) => {
       return source.pipe(
         tap((request) => {
@@ -40,7 +40,6 @@ export class TokenExtractor<CM = ClaimMap> {
             this.store.dispatch(new StoreToken<CM>({
               tokenName,
               token,
-              resetAllOtherTokens,
               isDefaultToken,
             }));
           } else {
