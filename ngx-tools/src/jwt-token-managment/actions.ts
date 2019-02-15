@@ -12,6 +12,8 @@ export enum ActionTypes  {
   EscalationSuccess      = '[ngx-tools-jwt-token-provider] Escalation Success',
   EscalationFailed       = '[ngx-tools-jwt-token-provider] Escalation Failed',
   AllTokensExpired       = '[ngx-tools-jwt-token-provider] All Tokens have Expired',
+  InitialTokenExtracted  = '[ngx-tools-jwt-token-provider] Initial Token Extracted',
+  FailedToActivateRoute  = '[ngx-tools-jwt-token-provider] Failed To Activate Route',
 }
 // tslint:enable: variable-name
 
@@ -22,9 +24,24 @@ export interface StoreTokenConstructor<C> {
   tokenName: Extract<keyof C, string>;
   token: string;
   isDefaultToken?: boolean;
-  resetAllOtherTokens?: boolean;
 }
 
+
+/**
+ * InitialTokenExtracted
+ */
+export class InitialTokenExtracted implements Action {
+  type: typeof ActionTypes.InitialTokenExtracted = ActionTypes.InitialTokenExtracted;
+
+  constructor(public token: string) { }
+}
+
+/**
+ * FailedToActivateRoute
+ */
+export class FailedToActivateRoute implements Action {
+  type: typeof ActionTypes.FailedToActivateRoute = ActionTypes.FailedToActivateRoute;
+}
 
 /**
  * StoreToken
@@ -35,20 +52,17 @@ export class StoreToken<C> implements Action {
   public tokenName: Extract<keyof C, string>;
   public token: string;
   public isDefaultToken: boolean;
-  public resetAllOtherTokens: boolean;
 
   constructor(
     {
       tokenName,
       token,
       isDefaultToken,
-      resetAllOtherTokens,
     }: StoreTokenConstructor<C>,
   ) {
     this.tokenName = tokenName;
     this.token = token;
     this.isDefaultToken = !!isDefaultToken;
-    this.resetAllOtherTokens = !!resetAllOtherTokens;
   }
 }
 
@@ -135,10 +149,11 @@ export class EscalationFailed<C> implements Action {
 
 export type Actions<C>
   = AllTokensExpired
-  | StoreToken<C>
   | EscalateToken<C>
   | EscalationFailed<C>
   | EscalationSuccess<C>
+  | InitialTokenExtracted
+  | StoreToken<C>
   | TokenExpired<C>
   | TokenNearingExpiration<C>
 ;

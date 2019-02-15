@@ -24,3 +24,8 @@ export { RetryWithEscalation } from './utilities/retry-with-escalation';
 export { TokenExtractor } from './utilities/token-extractor';
 export { regenerateOnRetry } from './utilities/regenerate-on-retry';
 
+import { jwtModuleEmptyState, JWT_TOKEN_MANAGEMENT_STATE_TOKEN  } from './state';
+
+export const jwtEmptyStateReset = {
+  [JWT_TOKEN_MANAGEMENT_STATE_TOKEN]: jwtModuleEmptyState,
+};

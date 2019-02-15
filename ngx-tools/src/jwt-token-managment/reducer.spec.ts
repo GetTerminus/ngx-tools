@@ -8,17 +8,69 @@ interface MockClaimMap {
 }
 
 describe('jwtTokenProviderReducer', () => {
-  describe('toke expiration', () => {
+
+  describe('token expiration', () => {
+    it(`rejects the action if the state is already loaded`, () => {
+      const startingState = {initialTokenStatus: 'loaded' as 'loaded', tokens: {foo: 'asdf'}};
+
+      expect(
+        jwtTokenProviderReducer<MockClaimMap>(
+          startingState,
+          new jwtActions.InitialTokenExtracted('123123123123'),
+        ),
+      ).toEqual(startingState);
+    });
+
+    it(`rejects the action if the state is already empty`, () => {
+      const startingState = {initialTokenStatus: 'empty' as 'empty', tokens: {foo: 'asdf'}};
+
+      expect(
+        jwtTokenProviderReducer<MockClaimMap>(
+          startingState,
+          new jwtActions.InitialTokenExtracted('123123123123'),
+        ),
+      ).toEqual(startingState);
+    });
+
+    it(`changes the InitialTokenExtracted to empty of the cookie is empty`, () => {
+      const startingState = {initialTokenStatus: 'uninitialized' as 'uninitialized', tokens: {}};
+
+      expect(
+        jwtTokenProviderReducer<MockClaimMap>(
+          startingState,
+          new jwtActions.InitialTokenExtracted(''),
+        ).initialTokenStatus,
+      ).toEqual('empty');
+    });
+
+    it(`should store the initial token`, () => {
+      const startingState = {initialTokenStatus: 'uninitialized' as 'uninitialized', tokens: {}};
+
+      expect(
+        jwtTokenProviderReducer<MockClaimMap>(
+          startingState,
+          new jwtActions.InitialTokenExtracted('abcd'),
+        ),
+      ).toEqual({
+        initialTokenStatus: 'loaded',
+        defaultToken: 'abcd',
+        tokens: {},
+      });
+    });
+  });
+
+  describe('token expiration', () => {
     it('clears the default token', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(
-          {defaultToken: 'abcd', tokens: {}},
+          {initialTokenStatus: 'loaded', defaultToken: 'abcd', tokens: {}},
           new jwtActions.TokenExpired<MockClaimMap>({
             tokenName: 'foo',
             token: 'abcd',
           }),
         ),
       ).toEqual({
+        initialTokenStatus: 'loaded',
         tokens: {},
       });
     });
@@ -27,13 +79,14 @@ describe('jwtTokenProviderReducer', () => {
     it('clears sub tokens', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(
-          {tokens: { bar: '123', foo: 'abcd' }},
+          {initialTokenStatus: 'loaded', tokens: { bar: '123', foo: 'abcd' }},
           new jwtActions.TokenExpired<MockClaimMap>({
             tokenName: 'foo',
             token: 'abcd',
           }),
         ),
       ).toEqual({
+        initialTokenStatus: 'loaded',
         tokens: { bar: '123' },
       });
     });
@@ -43,36 +96,22 @@ describe('jwtTokenProviderReducer', () => {
     it('stores a new token', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(
-          {tokens: {}},
+          {initialTokenStatus: 'loaded', tokens: {}},
           new jwtActions.StoreToken<MockClaimMap>({
             tokenName: 'foo',
             token: 'abcd',
           }),
         ),
       ).toEqual({
+        initialTokenStatus: 'loaded',
         tokens: {foo: 'abcd'},
-      });
-    });
-
-    it('resets all existing tokens', () => {
-      expect(
-        jwtTokenProviderReducer<MockClaimMap>(
-          {defaultToken: 'foo', tokens: { foo: 'foo' }},
-          new jwtActions.StoreToken<MockClaimMap>({
-            tokenName: 'bar',
-            resetAllOtherTokens: true,
-            token: 'abcd',
-          }),
-        ),
-      ).toEqual({
-        tokens: {bar: 'abcd'},
       });
     });
 
     it('stores a new token as a default it set', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(
-          {tokens: {}},
+          {initialTokenStatus: 'loaded', tokens: {dude: 'wassup'}},
           new jwtActions.StoreToken<MockClaimMap>({
             tokenName: 'foo',
             token: 'abcd',
@@ -80,6 +119,7 @@ describe('jwtTokenProviderReducer', () => {
           }),
         ),
       ).toEqual({
+        initialTokenStatus: 'loaded',
         defaultToken: 'abcd',
         tokens: {foo: 'abcd'},
       });
@@ -88,10 +128,11 @@ describe('jwtTokenProviderReducer', () => {
     it('updates an existing token', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(
-          {tokens: {foo: 'foobar'}},
+          {initialTokenStatus: 'loaded', tokens: {foo: 'foobar'}},
           new jwtActions.StoreToken<MockClaimMap>({tokenName: 'foo', token: 'abcd'}),
         ),
       ).toEqual({
+        initialTokenStatus: 'loaded',
         tokens: {foo: 'abcd'},
       });
     });
@@ -112,8 +153,8 @@ describe('jwtTokenProviderReducer', () => {
 
     it('returns the current state', () => {
       expect(
-        jwtTokenProviderReducer<MockClaimMap>({tokens: {foo: 'sadf'}}, action as any),
-      ).toEqual({tokens: {foo: 'sadf'}});
+        jwtTokenProviderReducer<MockClaimMap>({initialTokenStatus: 'loaded', tokens: {foo: 'sadf'}}, action as any),
+      ).toEqual({initialTokenStatus: 'loaded', tokens: {foo: 'sadf'}});
     });
   });
 });
