@@ -35,6 +35,7 @@ dispatchFakeEvent(window, 'resize')
 - [Angular Test Helpers](#angular-test-helpers)
   - [`configureTestBedWhitespace`](#configuretestbedwhitespace)
   - [`configureTestBedWithoutReset`](#configuretestbedwithoutreset)
+  - [`createComponent`](#createcomponent)
   - [`expectNativeEl`](#expectnativeel)
   - [`getChildComponentInstanceFromFixture`](#getchildcomponentinstancefromfixture)
   - [`queryFor`](#queryfor)
@@ -525,6 +526,28 @@ describe(`MyComponent`, () => {
   it(`should...`, () => {
     ...
   });
+});
+```
+
+
+### `createComponent`
+
+[[source]](src/utilities/create-component.ts)
+
+Helper function to quickly generate a `TestBed` fixture with a single component.
+
+```typescript
+import { createComponent } from '@terminus/ngx-tools/testing';
+
+@Component({template: ``})
+export class TestComponent {
+  foo = 'bar';
+}
+
+test(`should do something`, () => {
+  const fixture = createComponent(TestComponent);
+
+  expect(fixture.componentInstance.foo).toEqual('bar');
 });
 ```
 
