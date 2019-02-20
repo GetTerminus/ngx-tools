@@ -10,6 +10,7 @@ export * from './src/mocks/window.service.mock';
 
 export * from './src/utilities/configure-testbed-whitespace';
 export * from './src/utilities/configure-testbed-without-reset';
+export * from './src/utilities/create-component';
 export * from './src/utilities/dispatch-events';
 export * from './src/utilities/event-objects';
 export * from './src/utilities/expect-native-el';

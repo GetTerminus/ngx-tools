@@ -5,14 +5,16 @@
 **Table of Contents**
 
 - [Getting started](#getting-started)
-  - [Step 1: The Module](#step-1-the-module)
-  - [Step 2: Setup your claim map](#step-2-setup-your-claim-map)
+  - [Step 1: Setup your claim map](#step-1-setup-your-claim-map)
+  - [Step 2: The Module](#step-2-the-module)
   - [Step 3: Start collecting you token](#step-3-start-collecting-you-token)
   - [Step 4: Use the token for a service.](#step-4-use-the-token-for-a-service)
   - [Step 5: Request token escalation and retry](#step-5-request-token-escalation-and-retry)
   - [Step 6: Escalate a token when requested](#step-6-escalate-a-token-when-requested)
   - [Step 7: Profit!](#step-7-profit)
+- [Initial Acquisition of a token](#initial-acquisition-of-a-token)
 - [Other common patterns](#other-common-patterns)
+  - [Ensure a JWT Token is present](#ensure-a-jwt-token-is-present)
   - [Renewal of a token](#renewal-of-a-token)
   - [Take action when all tokens expire](#take-action-when-all-tokens-expire)
   - [Pre-escalation of a token](#pre-escalation-of-a-token)
