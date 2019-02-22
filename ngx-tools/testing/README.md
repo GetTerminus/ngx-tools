@@ -545,7 +545,7 @@ export class TestComponent {
 }
 
 test(`should do something`, () => {
-  const fixture = createComponent(TestComponent);
+  const fixture = createComponent<TestComponent>(TestComponent);
 
   expect(fixture.componentInstance.foo).toEqual('bar');
 });
