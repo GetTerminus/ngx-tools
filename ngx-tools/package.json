@@ -11,6 +11,15 @@
   "bugs": {
     "url": "https://github.com/GetTerminus/ngx-tools/issues"
   },
+  "module": "./fesm5/terminus-ngx-tools.js",
+  "es2015": "./fesm2015/terminus-ngx-tools.js",
+  "esm5": "./esm5/terminus-ngx-tools.js",
+  "esm2015": "./esm2015/terminus-ngx-tools.js",
+  "fesm5": "./fesm5/terminus-ngx-tools.js",
+  "fesm2015": "./fesm2015/terminus-ngx-tools.js",
+  "main": "bundles/terminus-ngx-tools.umd.js",
+  "typings": "terminus-ngx-tools.d.ts",
+  "sideEffects": false,
   "publishConfig": {
     "tag": "next"
   },
