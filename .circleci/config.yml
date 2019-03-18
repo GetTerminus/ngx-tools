@@ -4,7 +4,7 @@ jobs:
   build:
 
     docker:
-      - image: circleci/node:latest-browsers
+      - image: benjamincharity/terminus-ui-ci
 
     working_directory: ~/ci-build
 
@@ -91,4 +91,3 @@ deployment:
     tag: /.*/
     commands:
       - echo "make tags run in 2.0"
-
