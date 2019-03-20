@@ -24,6 +24,7 @@ isArray([]); // Returns: true
 - [`inputHasChanged`](#inputhaschanged)
 - [`noop`](#noop)
 - [Object deep get & deep set](#object-deep-get--deep-set)
+- [`publicShapeOf`](#publicshapeof)
 - [`retryWithBackoff`](#retrywithbackoff)
 - [`httpRetryer`](#httpretryer)
   - [Retry conditions](#retry-conditions)
@@ -297,6 +298,21 @@ const valueFromObject: boolean = objectDeepGet(myObj, 'foo.bar.baz');
 const updatedObject = objectDeepSet(myObj, 'foo.bar.baz', false);
 ```
 
+
+### `publicShapeOf`
+[[source]](public-shape-of/public-shape-of.ts)
+
+A type that allows consumer to extend a class with private properties
+
+```typescript
+  class Foo {
+    foo1(x: string) {}
+    private foo2(y: number) {}
+  }
+  class Bar implements publicShapeOf<Foo> {
+    foo1(x: string) {}
+  }
+```
 
 
 ### `retryWithBackoff`
