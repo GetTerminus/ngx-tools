@@ -7,28 +7,39 @@ let typeCache: {[label: string]: boolean} = {};
 /**
  * Ensure you only define an action once in the entirety of the application
  *
- * @param label The action label
- * @return uniqueLabel The unique label
+ * @param label - The action label
+ * @return uniqueLabel - The unique label
  *
  * @example
  * defineType('[log-in] User log in') as '[log-in] User log in';
  */
-export function defineType<T>(label: T | ''): T {
+export function defineType<T extends string>(label: T): T {
   // Verify the label does not already exist in the cache
-  if (typeCache[label as string]) {
+  if (typeCache[label]) {
     throw new Error(`Action type '${label}' is not unqiue!`);
   }
 
   // Save the label to the cache
-  typeCache[label as string] = true;
+  typeCache[label] = true;
 
-  return label as T;
+  return label;
 }
 
-export function defineTypeEnum(typeEnum: {[id: string]: any})  {
+/**
+ * Ensure action is defined only once in the entirety of the application
+ *
+ * @param typeEnum
+ *
+ * @example
+ * export enum actionTypes {
+ *   AssignState = '[mock-meta-reducer] Assign State',
+ * };
+ * defineTypeEnum(actionTypes);
+ */
+export function defineTypeEnum(typeEnum: {[id: string]: any}): void  {
   for (const val in typeEnum) {
     if (typeEnum.hasOwnProperty(val)) {
-      defineType(val);
+      defineType(typeEnum[val]);
     }
   }
 }
@@ -37,7 +48,6 @@ export function defineTypeEnum(typeEnum: {[id: string]: any})  {
  * Reset the type cache
  * NOTE: FOR TESTS ONLY
  */
-export function resetTypeCache() {
+export function resetTypeCache(): void {
   typeCache = {};
 }
-

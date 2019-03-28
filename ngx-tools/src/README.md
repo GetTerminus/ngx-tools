@@ -18,6 +18,7 @@ isArray([]); // Returns: true
 - [`arrayContainsObject`](#arraycontainsobject)
 - [`compactArray`](#compactarray)
 - [`debounce`](#debounce)
+- [`defineType` and `defineTypeEnum`](#definetype-and-definetypeenum)
 - [`getFormControlValue`](#getformcontrolvalue)
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
@@ -165,6 +166,21 @@ for (const value of [1, 2, 3]) {
 // 'Hi!' will only be logged to the console once
 ```
 
+### `defineType` and `defineTypeEnum`
+
+[[source]](define-type/define-type.ts)
+
+Ensure action is defined only once in the entirety of the application
+
+```typescript
+import { defineTypeEnum } from '@terminus/ngx-tools';
+
+export enum actionTypes {
+  AssignState = '[mock-meta-reducer] Assign State',
+};
+
+defineTypeEnum(actionTypes);
+```
 
 ### `getFormControlValue`
 
