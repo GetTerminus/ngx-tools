@@ -9,7 +9,7 @@ import {
   createFakeEvent,
   createMouseEvent,
 } from './event-objects';
-import * as KEYCODES from './../../../keycodes/public-api';
+import { KEYS } from '../../../keycodes/public-api';
 
 
 describe(`dispatch-events`, () => {
@@ -56,7 +56,7 @@ describe(`dispatch-events`, () => {
   describe(`dispatchKeyboardEvent`, () => {
 
     test(`should do something`, () => {
-      dispatchKeyboardEvent(nodeMock, 'keydown', KEYCODES.A);
+      dispatchKeyboardEvent(nodeMock, 'keydown', KEYS.A);
 
       expect(nodeMock.dispatchEvent).toHaveBeenCalledWith(expect.any(Event));
     });

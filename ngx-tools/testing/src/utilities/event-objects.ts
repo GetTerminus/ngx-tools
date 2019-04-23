@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
+import { KeyCode } from '@terminus/ngx-tools/keycodes';
 
 /**
  * Creates a browser MouseEvent with the specified options.
@@ -79,31 +80,28 @@ export function createTouchEvent(type: string, pageX: number = 0, pageY: number 
  * createKeyboardEvent('keydown', ENTER, myInputNativeElement);
  *
  * @param type - The event type
- * @param keyCode - The event key code
+ * @param key - The KeyCode type
  * @param target - The target element
- * @param key - The key
  * @return The event
  */
 export function createKeyboardEvent(
   type: string,
-  keyCode: number,
+  key: KeyCode,
   target?: Element,
-  key?: string,
 ): KeyboardEvent {
   // NOTE: Cannot 'type' the event here due to the note about FireFox below
   const event = document.createEvent('KeyboardEvent') as any;
   // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
-  const initEventFn = (event.initKeyEvent || event.initKeyboardEvent).bind(event);
+  (event.initKeyEvent || event.initKeyboardEvent).bind(event);
   const originalPreventDefault = event.preventDefault;
-
-  initEventFn(type, true, true, window, 0, 0, 0, 0, 0, keyCode);
 
   // Webkit Browsers don't set the keyCode when calling the init function.
   // See related bug https://bugs.webkit.org/show_bug.cgi?id=16735
   Object.defineProperties(event, {
-    keyCode: { get: () => keyCode },
-    key: { get: () => key },
+    keyCode: { get: () => key.keyCode },
+    key: { get: () => key.code },
     target: { get: () => target },
+    code: { get: () => key.code },
   });
 
   // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
