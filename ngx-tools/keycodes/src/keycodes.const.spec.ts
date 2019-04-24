@@ -50,6 +50,7 @@ import {
   Y,
   Z,
   COMMA,
+  KEYS,
 } from './keycodes.const';
 
 
@@ -115,6 +116,14 @@ describe(`keycodes`, () => {
         expect(codes[code]).toEqual(expect.any(Number));
       }
     }
+  });
+
+  test('should all be valid strings', () => {
+    Object.keys(KEYS).forEach((k) => {
+      const value = KEYS[k as keyof typeof KEYS];
+      expect(value.code).toEqual(expect.any(String));
+      expect(value.keyCode).toEqual(expect.any(Number));
+    });
   });
 
 });

@@ -4,6 +4,7 @@ import {
   createMouseEvent,
   createTouchEvent,
 } from './event-objects';
+import { KeyCode } from '@terminus/ngx-tools/keycodes';
 
 
 /**
@@ -55,13 +56,13 @@ export function dispatchFakeEvent(node: Node | Window, type: string, canBubble?:
  *
  * @param node - The Node that should dispatch the keyboard event
  * @param type - The event type
- * @param keyCode - The event key code
+ * @param key - The KeycodesConst type (contains code and keyCode)
  * @param target - The target event element
  * @return The keyboard event
  */
-export function dispatchKeyboardEvent(node: Node, type: string, keyCode: number, target?: Element):
+export function dispatchKeyboardEvent(node: Node, type: string, key: KeyCode, target?: Element):
     KeyboardEvent {
-  return dispatchEvent(node, createKeyboardEvent(type, keyCode, target)) as KeyboardEvent;
+  return dispatchEvent(node, createKeyboardEvent(type, key, target)) as KeyboardEvent;
 }
 
 

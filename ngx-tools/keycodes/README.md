@@ -4,10 +4,14 @@
 
 ```typescript
 // Example usage:
-import { ESC } from '@terminus/ngx-tools/keycodes';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import { dispatchKeyboardEvent } from '@terminus/ngx-tools/testing';
 
-dispatchKeyboardEvent(myElementRef, 'keyup', ESC);
+dispatchKeyboardEvent(myElementRef, KEYS.ESCAPE);
+
+if (event.code === KEYS.ESCAPE.code) {
+  console.log('Got the correct key code');
+}
 ```
 
 
@@ -43,4 +47,5 @@ dispatchKeyboardEvent(myElementRef, 'keyup', ESC);
 | `ZERO`        |
 | `NINE`        |
 | `COMMA`       |
+| `ESCAPE`      |
 
