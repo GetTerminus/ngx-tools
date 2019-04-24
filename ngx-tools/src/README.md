@@ -23,6 +23,10 @@ isArray([]); // Returns: true
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
 - [`inputHasChanged`](#inputhaschanged)
+- [`isNull`](#isnull)
+- [`isSet`](#isset)
+- [`isUndefined`](#isundefined)
+- [`isUnset`](#isunset)
 - [`noop`](#noop)
 - [Object deep get & deep set](#object-deep-get--deep-set)
 - [`publicShapeOf`](#publicshapeof)
@@ -272,6 +276,74 @@ import { inputHasChanged } from '@terminus/ngx-tools';
     }
   }
 ...
+```
+
+### `isNull`
+
+[[source]](isNull/isNull.ts)
+
+Helper function to determine if input is null.
+
+```typescript
+import { isNull } from '@terminus/ngx-tools';
+
+const input: any = null;
+isNull(input); // Returns: true
+```
+
+
+### `isSet`
+
+Helper function to determine if input is set. This allows type coercion of the input.
+
+[[source]](isSet/isSet.ts)
+
+```typescript
+import { isSet } from '@terminus/ngx-tools';
+
+let input: any = null;
+isSet(input); // Returns: false
+
+input = undefined;
+isSet(input); // Returns: false
+
+isSet('foo'); // Returns: true
+
+isSet<number>(2); // Returns: true and coerces the type to `number`
+```
+
+
+### `isUndefined`
+
+Helper function to determine if input is undefined.
+
+[[source]](isUndefined/isUndefined.ts)
+
+```typescript
+import { isUndefined } from '@terminus/ngx-tools';
+
+let input: any = null;
+isUndefined(input); // Returns: false
+
+input = undefined;
+isUndefined(input); // Returns: true
+```
+
+
+### `isUnset`
+
+Helper function to determine if input is unset.
+
+[[source]](isUnset/isUnset.ts)
+
+```typescript
+import { isUnset } from '@terminus/ngx-tools';
+
+let input: any = null;
+isUnset(input); // Returns: true
+
+input = undefined;
+isUnset(input); // Returns: true
 ```
 
 
