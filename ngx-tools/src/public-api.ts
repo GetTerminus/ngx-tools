@@ -11,6 +11,7 @@ export * from './group-by/group-by';
 export * from './has-required-control/has-required-control';
 export * from './http-retryer/public-api';
 export * from './input-has-changed/input-has-changed';
+export * from './is-array-of-type/is-array-of-type';
 export * from './isNull/isNull';
 export * from './isSet/isSet';
 export * from './isUndefined/isUndefined';
