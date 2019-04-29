@@ -24,6 +24,7 @@ isArray([]); // Returns: true
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
 - [`inputHasChanged`](#inputhaschanged)
+- [`isArrayOfType](#isarrayoftype)
 - [`isNull`](#isnull)
 - [`isSet`](#isset)
 - [`isUndefined`](#isundefined)
@@ -295,6 +296,22 @@ import { inputHasChanged } from '@terminus/ngx-tools';
     }
   }
 ...
+```
+
+### `isArrayOfType
+
+[[source]](is-array-of-type/is-array-of-type.ts)
+
+Helper function to determine if all the members of an array are of a given type
+
+```typescript
+import { isArrayOfType, isNumber } from '@terminus/ngx-tools';
+
+const myArray = [1, 2, 3];
+isArrayOfType(myArray, isNumber); // returns true
+
+const mixedArray = [1, 'two', {three: 3}]
+isArrayOfType(myArray, isNumber); // returns false
 ```
 
 ### `isNull`
