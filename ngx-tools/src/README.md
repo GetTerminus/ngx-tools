@@ -19,6 +19,7 @@ isArray([]); // Returns: true
 - [`compactArray`](#compactarray)
 - [`debounce`](#debounce)
 - [`defineType` and `defineTypeEnum`](#definetype-and-definetypeenum)
+- [`getDomAttribute`](#getdomattribute)
 - [`getFormControlValue`](#getformcontrolvalue)
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
@@ -185,6 +186,24 @@ export enum actionTypes {
 
 defineTypeEnum(actionTypes);
 ```
+
+
+### `getDomAttribute`
+
+[[source]](get-dom-attribute/get-dom-attribute.ts)
+
+Retrieve the attribute value of an HTML Element
+
+```typescript
+import { getDomAttribute } from '@terminus/ngx-tools';
+
+const el = document.createElement('div');
+el.setAttribute('id', 'foo');
+
+getDomAttribute(el, 'class'); // returns undefined
+getDomAttribute(el, 'id'); // returns foo
+```
+
 
 ### `getFormControlValue`
 

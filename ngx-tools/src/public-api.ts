@@ -5,6 +5,7 @@ export * from './cookie-service/cookie.service';
 export * from './debounce/debounce';
 export * from './define-type/define-type';
 export * from './document/document.service';
+export * from './get-dom-attribute/get-dom-attribute';
 export * from './get-form-control-value/get-form-control-value';
 export * from './group-by/group-by';
 export * from './has-required-control/has-required-control';
