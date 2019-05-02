@@ -90,8 +90,7 @@ import { ClaimMap } from './somwhere';
 export class AppModule {}
 ```
 
-Check out your Redux Dev tools, you should now see the tokens store content and
-effects have been setup.
+Check out your Redux Dev tools, you should now see the tokens store content and effects have been setup.
 
 ### Step 3: Start collecting you token
 
@@ -132,6 +131,7 @@ import { TokenExtractor } from '@terminus/ngx-tools';
 
 After you perform this login, you will see that the new token is stored in your state.
 
+
 ### Step 4: Use the token for a service.
 
 In `some-service-related.effects.ts`
@@ -164,15 +164,13 @@ import { tokenFor } from '@terminus/ngx-tools';
   ) { }
 ```
 
-Now you will be making HTTP requests with the current token for the named service,
-or the default token is no specific token is known.
+Now you will be making HTTP requests with the current token for the named service, or the default token is no specific token is known.
 
 
 ### Step 5: Request token escalation and retry
 
-In the normal flow for token escalation, un-escalated tokens will trigger a 403 response.
-After a 403 the client is expected to reach out to an endpoint typically `/authorize` and
-get a new token.
+In the normal flow for token escalation, un-escalated tokens will trigger a 403 response.  After a 403 the client is expected to reach out
+to an endpoint typically `/authorize` and get a new token.
 
 Continuation of the snippet above
 
@@ -190,68 +188,63 @@ import { RetryWithEscalation } from '@terminus/ngx-tools';
   ) { }
 ```
 
-This has the effect of catching 403, requesting escalation and waiting for escalation
-success.
+This has the effect of catching 403, requesting escalation and waiting for escalation success.
 
 *If escalation is successful*, the stream the retry is attached to will be restarted.
 
-Don't forget how RxJS handles retries, it will retry the entire observable stream
-as is. That means that if your stream needs to fetch a new token for each retry.
+Don't forget how RxJS handles retries, it will retry the entire observable stream as is. That means that if your stream needs to fetch a new
+token for each retry.
 
-We also provided a `regenerateOnRetry(() => Observable<any>)` method which can
-be used to create a new observable on every retry.
+We also provided a `regenerateOnRetry(() => Observable<any>)` method which can be used to create a new observable on every retry.
 
+*If escalation fails* an error with be thrown. It will wait for a maximum of 30 seconds for success, then it will throw.
 
-*If escalation fails* an error with be thrown.
+*Note:* You are using an [http retryer][http-retryer] too right?
 
-It will wait for a maximum of 30 seconds for success, then it will throw.
-
-*Note:* You are using an [http retryer too right?](https://github.com/GetTerminus/ngx-tools/blob/master/ngx-tools/src/README.md#httpretryer)
 
 ### Step 6: Escalate a token when requested
 
-After the first 403 is received, you need to provide instructions on how to escalate
-the token.
+After the first `403` is received, you need to provide instructions on how to escalate the token.
 
 In an effect file which makes sense for your application
 
 ```typescript
 import { TokenEscalator } from '@terminus/ngx-tools';
 
-@Effect()
-public escalateService1$ = this.tokenEscalator.escalateToken({
-  tokenName: 'Service 1',
-  authorizeUrl: this.envService.pipe(                      // AuthorizeURL requires an observable,
-    map((env) => `${env.SERVICE_1_HOSTNAME}/v1/authorize`),  // but can be a single omission observable
-  ),                                                       // if that makes sense for your usage
-})
+  @Effect()
+  public escalateService1$ = this.tokenEscalator.escalateToken({
+    tokenName: 'Service 1',
+    authorizeUrl: this.envService.pipe(                      // AuthorizeURL requires an observable,
+      map((env) => `${env.SERVICE_1_HOSTNAME}/v1/authorize`),  // but can be a single omission observable
+    ),                                                       // if that makes sense for your usage
+  })
 
-constructor(
-  public tokenEscalator: TokenEscalator,
-  public envService: EnvService,
-) { }
+  constructor(
+    public tokenEscalator: TokenEscalator,
+    public envService: EnvService,
+  ) { }
 ```
 
 ### Step 7: Profit!
 
 At this point you have a full suite of helpers to manage JWT Escalation.
 
-## Initial Acquisition of a token
-A common pattern for sharing the JWT Token between services on a common top
-level domain is store the token in a Cookie. This module will eager load the
-value of the cookie and store it as the default token & the token named on module
-setup (See the forRoot call in step 1).
 
-NOTE: This token will only be stored if the JWT Token Management module state
-is in it's initial state, if you are storing the state in localStorage, it
-will only pick up the cookie once.
+## Initial Acquisition of a token
+
+A common pattern for sharing the JWT Token between services on a common top level domain is store the token in a Cookie. This module will
+eager load the value of the cookie and store it as the default token & the token named on module setup (See the forRoot call in step 1).
+
+NOTE: This token will only be stored if the JWT Token Management module state is in it's initial state, if you are storing the state in
+localStorage, it will only pick up the cookie once.
+
 
 ## Other common patterns
 
 ### Ensure a JWT Token is present
-The library exports a DefaultTokenRequired route guard which can be used to
-ensure a JWT Token has been loaded. This guard ONLY checks for the presence of
-a default token.
+
+The library exports a DefaultTokenRequired route guard which can be used to ensure a JWT Token has been loaded. This guard ONLY checks for
+the presence of a default token.
 
 ```typescript
 import { DefaultTokenRequired } from '@terminus/ngx-tools';
@@ -265,12 +258,11 @@ const routes = [
 ]
 ```
 
-This guard will prevent route activation if the default JWT token is not set.
-It will wait to respond until the Cookie has had a chance to have been read.
+This guard will prevent route activation if the default JWT token is not set.  It will wait to respond until the Cookie has had a chance to
+have been read.
 
-If the route fails to activate, the guard will dispatch an event
-FailedToActivateRoute. You probably want to redirect the user to the login page
-when this happens.
+If the route fails to activate, the guard will dispatch an event FailedToActivateRoute. You probably want to redirect the user to the login
+page when this happens.
 
 ```typescript
 import { JwtTokenManagmentActions } from '@terminus/ngx-tools';
@@ -282,11 +274,9 @@ navigatedWithoutToken$ = this.actions.pipe(
 )
 ```
 
-**WARNING**: The default token required waits for the state to transition from
-uninitialized. If you are using meta reducers that clear the state (such as on
-logout), you should be restoring the JWT Module state to an empty state. If you
-do not do this, you will need to re-initialize the module yourself
-(unsupported).
+**WARNING**: The default token required waits for the state to transition from uninitialized. If you are using meta reducers that clear the
+state (such as on logout), you should be restoring the JWT Module state to an empty state. If you do not do this, you will need to
+re-initialize the module yourself (unsupported).
 
 ```typescript
 import { jwtEmptyStateReset } from '@terminus/ngx-tools';
@@ -306,6 +296,7 @@ export function clearStateOnLogout(reducer: ActionReducer<any>): ActionReducer<a
   }
 }
 ```
+
 
 ### Renewal of a token
 
@@ -335,8 +326,7 @@ public renewService$ = this.actions$
       .pipe(
         this.tokenExtractor.extractJwtToken({tokenName: 'Service1'}),
       )
-      .pipe(catchError(() => of(NullAction))), // What a failure means is unique to your
-                                               // application
+      .pipe(catchError(() => of(NullAction))), // What a failure means is unique to your application
     ),
   )
 ```
@@ -389,9 +379,8 @@ Some testing mocks are included to provide quick hooks into captured tokens.
 
 ### RetryWithEscalationMock
 
-This mock will track all token names which have had escalation requested in the
-array `tokenEscalationsRequested`. You may also simulate failure and success (the default)
-by triggering `escalationSuccessful`.
+This mock will track all token names which have had escalation requested in the array `tokenEscalationsRequested`. You may also simulate
+failure and success (the default) by triggering `escalationSuccessful`.
 
 ```typescript
 import { RetryWithEscalationMock } from '@terminus/ngx-tools/testing';
@@ -409,8 +398,8 @@ retryMock = TestBed.get(RetryWithEscalation);
 
 ### TokenExtractorMock
 
-This mock will run through the process of extracting a token and store found tokens
-in the array `extractedTokens`. It will throw if it fails to find a token.
+This mock will run through the process of extracting a token and store found tokens in the array `extractedTokens`. It will throw if it
+fails to find a token.
 
 ```typescript
 import { TokenExtractorMock } from '@terminus/ngx-tools/testing';
@@ -428,20 +417,18 @@ extractorMock = TestBed.get(TokenExtractor);
 
 ### The Default Token
 
-A default token is not required, but is recommended. When no token is present for
-the token named, the default (un-escalated token) will be used.
+A default token is not required, but is recommended. When no token is present for the token named, the default (un-escalated token) will be
+used.
 
 
 ## Selectors
 
-JwtTokenManagmentModule provides selectors for inspecting the current token for
-a given named token.
+JwtTokenManagmentModule provides selectors for inspecting the current token for a given named token.
 
 
 ### tokenFor<ClaimMap, ServiceName>(serviceName)
 
-Provides the specific token for the provided service name, or the default token
-if no specific token is known.
+Provides the specific token for the provided service name, or the default token if no specific token is known.
 
 
 #### Inputs
@@ -456,8 +443,7 @@ String of the token, or undefined if no default token is known.
 
 ### claimsFor<ClaimMap, ServiceName>(serviceName)
 
-Provides the specific token for the provided service name, or the default token
-if no specific token is known.
+Provides the specific token for the provided service name, or the default token if no specific token is known.
 
 
 #### Inputs
@@ -475,8 +461,7 @@ A valid token is one that can be decoded without respect to expiration date.
 
 ## claimValue<ClaimMap, ServiceName, ClaimName>(serviceName, claimName)
 
-Provides the specific token for the provided service name, or the default token
-if no specific token is known.
+Provides the specific token for the provided service name, or the default token if no specific token is known.
 
 
 #### Inputs
@@ -502,8 +487,7 @@ Provides a new token for storage in the JWT Managment system.
 
 ### claimsFor<ClaimMap, ServiceName>(serviceName)
 
-Provides the specific token for the provided service name, or the default token
-if no specific token is known.
+Provides the specific token for the provided service name, or the default token if no specific token is known.
 
 
 #### Inputs
@@ -516,6 +500,7 @@ if no specific token is known.
 * `tokenName` - Must be a key of the [ClaimMap](#claim_map)
 * `token` - string of the encoded token
 * `isDefaultToken` - indicates that this token is to be used as the default token
+
 
 ## TokenNearingExpiration<ClaimMap>
 
@@ -560,14 +545,12 @@ This action is emitted when escalation has failed.
 
 ## Claim Map
 
-The claim map provides typings for all of the known tokens your application uses.
-These typings are used to verify consistent and limited naming.
+The claim map provides typings for all of the known tokens your application uses.  These typings are used to verify consistent and limited naming.
 
 The use of a single claim map is recommended across the entire application.
 
-**NOTE:** Consider the token life cycle during the escalation process. Ensure
-claims that are to be added after hitting the `/authorize` endpoint are listed
-as potentially undefined.
+**NOTE:** Consider the token life cycle during the escalation process. Ensure claims that are to be added after hitting the `/authorize`
+endpoint are listed as potentially undefined.
 
 
 ### Example
@@ -587,3 +570,6 @@ export interface AppClaimMap implements ClaimMap {
 
 }
 ```
+
+
+[http-retryer]: https://github.com/GetTerminus/ngx-tools/blob/release/ngx-tools/src/README.md#httpretryer
