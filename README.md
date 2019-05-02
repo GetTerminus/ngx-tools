@@ -181,22 +181,22 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 
 <!-- LINKS -->
-[circle-badge]: https://circleci.com/gh/GetTerminus/ngx-tools/tree/master.svg?style=shield
-[circle-link]: https://circleci.com/gh/GetTerminus/ngx-tools/tree/master
+[circle-badge]: https://circleci.com/gh/GetTerminus/ngx-tools/tree/release.svg?style=shield
+[circle-link]: https://circleci.com/gh/GetTerminus/ngx-tools/tree/release
 [semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [npm-url]: https://npmjs.org/package/@terminus/ngx-tools
 [npm-version-image]: http://img.shields.io/npm/v/@terminus/ngx-tools.svg
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
-[license-url]: https://github.com/GetTerminus/ngx-tools/blob/master/LICENSE
+[license-url]: https://github.com/GetTerminus/ngx-tools/blob/release/LICENSE
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [unpkg-tools]: https://unpkg.com/@terminus/ngx-tools/
 [commitizen]: https://github.com/commitizen
-[contributing]: https://github.com/GetTerminus/terminus-ui/blob/master/CONTRIBUTING.md
+[contributing]: https://github.com/GetTerminus/terminus-ui/blob/release/CONTRIBUTING.md
 [package-json]: ./package.json
 [gh-release-badge]: https://img.shields.io/github/release/GetTerminus/ngx-tools.svg
 [gh-releases]: https://github.com/GetTerminus/ngx-tools/releases/
-[codecov-badge]: https://codecov.io/gh/GetTerminus/ngx-tools/branch/master/graph/badge.svg
+[codecov-badge]: https://codecov.io/gh/GetTerminus/ngx-tools/branch/release/graph/badge.svg
 [codecov-project]: https://codecov.io/gh/GetTerminus/ngx-tools
 [all-contributors-key]: https://github.com/kentcdodds/all-contributors#emoji-key
 

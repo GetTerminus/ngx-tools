@@ -856,4 +856,4 @@ VERSION.patch // Returns: 3
 
 
 <!-- LINKS -->
-[docs-testing]: https://github.com/GetTerminus/ngx-tools/tree/master/ngx-tools/testing/README.md
+[docs-testing]: https://github.com/GetTerminus/ngx-tools/tree/release/ngx-tools/testing/README.md
