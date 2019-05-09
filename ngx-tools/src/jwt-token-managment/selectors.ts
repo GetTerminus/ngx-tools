@@ -1,7 +1,6 @@
 import {
   createFeatureSelector,
   createSelector,
-  MemoizedSelector,
 } from '@ngrx/store';
 
 import { jwtDecode } from './../jwt-decode/index';

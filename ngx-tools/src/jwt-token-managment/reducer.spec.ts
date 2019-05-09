@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
+import * as jwtActions from './actions';
 import {
   initialState,
   jwtTokenProviderReducer,
 } from './reducer';
-import * as jwtActions from './actions';
 
 interface MockClaimMap {
   foo: { bar?: string };
@@ -18,9 +18,7 @@ describe('jwtTokenProviderReducer', function() {
     test(`rejects the action if the state is already loaded`, () => {
       const startingState = {
         initialTokenStatus: 'loaded' as 'loaded',
-        tokens: {
-          foo: 'asdf',
-        },
+        tokens: {foo: 'asdf'},
       };
 
       expect(
@@ -35,9 +33,7 @@ describe('jwtTokenProviderReducer', function() {
     test(`rejects the action if the state is already empty`, () => {
       const startingState = {
         initialTokenStatus: 'empty' as 'empty',
-        tokens: {
-          foo: 'asdf',
-        },
+        tokens: {foo: 'asdf'},
       };
 
       expect(
@@ -124,9 +120,7 @@ describe('jwtTokenProviderReducer', function() {
         ),
       ).toEqual({
         initialTokenStatus: 'loaded',
-        tokens: {
-          bar: '123',
-        },
+        tokens: {bar: '123'},
       });
     });
 
@@ -149,9 +143,7 @@ describe('jwtTokenProviderReducer', function() {
         ),
       ).toEqual({
         initialTokenStatus: 'loaded',
-        tokens: {
-          foo: 'abcd',
-        },
+        tokens: {foo: 'abcd'},
       });
     });
 
@@ -161,9 +153,7 @@ describe('jwtTokenProviderReducer', function() {
         jwtTokenProviderReducer<MockClaimMap>(
           {
             initialTokenStatus: 'loaded',
-            tokens: {
-              dude: 'wassup',
-            },
+            tokens: {dude: 'wassup'},
           },
           new jwtActions.StoreToken<MockClaimMap>({
             tokenName: 'foo',
@@ -174,9 +164,7 @@ describe('jwtTokenProviderReducer', function() {
       ).toEqual({
         initialTokenStatus: 'loaded',
         defaultToken: 'abcd',
-        tokens: {
-          foo: 'abcd',
-        },
+        tokens: {foo: 'abcd'},
       });
     });
 
@@ -186,9 +174,7 @@ describe('jwtTokenProviderReducer', function() {
         jwtTokenProviderReducer<MockClaimMap>(
           {
             initialTokenStatus: 'loaded',
-            tokens: {
-              foo: 'foobar',
-            },
+            tokens: {foo: 'foobar'},
           },
           new jwtActions.StoreToken<MockClaimMap>({
             tokenName: 'foo',
@@ -197,9 +183,7 @@ describe('jwtTokenProviderReducer', function() {
         ),
       ).toEqual({
         initialTokenStatus: 'loaded',
-        tokens: {
-          foo: 'abcd',
-        },
+        tokens: {foo: 'abcd'},
       });
     });
 
@@ -208,7 +192,7 @@ describe('jwtTokenProviderReducer', function() {
 
   describe('a non recognized action', () => {
     class UnknownAction implements Action {
-      type: 'foobar' = 'foobar';
+      public type: 'foobar' = 'foobar';
       constructor() {}
     }
     const action = new UnknownAction();
@@ -225,15 +209,11 @@ describe('jwtTokenProviderReducer', function() {
       expect(
         jwtTokenProviderReducer<MockClaimMap>({
           initialTokenStatus: 'loaded',
-          tokens: {
-            foo: 'sadf',
-          },
+          tokens: {foo: 'sadf'},
         }, action as any),
       ).toEqual({
         initialTokenStatus: 'loaded',
-        tokens: {
-          foo: 'sadf',
-        },
+        tokens: {foo: 'sadf'},
       });
     });
 

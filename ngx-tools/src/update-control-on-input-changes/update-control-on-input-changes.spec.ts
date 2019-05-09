@@ -13,16 +13,8 @@ describe(`updateControlOnInputChanges`, function() {
     item2: new SimpleChange('foo', 'foo', false),
   } as SimpleChanges;
   const changedObject = {
-    item1: new SimpleChange({
-      foo: 'bar',
-    }, {
-      foo: 'xyz',
-    }, false),
-    item2: new SimpleChange({
-      foo: 'bar',
-    }, {
-      foo: 'bar',
-    }, false),
+    item1: new SimpleChange({foo: 'bar'}, {foo: 'xyz'}, false),
+    item2: new SimpleChange({foo: 'bar'}, {foo: 'bar'}, false),
   } as SimpleChanges;
   const control: FormControl = new FormControl();
 

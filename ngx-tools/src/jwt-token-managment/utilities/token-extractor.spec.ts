@@ -25,9 +25,7 @@ describe(`TokenExtractor`, function() {
   let extractor: TokenExtractor<MockClaimMap>;
 
   beforeEach(() => {
-    mockStore = {
-      dispatch: jest.fn(),
-    };
+    mockStore = {dispatch: jest.fn()};
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -45,24 +43,14 @@ describe(`TokenExtractor`, function() {
 
 
   test(`should dispatch a store token action when the header is found`, () => {
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer asdfkjlslfd',
-    });
-    const httpResponse = new HttpResponse({
-      headers,
-    });
+    const headers = new HttpHeaders({Authorization: 'Bearer asdfkjlslfd'});
+    const httpResponse = new HttpResponse({headers});
 
-    const stream = cold('a', {
-      a: httpResponse,
-    }).pipe(
-      extractor.extractJwtToken({
-        tokenName: 'foo',
-      }),
+    const stream = cold('a', {a: httpResponse}).pipe(
+      extractor.extractJwtToken({tokenName: 'foo'}),
     );
 
-    (expect(stream) as any).toBeObservable(cold('a', {
-      a: httpResponse,
-    }));
+    (expect(stream) as any).toBeObservable(cold('a', {a: httpResponse}));
 
     expect(mockStore.dispatch.mock.calls[0][0]).toEqual(
       new JwtActions.StoreToken<MinimalClaimMap>({
@@ -75,16 +63,10 @@ describe(`TokenExtractor`, function() {
 
   test(`should throw an error if no token is found`, () => {
     const headers = new HttpHeaders({});
-    const httpResponse = new HttpResponse({
-      headers,
-    });
+    const httpResponse = new HttpResponse({headers});
 
-    const stream = cold('a', {
-      a: httpResponse,
-    }).pipe(
-      extractor.extractJwtToken({
-        tokenName: 'foo',
-      }),
+    const stream = cold('a', {a: httpResponse}).pipe(
+      extractor.extractJwtToken({tokenName: 'foo'}),
     );
 
     (expect(stream) as any).toBeObservable(cold('#', {}, TOKEN_NOT_FOUND_ERROR));
@@ -92,20 +74,12 @@ describe(`TokenExtractor`, function() {
 
 
   test(`should throw an error if the header is funky`, () => {
-    const headers = new HttpHeaders({
-      Authorization: 'dude',
-    });
+    const headers = new HttpHeaders({Authorization: 'dude'});
 
-    const httpResponse = new HttpResponse({
-      headers,
-    });
+    const httpResponse = new HttpResponse({headers});
 
-    const stream = cold('a', {
-      a: httpResponse,
-    }).pipe(
-      extractor.extractJwtToken({
-        tokenName: 'foo',
-      }),
+    const stream = cold('a', {a: httpResponse}).pipe(
+      extractor.extractJwtToken({tokenName: 'foo'}),
     );
 
     (expect(stream) as any).toBeObservable(cold('#', {}, TOKEN_NOT_FOUND_ERROR));
@@ -114,22 +88,16 @@ describe(`TokenExtractor`, function() {
 
   test(`should dispatch a store token action when present in the body`, () => {
 
-    const responseBody = {
-      token: 'asdfkjlslfd',
-    };
+    const responseBody = {token: 'asdfkjlslfd'};
 
-    const stream = cold('a', {
-      a: responseBody,
-    }).pipe(
+    const stream = cold('a', {a: responseBody}).pipe(
       extractor.extractJwtToken({
         tokenName: 'foo',
         isDefaultToken: true,
       }),
     );
 
-    (expect(stream) as any).toBeObservable(cold('a', {
-      a: responseBody,
-    }));
+    (expect(stream) as any).toBeObservable(cold('a', {a: responseBody}));
 
     expect(mockStore.dispatch.mock.calls[0][0]).toEqual(
       new JwtActions.StoreToken<MinimalClaimMap>({

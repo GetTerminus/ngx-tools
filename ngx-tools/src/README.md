@@ -46,6 +46,7 @@ isArray([]); // Returns: true
   - [Document Service](#document-service)
   - [Window Service](#window-service)
 - [Verify Types](#verify-types)
+  - [`isAbstractControl`](#isabstractcontrol)
   - [`isArray`](#isarray)
   - [`isBoolean`](#isboolean)
   - [`isFunction`](#isfunction)

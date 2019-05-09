@@ -15,9 +15,7 @@ function realWindow(): Window {
 /**
  * Define a service that exposes the native window object
  */
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({providedIn: 'root'})
 export class TsWindowService {
 
   /**

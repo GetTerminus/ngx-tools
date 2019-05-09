@@ -17,21 +17,15 @@ describe(`exponentialBackoffDelaycalculatorulator`, function() {
 
   test(`should increase the time exponentially`, () => {
     expect(
-      calculator({
-        ...baseParams,
-      })(1),
+      calculator({...baseParams})(1),
     ).toEqual(200);
 
     expect(
-      calculator({
-        ...baseParams,
-      })(2),
+      calculator({...baseParams})(2),
     ).toEqual(400);
 
     expect(
-      calculator({
-        ...baseParams,
-      })(3),
+      calculator({...baseParams})(3),
     ).toEqual(800);
   });
 

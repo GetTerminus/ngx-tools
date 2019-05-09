@@ -39,9 +39,7 @@ export function jwtTokenProviderReducer<C = ClaimMap>(
     case JwtTokenProviderActions.ActionTypes.StoreToken: {
       const newState: JwtTokenProviderState = {
         ...state,
-        tokens: {
-          ...state.tokens,
-        },
+        tokens: {...state.tokens},
       };
 
 
@@ -57,9 +55,7 @@ export function jwtTokenProviderReducer<C = ClaimMap>(
     case JwtTokenProviderActions.ActionTypes.TokenExpired: {
       const newState = {
         ...state,
-        tokens: {
-          ...state.tokens,
-        },
+        tokens: {...state.tokens},
       };
 
       if (state.defaultToken && state.defaultToken === action.token) {

@@ -6,9 +6,7 @@ module.exports = {
     },
     '__TRANSFORM_HTML__': true,
   },
-  transform: {
-    '^.+\\.(ts|js|html)$': './../node_modules/jest-preset-angular/preprocessor.js',
-  },
+  transform: {'^.+\\.(ts|js|html)$': './../node_modules/jest-preset-angular/preprocessor.js'},
   testMatch: [
     '<rootDir>/testing/**/?(*.)(spec|test).ts?(x)',
   ],

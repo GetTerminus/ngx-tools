@@ -37,7 +37,7 @@ export function defineType<T extends string>(label: T): T {
  * defineTypeEnum(actionTypes);
  */
 // tslint:disable-next-line no-any
-export function defineTypeEnum(typeEnum: {[id: string]: any}): void  {
+export function defineTypeEnum(typeEnum: Record<string, any>): void  {
   for (const val in typeEnum) {
     if (typeEnum.hasOwnProperty(val)) {
       defineType(typeEnum[val]);

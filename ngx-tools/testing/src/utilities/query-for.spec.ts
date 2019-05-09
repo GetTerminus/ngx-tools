@@ -1,11 +1,11 @@
 import {
-  TestBed,
-  async,
-} from '@angular/core/testing';
-import {
   Component,
   DebugElement,
 } from '@angular/core';
+import {
+  async,
+  TestBed,
+} from '@angular/core/testing';
 
 import { queryFor } from './query-for';
 

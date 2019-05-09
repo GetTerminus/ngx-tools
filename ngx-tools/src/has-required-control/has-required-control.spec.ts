@@ -1,9 +1,9 @@
 // tslint:disable: no-non-null-assertion
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
-  AbstractControl,
 } from '@angular/forms';
 
 import { hasRequiredControl } from './has-required-control';

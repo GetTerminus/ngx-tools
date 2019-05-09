@@ -12,9 +12,7 @@ export class TsDocumentServiceMock {
       createTextRange: noop,
       appendChild: noop,
     },
-    createRange: () => ({
-      selectNodeContents: noop,
-    }),
+    createRange: () => ({selectNodeContents: noop}),
     execCommand: noop,
     createElement: noop,
   };

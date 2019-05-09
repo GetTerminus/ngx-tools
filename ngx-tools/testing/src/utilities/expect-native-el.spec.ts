@@ -1,15 +1,13 @@
-import {
-  TestBed,
-  async,
-} from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  async,
+  TestBed,
+} from '@angular/core/testing';
 
 import { expectNativeEl } from './expect-native-el';
 
 
-@Component({
-  template: `<div class="foo"></div>`,
-})
+@Component({template: `<div class="foo"></div>`})
 class TestComponent {}
 
 

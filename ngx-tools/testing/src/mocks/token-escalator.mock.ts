@@ -77,9 +77,7 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
 
         // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
         // tslint:disable-next-line deprecation
-        return of({
-          type: 'null op',
-        });
+        return of({type: 'null op'});
       }),
     );
     observ.subscribe(() => {});
