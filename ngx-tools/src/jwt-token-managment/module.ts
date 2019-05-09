@@ -46,15 +46,13 @@ export const reducers: ActionReducerMap<State, any> = {
   ],
 })
 export class JwtTokenManagementModule {
-  static forRoot<CM>({
-    initialTokenName,
-  }: {initialTokenName: keyof CM}) {
+  static forRoot<CM>(options: {initialTokenName: keyof CM}) {
     return {
       ngModule: JwtTokenManagementModule,
       providers: [
         {
           provide: INITIAL_TOKEN_NAME,
-          useValue: initialTokenName,
+          useValue: options.initialTokenName,
         },
       ],
     };
