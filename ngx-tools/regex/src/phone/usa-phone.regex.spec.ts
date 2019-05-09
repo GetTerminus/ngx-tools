@@ -16,7 +16,7 @@ const invalidNumbers: any = [
 ];
 
 
-describe(`usaPhoneRegex`, () => {
+describe(`usaPhoneRegex`, function() {
 
   test(`should return true for valid US phone numbers`, () => {
     for (const num of validNumbers) {

@@ -12,7 +12,7 @@ import { NgChangeObjectValueParser } from './../utilities/ngchange-object-value-
  */
 export function inputHasChanged(changes: SimpleChanges, path: string): boolean | undefined {
   if (!changes || !path) {
-    return;
+    return undefined;
   }
 
   const oldValue = NgChangeObjectValueParser.getOldValue(changes, path);
@@ -20,7 +20,6 @@ export function inputHasChanged(changes: SimpleChanges, path: string): boolean |
 
   if (oldValue !== newValue) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }

@@ -6,13 +6,9 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class ChangeDetectorRefMock {
-  markForCheck = () => {};
-  detach = () => {};
-  detectChanges = () => {};
-  checkNoChanges = () => {};
-  reattach = () => {};
+  public markForCheck = () => {};
+  public detach = () => {};
+  public detectChanges = () => {};
+  public checkNoChanges = () => {};
+  public reattach = () => {};
 }
-
-beforeEach(() => {
-
-});

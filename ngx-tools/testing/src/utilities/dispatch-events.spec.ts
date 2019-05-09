@@ -1,3 +1,5 @@
+import { KEYS } from '@terminus/ngx-tools/keycodes';
+
 import {
   dispatchEvent,
   dispatchFakeEvent,
@@ -9,10 +11,9 @@ import {
   createFakeEvent,
   createMouseEvent,
 } from './event-objects';
-import { KEYS } from '../../../keycodes/public-api';
 
 
-describe(`dispatch-events`, () => {
+describe(`dispatch-events`, function() {
   let nodeMock: Element;
 
   beforeEach(() => {
@@ -98,6 +99,5 @@ describe(`dispatch-events`, () => {
     });
 
   });
-
 
 });

@@ -1,30 +1,36 @@
-import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
-import { Store } from '@ngrx/store';
+import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { Store } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
-import { of, Observable } from 'rxjs';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
-import * as JwtActions from '../actions';
+import * as JwtActions from './../actions';
+import { ClaimMap } from './../claim-map';
 import { TokenEscalator } from './token-escalator';
 import { TokenExtractor } from './token-extractor';
-import { ClaimMap } from './../claim-map';
+
 
 interface MockClaimMap {
   foo: {bar: number};
 }
 
 
-describe(`TokenEscalator`, () => {
-  let mockStore: {select: jest.MockInstance<any>; dispatch: jest.MockInstance<any>};
-  let mockHttp: {get: jest.MockInstance<any>};
+describe(`TokenEscalator`, function() {
+  let mockStore: {select: jest.MockInstance<any, any>; dispatch: jest.MockInstance<any, any>};
+  let mockHttp: {get: jest.MockInstance<any, any>};
   let escalator: TokenEscalator<MockClaimMap>;
   let actions: Observable<any>;
   const tokenName = 'foo';
   const authorizeUrl = of('/foobar');
 
   beforeEach(() => {
-    mockHttp = {get: jest.fn() };
+    mockHttp = {
+      get: jest.fn(),
+    };
     mockStore = {
       select: jest.fn(),
       dispatch: jest.fn(),
@@ -50,14 +56,22 @@ describe(`TokenEscalator`, () => {
 
 
   test(`should dispatch success on a successful response`, () => {
-    actions = cold('a', {a: new JwtActions.EscalateToken<ClaimMap>(tokenName)});
-    const responseBody = {token: 'asdfkjlslfd'};
+    actions = cold('a', {
+      a: new JwtActions.EscalateToken<ClaimMap>(tokenName),
+    });
+    const responseBody = {
+      token: 'asdfkjlslfd',
+    };
     mockHttp.get.mockReturnValue(of(responseBody));
     mockStore.select.mockReturnValue(of('currentToken'));
 
     (
       expect(
-        escalator.escalateToken({tokenName, authorizeUrl, isDefaultToken: true}),
+        escalator.escalateToken({
+          tokenName,
+          authorizeUrl,
+          isDefaultToken: true,
+        }),
       ) as any
     ).toBeObservable(cold('a', {
       a: new JwtActions.EscalationSuccess<ClaimMap>(tokenName),
@@ -66,14 +80,20 @@ describe(`TokenEscalator`, () => {
 
 
   test(`should dispatch failed if the token fails to extract`, () => {
-    actions = cold('a', {a: new JwtActions.EscalateToken<ClaimMap>(tokenName)});
+    actions = cold('a', {
+      a: new JwtActions.EscalateToken<ClaimMap>(tokenName),
+    });
     const responseBody = {};
     mockHttp.get.mockReturnValue(of(responseBody));
     mockStore.select.mockReturnValue(of('currentToken'));
 
     (
       expect(
-        escalator.escalateToken({tokenName, authorizeUrl, isDefaultToken: true}),
+        escalator.escalateToken({
+          tokenName,
+          authorizeUrl,
+          isDefaultToken: true,
+        }),
       ) as any
     ).toBeObservable(cold('a', {
       a: new JwtActions.EscalationFailed<ClaimMap>(tokenName),

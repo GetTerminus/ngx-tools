@@ -4,7 +4,9 @@ import { isFunction } from './is-function';
 describe(`isFunction`, () => {
   const validFunctions: any[] = [
     () => true,
-    function() { return; },
+    function() {
+      return;
+    },
   ];
 
   const invalidFunctions: any = [

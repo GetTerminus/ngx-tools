@@ -54,7 +54,7 @@ import {
 } from './keycodes.const';
 
 
-describe(`keycodes`, () => {
+describe(`keycodes`, function() {
   const codes: number[] = [
     BACKSPACE,
     TAB,
@@ -118,8 +118,9 @@ describe(`keycodes`, () => {
     }
   });
 
+
   test('should all be valid strings', () => {
-    Object.keys(KEYS).forEach((k) => {
+    Object.keys(KEYS).forEach(k => {
       const value = KEYS[k as keyof typeof KEYS];
       expect(value.code).toEqual(expect.any(String));
       expect(value.keyCode).toEqual(expect.any(Number));

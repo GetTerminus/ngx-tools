@@ -1,12 +1,22 @@
 import { arrayContainsObject } from './array-contains-object';
 
 
-describe(`arrayContainsObject`, () => {
-  const obj1 = { id: 1 };
-  const obj2 = { id: 2 };
-  const obj3 = { id: 3 };
-  const obj4 = { id: 4 };
-  const obj5 = { id: 5 }; // not in array
+describe(`arrayContainsObject`, function() {
+  const obj1 = {
+    id: 1,
+  };
+  const obj2 = {
+    id: 2,
+  };
+  const obj3 = {
+    id: 3,
+  };
+  const obj4 = {
+    id: 4,
+  };
+  const obj5 = {
+    id: 5,
+  }; // not in array
   const array = [obj1, obj2, obj3, obj4];
   const fn = (v: any) => v.id;
   const filterTestFn = jest.fn(fn);

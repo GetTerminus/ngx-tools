@@ -1,11 +1,11 @@
-import { isArray  } from './is-array';
+import { isArray } from './is-array';
 
 
-describe(`isArray`, () => {
+describe(`isArray`, function() {
   const validArrays: any[] = [
     [],
     new Array(3),
-    Array.from([1, 2, 3], (x) => x + x),
+    Array.from([1, 2, 3], x => x + x),
     Array.of('foo'),
   ];
 

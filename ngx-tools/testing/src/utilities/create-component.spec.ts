@@ -15,7 +15,7 @@ import { createComponent } from './create-component';
   providedIn: 'root',
 })
 export class TestService {
-  foo() {
+  public foo() {
     return 'foo';
   }
 }
@@ -25,7 +25,7 @@ export class TestService {
   name: 'testPipe',
 })
 export class TestPipe implements PipeTransform {
-  transform(value: number): number {
+  public transform(value: number): number {
     return value * 2;
   }
 }
@@ -66,7 +66,7 @@ export class TestComponentWithService {
   template: ``,
 })
 export class TestComponentWithPipe {
-  foo: number;
+  public foo: number;
   constructor(
     public testPipe: TestPipe,
   ) {

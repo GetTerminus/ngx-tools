@@ -5,6 +5,7 @@
  * @param guard - test for specific type
  * @return boolean
  */
+// tslint:disable-next-line no-any
 export function isArrayOfType<T>(x: any[], guard: (y: any) => y is T): x is T[] {
   for (const value of x) {
     if (!guard(value)) {

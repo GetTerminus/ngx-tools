@@ -1,7 +1,7 @@
 import { typeInElement } from './type-in-element';
 
 
-describe(`typeInElement`, () => {
+describe(`typeInElement`, function() {
   let nodeMock: HTMLInputElement;
 
   beforeEach(() => {

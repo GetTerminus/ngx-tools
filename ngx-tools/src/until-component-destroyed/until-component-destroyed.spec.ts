@@ -3,10 +3,12 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
+import {
+  interval,
+  Subscription,
+} from 'rxjs';
 
 import { untilComponentDestroyed } from './until-component-destroyed';
-
 
 
 @Component({
@@ -47,7 +49,7 @@ class TestHostDoubleComponent implements OnDestroy, OnInit {
 }
 
 
-describe(`untilComponentDestroyed`, () => {
+describe(`untilComponentDestroyed`, function() {
 
   test(`should cancel an observable stream during the destroy cycle`, () => {
     const testComponent: TestHostComponent = new TestHostComponent();
@@ -93,4 +95,5 @@ describe(`untilComponentDestroyed`, () => {
       expect(testComponent.stub2).toHaveBeenCalledTimes(3);
     }, 5000);
   });
+
 });

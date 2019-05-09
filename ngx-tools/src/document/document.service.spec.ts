@@ -1,9 +1,9 @@
 import { TsDocumentService } from './document.service';
 
 
-describe(`TsDocumentService`, () => {
+describe(`TsDocumentService`, function() {
 
-  it(`should return the window object`, () => {
+  test(`should return the window object`, () => {
     const service = new TsDocumentService();
 
     expect(service.document).toBeTruthy();

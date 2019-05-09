@@ -1,5 +1,11 @@
-import { Type, Provider } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  Provider,
+  Type,
+} from '@angular/core';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
 
 /**
@@ -13,6 +19,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 export function createComponent<T>(
   component: Type<T>,
   providers: Provider[] = [],
+  // tslint:disable-next-line no-any
   imports: any[] = [],
 ): ComponentFixture<T> {
   TestBed.configureTestingModule({

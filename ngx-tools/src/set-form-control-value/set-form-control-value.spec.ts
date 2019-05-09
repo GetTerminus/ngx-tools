@@ -6,7 +6,7 @@ import {
 import { setFormControlValue } from './set-form-control-value';
 
 
-describe(`setFormControlValue`, () => {
+describe(`setFormControlValue`, function() {
   const controlValue = 'new value';
   const formBuilder = new FormBuilder();
   let formGroup: FormGroup;
@@ -33,8 +33,8 @@ describe(`setFormControlValue`, () => {
   test(`should set the passed in value if value is set`, () => {
     setFormControlValue(formGroup, 'control1', controlValue);
     const control = formGroup.get('control1');
-      // tslint:disable-next-line:no-non-null-assertion
-      expect(control!.value).toEqual(controlValue);
+    // tslint:disable-next-line:no-non-null-assertion
+    expect(control!.value).toEqual(controlValue);
   });
 
 });

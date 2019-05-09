@@ -19,7 +19,7 @@ import { queryFor } from './query-for';
 class TestComponent {}
 
 
-describe(`queryFor`, () => {
+describe(`queryFor`, function() {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -4,6 +4,7 @@
  * @param input - the input being tested
  * @return boolean
  */
-export function isNull(input: any): boolean {
+// tslint:disable-next-line no-any
+export function isNull(input: any): input is null {
   return input === null;
 }

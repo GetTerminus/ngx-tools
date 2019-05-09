@@ -1,13 +1,12 @@
 import { isBoolean } from './is-boolean';
 
 
-describe(`isBoolean`, () => {
+describe(`isBoolean`, function() {
   const validBooleans: any[] = [
     true,
     false,
-    // tslint:disable: no-construct
+    // eslint-disable-next-line no-new-wrappers
     new Boolean(true),
-    // tslint:enable: no-construct
   ];
 
   const invalidBooleans: any[] = [

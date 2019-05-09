@@ -81,7 +81,7 @@ const invalidUrls = [
 ];
 
 
-describe(`urlOptionalProtocolRegex`, () => {
+describe(`urlOptionalProtocolRegex`, function() {
 
   test(`should return true for valid URL with or without a protocol`, () => {
     for (const url of validUrls) {

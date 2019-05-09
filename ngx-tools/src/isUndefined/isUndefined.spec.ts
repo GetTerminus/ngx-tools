@@ -1,27 +1,25 @@
 import { isUndefined } from './isUndefined';
 
-describe(`isUndefined`, () => {
+
+describe(`isUndefined`, function() {
+
+  const shouldReturnFalse = [
+    null,
+    60,
+    'bar',
+  ];
+
+
   test(`should return true when passed undefined`, () => {
-    const input: any = undefined;
-
-    expect(isUndefined(input)).toEqual(true);
+    expect(isUndefined(void 0)).toEqual(true);
   });
 
-  test(`should return false when passed null`, () => {
-    const input: any = null;
 
-    expect(isUndefined(input)).toEqual(false);
+  test(`should should return false`, function() {
+    for (const value of shouldReturnFalse) {
+      expect(isUndefined(value)).toEqual(false);
+    }
+    expect.assertions(shouldReturnFalse.length);
   });
 
-  test(`should return false when passed number`, () => {
-    const input: any = 60;
-
-    expect(isUndefined(input)).toEqual(false);
-  });
-
-  test(`should return false when passed string`, () => {
-    const input: any = 'bar';
-
-    expect(isUndefined(input)).toEqual(false);
-  });
 });

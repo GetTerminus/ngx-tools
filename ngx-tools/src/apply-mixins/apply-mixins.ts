@@ -7,9 +7,11 @@
  * @param baseCtors - An array of classes to combine into the target class
  * @return The mixed class
  */
+// tslint:disable-next-line no-any
 export function applyMixins(derivedCtor: any, baseCtors: any[]) {
-  baseCtors.forEach((baseCtor) => {
-    Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
+  baseCtors.forEach(baseCtor => {
+    // tslint:disable no-unsafe-any
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
       derivedCtor.prototype[name] = baseCtor.prototype[name];
     });
   });

@@ -22,7 +22,7 @@ const invalidNumbers: any[] = [
 ];
 
 
-describe(`containsNumbers`, () => {
+describe(`containsNumbers`, function() {
 
 
   describe(`containsNumbersRegex`, () => {

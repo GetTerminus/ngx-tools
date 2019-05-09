@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
  *
  * @return The native document object
  */
-export function _document(): any {
+// tslint:disable-next-line no-any
+export function originalDocument(): Document {
   return document;
 }
 
@@ -24,8 +25,8 @@ export class TsDocumentService {
    *
    * @return The function that returns the native document object
    */
-  get document() {
-    return _document();
+  public get document() {
+    return originalDocument();
   }
 
 }

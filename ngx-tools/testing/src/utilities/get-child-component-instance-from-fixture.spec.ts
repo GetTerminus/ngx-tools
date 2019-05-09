@@ -18,14 +18,12 @@ class TestComponent {
 }
 
 @Component({
-  template: `
-    <ts-test></ts-test>
-  `,
+  template: `<ts-test></ts-test>`,
 })
 class TestHostComponent {}
 
 
-describe(`getChildComponentInstanceFromFixture`, () => {
+describe(`getChildComponentInstanceFromFixture`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(() => {

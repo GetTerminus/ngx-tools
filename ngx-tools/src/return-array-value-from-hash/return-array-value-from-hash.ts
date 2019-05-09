@@ -6,9 +6,7 @@
  * @return The array of values that match keys
  */
 export function returnValuesByKeys<T>(keys: Array<string|number>, hash: {[key: string]: T}): T[] {
-  const stringyKeys: string[] = keys.map((id: number | string): string => {
-    return id.toString();
-  });
+  const stringyKeys: string[] = keys.map((id: number | string): string => id.toString());
   const values: T[] = [];
 
   for (const key of stringyKeys) {

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
  *
  * @return The native window object
  */
-function _window(): Window {
+function realWindow(): Window {
   // return the native window object
   return window;
 }
@@ -25,8 +25,8 @@ export class TsWindowService {
    *
    * @return The function that returns the native window object
    */
-  get nativeWindow(): Window {
-    return _window();
+  public get nativeWindow(): Window {
+    return realWindow();
   }
 
 }

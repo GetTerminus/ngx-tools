@@ -31,29 +31,29 @@ export interface StoreTokenConstructor<C> {
  * InitialTokenExtracted
  */
 export class InitialTokenExtracted implements Action {
-  type: typeof ActionTypes.InitialTokenExtracted = ActionTypes.InitialTokenExtracted;
+  public type: typeof ActionTypes.InitialTokenExtracted = ActionTypes.InitialTokenExtracted;
 
-  constructor(public token: string) { }
+  public constructor(public token: string) { }
 }
 
 /**
  * FailedToActivateRoute
  */
 export class FailedToActivateRoute implements Action {
-  type: typeof ActionTypes.FailedToActivateRoute = ActionTypes.FailedToActivateRoute;
+  public type: typeof ActionTypes.FailedToActivateRoute = ActionTypes.FailedToActivateRoute;
 }
 
 /**
  * StoreToken
  */
 export class StoreToken<C> implements Action {
-  type: typeof ActionTypes.StoreToken = ActionTypes.StoreToken;
+  public type: typeof ActionTypes.StoreToken = ActionTypes.StoreToken;
 
   public tokenName: Extract<keyof C, string>;
   public token: string;
   public isDefaultToken: boolean;
 
-  constructor(
+  public constructor(
     {
       tokenName,
       token,
@@ -71,18 +71,18 @@ export class StoreToken<C> implements Action {
  * TokenExpired
  */
 export class TokenExpired<C> implements Action {
-  type: typeof ActionTypes.TokenExpired = ActionTypes.TokenExpired;
+  public type: typeof ActionTypes.TokenExpired = ActionTypes.TokenExpired;
 
   public tokenName: Extract<keyof C, string>;
   public token: string;
 
-  constructor(
+  public constructor(
     {
       tokenName,
       token,
     }: {tokenName: Extract<keyof C, string>; token: string},
   ) {
-    this.tokenName = tokenName as Extract<keyof C, string>;
+    this.tokenName = tokenName;
     this.token = token;
   }
 }
@@ -92,7 +92,7 @@ export class TokenExpired<C> implements Action {
  * AllTokensExpired
  */
 export class AllTokensExpired implements Action {
-  type: typeof ActionTypes.AllTokensExpired = ActionTypes.AllTokensExpired;
+  public type: typeof ActionTypes.AllTokensExpired = ActionTypes.AllTokensExpired;
 }
 
 
@@ -100,12 +100,12 @@ export class AllTokensExpired implements Action {
  * TokenNearingExpiration
  */
 export class TokenNearingExpiration<C> implements Action {
-  type: typeof ActionTypes.TokenNearingExpiration = ActionTypes.TokenNearingExpiration;
+  public type: typeof ActionTypes.TokenNearingExpiration = ActionTypes.TokenNearingExpiration;
 
   public tokenName: Extract<keyof C, string>;
   public token: string;
 
-  constructor(
+  public constructor(
     {
       tokenName,
       token,
@@ -121,9 +121,9 @@ export class TokenNearingExpiration<C> implements Action {
  * EscalateToken
  */
 export class EscalateToken<C> implements Action {
-  type: typeof ActionTypes.EscalateToken = ActionTypes.EscalateToken;
+  public type: typeof ActionTypes.EscalateToken = ActionTypes.EscalateToken;
 
-  constructor(public tokenName: Extract<keyof C, string>) {}
+  public constructor(public tokenName: Extract<keyof C, string>) {}
 }
 
 
@@ -131,9 +131,9 @@ export class EscalateToken<C> implements Action {
  * EscalationSuccess
  */
 export class EscalationSuccess<C> implements Action {
-  type: typeof ActionTypes.EscalationSuccess = ActionTypes.EscalationSuccess;
+  public type: typeof ActionTypes.EscalationSuccess = ActionTypes.EscalationSuccess;
 
-  constructor(public tokenName: Extract<keyof C, string>) {}
+  public constructor(public tokenName: Extract<keyof C, string>) {}
 }
 
 
@@ -141,9 +141,9 @@ export class EscalationSuccess<C> implements Action {
  * EscalationFailed
  */
 export class EscalationFailed<C> implements Action {
-  type: typeof ActionTypes.EscalationFailed = ActionTypes.EscalationFailed;
+  public type: typeof ActionTypes.EscalationFailed = ActionTypes.EscalationFailed;
 
-  constructor(public tokenName: Extract<keyof C, string>) {}
+  public constructor(public tokenName: Extract<keyof C, string>) {}
 }
 
 

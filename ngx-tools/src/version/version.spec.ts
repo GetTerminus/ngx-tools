@@ -1,7 +1,10 @@
-import { Version, VERSION } from './version';
+import {
+  Version,
+  VERSION,
+} from './version';
 
 
-describe(`Version`, () => {
+describe(`Version`, function() {
 
   test(`should expose a Version object`, () => {
     const version = new Version('9.8.7-beta.1');
@@ -11,11 +14,10 @@ describe(`Version`, () => {
     expect(version.patch).toEqual('7-beta.1');
   });
 
-
 });
 
 
-describe(`VERSION`, () => {
+describe(`VERSION`, function() {
 
   test(`should have full version object`, () => {
     expect(VERSION.full).toEqual('0.0.0-PLACEHOLDER');

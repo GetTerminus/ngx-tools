@@ -18,13 +18,13 @@ function preserveCamelCase(input: string): string {
     const c = input[i];
 
     if (isLastCharLower && /[a-zA-Z]/.test(c) && c.toUpperCase() === c) {
-      input = input.slice(0, i) + '-' + input.slice(i);
+      input = `${input.slice(0, i)}-${input.slice(i)}`;
       isLastCharLower = false;
       isLastLastCharUpper = isLastCharUpper;
       isLastCharUpper = true;
       i++;
     } else if (isLastCharUpper && isLastLastCharUpper && /[a-zA-Z]/.test(c) && c.toLowerCase() === c) {
-      input = input.slice(0, i - 1) + '-' + input.slice(i - 1);
+      input = `${input.slice(0, i - 1)}-${input.slice(i - 1)}`;
       isLastLastCharUpper = isLastCharUpper;
       isLastCharUpper = false;
       isLastCharLower = true;
@@ -39,6 +39,13 @@ function preserveCamelCase(input: string): string {
 }
 
 
+/**
+ * Post process a conversion into PascalCase if necessary
+ *
+ * @param x - The string
+ * @param pascalCase - A boolean representing if the string should be converted to PascalCase
+ * @return The final string
+ */
 function postProcess(x: string, pascalCase: boolean): string {
   return pascalCase ? x.charAt(0).toUpperCase() + x.slice(1) : x;
 }
@@ -47,12 +54,13 @@ function postProcess(x: string, pascalCase: boolean): string {
 /**
  * Convert a string to camelCase
  *
- * @param value - The string to convert
+ * @param input - The string to convert
+ * @param pascalCase - A boolean representing if the string should be converted to PascalCase
  * @return The camelCase version of the string
  */
-export function toCamelCase(input: string, pascalCase: boolean = false): string | undefined {
+export function toCamelCase(input: string, pascalCase = false): string | undefined {
   if (!input) {
-    return;
+    return undefined;
   }
 
   // Trim whitespace
@@ -76,7 +84,7 @@ export function toCamelCase(input: string, pascalCase: boolean = false): string 
   input = input
     .replace(/^[_.\- ]+/, '')
     .toLowerCase()
-    .replace(/[_.\- ]+(\w|$)/g, (m, p1) => p1.toUpperCase());
+    .replace(/[_.\- ]+(\w|$)/g, (m, p1: string) => p1.toUpperCase());
 
   return postProcess(input, pascalCase);
 }

@@ -9,7 +9,7 @@ import {
 import { hasRequiredControl } from './has-required-control';
 
 
-describe(`hasRequiredControl`, () => {
+describe(`hasRequiredControl`, function() {
   let formBuilder: FormBuilder;
   let myForm: FormGroup;
 

@@ -1,15 +1,16 @@
 import { isString } from './is-string';
 
 
-describe(`isString`, () => {
-  const obj = {foo: 'bar'};
+describe(`isString`, function() {
+  const obj = {
+    foo: 'bar',
+  };
   const myString = 'foo';
   const validStrings: any[] = [
     'foo',
     `${myString}`,
-    // tslint:disable: no-construct
+    // eslint-disable-next-line no-new-wrappers
     new String(myString),
-    // tslint:enable: no-construct
     obj.foo,
   ];
   const invalidStrings: any[] = [

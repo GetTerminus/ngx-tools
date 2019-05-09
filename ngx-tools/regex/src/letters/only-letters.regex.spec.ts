@@ -16,7 +16,7 @@ const invalidStrings = [
 ];
 
 
-describe(`lettersRegex`, () => {
+describe(`lettersRegex`, function() {
 
   test(`should return true for strings with only letters`, () => {
     for (const str of validStrings) {

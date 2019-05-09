@@ -9,6 +9,8 @@
  * @param value - The value to check
  * @return The result (if the value is a number)
  */
+// tslint:disable-next-line no-any
 export function isNumber(value: any): value is number {
-  return !isNaN(parseFloat(value as any)) && !isNaN(Number(value));
+  // tslint:disable-next-line no-unsafe-any
+  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
 }

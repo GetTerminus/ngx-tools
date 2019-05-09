@@ -11,11 +11,10 @@ export class NgChangeObjectValueParser {
    * @param path - string
    * @return lowest layer value or changes object itself when path cannot be parsed
    */
-  static getOldValue(changes: SimpleChanges, path: string): any {
-    let keys: string[];
-    let key: string;
-
-    [keys, key] = this.parsePath(path);
+  // tslint:disable-next-line no-any
+  public static getOldValue(changes: SimpleChanges, path: string): any {
+    const [keys, key] = this.parsePath(path);
+    // tslint:disable-next-line no-unsafe-any
     return (key && changes[key]) ? objectDeepParse(changes[key].previousValue, keys) : undefined;
   }
 
@@ -27,11 +26,10 @@ export class NgChangeObjectValueParser {
    * @param path - string
    * @return lowest layer value or changes object itself when path cannot be parsed
    */
-  static getNewValue(changes: SimpleChanges, path: string): any {
-    let keys: string[];
-    let key: string;
-
-    [keys, key] = this.parsePath(path);
+  // tslint:disable-next-line no-any
+  public static getNewValue(changes: SimpleChanges, path: string): any {
+    const [keys, key] = this.parsePath(path);
+    // tslint:disable-next-line no-unsafe-any
     return (key && changes[key]) ? objectDeepParse(changes[key].currentValue, keys) : undefined;
   }
 
@@ -42,7 +40,7 @@ export class NgChangeObjectValueParser {
    * @param path - string
    * @return an array of two elements, one being an array of all the keys except first one, one being the first key
    */
-  static parsePath(path: string): [string[], string] {
+  public static parsePath(path: string): [string[], string] {
     const keys = path.split('.');
     let key = keys.shift();
 

@@ -1,9 +1,11 @@
-// tslint:disable: component-selector
-import { Component, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {
+  Component,
+  PLATFORM_ID,
+} from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { TsCookieService } from './cookie.service';
-import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -16,19 +18,19 @@ export class TesHostComponent {
 
 const create = (isBrowser = true): any[] => {
   class DocumentMock {
-    cookies: {[key: string]: any} = {};
+    public cookies: {[key: string]: any} = {};
 
-    get cookie() {
+    public get cookie() {
       const output = [];
       for (const cookieName in this.cookies) {
         if (cookieName) {
-          output.push(cookieName + '=' + this.cookies[cookieName]);
+          output.push(`${cookieName  }=${  this.cookies[cookieName]}`);
         }
       }
       return output.join('');
     }
 
-    set cookie(value) {
+    public set cookie(value) {
       const indexOfSeparator = value.indexOf('=');
       const key = value.substr(0, indexOfSeparator);
       const newValue = value.substring(indexOfSeparator + 1);
@@ -44,14 +46,20 @@ const create = (isBrowser = true): any[] => {
   ];
 
   if (isBrowser) {
-    providers.push({provide: PLATFORM_ID, useValue: 'browser'});
+    providers.push({
+      provide: PLATFORM_ID,
+      useValue: 'browser',
+    });
   } else {
-    providers.push({provide: PLATFORM_ID, useValue: 'server'});
+    providers.push({
+      provide: PLATFORM_ID,
+      useValue: 'server',
+    });
   }
 
   TestBed.configureTestingModule({
     declarations: [TesHostComponent],
-    providers: providers,
+    providers,
   }).compileComponents();
 
   return [TestBed.get(TsCookieService), TestBed.get(DOCUMENT)];
@@ -80,7 +88,7 @@ describe(`TsCookieService`, function() {
     test(`should set expires from a number if it exists`, function() {
       const [service, document] = create();
       service.set('bar', 'baz', 2);
-      const expectedDate = new Date(new Date().getTime() + 2 * 1000 * 60 * 60 * 24).toUTCString();
+      const expectedDate = new Date(new Date().getTime() + (2 * 1000 * 60 * 60 * 24)).toUTCString();
 
       expect(document.cookie).toEqual(`bar=baz;expires=${expectedDate};`);
     });

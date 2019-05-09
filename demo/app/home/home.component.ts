@@ -1,20 +1,19 @@
+/* eslint-disable no-console */
+import { HttpClient } from '@angular/common/http';
 import {
   Component,
   OnInit,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
 import {
-  retryWithBackoff,
-  exponentialBackoffDelayCalculator,
   DelayCalculator,
-  TsWindowService,
+  exponentialBackoffDelayCalculator,
+  retryWithBackoff,
   TsDocumentService,
+  TsWindowService,
 } from '@terminus/ngx-tools';
-
 import { emailRegex } from '@terminus/ngx-tools/regex';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 console.log('emailRegex: ', emailRegex.test('foo@bar.com'), emailRegex.test('foo'));
 
 import { ZERO } from '@terminus/ngx-tools/keycodes';
@@ -28,10 +27,12 @@ console.log('coerceBooleanProperty: ', coerceBooleanProperty(''));
 
 export interface GithubApi {
   items: GithubIssue[];
+  // eslint-disable-next-line camelcase
   total_count: number;
 }
 
 export interface GithubIssue {
+  // eslint-disable-next-line camelcase
   created_at: string;
   number: string;
   state: string;
@@ -42,19 +43,20 @@ export interface GithubIssue {
  * An example database that the data source uses to retrieve data for the table.
  */
 export class ExampleHttpDao {
-  tries: number = 0;
+  public tries = 0;
 
-  constructor(private http: HttpClient) {}
+  public constructor(private http: HttpClient) {}
 
-  getRepoIssues(): any {
+  public getRepoIssues(): Observable<GithubApi> {
     const href = 'https://api.github.com/search/issues?q=repo:GetTerminus/terminus-ui';
     this.tries = 0;
     return this.http.get<GithubApi>(`${href}`)
       .pipe(
-        map((i) => {
+        map(i => {
+          const MAX_TRIES = 3;
           console.log('in API: this.tries: ', this.tries);
           this.tries++;
-          if (this.tries < 3) {
+          if (this.tries < MAX_TRIES) {
             throw new Error('no soup for you');
           }
           return i;
@@ -71,14 +73,14 @@ export class ExampleHttpDao {
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  exampleDatabase: ExampleHttpDao;
-  issues$: any;
-  totalCount: number | undefined;
-  window: Window;
-  document: Document;
+  public exampleDatabase: ExampleHttpDao;
+  public issues$!: Observable<GithubApi | null>;
+  public totalCount: number | undefined;
+  public window: Window;
+  public document: Document;
 
 
-  constructor(
+  public constructor(
     private http: HttpClient,
     private windowService: TsWindowService,
     private documentService: TsDocumentService,
@@ -97,8 +99,10 @@ export class HomeComponent implements OnInit {
     console.log('HOME: ngOnInit');
 
     this.issues$ = this.getIssues();
-    this.issues$.subscribe((v: any) => {
-      this.totalCount = v.total_count;
+    this.issues$.subscribe((v: GithubApi | null) => {
+      if (v) {
+        this.totalCount = v.total_count;
+      }
     });
   }
 
@@ -117,12 +121,15 @@ export class HomeComponent implements OnInit {
             console.log('getIssues: res: ', res);
             return res;
 
-          } else {
-            console.log('getIssues: no res');
-            return null;
           }
+          console.log('getIssues: no res');
+          return null;
+
         }),
-        retryWithBackoff({retries: 3, delayCalculator: exponentialBackoffDelayCalculator(calcOpts)}),
+        retryWithBackoff({
+          retries: 3,
+          delayCalculator: exponentialBackoffDelayCalculator(calcOpts),
+        }),
       )
     ;
   }

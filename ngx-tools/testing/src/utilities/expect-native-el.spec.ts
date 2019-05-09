@@ -2,22 +2,18 @@ import {
   TestBed,
   async,
 } from '@angular/core/testing';
-import {
-  Component,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 import { expectNativeEl } from './expect-native-el';
 
 
 @Component({
-  template: `
-    <div class="foo"></div>
-  `,
+  template: `<div class="foo"></div>`,
 })
 class TestComponent {}
 
 
-describe(`expectNativeEl`, () => {
+describe(`expectNativeEl`, function() {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

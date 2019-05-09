@@ -1,7 +1,7 @@
 import { coerceArray } from './array';
 
 
-describe(`coerceArray`, () => {
+describe(`coerceArray`, function() {
 
   test(`should wrap a string in an array`, () => {
     const stringVal = 'just a string';
@@ -16,7 +16,9 @@ describe(`coerceArray`, () => {
 
 
   test(`should wrap an object in an array`, () => {
-    const objectVal = { something: 'clever' };
+    const objectVal = {
+      something: 'clever',
+    };
     expect(coerceArray(objectVal)).toEqual([objectVal]);
   });
 

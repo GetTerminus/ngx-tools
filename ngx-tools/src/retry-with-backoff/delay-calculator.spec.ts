@@ -1,7 +1,7 @@
 import { exponentialBackoffDelayCalculator as calculator } from './delay-calculator';
 
 
-describe(`exponentialBackoffDelaycalculatorulator`, () => {
+describe(`exponentialBackoffDelaycalculatorulator`, function() {
   const baseParams = {
     baseWaitTime: 100,
     jitter: false,
@@ -16,7 +16,6 @@ describe(`exponentialBackoffDelaycalculatorulator`, () => {
 
 
   test(`should increase the time exponentially`, () => {
-
     expect(
       calculator({
         ...baseParams,
@@ -34,12 +33,10 @@ describe(`exponentialBackoffDelaycalculatorulator`, () => {
         ...baseParams,
       })(3),
     ).toEqual(800);
-
   });
 
 
   test(`should allow for jitter customization`, () => {
-
     const expected1 = calculator({
       ...baseParams,
       jitter: false,
@@ -51,7 +48,6 @@ describe(`exponentialBackoffDelaycalculatorulator`, () => {
       jitter: true,
     })(1);
     expect(expected2).toBeLessThan(200);
-
   });
 
 });

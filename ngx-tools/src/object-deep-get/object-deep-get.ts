@@ -7,12 +7,14 @@
  * @param defaultValue (optional) - The value returned for undefined resolved values.
  * @return The updated object
  */
-export function objectDeepGet(object: {[key: string]: any}, path: string, defaultValue?: any): any {
+// tslint:disable-next-line no-any
+export function objectDeepGet(object: Record<string, any>, path: string, defaultValue?: any): any {
   if (!object) {
     return defaultValue;
   }
 
   const keys = path.split('.');
+  // tslint:disable-next-line no-unsafe-any
   object = object[keys[0]];
 
   if (object && keys.length > 1) {

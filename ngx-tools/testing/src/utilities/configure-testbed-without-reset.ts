@@ -14,8 +14,14 @@ import {
  */
 export function configureTestBedWithoutReset(moduleDef: TestModuleMetadata) {
   const resetTestingModule = TestBed.resetTestingModule;
-  const preventAngularFromResetting = () => TestBed.resetTestingModule = () => TestBed;
-  const allowAngularToReset = () => TestBed.resetTestingModule = resetTestingModule;
+  const preventAngularFromResetting = () => {
+    TestBed.resetTestingModule = () => TestBed;
+    return TestBed.resetTestingModule;
+  };
+  const allowAngularToReset = () => {
+    TestBed.resetTestingModule = resetTestingModule;
+    return TestBed.resetTestingModule;
+  };
 
   beforeAll(async(
     async function() {

@@ -1,6 +1,5 @@
-import { ClaimMap } from './claim-map';
-
 import * as JwtTokenProviderActions from './actions';
+import { ClaimMap } from './claim-map';
 
 
 export interface JwtTokenProviderState<C = ClaimMap>  {
@@ -29,18 +28,20 @@ export function jwtTokenProviderReducer<C = ClaimMap>(
           initialTokenStatus: 'empty',
           tokens: {},
         };
-      } else {
-        return {
-          initialTokenStatus: 'loaded',
-          defaultToken: action.token,
-          tokens: {},
-        };
       }
+      return {
+        initialTokenStatus: 'loaded',
+        defaultToken: action.token,
+        tokens: {},
+      };
+
     }
     case JwtTokenProviderActions.ActionTypes.StoreToken: {
       const newState: JwtTokenProviderState = {
         ...state,
-        tokens: {...state.tokens},
+        tokens: {
+          ...state.tokens,
+        },
       };
 
 
@@ -56,7 +57,9 @@ export function jwtTokenProviderReducer<C = ClaimMap>(
     case JwtTokenProviderActions.ActionTypes.TokenExpired: {
       const newState = {
         ...state,
-        tokens: {...state.tokens},
+        tokens: {
+          ...state.tokens,
+        },
       };
 
       if (state.defaultToken && state.defaultToken === action.token) {

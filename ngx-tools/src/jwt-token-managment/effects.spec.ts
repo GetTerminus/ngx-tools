@@ -1,29 +1,38 @@
-import { TestBed, async } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { ROOT_EFFECTS_INIT } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { BehaviorSubject, of  } from 'rxjs';
 import {
-  hot,
+  async,
+  TestBed,
+} from '@angular/core/testing';
+import { ROOT_EFFECTS_INIT } from '@ngrx/effects';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Store } from '@ngrx/store';
+import {
   cold,
   getTestScheduler,
+  hot,
 } from 'jasmine-marbles';
+import {
+  BehaviorSubject,
+  of,
+} from 'rxjs';
 
+import { TsCookieService } from './../cookie-service/cookie.service';
+import * as Actions from './actions';
 import {
   JwtTokenProviderEffects,
+  MinimalClaimMap,
   SCHEDULER,
   SECONDS_BEFORE_EXPIRATION_TO_NOTIFY,
 } from './effects';
-import * as Actions from './actions';
-import { MinimalClaimMap } from './effects';
 import { State } from './state';
-import { TsCookieService } from '../cookie-service/cookie.service';
 import { INITIAL_TOKEN_NAME } from './tokens';
 
 
 function createFakeJwt(
   payload: object,
-  headers: object = { alg: 'HS256', typ: 'JWT' },
+  headers: object = {
+    alg: 'HS256',
+    typ: 'JWT',
+  },
 ) {
   return [
     window.btoa(JSON.stringify(headers)),
@@ -33,29 +42,48 @@ function createFakeJwt(
 }
 
 
-describe(`JWT Token Effects`, () => {
+describe(`JWT Token Effects`, function() {
   let actions: any;
   let effects: JwtTokenProviderEffects;
-  let mockStore: {select: jest.MockInstance<any>};
+  let mockStore: {select: jest.MockInstance<any, any>};
   let selectOutput: BehaviorSubject<any>;
-  let mockCookieService: {get: jest.MockInstance<any>};
+  let mockCookieService: {get: jest.MockInstance<any, any>};
   const currentEpoch = () => Math.ceil((new Date).getTime() / 1000);
 
   beforeEach(async(() => {
     selectOutput = new BehaviorSubject({});
-    mockStore = {select: jest.fn() };
+    mockStore = {
+      select: jest.fn(),
+    };
     mockStore.select.mockReturnValue(selectOutput);
-    mockCookieService = {get: jest.fn()};
+    mockCookieService = {
+      get: jest.fn(),
+    };
 
     TestBed.configureTestingModule({
       providers: [
         JwtTokenProviderEffects,
         provideMockActions(() => actions),
-        { provide: INITIAL_TOKEN_NAME, useValue: 'initToken' },
-        { provide: TsCookieService, useValue: mockCookieService },
-        { provide: SCHEDULER, useFactory: getTestScheduler },
-        { provide: SECONDS_BEFORE_EXPIRATION_TO_NOTIFY, useValue: 2 },
-        { provide: Store, useValue: mockStore },
+        {
+          provide: INITIAL_TOKEN_NAME,
+          useValue: 'initToken',
+        },
+        {
+          provide: TsCookieService,
+          useValue: mockCookieService,
+        },
+        {
+          provide: SCHEDULER,
+          useFactory: getTestScheduler,
+        },
+        {
+          provide: SECONDS_BEFORE_EXPIRATION_TO_NOTIFY,
+          useValue: 2,
+        },
+        {
+          provide: Store,
+          useValue: mockStore,
+        },
       ],
     });
 
@@ -85,7 +113,9 @@ describe(`JWT Token Effects`, () => {
       });
 
       expect(
-        effects.initialCookieLoader$({currentState: currentState}),
+        effects.initialCookieLoader$({
+          currentState,
+        }),
       ).toBeObservable(expected);
     });
 
@@ -102,7 +132,9 @@ describe(`JWT Token Effects`, () => {
       const expected = cold('|');
 
       expect(
-        effects.initialCookieLoader$({currentState}),
+        effects.initialCookieLoader$({
+          currentState,
+        }),
       ).toBeObservable(expected);
     });
 
@@ -120,7 +152,9 @@ describe(`JWT Token Effects`, () => {
       const expected = cold('|');
 
       expect(
-        effects.initialCookieLoader$({currentState: currentState}),
+        effects.initialCookieLoader$({
+          currentState,
+        }),
       ).toBeObservable(expected);
     });
 
@@ -133,7 +167,9 @@ describe(`JWT Token Effects`, () => {
       });
 
       expect(
-        effects.initialCookieLoader$({currentState: currentState}),
+        effects.initialCookieLoader$({
+          currentState,
+        }),
       ).toBeObservable(expected);
     });
   });
@@ -142,12 +178,20 @@ describe(`JWT Token Effects`, () => {
 
     test(`should dispatch a nothing if the exp is unset`, () => {
       actions = hot('a', {
-        a: {type: ROOT_EFFECTS_INIT},
+        a: {
+          type: ROOT_EFFECTS_INIT,
+        },
       });
 
-      const expected = cold('-'.repeat(10) + '(ab|)', {
-        a: new Actions.StoreToken<MinimalClaimMap>({tokenName: 'foo', token: 'abc'}),
-        b: new Actions.StoreToken<MinimalClaimMap>({tokenName: 'bar', token: 'abc'}),
+      const expected = cold(`${'-'.repeat(10)  }(ab|)`, {
+        a: new Actions.StoreToken<MinimalClaimMap>({
+          tokenName: 'foo',
+          token: 'abc',
+        }),
+        b: new Actions.StoreToken<MinimalClaimMap>({
+          tokenName: 'bar',
+          token: 'abc',
+        }),
       });
 
       selectOutput.next({
@@ -163,11 +207,16 @@ describe(`JWT Token Effects`, () => {
 
     test(`should dispatch only truthy values`, () => {
       actions = hot('a', {
-        a: {type: ROOT_EFFECTS_INIT},
+        a: {
+          type: ROOT_EFFECTS_INIT,
+        },
       });
 
-      const expected = cold('-'.repeat(10) + '(a|)', {
-        a: new Actions.StoreToken<MinimalClaimMap>({tokenName: 'foo', token: 'abc'}),
+      const expected = cold(`${'-'.repeat(10)  }(a|)`, {
+        a: new Actions.StoreToken<MinimalClaimMap>({
+          tokenName: 'foo',
+          token: 'abc',
+        }),
       });
 
       selectOutput.next({
@@ -186,7 +235,10 @@ describe(`JWT Token Effects`, () => {
 
     test(`should dispatch a message when the last token expires`, () => {
       actions = hot('a', {
-        a: new Actions.TokenExpired<MinimalClaimMap>({tokenName: 'bar', token: 'foo'}),
+        a: new Actions.TokenExpired<MinimalClaimMap>({
+          tokenName: 'bar',
+          token: 'foo',
+        }),
       });
 
       const expected = cold('-a', {
@@ -203,12 +255,17 @@ describe(`JWT Token Effects`, () => {
 
     test(`should not dispatch a message when a token remains`, () => {
       actions = hot('a', {
-        a: new Actions.TokenExpired<MinimalClaimMap>({tokenName: 'bar', token: 'foo'}),
+        a: new Actions.TokenExpired<MinimalClaimMap>({
+          tokenName: 'bar',
+          token: 'foo',
+        }),
       });
 
       const expected = cold('--', { });
 
-      selectOutput.next({ foo: '123' });
+      selectOutput.next({
+        foo: '123',
+      });
 
       (expect(
         effects.allTokensExpired$,
@@ -224,7 +281,9 @@ describe(`JWT Token Effects`, () => {
       actions = hot('a', {
         a: new Actions.StoreToken<{Foobr: string}>({
           tokenName: 'Foobr',
-          token: createFakeJwt({foo: 'bar'}),
+          token: createFakeJwt({
+            foo: 'bar',
+          }),
         }),
       });
       const expected = cold('-');
@@ -268,9 +327,11 @@ describe(`JWT Token Effects`, () => {
 
       const action = new Actions.StoreToken<MinimalClaimMap>(params);
 
-      actions = hot('a', {a: action});
+      actions = hot('a', {
+        a: action,
+      });
 
-      const expected = cold(`-${'-'.repeat(99)}a${'-'.repeat(199)}b` , {
+      const expected = cold(`-${'-'.repeat(99)}a${'-'.repeat(199)}b`, {
         a: new Actions.TokenNearingExpiration<MinimalClaimMap>(params),
         b: new Actions.TokenExpired<MinimalClaimMap>(params),
       });
@@ -293,9 +354,11 @@ describe(`JWT Token Effects`, () => {
 
       const action = new Actions.StoreToken<MinimalClaimMap>(params);
 
-      actions = hot('a', {a: action});
+      actions = hot('a', {
+        a: action,
+      });
 
-      const expected = cold(`${'-'.repeat(100)}(ab)` , {
+      const expected = cold(`${'-'.repeat(100)}(ab)`, {
         a: new Actions.TokenNearingExpiration<MinimalClaimMap>(params),
         b: new Actions.TokenExpired<MinimalClaimMap>(params),
       });

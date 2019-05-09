@@ -1,9 +1,9 @@
 import { TsWindowService } from './window.service';
 
 
-describe(`TsWindowService`, () => {
+describe(`TsWindowService`, function() {
 
-  it(`should return the window object`, () => {
+  test(`should return the window object`, () => {
     const service = new TsWindowService();
 
     expect(service.nativeWindow.innerWidth).toBeTruthy();

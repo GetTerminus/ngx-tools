@@ -7,7 +7,7 @@ const validLowercase: string[] = [
   'foo',
   '12R$f#@29LS',
 ];
-// NOTE(B$): I'm not sure why, but an empty object returns true `{}`
+// NOTE: Not sure why, but an empty object returns true `{}`
 const invalidLowercase: any[] = [
   'FOO',
   '12R$F#@29LS',
@@ -16,7 +16,7 @@ const invalidLowercase: any[] = [
 ];
 
 
-describe(`lowercase regex`, () => {
+describe(`lowercase regex`, function() {
 
   describe(`containsLowercaseRegex`, () => {
 
