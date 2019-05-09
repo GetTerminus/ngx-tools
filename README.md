@@ -1,6 +1,5 @@
 # @terminus/ngx-tools
 
-
 [![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
 [![semantic-release][semantic-release-badge]][semantic-release]
