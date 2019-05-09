@@ -1,7 +1,7 @@
 import { isNumber } from './is-number';
 
 
-describe(`isNumber`, () => {
+describe(`isNumber`, function() {
   const validNumbers: any[] = [
     0,
     1,

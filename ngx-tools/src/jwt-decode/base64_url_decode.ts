@@ -1,18 +1,21 @@
+/* eslint-disable no-magic-numbers */
 import { atobPolyfill } from './atob';
 
 const localAtob = window.atob || atobPolyfill;
 
-function b64DecodeUnicode(str: string) {
-  return decodeURIComponent(localAtob(str).replace(/(.)/g, function(m, p) {
+function b64DecodeUnicode(str: string): string {
+  return decodeURIComponent(localAtob(str).replace(/(.)/g, function(m, p: string) {
     let code = p.charCodeAt(0).toString(16).toUpperCase();
     if (code.length < 2) {
-      code = '0' + code;
+      code = `0${code}`;
     }
-    return '%' + code;
+    return `%${code}`;
   }));
 }
 
-export function base64_url_decode(str: string) {
+
+// eslint-disable-next-line camelcase
+export function base64_url_decode(str: string): string {
   let output = str.replace(/-/g, '+').replace(/_/g, '/');
   switch (output.length % 4) {
     case 0:

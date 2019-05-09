@@ -17,6 +17,7 @@ import {
   Scheduler,
   timer,
 } from 'rxjs';
+import { async } from 'rxjs/internal/scheduler/async';
 import {
   delay,
   filter,
@@ -24,15 +25,18 @@ import {
   map,
   mergeMap,
   take,
-  withLatestFrom,
   tap,
+  withLatestFrom,
 } from 'rxjs/operators';
-import { async } from 'rxjs/internal/scheduler/async';
 
-import { getTokens, getDefaultToken, getJwtTokenRoot } from './selectors';
+import { TsCookieService } from './../cookie-service/cookie.service';
+import { jwtDecode } from './../jwt-decode/index';
 import * as JwtTokenProviderActions from './actions';
-import { jwtDecode } from '../jwt-decode/index';
-import { TsCookieService } from '../cookie-service/cookie.service';
+import {
+  getDefaultToken,
+  getJwtTokenRoot,
+  getTokens,
+} from './selectors';
 import { INITIAL_TOKEN_NAME } from './tokens';
 
 export interface Claims { exp: number; }
@@ -41,9 +45,13 @@ export interface MinimalClaimMap {
   [id: string]: Claims;
 }
 
+// TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
+// 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
+// tslint:disable-next-line deprecation
 export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const SECONDS_BEFORE_EXPIRATION_TO_NOTIFY = new InjectionToken<number>('wait time');
 
+// eslint-disable-next-line no-magic-numbers
 const DEFAULT_SECONDS_BEFORE_EXPIRATION_TO_NOTIFY = 5 * 60;
 
 type PartialClaimTuple = [
@@ -56,20 +64,26 @@ type FullClaimsTuple = [
   Claims
 ];
 
+const CLEANUP_DELAY = 100;
+const TOKENS_EXPIRED_DELAY = 10;
+const MS_IN_SECONDS = 1000;
+
 
 @Injectable()
 export class JwtTokenProviderEffects {
 
   @Effect()
-  initializationCleanup$ = of(true)
+  // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
+  // tslint:disable-next-line deprecation
+  public initializationCleanup$ = of(true)
     .pipe(
-      delay(100, this.scheduler || async),
+      delay(CLEANUP_DELAY, this.scheduler || async),
       withLatestFrom(
         this.store.select(getTokens<MinimalClaimMap>()),
       ),
       map(([_, tokens]) => tokens),
       take(1),
-      flatMap((tokens) => {
+      flatMap(tokens => {
         const actions: JwtTokenProviderActions.StoreToken<MinimalClaimMap>[] = [];
 
         for (const tokenName in tokens) {
@@ -77,7 +91,10 @@ export class JwtTokenProviderEffects {
             const token = tokens[tokenName];
             if (token) {
               actions.push(
-                new JwtTokenProviderActions.StoreToken({tokenName, token}),
+                new JwtTokenProviderActions.StoreToken({
+                  tokenName,
+                  token,
+                }),
               );
             }
           }
@@ -87,30 +104,31 @@ export class JwtTokenProviderEffects {
     )
   ;
 
+
   @Effect()
-  allTokensExpired$ = this.actions$
+  public allTokensExpired$ = this.actions$
     .pipe(
       ofType<never>(JwtTokenProviderActions.ActionTypes.TokenExpired),
-      delay(10, this.scheduler || async),
+      delay(TOKENS_EXPIRED_DELAY, this.scheduler || async),
       withLatestFrom(
         this.store.select(getTokens<MinimalClaimMap>()),
       ),
       map(([_, tokens]) => tokens),
-      filter((tokens) => Object.keys(tokens).length === 0),
-      map((tokens) => new JwtTokenProviderActions.AllTokensExpired()),
+      filter(tokens => Object.keys(tokens).length === 0),
+      map(tokens => new JwtTokenProviderActions.AllTokensExpired()),
     )
   ;
 
+
   @Effect()
-  notifyOfTokenExpiration$ = this.actions$
+  public notifyOfTokenExpiration$ = this.actions$
     .pipe(
       ofType<JwtTokenProviderActions.StoreToken<MinimalClaimMap>>(JwtTokenProviderActions.ActionTypes.StoreToken),
-      map((action: JwtTokenProviderActions.StoreToken<MinimalClaimMap>): PartialClaimTuple => {
-        return [action, jwtDecode<Partial<Claims>>(action.token)];
-      }),
+      // eslint-disable-next-line max-len
+      map((action: JwtTokenProviderActions.StoreToken<MinimalClaimMap>): PartialClaimTuple => [action, jwtDecode<Partial<Claims>>(action.token)]),
       filter((a: PartialClaimTuple): a is FullClaimsTuple => a[1].exp !== undefined),
       mergeMap(([action, claims]) => {
-        const currentEpoch = Math.ceil((new Date()).getTime() / 1000);
+        const currentEpoch = Math.ceil((new Date()).getTime() / MS_IN_SECONDS);
 
         if (claims.exp > currentEpoch) {
           const expiresIn = claims.exp - currentEpoch;
@@ -124,22 +142,27 @@ export class JwtTokenProviderEffects {
           }
 
           return merge(
-            this.buildDelayedExpirationObservable(expirationNearIn * 1000, action, false),
-            this.buildDelayedExpirationObservable(expiresIn * 1000, action, true),
+            this.buildDelayedExpirationObservable(expirationNearIn * MS_IN_SECONDS, action, false),
+            this.buildDelayedExpirationObservable(expiresIn * MS_IN_SECONDS, action, true),
           );
-        } else {
-          return of(new JwtTokenProviderActions.TokenExpired<MinimalClaimMap>({
-            tokenName: action.tokenName,
-            token: action.token,
-          }));
         }
+        // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
+        // tslint:disable-next-line deprecation
+        return of(new JwtTokenProviderActions.TokenExpired<MinimalClaimMap>({
+          tokenName: action.tokenName,
+          token: action.token,
+        }));
+
       }),
     )
   ;
 
+
   @Effect()
-  initialCookieLoader$ = ({
+  public initialCookieLoader$ = ({
     currentState = this.store.select(getJwtTokenRoot()),
+    // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
+    // tslint:disable-next-line deprecation
   } = {}) => of(true).pipe(
     take(1),
     withLatestFrom(currentState),
@@ -155,20 +178,21 @@ export class JwtTokenProviderEffects {
             isDefaultToken: true,
           }),
         ];
-      } else {
-        return [
-          new JwtTokenProviderActions.InitialTokenExtracted(cookie),
-        ];
       }
+      return [
+        new JwtTokenProviderActions.InitialTokenExtracted(cookie),
+      ];
+
     }),
   )
+
 
   /*
    * This next function is being excluded from coverage due the complexities of
    * testing the `delay` function. In order to test as much as possible, each
    * peice has been separated into smaller testable functions.
    */
-  buildDelayedExpirationObservable(
+  public buildDelayedExpirationObservable(
     emitTime: number | Date,
     action: JwtTokenProviderActions.StoreToken<MinimalClaimMap>,
     expired: boolean,
@@ -180,16 +204,17 @@ export class JwtTokenProviderEffects {
 
     return timer(emitTime, this.scheduler || async).pipe(
       take(1),
-      map(() => expired ?
-        new JwtTokenProviderActions.TokenExpired<MinimalClaimMap>(outputActionArgs) :
-        new JwtTokenProviderActions.TokenNearingExpiration<MinimalClaimMap>(outputActionArgs),
-      ),
+      map(() => (expired
+        ? new JwtTokenProviderActions.TokenExpired<MinimalClaimMap>(outputActionArgs)
+        : new JwtTokenProviderActions.TokenNearingExpiration<MinimalClaimMap>(outputActionArgs)),),
     );
   }
 
+
   /* istanbul ignore next */
-  constructor(
+  public constructor(
     private actions$: Actions<JwtTokenProviderActions.Actions<MinimalClaimMap>>,
+    // tslint:disable-next-line no-any
     private store: Store<any>,
     private cookieService: TsCookieService,
 
@@ -198,6 +223,9 @@ export class JwtTokenProviderEffects {
 
     @Optional()
     @Inject(SCHEDULER)
+    // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
+    // 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
+    // tslint:disable-next-line deprecation
     private scheduler: Scheduler,
 
     @Optional()

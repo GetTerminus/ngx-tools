@@ -3,6 +3,7 @@ import {
   createContainsUppercaseRegex,
 } from './contains-upper.regex';
 
+
 const validUppercase: string[] = [
   'FOO',
   '12Ri$l#@29Ls',
@@ -15,7 +16,7 @@ const invalidUppercase: any[] = [
 ];
 
 
-describe(`uppercase regex`, () => {
+describe(`uppercase regex`, function() {
 
   describe(`containsUppercaseRegex`, () => {
 

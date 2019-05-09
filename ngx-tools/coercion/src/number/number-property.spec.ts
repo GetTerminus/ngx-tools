@@ -1,7 +1,7 @@
 import { coerceNumberProperty } from './number-property';
 
 
-describe(`coerceNumberProperty`, () => {
+describe(`coerceNumberProperty`, function() {
 
   test(`should coerce undefined to 0 or default`, () => {
     expect(coerceNumberProperty(undefined)).toBe(0);

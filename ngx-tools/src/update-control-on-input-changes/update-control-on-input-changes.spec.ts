@@ -1,24 +1,33 @@
 import {
-  SimpleChanges,
   SimpleChange,
+  SimpleChanges,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { updateControlOnInputChanges } from './update-control-on-input-changes';
 
 
-describe(`updateControlOnInputChanges`, () => {
+describe(`updateControlOnInputChanges`, function() {
   const changed = {
     item1: new SimpleChange(undefined, true, true),
     item2: new SimpleChange('foo', 'foo', false),
   } as SimpleChanges;
   const changedObject = {
-    item1: new SimpleChange({ foo: 'bar' }, { foo: 'xyz' }, false),
-    item2: new SimpleChange({ foo: 'bar' }, { foo: 'bar' }, false),
+    item1: new SimpleChange({
+      foo: 'bar',
+    }, {
+      foo: 'xyz',
+    }, false),
+    item2: new SimpleChange({
+      foo: 'bar',
+    }, {
+      foo: 'bar',
+    }, false),
   } as SimpleChanges;
   const control: FormControl = new FormControl();
 
-  describe (`with string input`, () => {
+
+  describe(`with string input`, () => {
 
     test(`should return false if the changes object or key are missing`, () => {
       expect(updateControlOnInputChanges(null as any, 'foo', control)).toEqual(false);

@@ -1,12 +1,17 @@
+// tslint:disable no-any no-unsafe-any
 const mock = () => {
-  let storage: {[key: string]: any} = {};
+  let storage: Record<string, any> = {};
   return {
-    getItem: (key: string) => key in storage ? storage[key] : null,
-    setItem: (key: string, value: any) => storage[key] = value || '',
+    getItem: (key: string): any => key in storage ? storage[key] : null,
+    setItem: (key: string, value: any) => {
+      storage[key] = value || '';
+      return storage[key];
+    },
     removeItem: (key: string) => delete storage[key],
     clear: () => storage = {},
   };
 };
+// tslint:enable no-any no-unsafe-any
 
 Object.defineProperty(window, 'localStorage', {value: mock()});
 Object.defineProperty(window, 'sessionStorage', {value: mock()});

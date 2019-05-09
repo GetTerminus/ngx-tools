@@ -6,10 +6,13 @@ export class Version {
   public readonly minor: string;
   public readonly patch: string;
 
-  constructor(public full: string) {
-    this.major = full.split('.')[0];
-    this.minor = full.split('.')[1];
-    this.patch = full.split('.').slice(2).join('.');
+  public constructor(public full: string) {
+    const parts = full.split('.');
+    const itemsToRemoveForPatch = 2;
+
+    this.major = parts[0];
+    this.minor = parts[1];
+    this.patch = parts.slice(itemsToRemoveForPatch).join('.');
   }
 }
 

@@ -1,7 +1,7 @@
 import { wrappedErrorMessage } from './wrapped-error-message';
 
 
-describe(`wrappedErrorMessage`, () => {
+describe(`wrappedErrorMessage`, function() {
 
   test(`should return a RegExp`, () => {
     const err: Error = new Error('foo');

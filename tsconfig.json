@@ -3,6 +3,11 @@
   "compilerOptions": {
     "strict": true,
     "outDir": "./dist/out-tsc",
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin"
+      }
+    ],
     "baseUrl": "demo",
     "sourceMap": true,
     "declaration": false,
@@ -26,6 +31,6 @@
     }
   },
   "exclude": [
-    ".ng_build"
+    "**/*.spec.ts"
   ]
 }

@@ -1,102 +1,49 @@
 import { isSet } from './isSet';
 
-describe(`isSet`, () => {
-  test(`should return true when passed number`, () => {
-    const input: any = 5;
 
-    expect(isSet(input)).toEqual(true);
+describe(`isSet`, function() {
+
+  const itemsShouldReturnTrue = [
+    5,
+    'bar',
+    true,
+    'true',
+    false,
+    'false',
+    null,
+  ];
+
+
+  test(`should should return true`, function() {
+    for (const value of itemsShouldReturnTrue) {
+      expect(isSet(value)).toEqual(true);
+    }
+    expect.assertions(itemsShouldReturnTrue.length);
   });
 
-  test(`should return true when passed string`, () => {
-    const input: any = 'bar';
 
-    expect(isSet(input)).toEqual(true);
+  test(`should should return false`, function() {
+    expect(isSet(undefined)).toEqual(false);
   });
 
-  test(`should return true when passed true boolean`, () => {
-    const input: any = true;
 
-    expect(isSet(input)).toEqual(true);
-  });
-
-  test(`should return true when passed true string`, () => {
-    const input: any = 'true';
-
-    expect(isSet(input)).toEqual(true);
-  });
-
-  test(`should return true when passed false boolean`, () => {
-    const input: any = false;
-
-    expect(isSet<Boolean>(input)).toEqual(true);
-  });
-
-  test(`should return true when passed false string`, () => {
-    const input: any = 'false';
-
-    expect(isSet(input)).toEqual(true);
-  });
-
-  test(`should return true when passed null`, () => {
-    const input: any = null;
-
-    expect(isSet(input)).toEqual(true);
-  });
-
-  test(`should return false when passed undefined`, () => {
-    const input: any = undefined;
-
-    expect(isSet(input)).toEqual(false);
-  });
-
+  // TODO: Ensure correct types once we have a type check tool in place
   describe(`if type is passed along with input`, () => {
-    test(`should return true when passed number`, () => {
-      const input: any = 5;
 
-      expect(isSet<number>(input)).toEqual(true);
+    test(`should return true when passed number`, () => {
+      expect(isSet<number>(5)).toEqual(true);
     });
+
 
     test(`should return true when passed string`, () => {
-      const input: any = 'bar';
-
-      expect(isSet<string>(input)).toEqual(true);
+      expect(isSet<string>('bar')).toEqual(true);
     });
 
-    test(`should return true when passed true boolean`, () => {
-      const input: any = true;
-
-      expect(isSet<Boolean>(input)).toEqual(true);
-    });
-
-    test(`should return true when passed true string`, () => {
-      const input: any = 'true';
-
-      expect(isSet<Boolean>(input)).toEqual(true);
-    });
-
-    test(`should return true when passed false boolean`, () => {
-      const input: any = false;
-
-      expect(isSet<Boolean>(input)).toEqual(true);
-    });
-
-    test(`should return true when passed false string`, () => {
-      const input: any = 'false';
-
-      expect(isSet<Boolean>(input)).toEqual(true);
-    });
-
-    test(`should return true when passed null`, () => {
-      const input: any = null;
-
-      expect(isSet<any>(input)).toEqual(true);
-    });
 
     test(`should return false when passed undefined`, () => {
-      const input: any = undefined;
-
-      expect(isSet<undefined>(input)).toEqual(false);
+      expect(isSet<undefined>(undefined)).toEqual(false);
     });
+
   });
 
 });

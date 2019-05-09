@@ -7,6 +7,7 @@ import { isUndefined } from '../isUndefined/isUndefined';
  * @param input - the input being tested
  * @return boolean
  */
+// tslint:disable-next-line no-any
 export function isUnset(input: any): boolean {
   return isNull(input) || isUndefined(input);
 }

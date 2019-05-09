@@ -6,7 +6,7 @@ import {
 import { inputHasChanged } from './input-has-changed';
 
 
-describe(`inputHasChanged`, () => {
+describe(`inputHasChanged`, function() {
   const changed = {
     item1: new SimpleChange(undefined, true, true),
     item2: new SimpleChange('foo', 'foo', false),
@@ -35,8 +35,16 @@ describe(`inputHasChanged`, () => {
 
   describe(`with object input`, () => {
     const changed2 = {
-      item1: new SimpleChange({ foo: 'bar' }, { foo: 'xyz' }, false),
-      item2: new SimpleChange({ foo: 'bar' }, { foo: 'bar' }, false),
+      item1: new SimpleChange({
+        foo: 'bar',
+      }, {
+        foo: 'xyz',
+      }, false),
+      item2: new SimpleChange({
+        foo: 'bar',
+      }, {
+        foo: 'bar',
+      }, false),
     } as SimpleChanges;
 
 

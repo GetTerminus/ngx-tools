@@ -79,7 +79,7 @@ const invalidUrls = [
 ];
 
 
-describe(`urlRegex`, () => {
+describe(`urlRegex`, function() {
 
   test(`should return true for valid URL`, () => {
     for (const url of validUrls) {

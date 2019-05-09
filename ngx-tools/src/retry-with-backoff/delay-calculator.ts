@@ -8,6 +8,10 @@ export interface DelayCalculator {
   baseWaitTime: number;
 }
 
+const DEFAULT_JITTER_FACTOR = .3;
+const DEFAULT_BACK_OFF_TIME = 2;
+const DEFAULT_BASE_WAIT_TIME = 100;
+
 
 /**
  * Calculate retry timing
@@ -34,17 +38,15 @@ export interface DelayCalculator {
  */
 export const exponentialBackoffDelayCalculator = ({
   jitter = true,
-  jitterFactor = .3,
-  backOffFactor = 2,
-  baseWaitTime = 100,
-}: Partial<DelayCalculator>) => {
-  return function(attempt: number) {
-    let sleepDuration = baseWaitTime * Math.pow(backOffFactor, attempt);
+  jitterFactor = DEFAULT_JITTER_FACTOR,
+  backOffFactor = DEFAULT_BACK_OFF_TIME,
+  baseWaitTime = DEFAULT_BASE_WAIT_TIME,
+}: Partial<DelayCalculator>) => function(attempt: number) {
+  let sleepDuration = baseWaitTime * Math.pow(backOffFactor, attempt);
 
-    if (jitter) {
-      sleepDuration *= (1 - jitterFactor * Math.random());
-    }
+  if (jitter) {
+    sleepDuration *= (1 - (jitterFactor * Math.random()));
+  }
 
-    return sleepDuration;
-  };
+  return sleepDuration;
 };

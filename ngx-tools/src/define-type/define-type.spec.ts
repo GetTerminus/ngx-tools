@@ -1,15 +1,24 @@
-import { resetTypeCache, defineType } from './define-type';
+import {
+  defineType,
+  resetTypeCache,
+} from './define-type';
 
-describe('defineType', () => {
-  beforeEach(() => { resetTypeCache(); });
 
-  it('returns the passed value', () => {
+describe(`defineType`, function() {
+
+  beforeEach(() => {
+    resetTypeCache();
+  });
+
+
+  test(`returns the passed value`, () => {
     expect(defineType('foo')).toEqual('foo');
   });
 
-  it('throws an error when called twice', () => {
+
+  test(`throws an error when called twice`, () => {
     defineType('bar');
     expect(() => defineType('bar')).toThrowError();
   });
-});
 
+});

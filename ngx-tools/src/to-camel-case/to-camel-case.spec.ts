@@ -1,7 +1,7 @@
 import { toCamelCase } from './to-camel-case';
 
 
-describe(`toCamelCase`, () => {
+describe(`toCamelCase`, function() {
 
   test(`should return undefined if no value is passed in`, () => {
     const values: any[] = [null, undefined, ''];

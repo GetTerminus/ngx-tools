@@ -12,6 +12,8 @@
  * @param item - The item to test
  * @return The result
  */
+// tslint:disable-next-line no-any
 export function isArray<T>(item: T[] | any): item is Array<T> {
+  // tslint:disable-next-line no-unsafe-any
   return !!(item && item.constructor === Array);
 }

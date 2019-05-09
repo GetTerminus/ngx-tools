@@ -37,10 +37,10 @@ export function hasRequiredControl(formItem: AbstractControl): boolean {
     }
 
     return isRequired;
-  } else {
-    // Dealing with AbstractControl
-    return controlHasRequiredField(formItem);
   }
+  // Dealing with AbstractControl
+  return controlHasRequiredField(formItem);
+
 }
 
 
@@ -60,7 +60,7 @@ function controlHasRequiredField(control: AbstractControl): boolean {
 
   if (validator && validator.required) {
     return true;
-  } else {
-    return false;
   }
+  return false;
+
 }

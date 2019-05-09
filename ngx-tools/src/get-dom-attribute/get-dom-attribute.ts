@@ -6,6 +6,6 @@
  * @return attribute's value
  */
 export function getDomAttribute(el: HTMLElement, attr: string): string | undefined {
-  const item = (el.attributes as NamedNodeMap).getNamedItem(attr);
+  const item = el.attributes.getNamedItem(attr);
   return item ? item.value : undefined;
 }

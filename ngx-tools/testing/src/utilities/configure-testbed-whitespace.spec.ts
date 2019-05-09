@@ -13,8 +13,8 @@ import {
 class TestHostComponent {}
 
 
-describe(`configureTestBedWhitespace`, () => {
-  const configure: ConfigureTestBedFn = (testBed) => {
+describe(`configureTestBedWhitespace`, function() {
+  const configure: ConfigureTestBedFn = testBed => {
     testBed.configureTestingModule({
       declarations: [TestHostComponent],
     });
@@ -22,7 +22,7 @@ describe(`configureTestBedWhitespace`, () => {
 
 
   test(`should return a configured TestBed`, () => {
-    configureTestBedWhitespace(configure).then((testBed) => {
+    configureTestBedWhitespace(configure).then(testBed => {
       expect(testBed).toEqual(expect.any(Function));
       const bed = new testBed;
       expect(bed.ngModule).toEqual(null);
@@ -34,7 +34,7 @@ describe(`configureTestBedWhitespace`, () => {
       preserveWhitespaces: true,
     };
 
-    configureTestBedWhitespace(configure, options).then((testBed) => {
+    configureTestBedWhitespace(configure, options).then(testBed => {
       expect(testBed).toEqual(expect.any(Function));
       const bed = new testBed;
       expect(bed.ngModule).toEqual(null);

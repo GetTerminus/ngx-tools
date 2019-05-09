@@ -1,27 +1,25 @@
 import { isUnset } from './isUnset';
 
-describe(`isUnset`, () => {
-  test(`should return true when passed null`, () => {
-    const input: any = null;
 
-    expect(isUnset(input)).toEqual(true);
+describe(`isUnset`, function() {
+
+  test(`should return true when passed null`, () => {
+    expect(isUnset(null)).toEqual(true);
   });
+
 
   test(`should return true when passed undefined`, () => {
-    const input: any = undefined;
-
-    expect(isUnset(input)).toEqual(true);
+    expect(isUnset(undefined)).toEqual(true);
   });
+
 
   test(`should return false when passed number`, () => {
-    const input: any = 4;
-
-    expect(isUnset(input)).toEqual(false);
+    expect(isUnset(4)).toEqual(false);
   });
+
 
   test(`should return false when passed string`, () => {
-    const input: any = 'foo';
-
-    expect(isUnset(input)).toEqual(false);
+    expect(isUnset('foo')).toEqual(false);
   });
+
 });

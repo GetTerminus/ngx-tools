@@ -1,27 +1,26 @@
 import { isNull } from './isNull';
 
-describe(`isNull`, () => {
+
+describe(`isNull`, function() {
+
+  const itemsShouldReturnFalse = [
+    undefined,
+    2,
+    'foo',
+    false,
+  ];
+
+
+  test(`should should return false`, function() {
+    for (const value of itemsShouldReturnFalse) {
+      expect(isNull(value)).toEqual(false);
+    }
+    expect.assertions(itemsShouldReturnFalse.length);
+  });
+
+
   test(`should return true when passed null`, () => {
-    const input: any = null;
-
-    expect(isNull(input)).toEqual(true);
+    expect(isNull(null)).toEqual(true);
   });
 
-  test(`should return false when passed undefined`, () => {
-    const input: any = undefined;
-
-    expect(isNull(input)).toEqual(false);
-  });
-
-  test(`should return false when passed number`, () => {
-    const input: any = 2;
-
-    expect(isNull(input)).toEqual(false);
-  });
-
-  test(`should return false when passed string`, () => {
-    const input: any = 'foo';
-
-    expect(isNull(input)).toEqual(false);
-  });
 });

@@ -12,7 +12,7 @@ const invalidNumbers: any = [
 ];
 
 
-describe(`usaPostalRegex`, () => {
+describe(`usaPostalRegex`, function() {
 
   test(`should return true for all valid US postal codes`, () => {
     for (const num of validNumbers) {

@@ -1,7 +1,7 @@
 import { coerceDateProperty } from './date-property';
 
 
-describe(`coerceDateProperty`, () => {
+describe(`coerceDateProperty`, function() {
   const passInDate = new Date('2018-08-08');
 
   test(`should return current date or default value when undefined passed in`, () => {
@@ -48,17 +48,23 @@ describe(`coerceDateProperty`, () => {
     expect(coerceDateProperty(inputRFC2822String, new Date()).getUTCMilliseconds()).toBe(expectedDate.getUTCMilliseconds());
   });
 
+
   describe(`default to fallback type`, () => {
+
     test(`should default to null if given null`, () => {
-      expect(coerceDateProperty(null, null)). toBe(null);
+      expect(coerceDateProperty(null, null)).toBe(null);
     });
+
 
     test(`should default to number if given number`, () => {
       expect(coerceDateProperty(null, 1)).toBe(1);
     });
 
+
     test(`should default to boolean if given boolean`, () => {
       expect(coerceDateProperty(null, true)).toBe(true);
     });
+
   });
+
 });

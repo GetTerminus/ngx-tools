@@ -1,12 +1,13 @@
-import { KEYS } from './../../../keycodes/public-api';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
+
 import {
+  createKeyboardEvent,
   createMouseEvent,
   createTouchEvent,
-  createKeyboardEvent,
 } from './event-objects';
 
 
-describe(`event-objects`, () => {
+describe(`event-objects`, function() {
 
   describe(`createMouseEvent`, () => {
 

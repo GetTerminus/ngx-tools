@@ -747,6 +747,20 @@ export class MyComponent implements OnInit {
 
 Consistent, tested, and well performing checks for various types.
 
+#### `isAbstractControl`
+
+[[source]](verify-types/is-abstract-control/is-abstract-control.ts)
+
+Check if a value is an `AbstractControl`.
+
+```typescript
+import { isAbstractControl } from '@terminus/ngx-tools';
+
+isAbstractControl(new FormControl()); // Returns: true
+isAbstractControl('hi'); // Returns: false
+```
+
+
 #### `isArray`
 
 [[source]](verify-types/is-array/is-array.ts)

@@ -1,5 +1,14 @@
-import { MonoTypeOperatorFunction, range, timer , throwError } from 'rxjs';
-import { mergeMap, retryWhen, zip } from 'rxjs/operators';
+import {
+  MonoTypeOperatorFunction,
+  range,
+  throwError,
+  timer,
+  zip,
+} from 'rxjs';
+import {
+  mergeMap,
+  retryWhen,
+} from 'rxjs/operators';
 
 import { exponentialBackoffDelayCalculator } from './delay-calculator';
 
@@ -11,6 +20,8 @@ export interface RetryWithBackoff {
   retries: number;
   delayCalculator: (attempt: number) => number;
 }
+
+const DEFAULT_RETRY_COUNT = 3;
 
 
 /**
@@ -36,20 +47,20 @@ export interface RetryWithBackoff {
  * @return The observable timer
  */
 export function retryWithBackoff<T>({
-  retries = 3,
+  retries = DEFAULT_RETRY_COUNT,
   delayCalculator = exponentialBackoffDelayCalculator({}),
 }: Partial<RetryWithBackoff>): MonoTypeOperatorFunction<T> {
 
-  return retryWhen((errors) =>
-    errors.pipe(
-      zip(range(1, retries)),
-      mergeMap(([err, retry]) => {
-        if (retry >= retries) {
-          return throwError(err);
-        }
+  return retryWhen(errors => zip(
+    errors,
+    range(1, retries),
+  ).pipe(
+    mergeMap(([err, retry]) => {
+      if (retry >= retries) {
+        return throwError(err);
+      }
 
-        return timer(delayCalculator(retry));
-      }),
-    ),
-  );
+      return timer(delayCalculator(retry));
+    }),
+  ),);
 }

@@ -19,12 +19,12 @@ import { isNumber } from './../verify-types/is-number/is-number';
  */
 export function roundNumber(num: number | string, precision = 0): number | undefined {
   if (!isNumber(num)) {
-    return;
+    return undefined;
   }
 
   const shift = function(innerNum: number | string, innerPrecision: number): number {
-    const numArray = ('' + innerNum).split('e');
-    return +(numArray[0] + 'e' + (numArray[1] ? (+numArray[1] + innerPrecision) : innerPrecision));
+    const numArray = innerNum.toString().split('e');
+    return +(`${numArray[0]}e${numArray[1] ? (+numArray[1] + innerPrecision) : innerPrecision}`);
   };
 
   return shift(Math.round(shift(num, +precision)), -precision);

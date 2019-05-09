@@ -23,7 +23,7 @@ const invalidStrings: any[] = [
 ];
 
 
-describe(`containsSpecialCharacters`, () => {
+describe(`containsSpecialCharacters`, function() {
 
   describe(`containsSpecialCharacterRegex`, () => {
 

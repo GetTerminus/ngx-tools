@@ -17,7 +17,7 @@ const invalidNumbers = [
 ];
 
 
-describe(`creditCardRegex`, () => {
+describe(`creditCardRegex`, function() {
 
   test(`should return true for valid card numbers`, () => {
     for (const num of validNumbers) {

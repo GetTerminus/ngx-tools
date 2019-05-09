@@ -1,12 +1,16 @@
+/* eslint-disable no-console */
 import {
   Component,
-  OnInit,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
-import { delay, map, tap } from 'rxjs/operators';
-import { interval } from 'rxjs';
-
 import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { interval } from 'rxjs';
+import {
+  delay,
+  map,
+  tap,
+} from 'rxjs/operators';
 
 
 @Component({
@@ -15,13 +19,13 @@ import { untilComponentDestroyed } from '@terminus/ngx-tools';
 })
 export class ChildComponent implements OnInit, OnDestroy {
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     console.log('CHILD: ngOnInit');
-
-    interval(1000).pipe(untilComponentDestroyed(this)).subscribe(console.log);
+    const WAIT = 1000;
+    interval(WAIT).pipe(untilComponentDestroyed(this)).subscribe(console.log);
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     console.log('CHILD: ngOnDestroy!');
   }
 

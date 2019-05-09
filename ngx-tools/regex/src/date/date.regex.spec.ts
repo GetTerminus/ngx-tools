@@ -24,7 +24,7 @@ const invalidDates: any = [
 ];
 
 
-describe(`dateRegex`, () => {
+describe(`dateRegex`, function() {
 
   test(`should return true for all valid dates`, () => {
     for (const date of validDates) {

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-// TODO: Replace with ngx-tools import once https://github.com/dherges/ng-packagr/pull/685 has
-// landed.
+// TODO: Replace with ngx-tools import once https://github.com/GetTerminus/ngx-tools/issues/281 has landed
 const noop = () => {};
 
 
@@ -13,11 +12,9 @@ export class TsDocumentServiceMock {
       createTextRange: noop,
       appendChild: noop,
     },
-    createRange: () => {
-      return {
-        selectNodeContents: noop,
-      };
-    },
+    createRange: () => ({
+      selectNodeContents: noop,
+    }),
     execCommand: noop,
     createElement: noop,
   };

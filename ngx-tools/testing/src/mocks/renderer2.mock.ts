@@ -1,3 +1,4 @@
+// tslint:disable: no-any no-unsafe-any
 import { Renderer2 } from '@angular/core';
 
 
@@ -5,42 +6,50 @@ import { Renderer2 } from '@angular/core';
  * A mock of the Angular Renderer2
  */
 export class Renderer2Mock implements Renderer2 {
-  _data: any;
-  addClass() {}
-  appendChild() {}
-  createComment() {}
-  set data(v: any) { this._data = v; }
-  get data(): any { return this._data; }
-  destroy() {}
-  destroyNode() {}
-  insertBefore() {}
-  nextSibling() {}
-  parentNode() {}
-  removeAttribute() {}
-  removeChild() {}
-  removeClass() {}
-  removeStyle() {}
-  setAttribute() {}
-  setProperty() {}
-  setStyle() {}
-  setValue() {}
-  animate() {}
-  attachViewAfter() {}
-  createElement() {}
-  createTemplateAnchor() {}
-  createText() {}
-  createViewRoot() {}
-  destroyView() {}
-  detachView() {}
-  invokeElementMethod() {}
-  listen() { return () => {}; }
-  listenGlobal() { return () => {}; }
-  projectNodes() {}
-  selectRootElement() {}
-  setBindingDebugInfo() {}
-  setElementAttribute() {}
-  setElementClass() {}
-  setElementProperty() {}
-  setElementStyle() {}
-  setText() {}
+  public _data: any;
+  public addClass() {}
+  public appendChild() {}
+  public createComment() {}
+  public set data(v: any) {
+    this._data = v;
+  }
+  public get data(): any {
+    return this._data;
+  }
+  public destroy() {}
+  public destroyNode() {}
+  public insertBefore() {}
+  public nextSibling() {}
+  public parentNode() {}
+  public removeAttribute() {}
+  public removeChild() {}
+  public removeClass() {}
+  public removeStyle() {}
+  public setAttribute() {}
+  public setProperty() {}
+  public setStyle() {}
+  public setValue() {}
+  public animate() {}
+  public attachViewAfter() {}
+  public createElement() {}
+  public createTemplateAnchor() {}
+  public createText() {}
+  public createViewRoot() {}
+  public destroyView() {}
+  public detachView() {}
+  public invokeElementMethod() {}
+  public listen() {
+    return () => {};
+  }
+  public listenGlobal() {
+    return () => {};
+  }
+  public projectNodes() {}
+  public selectRootElement() {}
+  public setBindingDebugInfo() {}
+  public setElementAttribute() {}
+  public setElementClass() {}
+  public setElementProperty() {}
+  public setElementStyle() {}
+  public setText() {}
 }

@@ -1,7 +1,7 @@
 import { isObject } from './is-object';
 
 
-describe(`isObject`, () => {
+describe(`isObject`, function() {
   class Car {
     make: string;
     model: string;

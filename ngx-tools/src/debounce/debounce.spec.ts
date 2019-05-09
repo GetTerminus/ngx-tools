@@ -1,8 +1,8 @@
-import { TsWindowService } from './../window/window.service';
 import { debounce } from './debounce';
+import { TsWindowService } from './../window/window.service';
 
 
-describe(`debounce`, () => {
+describe(`debounce`, function() {
   let func: Function;
   let debounced: Function;
   let windowMock: Window;
@@ -14,7 +14,7 @@ describe(`debounce`, () => {
   });
 
 
-  test(`should debounce all calls for the 'wait' period`, (done) => {
+  test(`should debounce all calls for the 'wait' period`, done => {
     for (const i of [1, 2, 3]) {
       // NOTE: passing in `i` is not needed but TypeScript yells about the unused variable otherwise
       debounced(i);
@@ -27,7 +27,7 @@ describe(`debounce`, () => {
   });
 
 
-  test(`should allow multiple calls if called after the wait period`, (done) => {
+  test(`should allow multiple calls if called after the wait period`, done => {
     const TEST_DELAY = 210;
 
     for (const i of [1, 2, 3]) {
@@ -46,7 +46,7 @@ describe(`debounce`, () => {
   });
 
 
-  test(`should fire immediately if specified`, (done) => {
+  test(`should fire immediately if specified`, done => {
     const arr1: (string|number)[] = [];
     const arr2: (string|number)[] = [];
     const debouncedArr = [1, 2, 3, 4, 5, 'foo'];
@@ -71,7 +71,7 @@ describe(`debounce`, () => {
   });
 
 
-  test(`should use the passed in window reference`, (done) => {
+  test(`should use the passed in window reference`, done => {
     jest.useFakeTimers();
     const origFunc = () => {};
     const debouncedOrig = debounce(origFunc, 200, false, windowMock);

@@ -1,8 +1,17 @@
+// tslint:disable: no-any
+import { HttpClient } from '@angular/common/http';
 import {
   Injectable,
   InjectionToken,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Actions } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import {
+  ClaimMap,
+  StoreTokenConstructor,
+  TokenEscalator,
+  TokenExtractor,
+} from '@terminus/ngx-tools';
 import {
   Observable,
   Observer,
@@ -15,17 +24,11 @@ import {
   takeUntil,
   withLatestFrom,
 } from 'rxjs/operators';
-import { Actions } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-
-import {
-  ClaimMap,
-  StoreTokenConstructor,
-  TokenExtractor,
-  TokenEscalator,
-} from '@terminus/ngx-tools';
 
 
+// TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
+// 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
+// tslint:disable-next-line deprecation
 export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const ESCALATION_WAIT_TIME = new InjectionToken<number>('wait time');
 
@@ -35,13 +38,14 @@ export interface EscalateToken<CM = ClaimMap> extends Partial<StoreTokenConstruc
 }
 
 
+// tslint:disable no-any
 @Injectable()
 export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
-  escalators: { [idx: string]: Observer<any> } = {};
+  public escalators: { [idx: string]: Observer<any> } = {};
 
-  requestsForToken: { [idx: string]: string[] } = {};
+  public requestsForToken: { [idx: string]: string[] } = {};
 
-  static forTestBed() {
+  public static forTestBed() {
     return {
       provide: TokenEscalator,
       useFactory: tokenEscalatorFactory,
@@ -57,29 +61,32 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
   }
 
   public escalateToken({tokenName, authorizeUrl, isDefaultToken}: EscalateToken<CM>): Observable<any> {
-    const observ = Observable.create((observer: Observer<any>) => {
+    const observ = new Observable((observer: Observer<any>) => {
       this.escalators[tokenName] = observer;
     }).pipe(
-        takeUntil(timer(10000)),
-        withLatestFrom(
-          authorizeUrl,
-        ),
-        switchMap(([action, url]) => {
-          if (!this.requestsForToken[tokenName]) {
-            this.requestsForToken[tokenName] = [];
-          }
+      takeUntil(timer(10000)),
+      withLatestFrom(
+        authorizeUrl,
+      ),
+      switchMap(([action, url]) => {
+        if (!this.requestsForToken[tokenName]) {
+          this.requestsForToken[tokenName] = [];
+        }
 
-          this.requestsForToken[tokenName].push(url);
+        this.requestsForToken[tokenName].push(url);
 
-          return of({ type: 'null op' });
-        }),
-      )
-    ;
+        // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
+        // tslint:disable-next-line deprecation
+        return of({
+          type: 'null op',
+        });
+      }),
+    );
     observ.subscribe(() => {});
     return observ;
   }
 
-  constructor(
+  public constructor(
     public actions$: Actions,
     public store: Store<any>,
     public http: HttpClient,

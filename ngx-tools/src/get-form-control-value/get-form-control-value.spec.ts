@@ -6,7 +6,7 @@ import {
 import { getFormControlValue } from './get-form-control-value';
 
 
-describe(`getFormControlValue`, () => {
+describe(`getFormControlValue`, function() {
   const formBuilder = new FormBuilder();
   let formGroup: FormGroup;
 
@@ -19,14 +19,10 @@ describe(`getFormControlValue`, () => {
   });
 
 
-  test(`should return undefined if the form or control name is not passed in`, () => {
+  test(`should return undefined if the form or control name is not passed in or not found`, () => {
     expect(getFormControlValue(null as any, 'control1')).toEqual(undefined);
     expect(getFormControlValue(formGroup, null as any)).toEqual(undefined);
-  });
-
-
-  test(`should return null if the form control is not found`, () => {
-    expect(getFormControlValue(formGroup, 'control99')).toEqual(null);
+    expect(getFormControlValue(formGroup, 'control99')).toEqual(undefined);
   });
 
 

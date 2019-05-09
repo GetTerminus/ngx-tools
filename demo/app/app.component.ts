@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
+import { HttpClient } from '@angular/common/http';
 import {
   Component,
   OnInit,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { VERSION } from '@terminus/ngx-tools';
 console.log('ngx-tools VERSION: ', VERSION);
@@ -16,7 +17,7 @@ console.log('ngx-tools VERSION: ', VERSION);
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  version: string = VERSION.full;
+  public version: string = VERSION.full;
 
   public ngOnInit() {
     console.log('AppComponent: ngOnInit');

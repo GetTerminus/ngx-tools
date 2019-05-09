@@ -6,6 +6,7 @@ import { isUndefined } from '../isUndefined/isUndefined';
  * @param input - the input being tested
  * @return boolean
  */
+// tslint:disable-next-line no-any
 export function isSet<T>(input: any): input is T {
   return !isUndefined(input);
 }

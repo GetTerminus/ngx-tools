@@ -1,7 +1,7 @@
 import { publicShapeOf } from './public-shape-of';
 
 
-describe('publicShapeOf', () => {
+describe('publicShapeOf', function() {
   class Foo {
     foo1(x: string) {}
     private foo2(y: number) {}
@@ -25,6 +25,7 @@ describe('publicShapeOf', () => {
     expect(bar.foo1).toBeTruthy();
   });
 
+
   /**
    *  This is the fail-test. It works, however, it also fails the testing script!
    *  keeping the code so we can test manually, until we figure out a way to run it programmatically.
@@ -39,4 +40,5 @@ describe('publicShapeOf', () => {
     expect(baz.foo1).toBeFalsy();
     expect(baz.foo2).toBeFalsy();
   }); */
+
 });

@@ -24,9 +24,9 @@ const myArray = [
 ];
 
 
-describe(`groupBy()`, () => {
+describe(`groupBy()`, function() {
 
-  it(`should return an object container separated arrays`, () => {
+  test(`should return an object container separated arrays`, () => {
     const grouped = groupBy(myArray, 'type');
     expect(grouped.foo.length).toEqual(2);
     expect(grouped.bar.length).toEqual(1);

@@ -1,3 +1,4 @@
+// tslint:disable: no-any
 import { ElementRef } from '@angular/core';
 
 
@@ -16,7 +17,10 @@ const defaults = {
 export class ElementRefMock implements ElementRef {
   public nativeElement: any;
 
-  constructor(nativeElementAdditions?: {[key: string]: any}) {
-    this.nativeElement = Object.assign({}, defaults, nativeElementAdditions || {});
+  public constructor(nativeElementAdditions?: {[key: string]: any}) {
+    this.nativeElement = {
+      ...defaults,
+      ...nativeElementAdditions || {},
+    };
   }
 }

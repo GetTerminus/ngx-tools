@@ -14,12 +14,13 @@
  * @param property - The object property to split by
  * @return An object containing arrays separated by property value
  */
-export function groupBy<T, K extends (keyof T & (number | string))>(array: T[], key: K):
+export function groupBy<T, K extends(keyof T & (number | string))>(array: T[], key: K):
   { [id: string]: T[] } {
 
   const initalValue: { [id: string]: T[] } = {};
 
   return array.reduce((accumulator, x) => {
+    // tslint:disable-next-line no-any
     const idx: string = x[key] as any;
 
     // Create an array for the property if one does not exist

@@ -2,8 +2,8 @@ import {
   DebugElement,
   Type,
 } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 
 /**

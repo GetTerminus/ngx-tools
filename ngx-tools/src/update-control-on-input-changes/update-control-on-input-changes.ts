@@ -26,8 +26,6 @@ export function updateControlOnInputChanges(
     const newValue = NgChangeObjectValueParser.getNewValue(changes, path);
     control.setValue(newValue);
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
-

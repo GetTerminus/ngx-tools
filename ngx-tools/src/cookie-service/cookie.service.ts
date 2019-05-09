@@ -3,15 +3,21 @@
  * https://github.com/7leads/ngx-cookie-service
  */
 import {
+  DOCUMENT,
+  isPlatformBrowser,
+} from '@angular/common';
+import {
   Inject,
   Injectable,
   InjectionToken,
   PLATFORM_ID,
 } from '@angular/core';
-import {
-  DOCUMENT,
-  isPlatformBrowser,
-} from '@angular/common';
+
+const MS_IN_SECONDS = 1000;
+const SECONDS_IN_MINUTE = 60;
+const MINUTES_IN_HOUR = 60;
+const HOURS_IN_DAY = 24;
+const MS_IN_DAY = MS_IN_SECONDS * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY;
 
 
 /**
@@ -24,8 +30,9 @@ export class TsCookieService {
   private readonly documentIsAccessible: boolean;
   private document: Document;
 
-  constructor(
+  public constructor(
     // HACK: This `any` is required. See comment inside constructor.
+    // tslint:disable-next-line no-any
     @Inject(DOCUMENT) private _document: any,
     @Inject(PLATFORM_ID) private platformId: InjectionToken<Object>,
   ) {
@@ -62,11 +69,11 @@ export class TsCookieService {
       return;
     }
 
-    let cookieString: string = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';';
+    let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)};`;
 
     if (expires) {
       if (typeof expires === 'number') {
-        const dateExpires: Date = new Date(new Date().getTime() + expires * 1000 * 60 * 60 * 24);
+        const dateExpires: Date = new Date(new Date().getTime() + (expires * MS_IN_DAY));
 
         cookieString += `expires=${dateExpires.toUTCString()};`;
       } else {
@@ -120,9 +127,9 @@ export class TsCookieService {
       const result: RegExpExecArray | null = regExp.exec(this.document.cookie);
 
       return result ? decodeURIComponent(result[1]) /* istanbul ignore next - Unreachable */ : '';
-    } else {
-      return '';
     }
+    return '';
+
   }
 
 
@@ -131,17 +138,19 @@ export class TsCookieService {
    *
    * @returns Object containing all cookies
    */
-  public getAll(): {[key: string]: any} {
+  // tslint:disable-next-line no-any
+  public getAll(): Record<string, any> {
     if (!this.documentIsAccessible) {
       return {};
     }
 
-    const cookies: {[key: string]: any} = {};
+    // tslint:disable-next-line no-any
+    const cookies: Record<string, any> = {};
     const document = this.document;
 
     // istanbul ignore else
     if (document.cookie && document.cookie !== '') {
-      const split: string[] = document.cookie.split(';').filter((v) => v !== '');
+      const split: string[] = document.cookie.split(';').filter(v => v !== '');
 
       for (let i = 0; i < split.length; i += 1) {
         const currentCookie: string[] = split[i].split('=');
@@ -185,7 +194,8 @@ export class TsCookieService {
       return;
     }
 
-    const cookies: {[key: string]: any} = this.getAll();
+    // tslint:disable-next-line no-any
+    const cookies: Record<string, any> = this.getAll();
 
     for (const cookieName in cookies) {
       // istanbul ignore else

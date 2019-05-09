@@ -39,7 +39,7 @@ applyMixins(SmartObject, [Disposable, Activatable]);
 
 
 
-describe(`applyMixins`, () => {
+describe(`applyMixins`, function() {
 
   test(`should combine properties to base class`, () => {
     const smartObj = new SmartObject();

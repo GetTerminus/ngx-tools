@@ -3,7 +3,6 @@ import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { createComponent } from '../../testing/src/utilities/create-component';
-
 import { getDomAttribute } from './get-dom-attribute';
 
 
@@ -17,7 +16,7 @@ import { getDomAttribute } from './get-dom-attribute';
 class TestHostComponent {}
 
 
-describe(`getDomAttribute`, () => {
+describe(`getDomAttribute`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
   let el: HTMLElement;
 

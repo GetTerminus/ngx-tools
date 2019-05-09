@@ -24,7 +24,7 @@ const invalidNumbers: any = [
 ];
 
 
-describe(`onlyNumbersRegex`, () => {
+describe(`onlyNumbersRegex`, function() {
 
   test(`should return true for strings containing only numbers`, () => {
     for (const num of validNumbers) {
@@ -40,6 +40,4 @@ describe(`onlyNumbersRegex`, () => {
   });
 
 });
-
-
 

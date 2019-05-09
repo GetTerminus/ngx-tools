@@ -5,6 +5,7 @@ import { TestBed } from '@angular/core/testing';
  * Define the structure of the options object passed to `configureTestBed`
  */
 export type TestBedCompilerOptions = Partial<{
+  // tslint:disable-next-line no-any
   providers: any[];
   useJit: boolean;
   preserveWhitespaces: boolean;

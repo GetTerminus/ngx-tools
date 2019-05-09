@@ -10,6 +10,8 @@ import { takeUntil } from 'rxjs/operators';
  */
 export interface WithOnDestroy {
   ngOnDestroy(): void;
+  componentDestroyed$?: Observable<true>;
+  // tslint:disable-next-line no-any
   [key: string]: any;
 }
 
@@ -38,7 +40,8 @@ export function componentDestroyed(component: WithOnDestroy): Observable<true> {
     stop$.complete();
   };
 
-  return component.componentDestroyed$ = stop$.asObservable();
+  component.componentDestroyed$ = stop$.asObservable();
+  return component.componentDestroyed$;
 }
 
 

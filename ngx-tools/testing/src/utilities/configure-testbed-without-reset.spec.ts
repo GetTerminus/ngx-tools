@@ -23,7 +23,7 @@ class TestHostComponent implements OnDestroy {
 }
 
 
-describe(`configureTestBedWithoutReset`, () => {
+describe(`configureTestBedWithoutReset`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
   let testComponent: TestHostComponent;
   const moduleDefinition: TestModuleMetadata = {

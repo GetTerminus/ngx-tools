@@ -12,7 +12,8 @@
  * @param comparator - The function to determine what object values to compare
  * @return True if a match was found
  */
-export function arrayContainsObject(object: {[key: string]: any}, array: any[], comparator: (value: any) => string): boolean {
+// tslint:disable-next-line no-any
+export function arrayContainsObject(object: Record<string, any>, array: any[], comparator: (value: any) => string): boolean {
   let hasDuplicate = false;
 
   for (let i = 0; i < array.length; i++) {

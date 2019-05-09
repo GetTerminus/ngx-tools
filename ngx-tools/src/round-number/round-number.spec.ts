@@ -1,7 +1,7 @@
 import { roundNumber } from './round-number';
 
 
-describe(`roundNumber`, () => {
+describe(`roundNumber`, function() {
 
   test(`should correctly round the number`, () => {
     expect(roundNumber(1.050)).toEqual(1);

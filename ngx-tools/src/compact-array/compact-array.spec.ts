@@ -1,7 +1,7 @@
 import { compactArray } from './compact-array';
 
 
-describe(`compactArray`, () => {
+describe(`compactArray`, function() {
 
   test(`should return undefined if the array is empty or doesn't exist`, () => {
     expect(compactArray(null as any)).toEqual(undefined);

@@ -1,12 +1,27 @@
-import { SimpleChanges, SimpleChange } from '@angular/core';
+import {
+  SimpleChange,
+  SimpleChanges,
+} from '@angular/core';
 
 import { NgChangeObjectValueParser } from './ngchange-object-value-parser';
 
 
-describe(`NgChangeObjectValueParser`, () => {
+describe(`NgChangeObjectValueParser`, function() {
   const changed = {
     item1: new SimpleChange('foo', 'bar', false),
-    item2: new SimpleChange({ foo: { bar: { baz: 'xyz' } } }, { foo: { bar: { baz: 'abc' } } }, false),
+    item2: new SimpleChange({
+      foo: {
+        bar: {
+          baz: 'xyz',
+        },
+      },
+    }, {
+      foo: {
+        bar: {
+          baz: 'abc',
+        },
+      },
+    }, false),
   } as SimpleChanges;
 
 

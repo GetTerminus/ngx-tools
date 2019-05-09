@@ -9,6 +9,6 @@ import { By } from '@angular/platform-browser';
  * @param fixture - The test fixture
  * @return The query result
  */
-export function queryFor(fixture: ComponentFixture<any>, selector: string): DebugElement {
+export function queryFor<T>(fixture: ComponentFixture<T>, selector: string): DebugElement {
   return fixture.debugElement.query(By.css(selector));
 }
