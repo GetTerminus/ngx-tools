@@ -16,9 +16,7 @@ describe(`coerceArray`, function() {
 
 
   test(`should wrap an object in an array`, () => {
-    const objectVal = {
-      something: 'clever',
-    };
+    const objectVal = {something: 'clever'};
     expect(coerceArray(objectVal)).toEqual([objectVal]);
   });
 

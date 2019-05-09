@@ -29,11 +29,7 @@ describe('JWT Selectors', function() {
       initialTokenStatus: 'loaded',
       tokens: {},
     };
-    state = {
-      [JWT_TOKEN_MANAGEMENT_STATE_TOKEN]: {
-        jwtTokens: tokenStorageState,
-      },
-    };
+    state = {[JWT_TOKEN_MANAGEMENT_STATE_TOKEN]: {jwtTokens: tokenStorageState}};
   });
 
 
@@ -44,9 +40,7 @@ describe('JWT Selectors', function() {
 
       expect(
         selectors.getTokens<MockClaimMap>()(state as State),
-      ).toEqual({
-        bar: 'FooBar',
-      });
+      ).toEqual({bar: 'FooBar'});
     });
 
   });
@@ -82,9 +76,7 @@ describe('JWT Selectors', function() {
 
       expect(
         selectors.claimsFor<MockClaimMap, 'foo'>('foo')(state as State),
-      ).toEqual({
-        fooClaim: '12345',
-      });
+      ).toEqual({fooClaim: '12345'});
     });
 
 

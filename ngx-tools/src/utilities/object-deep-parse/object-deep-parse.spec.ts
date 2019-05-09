@@ -3,13 +3,7 @@ import { objectDeepParse } from './object-deep-parse';
 
 describe(`objectDeepParse`, function() {
   const stringInput = 'name';
-  const objectInput = {
-    foo: {
-      bar: {
-        baz: 'xyz',
-      },
-    },
-  };
+  const objectInput = {foo: {bar: {baz: 'xyz'}}};
 
 
   test(`should output same string value when input is a string`, () => {

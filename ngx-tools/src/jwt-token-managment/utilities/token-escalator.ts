@@ -56,15 +56,11 @@ export class TokenEscalator<CM = ClaimMap> {
           this.store.select(tokenFor<CM, typeof tokenName>(tokenName)),
         ),
         switchMap(([action, url, currentToken]) => {
-          const headers = new HttpHeaders({
-            Authorization: `Bearer ${currentToken}`,
-          });
+          const headers = new HttpHeaders({Authorization: `Bearer ${currentToken}`});
 
           return this.http.get<{token: string}>(
             url,
-            {
-              headers,
-            },
+            {headers},
           ).pipe(
             this.tokenExtractor.extractJwtToken({
               tokenName,

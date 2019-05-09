@@ -24,7 +24,7 @@ const create = (isBrowser = true): any[] => {
       const output = [];
       for (const cookieName in this.cookies) {
         if (cookieName) {
-          output.push(`${cookieName  }=${  this.cookies[cookieName]}`);
+          output.push(`${cookieName}=${this.cookies[cookieName]}`);
         }
       }
       return output.join('');

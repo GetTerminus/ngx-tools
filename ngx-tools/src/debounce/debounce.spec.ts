@@ -1,5 +1,5 @@
-import { debounce } from './debounce';
 import { TsWindowService } from './../window/window.service';
+import { debounce } from './debounce';
 
 
 describe(`debounce`, function() {
@@ -92,10 +92,10 @@ describe(`debounce`, function() {
 
   test(`should retain this context`, () => {
     class TestClass {
-      debouncedFunc: Function;
-      arr: number[];
-      foo = 'bar';
-      func = function(this: any) {
+      public debouncedFunc: Function;
+      public arr: number[];
+      public foo = 'bar';
+      public func = function(this: any) {
         this.arr.push(new Date().getTime());
       };
 

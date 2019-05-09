@@ -87,6 +87,7 @@ export class HomeComponent implements OnInit {
   ) {
     this.exampleDatabase = new ExampleHttpDao(this.http);
     this.window = this.windowService.nativeWindow;
+    // tslint:disable-next-line no-unsafe-any
     this.document = this.documentService.document;
 
     /*

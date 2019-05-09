@@ -11,13 +11,11 @@ import {
 import { configureTestBedWithoutReset } from './configure-testbed-without-reset';
 
 
-@Component({
-  template: ``,
-})
+@Component({template: ``})
 class TestHostComponent implements OnDestroy {
-  arr: number[] = [];
+  public arr: number[] = [];
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.arr.push(new Date().getTime());
   }
 }

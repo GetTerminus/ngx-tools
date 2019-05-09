@@ -14,12 +14,10 @@ import { getChildComponentInstanceFromFixture } from './get-child-component-inst
   `,
 })
 class TestComponent {
-  myString = 'foo';
+  public myString = 'foo';
 }
 
-@Component({
-  template: `<ts-test></ts-test>`,
-})
+@Component({template: `<ts-test></ts-test>`})
 class TestHostComponent {}
 
 

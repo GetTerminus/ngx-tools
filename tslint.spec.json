@@ -1,0 +1,7 @@
+{
+  "extends": "@terminus/tslint-config-frontend/testing",
+  "rules" : {
+    "no-implicit-dependencies": false,
+    "prefer-on-push-component-change-detection": false
+  }
+}

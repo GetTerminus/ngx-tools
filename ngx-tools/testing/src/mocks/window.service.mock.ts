@@ -5,9 +5,7 @@ import { Injectable } from '@angular/core';
 const noop = () => {};
 
 const windowMock: Window = {
-  getComputedStyle: () => ({
-    getPropertyValue: () => 'static',
-  }),
+  getComputedStyle: () => ({getPropertyValue: () => 'static'}),
   open: noop,
   location: {
     href: 'foo/bar',

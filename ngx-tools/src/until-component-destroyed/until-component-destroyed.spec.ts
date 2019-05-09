@@ -11,32 +11,28 @@ import {
 import { untilComponentDestroyed } from './until-component-destroyed';
 
 
-@Component({
-  template: ``,
-})
+@Component({template: ``})
 class TestHostComponent implements OnDestroy, OnInit {
-  stub = jest.fn();
-  myInterval!: Subscription;
+  public stub = jest.fn();
+  public myInterval!: Subscription;
 
-  ngOnInit() {
+  public ngOnInit() {
     this.myInterval = interval(200).pipe(untilComponentDestroyed(this)).subscribe((v: number) => {
       this.stub(v);
     });
   }
 
-  ngOnDestroy() {}
+  public ngOnDestroy() {}
 }
 
-@Component({
-  template: ``,
-})
+@Component({template: ``})
 class TestHostDoubleComponent implements OnDestroy, OnInit {
-  stub1 = jest.fn();
-  stub2 = jest.fn();
-  myInterval!: Subscription;
-  mySecondInterval!: Subscription;
+  public stub1 = jest.fn();
+  public stub2 = jest.fn();
+  public myInterval!: Subscription;
+  public mySecondInterval!: Subscription;
 
-  ngOnInit() {
+  public ngOnInit() {
     this.myInterval = interval(200).pipe(untilComponentDestroyed(this)).subscribe((v: number) => {
       this.stub1(v);
     });
@@ -45,7 +41,7 @@ class TestHostDoubleComponent implements OnDestroy, OnInit {
     });
   }
 
-  ngOnDestroy() {}
+  public ngOnDestroy() {}
 }
 
 

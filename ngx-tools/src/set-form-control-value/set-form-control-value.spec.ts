@@ -33,7 +33,6 @@ describe(`setFormControlValue`, function() {
   test(`should set the passed in value if value is set`, () => {
     setFormControlValue(formGroup, 'control1', controlValue);
     const control = formGroup.get('control1');
-    // tslint:disable-next-line:no-non-null-assertion
     expect(control!.value).toEqual(controlValue);
   });
 

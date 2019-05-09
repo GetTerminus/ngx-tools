@@ -1,9 +1,9 @@
 import { cold } from 'jasmine-marbles';
+import { throwError } from 'rxjs';
 import {
   retryWhen,
   take,
 } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 import { regenerateOnRetry } from './regenerate-on-retry';
 

@@ -2,9 +2,7 @@ import { isString } from './is-string';
 
 
 describe(`isString`, function() {
-  const obj = {
-    foo: 'bar',
-  };
+  const obj = {foo: 'bar'};
   const myString = 'foo';
   const validStrings: any[] = [
     'foo',
