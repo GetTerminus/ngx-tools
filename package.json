@@ -22,7 +22,7 @@
     "e2e:app": "ng e2e",
     "////////// Section: Library": "==============================",
     "semantic-release": "semantic-release",
-    "check:next-release": "cd dist/ && npx semantic-release --dry-run",
+    "check:next-release": "cd dist/ && npx semantic-release --no-ci --dry-run",
     "validate:circleci": "circleci config validate -c .circleci/config.yml",
     "////////// Section: Release": "==============================",
     "cm": "npx git-cz",
@@ -95,15 +95,44 @@
   },
   "release": {
     "branch": "release",
+    "plugins": [
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES",
+              "BREAKING"
+            ]
+          },
+          "writerOpts": {
+            "commitsSort": [
+              "subject",
+              "scope"
+            ]
+          }
+        }
+      ],
+      "@semantic-release/git"
+    ],
     "verifyConditions": [
       "condition-circle",
       "@semantic-release/changelog",
       "@semantic-release/npm",
+      "@semantic-release/git",
       "@semantic-release/github"
     ],
     "getLastRelease": "@semantic-release/npm",
     "prepare": [
-      "@semantic-release/changelog"
+      {
+        "path": "@semantic-release/changelog",
+        "changelogFile": "CHANGELOG.md"
+      },
+      {
+        "path": "@semantic-release/git",
+        "message": "📚 Add ${nextRelease.version} release notes [skip ci]"
+      }
     ],
     "publish": [
       {
@@ -153,8 +182,10 @@
     "@ngrx/store": "^7.0.0",
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/exec": "^3.3.2",
+    "@semantic-release/git": "^7.0.8",
     "@semantic-release/github": "^5.2.9",
     "@semantic-release/npm": "^5.1.3",
+    "@semantic-release/release-notes-generator": "^7.1.4",
     "@terminus/eslint-config-frontend": "^1.0.3",
     "@terminus/tslint-config-frontend": "^1.0.3",
     "@types/jest": "^23.3.12",
