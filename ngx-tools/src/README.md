@@ -24,7 +24,7 @@ isArray([]); // Returns: true
 - [`groupBy`](#groupby)
 - [`hasRequiredControl`](#hasrequiredcontrol)
 - [`inputHasChanged`](#inputhaschanged)
-- [`isArrayOfType](#isarrayoftype)
+- [`isArrayOfType`](#isarrayoftype)
 - [`isNull`](#isnull)
 - [`isSet`](#isset)
 - [`isUndefined`](#isundefined)
@@ -299,7 +299,7 @@ import { inputHasChanged } from '@terminus/ngx-tools';
 ...
 ```
 
-### `isArrayOfType
+### `isArrayOfType`
 
 [[source]](is-array-of-type/is-array-of-type.ts)
 
