@@ -16,5 +16,9 @@
       "@terminus/ngx-tools/regex": ["./regex/public-api.ts"],
       "@terminus/ngx-tools/testing": ["./testing/public-api.ts"]
     }
-  }
+  },
+  "include": [
+    "**/*.spec.ts"
+  ],
+  "exclude": []
 }
