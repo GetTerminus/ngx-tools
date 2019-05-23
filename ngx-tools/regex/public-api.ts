@@ -12,3 +12,4 @@ export * from './src/postal/usa-postal.regex';
 export * from './src/special-characters/special-characters.regex';
 export * from './src/url/url.regex';
 export * from './src/url-optional-protocol/url-optional-protocol.regex';
+export * from './src/uuid/uuid.regex';
