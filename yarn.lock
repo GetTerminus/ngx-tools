@@ -12847,6 +12847,11 @@ widest-line@^2.0.0:
   dependencies:
     string-width "^2.1.1"
 
+window-crypto@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/window-crypto/-/window-crypto-1.1.0.tgz#1f4acfe4ddacabfb5b4bd6eda7d2fe63e4e0b288"
+  integrity sha512-KD5ucryy9RGf9Yb68ynEFTXv1DVxAjqn9FmTlFTW+G38rbMmkJ92+iEEmwMoNZShdy9K6PT6s3uE7imyiXcFWA==
+
 windows-release@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/windows-release/-/windows-release-3.2.0.tgz#8122dad5afc303d833422380680a79cdfa91785f"
