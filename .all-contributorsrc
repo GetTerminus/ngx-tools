@@ -37,7 +37,20 @@
       "contributions": [
         "code",
         "doc",
-        "test"
+        "test",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "shani-terminus",
+      "name": "shani-terminus",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/44702601?v=4",
+      "profile": "https://github.com/shani-terminus",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "maintenance"
       ]
     }
   ],
