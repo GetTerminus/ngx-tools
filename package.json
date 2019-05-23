@@ -68,11 +68,11 @@
     "codecov:upload": "npx codecov -f coverage/*.json"
   },
   "lint-staged": {
-    "ngx-tools/**/*.ts": [
+    "ngx-tools/**/*(!.spec).ts": [
       "yarn run lint:tslint:fix",
       "git add"
     ],
-    "ngx-tools/**/*.{js,ts}": [
+    "ngx-tools/**/*(!.spec).{js,ts}": [
       "yarn run lint:eslint:fix",
       "git add"
     ],
