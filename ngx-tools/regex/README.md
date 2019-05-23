@@ -30,6 +30,7 @@ emailRegex.test('foo@bar.com'); // Returns true
 - [Special Characters](#special-characters)
 - [URL](#url)
   - [URL with optional protocol](#url-with-optional-protocol)
+- [UUID](#uuid)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -290,4 +291,18 @@ import { urlRegex } from '@terminus/ngx-tools/regex';
 urlOptionalProtocolRegex.test('http://0.0.0.0'); // false
 urlOptionalProtocolRegex.test('foo.com/blah_blah/'); // true
 urlOptionalProtocolRegex.test('http://foo.com/blah_blah/'); // true
+```
+
+
+## UUID
+
+[[source]](src/uuid/uuid.regex.ts)
+
+`uuidRegex`: Any canonically formatted UUID that is Version 1 through 5 and is the appropriate Variant as per RFC4122.
+
+```typescript
+import { uuidRegex } from '@terminus/ngx-tools/regex';
+
+uuidRegex.test('f4ee5eed-ed19-3681-713e-907a23ed7858'); // true
+uuidRegex.test('f4ee5-ed19-681-713e-907a23ed78580000'); // false
 ```
