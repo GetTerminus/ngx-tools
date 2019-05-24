@@ -1,42 +1,42 @@
+// Polyfill `window.crypto`
+import 'window-crypto';
+
 // tslint:disable no-any no-unsafe-any
 const mock = () => {
   let storage: Record<string, any> = {};
   return {
-    getItem: (key: string): any => key in storage ? storage[key] : null,
+    getItem: (key: string): any => (key in storage ? storage[key] : null),
     setItem: (key: string, value: any) => {
       storage[key] = value || '';
       return storage[key];
     },
     removeItem: (key: string) => delete storage[key],
-    clear: () => storage = {},
+    clear: () => (storage = {}),
   };
 };
 // tslint:enable no-any no-unsafe-any
 
 Object.defineProperty(window, 'localStorage', {value: mock()});
 Object.defineProperty(window, 'sessionStorage', {value: mock()});
-Object.defineProperty(window, 'getComputedStyle', {
-  value: () => ['-webkit-appearance'],
-});
+Object.defineProperty(window, 'getComputedStyle', {value: () => ['-webkit-appearance']});
 Object.defineProperty(window, 'CSS', {value: () => ({})});
-
-
 
 
 /**
  * Patches for Material
  */
 const WARN_SUPPRESSING_PATTERNS = [
-/Could not find Angular Material core theme/,
-/Could not find HammerJS/,
+  /Could not find Angular Material core theme/,
+  /Could not find HammerJS/,
 ];
+// eslint-disable-next-line no-console
 const warn = console.warn;
 Object.defineProperty(console, 'warn', {
- value: (...params: string[]) => {
-   if (!WARN_SUPPRESSING_PATTERNS.some((pattern) => pattern.test(params[0]))) {
-     warn(...params);
-   }
- },
+  value: (...params: string[]) => {
+    if (!WARN_SUPPRESSING_PATTERNS.some(pattern => pattern.test(params[0]))) {
+      warn(...params);
+    }
+  },
 });
 Object.defineProperty(window, 'matchMedia', {
   value: () => (
@@ -48,9 +48,8 @@ Object.defineProperty(window, 'matchMedia', {
   ),
 });
 Object.defineProperty(document.body.style, 'transform', {
-  value: () =>
-    ({
-      enumerable: true,
-      configurable: true,
-    }),
+  value: () => ({
+    enumerable: true,
+    configurable: true,
+  }),
 });

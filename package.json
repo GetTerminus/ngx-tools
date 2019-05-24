@@ -220,7 +220,8 @@
     "tsickle": "^0.34.0",
     "tslint": "^5.16.0",
     "typescript": "~3.2.1",
-    "validate-commit-msg": "^2.14.0"
+    "validate-commit-msg": "^2.14.0",
+    "window-crypto": "^1.1.0"
   },
   "husky": {
     "hooks": {
