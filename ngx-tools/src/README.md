@@ -889,15 +889,12 @@ VERSION.patch // Returns: 3
 
 [[source]](uuid/uuid.ts)
 
-An object containing the current version of the library.
+Generate a canonically formatted UUID that is Version 1 through 5 and is the appropriate Variant as per RFC4122.
 
 ```typescript
-import { VERSION } from '@terminus/ngx-tools';
+import { generateUUID } from '@terminus/ngx-tools';
 
-VERSION.full // Returns: 1.2.3
-VERSION.major // Returns: 1
-VERSION.minor // Returns: 2
-VERSION.patch // Returns: 3
+generateUUID(); // Returns a UUID such as: `f4ee5eed-ed19-3681-713e-907a23ed7858`
 ```
 
 

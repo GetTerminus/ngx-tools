@@ -3,12 +3,11 @@
  * Generate a canonically formatted UUID that is Version 1 through 5 and is the appropriate Variant as per RFC4122.
  *
  * @example
- * uuid() // Returns: `f4ee5eed-ed19-3681-713e-907a23ed7858`
+ * generateUUID() // Returns: `f4ee5eed-ed19-3681-713e-907a23ed7858`
  *
- * @param time - The time chosen
- * @return The difference in time
+ * @return The UUID
  */
-export function uuid(): string {
+export function generateUUID(): string {
   const buf = new Uint16Array(8);
   window.crypto.getRandomValues(buf);
 

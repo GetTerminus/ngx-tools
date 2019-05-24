@@ -1,10 +1,10 @@
 import { uuidRegex } from '@terminus/ngx-tools/regex';
 
-import { uuid } from './uuid';
+import { generateUUID } from './uuid';
 
 
 describe(`uuid`, function() {
-  const testUUIDGenerator = function(generator: () => string, iterations = 1, done: jest.DoneCallback) {
+  const testUUIDGenerator = function(generator: () => string, iterations = 1, done: jest.DoneCallback): Promise<void> {
     const uuidstore: Record<string, string> = {};
     let i;
     let newUuid;
@@ -29,7 +29,7 @@ describe(`uuid`, function() {
 
 
   test(`should create UUIDs that do not collide`, function(done) {
-    testUUIDGenerator(uuid, 100, done).then(() => {
+    testUUIDGenerator(generateUUID, 100, done).then(() => {
       done();
     });
   });
