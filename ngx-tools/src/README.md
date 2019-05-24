@@ -885,6 +885,21 @@ VERSION.patch // Returns: 3
 ```
 
 
+### UUID
+
+[[source]](uuid/uuid.ts)
+
+An object containing the current version of the library.
+
+```typescript
+import { VERSION } from '@terminus/ngx-tools';
+
+VERSION.full // Returns: 1.2.3
+VERSION.major // Returns: 1
+VERSION.minor // Returns: 2
+VERSION.patch // Returns: 3
+```
+
 
 
 <!-- LINKS -->
