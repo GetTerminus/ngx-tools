@@ -32,3 +32,4 @@ export * from './update-control-on-input-changes/update-control-on-input-changes
 export * from './verify-types/index';
 export * from './version/version';
 export * from './window/window.service';
+export * from './uuid/uuid';

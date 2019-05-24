@@ -474,10 +474,10 @@
     "@typescript-eslint/eslint-plugin-tslint" "^1.4.2"
     "@typescript-eslint/parser" "^1.4.2"
 
-"@terminus/ngx-tools@*":
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-6.7.0.tgz#6a5bcc41b9d8802669f3e030d3de835da2d77a17"
-  integrity sha512-bytDD9w6Rl6WilBRfvUwnp76HIB/U6LKYcycHJRlA3Fs98QRkSXgyPuh3uhN/yGxBB67JEGs78w9Uuxe79dcXg==
+"@terminus/ngx-tools@^6.10.0":
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-6.10.0.tgz#d19da4e78ca489c189c8576f9db981cb0f7ce735"
+  integrity sha512-qxXupnVfj84gxSzk2AV/GvpS2EmGaA78mNiMlwhaY3s/CwB/3Bfe1+zCrhVBRzgyPUk0VDRcK3OSGng/efPHUQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -12846,6 +12846,11 @@ widest-line@^2.0.0:
   integrity sha512-Ba5m9/Fa4Xt9eb2ELXt77JxVDV8w7qQrH0zS/TWSJdLyAwQjWoOzpzj5lwVftDz6n/EOu3tNACS84v509qwnJA==
   dependencies:
     string-width "^2.1.1"
+
+window-crypto@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/window-crypto/-/window-crypto-1.1.0.tgz#1f4acfe4ddacabfb5b4bd6eda7d2fe63e4e0b288"
+  integrity sha512-KD5ucryy9RGf9Yb68ynEFTXv1DVxAjqn9FmTlFTW+G38rbMmkJ92+iEEmwMoNZShdy9K6PT6s3uE7imyiXcFWA==
 
 windows-release@^3.1.0:
   version "3.2.0"
