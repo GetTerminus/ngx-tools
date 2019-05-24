@@ -14,7 +14,7 @@ describe(`uuid`, function() {
 
       // Test Validity
       if (!uuidRegex.test(newUuid)) {
-        done.fail(new Error('This is the error'));
+        done.fail(new Error(`Not a valid UUID: ${newUuid}`));
       }
 
       // Test Collision

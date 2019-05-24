@@ -25,6 +25,7 @@ describe(`TokenEscalator`, function() {
   let escalator: TokenEscalator<MockClaimMap>;
   let actions: Observable<any>;
   const tokenName = 'foo';
+  // tslint:disable-next-line deprecation
   const authorizeUrl = of('/foobar');
 
   beforeEach(() => {
@@ -56,7 +57,9 @@ describe(`TokenEscalator`, function() {
   test(`should dispatch success on a successful response`, () => {
     actions = cold('a', {a: new JwtActions.EscalateToken<ClaimMap>(tokenName)});
     const responseBody = {token: 'asdfkjlslfd'};
+    // tslint:disable-next-line deprecation
     mockHttp.get.mockReturnValue(of(responseBody));
+    // tslint:disable-next-line deprecation
     mockStore.select.mockReturnValue(of('currentToken'));
 
     (
@@ -74,7 +77,9 @@ describe(`TokenEscalator`, function() {
   test(`should dispatch failed if the token fails to extract`, () => {
     actions = cold('a', {a: new JwtActions.EscalateToken<ClaimMap>(tokenName)});
     const responseBody = {};
+    // tslint:disable-next-line deprecation
     mockHttp.get.mockReturnValue(of(responseBody));
+    // tslint:disable-next-line deprecation
     mockStore.select.mockReturnValue(of('currentToken'));
 
     (

@@ -14,6 +14,7 @@ describe(`retryWithBackoff`, function() {
     const error = new Error('bar');
     const seenValues: {[idx: number]: number} = {};
 
+    // tslint:disable-next-line deprecation
     of(1, 2, 3).pipe(
       tap(v => {
         if (!seenValues[v]) {
@@ -33,6 +34,7 @@ describe(`retryWithBackoff`, function() {
         retries: 2,
         delayCalculator: linearBackoff,
       }),
+    // tslint:disable-next-line no-any
     ).subscribe(() => {}, (err: any) => {
       expect(err).toEqual(error);
       expect(seenValues).toEqual({
@@ -48,6 +50,7 @@ describe(`retryWithBackoff`, function() {
     const error = new Error('bar');
     const seenValues: {[idx: number]: number} = {};
 
+    // tslint:disable-next-line deprecation
     of(1, 2, 3, 4).pipe(
       tap(v => {
         if (!seenValues[v]) {
