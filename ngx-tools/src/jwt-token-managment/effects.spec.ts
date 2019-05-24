@@ -96,6 +96,7 @@ describe(`JWT Token Effects`, function() {
     };
 
     test(`should provide a cookie and store cookie message if the cookie is set`, () => {
+      // tslint:disable-next-line deprecation
       const currentState = of<State>(blankState);
       mockCookieService.get.mockReturnValue('abcd');
 
@@ -114,6 +115,7 @@ describe(`JWT Token Effects`, function() {
     });
 
     test(`should emit nothing if state is loaded`, () => {
+      // tslint:disable-next-line deprecation
       const currentState = of<State>({
         ...blankState,
         jwtTokens: {
@@ -131,6 +133,7 @@ describe(`JWT Token Effects`, function() {
     });
 
     test(`should emit nothing if state is empty`, () => {
+      // tslint:disable-next-line deprecation
       const currentState = of<State>({
         ...blankState,
         jwtTokens: {
@@ -149,6 +152,7 @@ describe(`JWT Token Effects`, function() {
     });
 
     it(`it should only announce the initial if the cookie is empty`, () => {
+      // tslint:disable-next-line deprecation
       const currentState = of<State>(blankState);
       mockCookieService.get.mockReturnValue('');
 

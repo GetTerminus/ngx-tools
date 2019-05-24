@@ -50,7 +50,6 @@ describe(`event-objects`, function() {
       const actual: KeyboardEvent = createKeyboardEvent('keydown', KEYS.ENTER, target);
       expect(actual.code).toEqual(KEYS.ENTER.code);
       expect(actual.key).toEqual(KEYS.ENTER.code);
-      expect(actual.keyCode).toEqual(KEYS.ENTER.keyCode);
       expect(actual.target).toEqual(target);
     });
 
