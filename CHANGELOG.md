@@ -1,3 +1,11 @@
+## 6.10.0 (2019-05-24)
+
+* feat(Regex): expose UUID regex ([94baba6](https://github.com/GetTerminus/ngx-tools/commit/94baba6))
+* refactor(CI): correctly excluding & including files for tsconfig.spec ([1979e37](https://github.com/GetTerminus/ngx-tools/commit/1979e37))
+* refactor(Regex): move test values inside describe block ([848b5dd](https://github.com/GetTerminus/ngx-tools/commit/848b5dd))
+* style(Utility): add missing end quote (#293) ([12a4205](https://github.com/GetTerminus/ngx-tools/commit/12a4205)), closes [#293](https://github.com/GetTerminus/ngx-tools/issues/293)
+* chore: create persistant changelog ([6ff7cde](https://github.com/GetTerminus/ngx-tools/commit/6ff7cde)), closes [#273](https://github.com/GetTerminus/ngx-tools/issues/273)
+
 ## <small>6.9.0 (2019-05-13)</small>
 
 * **Utility:** add helper to check if value is an AbstractControl ([fcb9bd0](https://github.com/GetTerminus/ngx-tools/commit/fcb9bd0))
