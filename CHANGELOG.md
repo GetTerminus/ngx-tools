@@ -1,3 +1,9 @@
+## 6.11.0 (2019-05-28)
+
+* style: fix lint violations ([beee1f7](https://github.com/GetTerminus/ngx-tools/commit/beee1f7))
+* feat(Utility): expose UUID generator ([059ac30](https://github.com/GetTerminus/ngx-tools/commit/059ac30)), closes [#91](https://github.com/GetTerminus/ngx-tools/issues/91)
+* chore: update core team contributions (#298) ([4e49ecb](https://github.com/GetTerminus/ngx-tools/commit/4e49ecb)), closes [#298](https://github.com/GetTerminus/ngx-tools/issues/298)
+
 ## 6.10.0 (2019-05-24)
 
 * feat(Regex): expose UUID regex ([94baba6](https://github.com/GetTerminus/ngx-tools/commit/94baba6))
