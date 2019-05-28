@@ -16,7 +16,14 @@
         "code",
         "tool",
         "ideas",
-        "doc"
+        "doc",
+        "question",
+        "bug",
+        "example",
+        "infra",
+        "maintenance",
+        "review",
+        "test"
       ]
     },
     {
@@ -38,7 +45,8 @@
         "code",
         "doc",
         "test",
-        "maintenance"
+        "maintenance",
+        "review"
       ]
     },
     {
@@ -50,7 +58,9 @@
         "bug",
         "code",
         "doc",
-        "maintenance"
+        "maintenance",
+        "test",
+        "review"
       ]
     }
   ],
