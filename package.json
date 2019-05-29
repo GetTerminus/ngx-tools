@@ -32,7 +32,7 @@
     "contributors:check": "npx all-contributors check",
     "////////// Section: Documentation": "==============================",
     "docs": "yarn run docs:toc",
-    "docs:toc": "doctoc --title '**Table of Contents**' --maxlevel 4 .",
+    "docs:toc": "find . -path ./node_modules -prune -o -path ./dist -prune -o -path ./demo -prune -o -path ./.github -prune -o -path ./.git -prune -o -path ./CHANGELOG.md -prune -o -path ./CODE_OF_CONDUCT.md -prune -o -name '*.md' -print |  xargs doctoc --title '**Table of Contents**' --maxlevel 4",
     "////////// Section: Library:Build": "==============================",
     "build": "rimraf dist && ng-packagr -p ngx-tools/package.json",
     "postbuild": "cp README.md dist/ngx-tools/ && cp LICENSE dist/ngx-tools/",
