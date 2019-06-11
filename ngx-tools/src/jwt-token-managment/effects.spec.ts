@@ -83,7 +83,7 @@ describe(`JWT Token Effects`, function() {
       ],
     });
 
-    effects = TestBed.get(JwtTokenProviderEffects);
+    effects = TestBed.get<JwtTokenProviderEffects>(JwtTokenProviderEffects);
   }));
 
 

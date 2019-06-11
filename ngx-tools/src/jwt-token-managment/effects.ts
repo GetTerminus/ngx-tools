@@ -39,6 +39,7 @@ import {
 } from './selectors';
 import { INITIAL_TOKEN_NAME } from './tokens';
 
+
 export interface Claims { exp: number; }
 
 export interface MinimalClaimMap {
@@ -51,8 +52,12 @@ export interface MinimalClaimMap {
 export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const SECONDS_BEFORE_EXPIRATION_TO_NOTIFY = new InjectionToken<number>('wait time');
 
-// eslint-disable-next-line no-magic-numbers
-const DEFAULT_SECONDS_BEFORE_EXPIRATION_TO_NOTIFY = 5 * 60;
+const SECONDS_IN_MINUTE = 60;
+const DEFAULT_MINUTES_BEFORE_EXPIRATION_TO_NOTIFY = 5;
+const DEFAULT_SECONDS_BEFORE_EXPIRATION_TO_NOTIFY = DEFAULT_MINUTES_BEFORE_EXPIRATION_TO_NOTIFY * SECONDS_IN_MINUTE;
+const CLEANUP_DELAY = 100;
+const TOKENS_EXPIRED_DELAY = 10;
+const MS_IN_SECONDS = 1000;
 
 type PartialClaimTuple = [
   JwtTokenProviderActions.StoreToken<MinimalClaimMap>,
@@ -64,17 +69,11 @@ type FullClaimsTuple = [
   Claims
 ];
 
-const CLEANUP_DELAY = 100;
-const TOKENS_EXPIRED_DELAY = 10;
-const MS_IN_SECONDS = 1000;
-
 
 @Injectable()
 export class JwtTokenProviderEffects {
 
   @Effect()
-  // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
-  // tslint:disable-next-line deprecation
   public initializationCleanup$ = of(true)
     .pipe(
       delay(CLEANUP_DELAY, this.scheduler || async),

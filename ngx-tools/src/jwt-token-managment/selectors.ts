@@ -4,6 +4,7 @@ import {
 } from '@ngrx/store';
 
 import { jwtDecode } from './../jwt-decode/index';
+import { Tokens } from './reducer';
 import {
   JWT_TOKEN_MANAGEMENT_STATE_TOKEN,
   State,
@@ -21,7 +22,7 @@ export function getJwtTokenRoot<CM>() {
 export function getTokens<CM>() {
   return createSelector(
     getJwtTokenRoot<CM>(),
-    jwtTokenState => (jwtTokenState ? jwtTokenState.jwtTokens.tokens : {}),
+    (jwtTokenState): Tokens<CM> => (jwtTokenState ? jwtTokenState.jwtTokens.tokens : {}),
   );
 }
 

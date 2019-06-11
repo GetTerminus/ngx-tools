@@ -2,10 +2,12 @@ import * as JwtTokenProviderActions from './actions';
 import { ClaimMap } from './claim-map';
 
 
+export type Tokens<C> = { [P in Extract<keyof C, string>]?: string };
+
 export interface JwtTokenProviderState<C = ClaimMap>  {
   initialTokenStatus: 'uninitialized' | 'loaded' | 'empty';
   defaultToken?: string;
-  tokens: { [P in Extract<keyof C, string>]?: string };
+  tokens: Tokens<C>;
 }
 
 export const initialState: JwtTokenProviderState = {

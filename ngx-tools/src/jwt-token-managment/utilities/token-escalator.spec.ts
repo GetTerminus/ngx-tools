@@ -50,7 +50,7 @@ describe(`TokenEscalator`, function() {
       ],
     });
 
-    escalator = TestBed.get(TokenEscalator);
+    escalator = TestBed.get<TokenEscalator>(TokenEscalator);
   });
 
 

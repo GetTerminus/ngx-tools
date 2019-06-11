@@ -12,13 +12,13 @@ import { TsCookieService } from './cookie.service';
   selector: 'test-host',
   template: ``,
 })
-export class TesHostComponent {
+export class TestHostComponent {
 }
 
 
 const create = (isBrowser = true): any[] => {
   class DocumentMock {
-    public cookies: {[key: string]: any} = {};
+    public cookies: Record<string, any> = {};
 
     public get cookie() {
       const output = [];
@@ -58,11 +58,11 @@ const create = (isBrowser = true): any[] => {
   }
 
   TestBed.configureTestingModule({
-    declarations: [TesHostComponent],
+    declarations: [TestHostComponent],
     providers,
   }).compileComponents();
 
-  return [TestBed.get(TsCookieService), TestBed.get(DOCUMENT)];
+  return [TestBed.get<TsCookieService>(TsCookieService), TestBed.get<Document>(DOCUMENT)];
 };
 
 
