@@ -75,8 +75,6 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
 
         this.requestsForToken[tokenName].push(url);
 
-        // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
-        // tslint:disable-next-line deprecation
         return of({type: 'null op'});
       }),
     );

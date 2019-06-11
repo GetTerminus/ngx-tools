@@ -37,7 +37,7 @@ describe(`JWT Token Effects`, function() {
       ],
     });
 
-    guard = TestBed.get(DefaultTokenRequired);
+    guard = TestBed.get<DefaultTokenRequired>(DefaultTokenRequired);
   }));
 
 

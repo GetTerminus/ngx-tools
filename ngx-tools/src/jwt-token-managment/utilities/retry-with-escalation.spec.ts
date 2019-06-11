@@ -51,7 +51,7 @@ describe(`RetryWithEscalation`, function() {
       ],
     });
 
-    retryer = TestBed.get(RetryWithEscalation);
+    retryer = TestBed.get<RetryWithEscalation>(RetryWithEscalation);
   });
 
 

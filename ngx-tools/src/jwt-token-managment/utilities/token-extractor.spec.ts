@@ -38,7 +38,7 @@ describe(`TokenExtractor`, function() {
       ],
     });
 
-    extractor = TestBed.get(TokenExtractor);
+    extractor = TestBed.get<TokenExtractor>(TokenExtractor);
   });
 
 
