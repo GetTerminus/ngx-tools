@@ -38,8 +38,8 @@
     "postbuild": "cp README.md dist/ngx-tools/ && cp LICENSE dist/ngx-tools/",
     "////////// Section: Library:Test": "==============================",
     "test:NOTE": "jest --watch: currently hangs when determining which tests to run. For now we simply run all",
-    "test:config": "jest --config ./ngx-tools/jest.all.config.js --showConfig",
     "test": "jest --config ./ngx-tools/jest.all.config.js --watch",
+    "test:config": "jest --config ./ngx-tools/jest.all.config.js --showConfig",
     "test:ci": "jest --runInBand --coverage --config ./ngx-tools/jest.all.config.js",
     "test:ci:local": "jest --coverage --config ./ngx-tools/jest.all.config.js",
     "test:utilities": "jest --config ./ngx-tools/jest.utilities.config.js",
@@ -88,6 +88,12 @@
     },
     "cz-customizable": {
       "config": "./tools/cz-config.js"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": "lint-staged"
     }
   },
   "publishConfig": {
@@ -220,11 +226,5 @@
     "typescript": "~3.4.5",
     "validate-commit-msg": "^2.14.0",
     "window-crypto": "^1.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "validate-commit-msg",
-      "pre-commit": "lint-staged"
-    }
   }
 }
