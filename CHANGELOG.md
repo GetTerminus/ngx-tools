@@ -7,7 +7,7 @@
 
 ### BREAKING CHANGE
 
-* Bump to Angular v8
+* Now requires Angular `8.x.x` & TypeScript `~3.4.5`
 
 ## 6.11.0 (2019-05-28)
 
