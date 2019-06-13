@@ -1,3 +1,14 @@
+## 7.0.0 (2019-06-13)
+
+* chore(CI): doctoc now only running on needed files ([53eac45](https://github.com/GetTerminus/ngx-tools/commit/53eac45)), closes [#262](https://github.com/GetTerminus/ngx-tools/issues/262)
+* chore(Packages): update all dependencies ([a07c1f0](https://github.com/GetTerminus/ngx-tools/commit/a07c1f0))
+* chore(Packages): use new docker image ([6ef1688](https://github.com/GetTerminus/ngx-tools/commit/6ef1688))
+
+
+### BREAKING CHANGE
+
+* Bump to Angular v8
+
 ## 6.11.0 (2019-05-28)
 
 * style: fix lint violations ([beee1f7](https://github.com/GetTerminus/ngx-tools/commit/beee1f7))
