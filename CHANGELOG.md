@@ -1,3 +1,8 @@
+## <small>7.0.1 (2019-06-18)</small>
+
+* fix(Packages): update inner package.json dependencies (#311) ([edc09a9](https://github.com/GetTerminus/ngx-tools/commit/edc09a9)), closes [#311](https://github.com/GetTerminus/ngx-tools/issues/311)
+* docs: clarify needed versions ([06e66fd](https://github.com/GetTerminus/ngx-tools/commit/06e66fd))
+
 ## 7.0.0 (2019-06-13)
 
 * chore(CI): doctoc now only running on needed files ([53eac45](https://github.com/GetTerminus/ngx-tools/commit/53eac45)), closes [#262](https://github.com/GetTerminus/ngx-tools/issues/262)
