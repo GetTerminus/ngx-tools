@@ -37,7 +37,6 @@ export function configureTestBedWhitespace(
   };
 
   const configuredTestBed: typeof TestBed = TestBed.configureCompiler(compilerConfig);
-
   configureFn(configuredTestBed);
 
   return configuredTestBed.compileComponents().then(() => configuredTestBed);

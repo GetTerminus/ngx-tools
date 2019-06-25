@@ -15,6 +15,10 @@ import {
  * @param providers - Any providers to register to the test module
  * @param imports - Any items to import to the test module
  * @return The test fixture
+ *
+ * @example
+ * const myComponent = createComponent(MyComponent);
+ * const myComponent = createComponent(MyComponent, MyProviders, MyImports);
  */
 export function createComponent<T>(
   component: Type<T>,

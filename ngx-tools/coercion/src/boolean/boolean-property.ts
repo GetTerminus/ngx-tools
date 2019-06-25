@@ -3,6 +3,9 @@
  *
  * @param value - The value to coerce to a boolean
  * @return The boolean
+ *
+ * @example
+ * coerceBooleanProperty('true'); // Returns: true
  */
 // tslint:disable-next-line no-any
 export function coerceBooleanProperty(value: any): boolean {

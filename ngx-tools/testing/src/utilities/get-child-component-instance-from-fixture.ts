@@ -12,6 +12,9 @@ import { By } from '@angular/platform-browser';
  * @param fixture - The component fixture
  * @param component - The component to find
  * @return The instance of the found component
+ *
+ * @example
+ * const myItem = getChildComponentInstanceFromFixture(myFixture, MyComponent);
  */
 export function getChildComponentInstanceFromFixture<FixtureType, ComponentType>(
   fixture: ComponentFixture<FixtureType>,

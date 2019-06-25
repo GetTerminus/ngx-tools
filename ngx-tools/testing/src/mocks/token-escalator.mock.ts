@@ -11,7 +11,7 @@ import {
   StoreTokenConstructor,
   TokenEscalator,
   TokenExtractor,
-} from '@terminus/ngx-tools';
+} from '@terminus/ngx-tools/jwt';
 import {
   Observable,
   Observer,
@@ -38,7 +38,9 @@ export interface EscalateToken<CM = ClaimMap> extends Partial<StoreTokenConstruc
 }
 
 
-// tslint:disable no-any
+/**
+ * @deprecated Please import from `@terminus/ngx-tools/jwt/testing`
+ */
 @Injectable()
 export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
   public escalators: { [idx: string]: Observer<any> } = {};
@@ -91,5 +93,6 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
 }
 
 export function tokenEscalatorFactory() {
+  // tslint:disable-next-line deprecation
   return new TokenEscalatorMock(undefined as any, undefined as any, undefined as any, undefined as any);
 }

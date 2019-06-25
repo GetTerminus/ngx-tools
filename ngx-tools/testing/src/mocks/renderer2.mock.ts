@@ -1,5 +1,6 @@
 // tslint:disable: no-any no-unsafe-any
 import { Renderer2 } from '@angular/core';
+import { noop } from '@terminus/ngx-tools/utilities';
 
 
 /**
@@ -39,10 +40,10 @@ export class Renderer2Mock implements Renderer2 {
   public detachView() {}
   public invokeElementMethod() {}
   public listen() {
-    return () => {};
+    return noop;
   }
   public listenGlobal() {
-    return () => {};
+    return noop;
   }
   public projectNodes() {}
   public selectRootElement() {}

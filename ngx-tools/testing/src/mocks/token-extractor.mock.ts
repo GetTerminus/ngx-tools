@@ -5,7 +5,7 @@ import {
   ClaimMap,
   StoreTokenConstructor,
   TokenExtractor,
-} from '@terminus/ngx-tools';
+} from '@terminus/ngx-tools/jwt';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -17,6 +17,9 @@ export interface ExtractTokenParams<C = ClaimMap> extends Partial<StoreTokenCons
 export const TOKEN_NOT_FOUND = new Error('Token Not found in response');
 
 
+/**
+ * @deprecated Please import from `@terminus/ngx-tools/jwt/testing`
+ */
 @Injectable()
 export class TokenExtractorMock<CM = ClaimMap> extends TokenExtractor {
   public extractedTokens: string[] = [];
@@ -47,6 +50,6 @@ export class TokenExtractorMock<CM = ClaimMap> extends TokenExtractor {
 
 
 export function tokenExtractorMockFactory() {
-  // tslint:disable-next-line no-any
+  // tslint:disable-next-line no-any deprecation
   return new TokenExtractorMock(undefined as any);
 }

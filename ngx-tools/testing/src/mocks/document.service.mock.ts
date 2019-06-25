@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-
-// TODO: Replace with ngx-tools import once https://github.com/GetTerminus/ngx-tools/issues/281 has landed
-const noop = () => {};
+import { noop } from '@terminus/ngx-tools/utilities';
 
 
+/**
+ * A mock of the TsDocumentService
+ *
+ * @deprecated Please import from `@terminus/ngx-tools/browser`
+ */
 @Injectable()
 export class TsDocumentServiceMock {
 
