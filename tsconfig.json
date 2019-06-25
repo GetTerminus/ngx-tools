@@ -1,4 +1,12 @@
 {
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "flatModuleId": "@terminus/ngx-tools",
+    "fullTemplateTypeCheck": true,
+    "preserveWhitespaces": false,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
+  },
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "demo",
@@ -8,21 +16,13 @@
     "incremental": true,
     "lib": [
       "es2016",
+      "es2015",
       "dom"
     ],
     "moduleResolution": "node",
     "outDir": "./dist/out-tsc",
-    "paths": {
-      "@terminus/ngx-tools": ["./dist/ngx-tools/public-api.ts"],
-      "@terminus/ngx-tools/coercion": ["./dist/ngx-tools/coercion/public-api.ts"],
-      "@terminus/ngx-tools/keycodes": ["./dist/ngx-tools/keycodes/public-api.ts"],
-      "@terminus/ngx-tools/regex": ["./dist/ngx-tools/regex/public-api.ts"],
-      "@terminus/ngx-tools/testing": ["./dist/ngx-tools/testing/public-api.ts"]
-    },
     "plugins": [
-      {
-        "name": "typescript-tslint-plugin"
-      }
+      {"name": "typescript-tslint-plugin"}
     ],
     "sourceMap": true,
     "strict": true,

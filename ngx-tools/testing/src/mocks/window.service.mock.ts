@@ -1,8 +1,6 @@
-// tslint:disable: no-any
 import { Injectable } from '@angular/core';
+import { noop } from '@terminus/ngx-tools/utilities';
 
-// TODO: Replace with ngx-tools import once https://github.com/GetTerminus/ngx-tools/issues/281 has landed
-const noop = () => {};
 
 const windowMock: Window = {
   getComputedStyle: () => ({getPropertyValue: () => 'static'}),
@@ -19,12 +17,18 @@ const windowMock: Window = {
   scrollTo: (x: number, y: number) => {
   },
   prompt: noop,
-  // Note: mocking setTimeout/clearTimeout here makes it very hard to test items that use setTimeout. It seems to be easier to add these two
+  // NOTE: mocking setTimeout/clearTimeout here makes it very hard to test items that use setTimeout. It seems to be easier to add those
   // spies as needed.
   // NOTE: Casting to any allows us to partially mock items.
+  // tslint:disable-next-line no-any
 } as any;
 
 
+/**
+ * A mock of the TsWindowService
+ *
+ * @deprecated Please import from `@terminus/ngx-tools/browser`
+ */
 @Injectable()
 export class TsWindowServiceMock {
 

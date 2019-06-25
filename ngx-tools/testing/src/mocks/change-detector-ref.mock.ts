@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { noop } from '@terminus/ngx-tools/utilities';
 
 
 /**
@@ -6,9 +7,9 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class ChangeDetectorRefMock {
-  public markForCheck = () => {};
-  public detach = () => {};
-  public detectChanges = () => {};
-  public checkNoChanges = () => {};
-  public reattach = () => {};
+  public markForCheck = noop;
+  public detach = noop;
+  public detectChanges = noop;
+  public checkNoChanges = noop;
+  public reattach = noop;
 }

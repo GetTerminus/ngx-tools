@@ -1,13 +1,8 @@
 <h1>Testing Utilities</h1>
 
+A collection of helpers to facilitate testing UI components.
+
 **Import from:** `@terminus/ngx-tools/testing`
-
-```typescript
-// Example usage:
-import { dispatchFakeEvent } from '@terminus/ngx-tools/testing';
-
-dispatchFakeEvent(window, 'resize')
-```
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -16,22 +11,25 @@ dispatchFakeEvent(window, 'resize')
 
 - [Mocks](#mocks)
   - [`ChangeDetectorRefMock`](#changedetectorrefmock)
-  - [`TsDocumentServiceMock`](#tsdocumentservicemock)
   - [`ElementRefMock`](#elementrefmock)
   - [`rendererMock`](#renderermock)
   - [`renderer2Mock`](#renderer2mock)
+  - [`TokenEscalatorMock`](#tokenescalatormock)
+  - [`TokenExtractorMock`](#tokenextractormock)
+  - [`TsDocumentServiceMock`](#tsdocumentservicemock)
   - [`TsWindowServiceMock`](#tswindowservicemock)
-- [Event Objects](#event-objects)
-  - [`createFakeEvent`](#createfakeevent)
-  - [`createKeyboardEvent`](#createkeyboardevent)
-  - [`createMouseEvent`](#createmouseevent)
-  - [`createTouchEvent`](#createtouchevent)
-- [Dispatch Events](#dispatch-events)
-  - [`dispatchEvent`](#dispatchevent)
-  - [`dispatchFakeEvent`](#dispatchfakeevent)
-  - [`dispatchKeyboardEvent`](#dispatchkeyboardevent)
-  - [`dispatchMouseEvent`](#dispatchmouseevent)
-  - [`dispatchTouchEvent`](#dispatchtouchevent)
+- [Events](#events)
+  - [Creating Events](#creating-events)
+    - [`createFakeEvent`](#createfakeevent)
+    - [`createKeyboardEvent`](#createkeyboardevent)
+    - [`createMouseEvent`](#createmouseevent)
+    - [`createTouchEvent`](#createtouchevent)
+  - [Dispatching Events](#dispatching-events)
+    - [`dispatchEvent`](#dispatchevent)
+    - [`dispatchFakeEvent`](#dispatchfakeevent)
+    - [`dispatchKeyboardEvent`](#dispatchkeyboardevent)
+    - [`dispatchMouseEvent`](#dispatchmouseevent)
+    - [`dispatchTouchEvent`](#dispatchtouchevent)
 - [Angular Test Helpers](#angular-test-helpers)
   - [`configureTestBedWhitespace`](#configuretestbedwhitespace)
   - [`configureTestBedWithoutReset`](#configuretestbedwithoutreset)
@@ -39,8 +37,8 @@ dispatchFakeEvent(window, 'resize')
   - [`expectNativeEl`](#expectnativeel)
   - [`getChildComponentInstanceFromFixture`](#getchildcomponentinstancefromfixture)
   - [`queryFor`](#queryfor)
-  - [`typeInElement`](#typeinelement)
   - [`wrappedErrorMessage`](#wrappederrormessage)
+- [`typeInElement`](#typeinelement)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -75,37 +73,6 @@ let component: MyComponent;
 beforeEach(() => {
   component = new MyComponent(
     new ChangeDetectorRefMock(),
-  );
-});
-```
-
-
-### `TsDocumentServiceMock`
-
-[[source]](src/mocks/document.service.mock.ts)
-
-```typescript
-// my.component.ts
-import { TsDocumentService } from '@terminus/ngx-tools';
-
-@Component({...})
-export class MyComponent {
-  constructor(
-    private documentService: TsDocumentService,
-  ) {}
-}
-```
-
-```typescript
-// my.component.spec.ts
-import { TsDocumentServiceMock } from '@terminus/ngx-tools/testing';
-import { MyComponent } from './my.component';
-
-let component: MyComponent;
-
-beforeEach(() => {
-  component = new MyComponent(
-    new TsDocumentServiceMock(),
   );
 });
 ```
@@ -238,6 +205,50 @@ beforeEach(() => {
 });
 ```
 
+### `TokenEscalatorMock`
+
+[[source]](src/mocks/token-escalator.mock.ts)
+
+TODO <!-- https://github.com/GetTerminus/ngx-tools/issues/317 -->
+
+
+### `TokenExtractorMock`
+
+[[source]](src/mocks/token-extractor.mock.ts)
+
+TODO <!-- https://github.com/GetTerminus/ngx-tools/issues/317 -->
+
+
+### `TsDocumentServiceMock`
+
+[[source]](src/mocks/document.service.mock.ts)
+
+```typescript
+// my.component.ts
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
+
+@Component({...})
+export class MyComponent {
+  constructor(
+    private documentService: TsDocumentService,
+  ) {}
+}
+```
+
+```typescript
+// my.component.spec.ts
+import { TsDocumentServiceMock } from '@terminus/ngx-tools/testing';
+import { MyComponent } from './my.component';
+
+let component: MyComponent;
+
+beforeEach(() => {
+  component = new MyComponent(
+    new TsDocumentServiceMock(),
+  );
+});
+```
+
 
 ### `TsWindowServiceMock`
 
@@ -245,7 +256,7 @@ beforeEach(() => {
 
 ```typescript
 // my.component.ts
-import { TsWindowService } from '@terminus/ngx-tools';
+import { TsWindowService } from '@terminus/ngx-tools/browser';
 
 @Component({...})
 export class MyComponent {
@@ -270,13 +281,13 @@ beforeEach(() => {
 ```
 
 
-## Event Objects
+## Events
 
-[[source]](src/utilities/event-objects.ts)
+### Creating Events
 
-> For more complex examples, [search for the function in question within `@angular/material`][material-search].
+#### `createFakeEvent`
 
-### `createFakeEvent`
+[[source]](src/utilities/events/create-fake-event.ts)
 
 Creates a fake event object with any desired event type.
 
@@ -293,15 +304,17 @@ const focusEvent = createFakeEvent('focus');
 | `cancelable` | `boolean` | `true`  |
 
 
-### `createKeyboardEvent`
+#### `createKeyboardEvent`
+
+[[source]](src/utilities/events/create-keyboard-event.ts)
 
 Creates a browser `KeyboardEvent` from an element.
 
 ```typescript
-import { ENTER } from '@terminus/ngx-tools/keycodes';
+import { KEYCODES } from '@terminus/ngx-tools/keycodes';
 import { createKeyboardEvent } from '@terminus/ngx-tools/testing';
 
-const keyboardEvent = createKeyboardEvent('keydown', ENTER, myInputNativeElement);
+const keyboardEvent = createKeyboardEvent('keydown', KEYCODES.ENTER.keyCode, myInputNativeElement);
 ```
 
 | Param     | Type      | Default |
@@ -312,7 +325,9 @@ const keyboardEvent = createKeyboardEvent('keydown', ENTER, myInputNativeElement
 | `key?`    | `string`  |         |
 
 
-### `createMouseEvent`
+#### `createMouseEvent`
+
+[[source]](src/utilities/events/create-mouse-event.ts)
 
 Creates a browser `MouseEvent` with the specified options.
 
@@ -330,7 +345,9 @@ const mouseEventAtLocation = createMouseEvent('click', 212, 433);
 | `y`    | `number` | 0       |
 
 
-### `createTouchEvent`
+#### `createTouchEvent`
+
+[[source]](src/utilities/events/create-touch-event.ts)
 
 Creates a browser `TouchEvent` with the specified pointer coordinates.
 
@@ -348,13 +365,11 @@ const touchEventAtLocation = createTouchEvent('touchstart', 212, 433);
 | `pageY` | `number` | 0       |
 
 
-## Dispatch Events
+### Dispatching Events
 
-[[source]](src/utilities/dispatch-events.ts)
+#### `dispatchEvent`
 
-> For more complex examples, [search for the function in question within `@angular/material`][material-search].
-
-### `dispatchEvent`
+[[source]](src/utilities/events/dispatch-event.ts)
 
 Utility to dispatch any event on a Node.
 
@@ -370,7 +385,9 @@ dispatchEvent(myNativeElement, 'blur');
 | `event` | `Event`              |         |
 
 
-### `dispatchFakeEvent`
+#### `dispatchFakeEvent`
+
+[[source]](src/utilities/events/dispatch-fake-event.ts)
 
 Shorthand to dispatch a fake event on a specified node.
 
@@ -387,7 +404,9 @@ dispatchFakeEvent(myNativeElement, 'mousedown');
 | `canBubble?` | `boolean`            |         |
 
 
-### `dispatchKeyboardEvent`
+#### `dispatchKeyboardEvent`
+
+[[source]](src/utilities/events/dispatch-keyboard-event.ts)
 
 Shorthand to dispatch a keyboard event with a specified key code.
 
@@ -405,7 +424,9 @@ dispatchKeyboardEvent(myNativeElement, 'keyup', ENTER);
 | `target?` | `Element` |         |
 
 
-### `dispatchMouseEvent`
+#### `dispatchMouseEvent`
+
+[[source]](src/utilities/events/dispatch-mouse-event.ts)
 
 Shorthand to dispatch a mouse event on the specified coordinates.
 
@@ -424,7 +445,9 @@ dispatchMouseEvent(myNativeElement, 'mousedown');
 | `event` | `MouseEvent` | `createMouseEvent(type, x, y)` |
 
 
-### `dispatchTouchEvent`
+#### `dispatchTouchEvent`
+
+[[source]](src/utilities/events/dispatch-touch-event.ts)
 
 Shorthand to dispatch a touch event on the specified coordinates.
 
@@ -675,19 +698,6 @@ beforeEach(async(() => {
 ```
 
 
-### `typeInElement`
-
-[[source]](src/utilities/type-in-element.ts)
-
-Focuses an input, sets it's value and dispatches the `input` event, simulating user typing.
-
-```typescript
-import { typeInElement } from '@terminus/ngx-tools/testing';
-
-typeInElement('test@test.com', myEmailInputElement);
-```
-
-
 ### `wrappedErrorMessage`
 
 [[source]](src/utilities/wrapped-error-message.ts)
@@ -704,7 +714,14 @@ expect(myFunc).toThrowError(wrappedErrorMessage(mySpecificError()));
 > See https://github.com/angular/angular/issues/8348 for more information.
 
 
+## `typeInElement`
 
+[[source]](src/utilities/type-in-element.ts)
 
-<!-- LINKS -->
-[material-search]: https://github.com/angular/material2/search
+Focuses an input, sets it's value and dispatches the `input` event, simulating user typing.
+
+```typescript
+import { typeInElement } from '@terminus/ngx-tools/testing';
+
+typeInElement('test@test.com', myEmailInputElement);
+```

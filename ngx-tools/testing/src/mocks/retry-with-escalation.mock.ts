@@ -5,6 +5,10 @@ import {
   InjectionToken,
 } from '@angular/core';
 import {
+  ClaimMap,
+  RetryWithEscalation,
+} from '@terminus/ngx-tools/jwt';
+import {
   Observable,
   Scheduler,
   throwError,
@@ -14,11 +18,6 @@ import {
   retryWhen,
 } from 'rxjs/operators';
 
-import {
-  ClaimMap,
-  RetryWithEscalation,
-} from '@terminus/ngx-tools';
-
 
 // TODO: Scheduler is deprecated: Scheduler is an internal implementation detail of RxJS, and should not be used directly. Rather, create
 // your own class and implement SchedulerLike
@@ -27,6 +26,9 @@ export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const ESCALATION_WAIT_TIME = new InjectionToken<number>('wait time');
 
 
+/**
+ * @deprecated Please import from `@terminus/ngx-tools/jwt/testing`
+ */
 @Injectable()
 export class RetryWithEscalationMock<CM = ClaimMap> extends RetryWithEscalation implements RetryWithEscalation {
 
@@ -72,5 +74,6 @@ export class RetryWithEscalationMock<CM = ClaimMap> extends RetryWithEscalation 
 
 
 export function retryWithEscalationFactory() {
+  // tslint:disable-next-line deprecation
   return new RetryWithEscalationMock(undefined as any, undefined as any, undefined as any, undefined as any);
 }

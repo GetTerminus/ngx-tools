@@ -23,7 +23,7 @@ jobs:
 
       - run:
           name: Install Dependencies
-          command: yarn install
+          command: yarn install --frozen-lockfile
 
       - save_cache:
           name: Save Yarn Cache
@@ -39,24 +39,36 @@ jobs:
 
 
       - run:
-          name: TEST utilities
-          command: yarn run test:utilities:ci && npx codecov -f coverage/utilities/*.json -F utilities
+          name: TEST @terminus/ngx-tools/browser
+          command: yarn run test:browser:ci && npx codecov -f coverage/browser/*.json -F browser
 
       - run:
-          name: TEST coercion
+          name: TEST @terminus/ngx-tools/coercion
           command: yarn run test:coercion:ci && npx codecov -f coverage/coercion/*.json -F coercion
 
       - run:
-          name: TEST keycodes
+          name: TEST @terminus/ngx-tools/jwt
+          command: yarn run test:jwt:ci && npx codecov -f coverage/jwt/*.json -F jwt
+
+      - run:
+          name: TEST @terminus/ngx-tools/keycodes
           command: yarn run test:keycodes:ci && npx codecov -f coverage/keycodes/*.json -F keycodes
 
       - run:
-          name: TEST regex
+          name: TEST @terminus/ngx-tools/regex
           command: yarn run test:regex:ci && npx codecov -f coverage/regex/*.json -F regex
 
       - run:
-          name: TEST testing
+          name: TEST @terminus/ngx-tools/testing
           command: yarn run test:testing:ci && npx codecov -f coverage/testing/*.json -F testing
+
+      - run:
+          name: TEST @terminus/ngx-tools/type-guards
+          command: yarn run test:type-guards:ci && npx codecov -f coverage/type-guards/*.json -F type-guards
+
+      - run:
+          name: TEST @terminus/ngx-tools/utilities
+          command: yarn run test:utilities:ci && npx codecov -f coverage/utilities/*.json -F utilities
 
 
 

@@ -5,7 +5,15 @@ module.exports = {
     project: './tsconfig.json',
     sourceType: 'module'
   },
-  env: {
-    jest: true,
-  },
+  overrides: [
+    {
+      files: [
+        '**/*.spec.ts',
+        '**/*.mock.ts'
+      ],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 }

@@ -1,27 +1,13 @@
+const baseConfig = require('./jest.base.config');
+
+
 module.exports = {
-  globals: {
-    'ts-jest': {
-      tsConfigFile: './tsconfig.spec.json',
-      enableTsDiagnostics: true,
-    },
-    '__TRANSFORM_HTML__': true,
-  },
-  transform: {'^.+\\.(ts|js|html)$': './../node_modules/jest-preset-angular/preprocessor.js'},
-  testMatch: [
-    '<rootDir>/regex/**/?(*.)(spec|test).ts?(x)',
-  ],
-  moduleFileExtensions: [
-    'ts',
-    'js',
-    'html',
-  ],
-  transformIgnorePatterns: [
-    './../node_modules/(?!@ngrx)',
-  ],
-  clearMocks: true,
+  ...baseConfig,
   collectCoverageFrom: [
-    '<rootDir>/regex/**/!(public-api|index).ts',
+    '<rootDir>/ngx-tools/regex/**/!(public-api|index).ts',
   ],
-  coverageDirectory: '<rootDir>/../coverage/regex/',
-  setupTestFrameworkScriptFile: './../tools/jest-setup.ts',
+  coverageDirectory: '<rootDir>/coverage/regex/',
+  testMatch: [
+    '<rootDir>/ngx-tools/regex/**/?(*.)spec.ts?(x)',
+  ],
 }

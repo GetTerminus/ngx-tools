@@ -1,13 +1,8 @@
 <h1>Regex</h1>
 
+A collection of well-tested and well-performing regexes.
+
 **Import from:** `@terminus/ngx-tools/regex`
-
-```typescript
-// Example usage:
-import { emailRegex } from '@terminus/ngx-tools/regex';
-
-emailRegex.test('foo@bar.com'); // Returns true
-```
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -44,7 +39,7 @@ emailRegex.test('foo@bar.com'); // Returns true
 ```typescript
 import { creditCardRegex } from '@terminus/ngx-tools/regex';
 
-creditCardRegex.test('3852000023237'); // false
+creditCardRegex.test('3852000023237');    // false
 creditCardRegex.test('4242424242424242'); // true
 ```
 
@@ -55,15 +50,15 @@ creditCardRegex.test('4242424242424242'); // true
 
 `dateRegex`: Regex requiring a valid date in the format `(M)M/(D)D/(YY)YY`.
 
-- Only supports four digit years beginning with `19` or `20`.
+- Supports two or four digit years beginning with `19` or `20`.
 - Month and day allow an optional leading `0` and can be one or two digits.
 - Dashes (`-`) are also allowed instead of slashes (`/`).
 
 ```typescript
 import { dateRegex } from '@terminus/ngx-tools/regex';
 
-dateRegex.test('3/3/1642'); // false
-dateRegex.test('3/3/18'); // true
+dateRegex.test('3/3/1642');   // false
+dateRegex.test('3/3/18');     // true
 dateRegex.test('01-22-1998'); // true
 ```
 
@@ -77,7 +72,7 @@ dateRegex.test('01-22-1998'); // true
 ```typescript
 import { emailRegex } from '@terminus/ngx-tools/regex';
 
-emailRegex.test('foobarcom'); // false
+emailRegex.test('foobarcom');   // false
 emailRegex.test('foo@bar.com'); // true
 ```
 
@@ -153,8 +148,7 @@ containsLowercaseRegex.test('FOO'); // false
 containsLowercaseRegex.test('FoO'); // true
 ```
 
-To verify that a certain amount of lowercase characters exist you can create a new regex with a
-minimum:
+To verify that a certain amount of lowercase characters exist you can create a new regex with a minimum:
 
 ```typescript
 import { createContainsLowercaseRegex } from '@terminus/ngx-tools/regex';
@@ -179,8 +173,7 @@ containsUppercaseRegex.test('foo'); // false
 containsUppercaseRegex.test('Foo'); // true
 ```
 
-To verify that a certain amount of uppercase characters exist you can create a new regex with a
-minimum:
+To verify that a certain amount of uppercase characters exist you can create a new regex with a minimum:
 
 ```typescript
 import { createContainsUppercaseRegex } from '@terminus/ngx-tools/regex';
@@ -207,7 +200,7 @@ regex.test('FOo'); // true
 import { passwordRegex } from '@terminus/ngx-tools/regex';
 
 passwordRegex.test('V9Cpp7RGB9'); // true
-passwordRegex.test('MA9Lv'); // false
+passwordRegex.test('MA9Lv');      // false
 ```
 
 ## Phone
@@ -219,7 +212,7 @@ passwordRegex.test('MA9Lv'); // false
 ```typescript
 import { phoneRegex } from '@terminus/ngx-tools/regex';
 
-phoneRegex.test('020 7183 8750'); // false
+phoneRegex.test('020 7183 8750');  // false
 phoneRegex.test('(123) 123-1234'); // true
 ```
 
@@ -233,7 +226,8 @@ phoneRegex.test('(123) 123-1234'); // true
 ```typescript
 import { postalRegex } from '@terminus/ngx-tools/regex';
 
-postalRegex.test('12345-12'); // false
+postalRegex.test('12345');      // true
+postalRegex.test('12345-12');   // false
 postalRegex.test('98765-4321'); // true
 ```
 
@@ -252,8 +246,7 @@ containsSpecialCharacterRegex.test('foo'); // false
 containsSpecialCharacterRegex.test('Fo&o'); // true
 ```
 
-To verify that a certain amount of special characters exist you can create a new regex with a
-minimum:
+To verify that a certain amount of special characters exist you can create a new regex with a minimum:
 
 ```typescript
 import { createContainsSpecialCharacterRegex } from '@terminus/ngx-tools/regex';
@@ -274,7 +267,7 @@ regex.test('F$o#'); // true
 ```typescript
 import { urlRegex } from '@terminus/ngx-tools/regex';
 
-urlRegex.test('http://0.0.0.0'); // false
+urlRegex.test('http://0.0.0.0');            // false
 urlRegex.test('http://foo.com/blah_blah/'); // true
 ```
 
@@ -288,8 +281,8 @@ This regex can be used when a URL needs to be validated but the protocol (ie `ht
 ```typescript
 import { urlRegex } from '@terminus/ngx-tools/regex';
 
-urlOptionalProtocolRegex.test('http://0.0.0.0'); // false
-urlOptionalProtocolRegex.test('foo.com/blah_blah/'); // true
+urlOptionalProtocolRegex.test('http://0.0.0.0');            // false
+urlOptionalProtocolRegex.test('foo.com/blah_blah/');        // true
 urlOptionalProtocolRegex.test('http://foo.com/blah_blah/'); // true
 ```
 

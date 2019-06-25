@@ -1,6 +1,13 @@
 // tslint:disable: no-any
 /**
  * Coerces a data-bound value (typically a string) to a number.
+ *
+ * @param value - The value to coerce to a number
+ * @param fallbackValue - The value to return if the value is not a valid number
+ *
+ * @example
+ * coerceNumberProperty('12');                  // Returns: 12
+ * coerceNumberProperty<boolean>('foo', false); // Returns: false
  */
 export function coerceNumberProperty(value: any): number;
 export function coerceNumberProperty<D>(value: any, fallback: D): number | D;
