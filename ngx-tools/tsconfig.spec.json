@@ -1,21 +1,26 @@
 {
   "extends": "./../tsconfig.json",
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": "",
-    "paths": {
-      "@terminus/ngx-tools":             ["./../ngx-tools/src/public-api.ts"],
-      "@terminus/ngx-tools/browser":     ["./../ngx-tools/browser/src/public-api.ts"],
-      "@terminus/ngx-tools/coercion":    ["./../ngx-tools/coercion/src/public-api.ts"],
-      "@terminus/ngx-tools/jwt":         ["./../ngx-tools/jwt/src/public-api.ts"],
-      "@terminus/ngx-tools/keycodes":    ["./../ngx-tools/keycodes/src/public-api.ts"],
-      "@terminus/ngx-tools/regex":       ["./../ngx-tools/regex/src/public-api.ts"],
-      "@terminus/ngx-tools/testing":     ["./../ngx-tools/testing/src/public-api.ts"],
-      "@terminus/ngx-tools/type-guards": ["./../ngx-tools/type-guards/src/public-api.ts"],
-      "@terminus/ngx-tools/utilities":   ["./../ngx-tools/utilities/src/public-api.ts"]
-    },
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "module": "commonjs",
-    "outDir": "./../dist/out-tsc",
+    "paths": {
+      "@terminus/ngx-tools/browser":         ["ngx-tools/browser/src/public-api.ts"],
+      "@terminus/ngx-tools/browser/testing": ["ngx-tools/browser/testing/src/public-api.ts"],
+      "@terminus/ngx-tools/coercion":        ["ngx-tools/coercion/src/public-api.ts"],
+      "@terminus/ngx-tools/jwt":             ["ngx-tools/jwt/src/public-api.ts"],
+      "@terminus/ngx-tools/jwt/testing":     ["ngx-tools/jwt/testing/src/public-api.ts"],
+      "@terminus/ngx-tools/keycodes":        ["ngx-tools/keycodes/src/public-api.ts"],
+      "@terminus/ngx-tools/regex":           ["ngx-tools/regex/src/public-api.ts"],
+      "@terminus/ngx-tools/testing":         ["ngx-tools/testing/src/public-api.ts"],
+      "@terminus/ngx-tools/type-guards":     ["ngx-tools/type-guards/src/public-api.ts"],
+      "@terminus/ngx-tools/utilities":       ["ngx-tools/utilities/src/public-api.ts"]
+    },
     "types": [
+      "jsdom",
       "jest"
     ]
   },
