@@ -40,6 +40,7 @@ export function defineType<T extends string>(label: T): T {
 // tslint:disable-next-line no-any
 export function defineTypeEnum(typeEnum: Record<string, any>): void  {
   for (const val in typeEnum) {
+    // istanbul ignore else
     if (typeEnum.hasOwnProperty(val)) {
       defineType(typeEnum[val]);
     }
