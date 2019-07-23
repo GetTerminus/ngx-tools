@@ -1,5 +1,6 @@
 import {
   defineType,
+  defineTypeEnum,
   resetTypeCache,
 } from './define-type';
 
@@ -19,6 +20,17 @@ describe(`defineType`, function() {
   test(`throws an error when called twice`, () => {
     defineType('bar');
     expect(() => defineType('bar')).toThrowError();
+  });
+
+
+  test(`should set from an enum`, function() {
+    enum actionTypes {
+      AssignState = '[mock-meta-reducer] Assign State',
+      '' = 'foo',
+    }
+    defineTypeEnum(actionTypes);
+
+    expect(() => defineType('[mock-meta-reducer] Assign State')).toThrowError();
   });
 
 });
