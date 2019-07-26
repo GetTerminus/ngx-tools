@@ -5,6 +5,17 @@
 * test(Utility): add missing test ([ee68d1b](https://github.com/GetTerminus/ngx-tools/commit/ee68d1b))
 * test(Utility): update define type coverage for enums ([39afe71](https://github.com/GetTerminus/ngx-tools/commit/39afe71))
 * feat: now supporting more custom endpoints ([017186c](https://github.com/GetTerminus/ngx-tools/commit/017186c))
+  - JWT: Code moved to `@terminus/ngx-tools/jwt`
+     - NOTE: JWT mocks still exist under `@terminus/ngx-tools/testing` but have been deprecated in favor of the mocks exposed in `@terminus/ngx-tools/jwt/testing`
+  - TypeGuards: All type guards now exposed under `@terminus/ngx-tools/type-guards`
+     - Also, a few new type guards have been added
+  - Browser: All browser related code moved to `@terminus/ngx-tools/browser` (`TsCookieService`, `TsWindowService`, etc)
+     - All browser related mocks still exist under `@terminus/ngx-tools/testing` but have been deprecated in favor of the mocks exposed in `@terminus/ngx-tools/browser/testing`
+  - Utilities: All primary utilities moved to `@terminus/ngx-tools/utilities` (`debounce`, `hasRequiredControl`, etc)
+  - Improved test coverage
+  - Improved existing documentation and added missing documentation
+  - Heavy internal reorganization
+
 
 ## <small>7.0.1 (2019-06-18)</small>
 
