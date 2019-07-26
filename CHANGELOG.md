@@ -1,3 +1,11 @@
+## 7.1.0 (2019-07-26)
+
+* chore(CI): update allowed commit scopes ([4cd57cf](https://github.com/GetTerminus/ngx-tools/commit/4cd57cf))
+* chore(Build): update tsconfig paths to solve TS missing deps ([3a839f7](https://github.com/GetTerminus/ngx-tools/commit/3a839f7))
+* test(Utility): add missing test ([ee68d1b](https://github.com/GetTerminus/ngx-tools/commit/ee68d1b))
+* test(Utility): update define type coverage for enums ([39afe71](https://github.com/GetTerminus/ngx-tools/commit/39afe71))
+* feat: now supporting more custom endpoints ([017186c](https://github.com/GetTerminus/ngx-tools/commit/017186c))
+
 ## <small>7.0.1 (2019-06-18)</small>
 
 * fix(Packages): update inner package.json dependencies (#311) ([edc09a9](https://github.com/GetTerminus/ngx-tools/commit/edc09a9)), closes [#311](https://github.com/GetTerminus/ngx-tools/issues/311)
