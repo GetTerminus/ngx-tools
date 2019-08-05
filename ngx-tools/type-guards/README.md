@@ -16,6 +16,7 @@ A collection of consistent, tested, and well-performing checks for various types
 - [`isBoolean`](#isboolean)
 - [`isDragEvent`](#isdragevent)
 - [`isFunction`](#isfunction)
+- [`isHTMLInputElement`](#ishtmlinputelement)
 - [`isHttpResponse`](#ishttpresponse)
 - [`isNull`](#isnull)
 - [`isNumber`](#isnumber)
@@ -126,6 +127,23 @@ import { isFunction } from '@terminus/ngx-tools/type-guards';
 
 isFunction(() => {}); // Returns: true
 isFunction('foo');    // Returns: false
+```
+
+
+## `isHTMLInputElement`
+
+[[source]](src/is-html-input-element/is-html-input-element.ts)
+
+Determine if a value is an HTML input element.
+
+```typescript
+import { isHTMLInputElement } from '@terminus/ngx-tools/type-guards';
+
+const myInput = document.querySelector('#myInput');
+const myDiv = document.querySelector('#myDiv');
+
+isHTMLInputElement(myInput); // Returns: true
+isHTMLInputElement(myDiv);   // Returns: false
 ```
 
 
