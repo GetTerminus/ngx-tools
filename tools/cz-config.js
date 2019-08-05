@@ -52,7 +52,7 @@ module.exports = {
     {name: 'Keycodes'},
     {name: 'Regex'},
     {name: 'Testing'},
-    {name: 'Type Guards'},
+    {name: 'TypeGuards'},
     {name: 'Utility'},
 
     {name: 'Build'},
