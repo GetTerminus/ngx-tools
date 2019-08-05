@@ -14,6 +14,7 @@ A collection of consistent, tested, and well-performing checks for various types
 - [`isArrayOfType`](#isarrayoftype)
 - [`isArray`](#isarray)
 - [`isBoolean`](#isboolean)
+- [`isDragEvent`](#isdragevent)
 - [`isFunction`](#isfunction)
 - [`isHttpResponse`](#ishttpresponse)
 - [`isNull`](#isnull)
@@ -97,6 +98,20 @@ import { isBoolean } from '@terminus/ngx-tools/type-guards';
 
 isBoolean(true);   // Returns: true
 isBoolean('true'); // Returns: false
+```
+
+
+## `isDragEvent`
+
+[[source]](src/is-drag-event/is-drag-event.ts)
+
+Determine if an event is a `DragEvent`.
+
+```typescript
+import { isDragEvent } from '@terminus/ngx-tools/type-guards';
+
+isDragEvent(myDragEvent);  // Returns: true
+isDragEvent(myClickEvent); // Returns: false
 ```
 
 
