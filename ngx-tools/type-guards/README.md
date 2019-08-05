@@ -18,6 +18,7 @@ A collection of consistent, tested, and well-performing checks for various types
 - [`isFunction`](#isfunction)
 - [`isHTMLInputElement`](#ishtmlinputelement)
 - [`isHttpResponse`](#ishttpresponse)
+- [`isKeyboardEvent`](#iskeyboardevent)
 - [`isNull`](#isnull)
 - [`isNumber`](#isnumber)
 - [`isObject`](#isobject)
@@ -158,6 +159,20 @@ import { isHttpResponse } from '@terminus/ngx-tools/type-guards';
 
 isHttpResponse({headers: {...}});             // Returns: true
 isHttpResponse<MyResponseType>({foo: 'bar'}); // Returns: false
+```
+
+
+## `isKeyboardEvent`
+
+[[source]](src/is-keyboard-event/is-keyboard-event.ts)
+
+Determine if an event is a `KeyboardEvent`.
+
+```typescript
+import { isKeyboardEvent } from '@terminus/ngx-tools/type-guards';
+
+isKeyboardEvent(myKeyboardEvent); // Returns: true
+isKeyboardEvent(myClickEvent);    // Returns: false
 ```
 
 
