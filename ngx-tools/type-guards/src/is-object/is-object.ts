@@ -5,8 +5,8 @@
  * @return The result
  *
  * @example
- * isObject({}); // Returns true
- * isObject('foo'); // Returns false
+ * isObject({});    // Returns: true
+ * isObject('foo'); // Returns: false
  */
 // tslint:disable-next-line no-any
 export function isObject(x: any): x is object {
