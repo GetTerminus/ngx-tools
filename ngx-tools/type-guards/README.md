@@ -19,6 +19,7 @@ A collection of consistent, tested, and well-performing checks for various types
 - [`isHTMLInputElement`](#ishtmlinputelement)
 - [`isHttpResponse`](#ishttpresponse)
 - [`isKeyboardEvent`](#iskeyboardevent)
+- [`isMouseEvent`](#ismouseevent)
 - [`isNull`](#isnull)
 - [`isNumber`](#isnumber)
 - [`isObject`](#isobject)
@@ -173,6 +174,20 @@ import { isKeyboardEvent } from '@terminus/ngx-tools/type-guards';
 
 isKeyboardEvent(myKeyboardEvent); // Returns: true
 isKeyboardEvent(myClickEvent);    // Returns: false
+```
+
+
+## `isMouseEvent`
+
+[[source]](src/is-mouse-event/is-mouse-event.ts)
+
+Determine if an event is a `MouseEvent`.
+
+```typescript
+import { isMouseEvent } from '@terminus/ngx-tools/type-guards';
+
+isMouseEvent(myMouseEvent); // Returns: true
+isMouseEvent(myClickEvent); // Returns: false
 ```
 
 
