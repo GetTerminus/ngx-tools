@@ -6,8 +6,8 @@
  * @return The result
  *
  * @example
- * isArrayOfType<number>([1, 5], isNumber) // Returns true
- * isArrayOfType<number>([1, 'foo'], isNumber) // Returns false
+ * isArrayOfType<number>([1, 5], isNumber)     // Returns: true
+ * isArrayOfType<number>([1, 'foo'], isNumber) // Returns: false
  */
 // tslint:disable-next-line no-any
 export function isArrayOfType<T>(x: any[], guard: (y: any) => y is T): x is T[] {
