@@ -1,3 +1,13 @@
+## 7.2.0 (2019-08-08)
+
+* chore(TypeGuards): missing JSDoc comments added ([7bae372](https://github.com/GetTerminus/ngx-tools/commit/7bae372))
+* chore(CI): remove space in commit type ([2e8aac7](https://github.com/GetTerminus/ngx-tools/commit/2e8aac7))
+* feat(TypeGuards): expose type guard for DragEvent ([7d83e4d](https://github.com/GetTerminus/ngx-tools/commit/7d83e4d))
+* feat(TypeGuards): expose type guard for HTML input element ([a311a28](https://github.com/GetTerminus/ngx-tools/commit/a311a28))
+* feat(TypeGuards): expose type guard for KeyboardEvent ([79029cd](https://github.com/GetTerminus/ngx-tools/commit/79029cd))
+* feat(TypeGuards): expose type guard for MouseEvent ([0bfbe4a](https://github.com/GetTerminus/ngx-tools/commit/0bfbe4a))
+* docs: enhance 7.1.0 release notes ([76a99fa](https://github.com/GetTerminus/ngx-tools/commit/76a99fa))
+
 ## 7.1.0 (2019-07-26)
 
 * chore(CI): update allowed commit scopes ([4cd57cf](https://github.com/GetTerminus/ngx-tools/commit/4cd57cf))
