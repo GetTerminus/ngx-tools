@@ -1,3 +1,7 @@
+## <small>7.2.1 (2019-08-08)</small>
+
+* fix(Browser): refactor to support better typings ([7e6ac9d](https://github.com/GetTerminus/ngx-tools/commit/7e6ac9d))
+
 ## 7.2.0 (2019-08-08)
 
 * chore(TypeGuards): missing JSDoc comments added ([7bae372](https://github.com/GetTerminus/ngx-tools/commit/7bae372))
