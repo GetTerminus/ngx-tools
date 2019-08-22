@@ -5,7 +5,7 @@ import { noop } from '@terminus/ngx-tools/utilities';
 /**
  * A mock of the TsDocumentService
  *
- * @deprecated Please import from `@terminus/ngx-tools/browser`
+ * @deprecated Please import from `@terminus/ngx-tools/browser/testing`
  */
 @Injectable()
 export class TsDocumentServiceMock {
