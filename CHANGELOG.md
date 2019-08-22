@@ -1,3 +1,7 @@
+## <small>7.2.3 (2019-08-22)</small>
+
+* fix(Testing): deprecation notices define the correct import change (#329) ([d0d00f2](https://github.com/GetTerminus/ngx-tools/commit/d0d00f2)), closes [#329](https://github.com/GetTerminus/ngx-tools/issues/329)
+
 ## <small>7.2.2 (2019-08-22)</small>
 
 * fix(Build): markdown ToCs updated during precommit ([251eebc](https://github.com/GetTerminus/ngx-tools/commit/251eebc)), closes [#318](https://github.com/GetTerminus/ngx-tools/issues/318)
