@@ -1,3 +1,7 @@
+## <small>7.2.2 (2019-08-22)</small>
+
+* fix(Build): markdown ToCs updated during precommit ([251eebc](https://github.com/GetTerminus/ngx-tools/commit/251eebc)), closes [#318](https://github.com/GetTerminus/ngx-tools/issues/318)
+
 ## <small>7.2.1 (2019-08-08)</small>
 
 * fix(Browser): refactor to support better typings ([7e6ac9d](https://github.com/GetTerminus/ngx-tools/commit/7e6ac9d))
