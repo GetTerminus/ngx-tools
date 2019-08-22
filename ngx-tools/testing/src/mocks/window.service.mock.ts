@@ -27,7 +27,7 @@ const windowMock: Window = {
 /**
  * A mock of the TsWindowService
  *
- * @deprecated Please import from `@terminus/ngx-tools/browser`
+ * @deprecated Please import from `@terminus/ngx-tools/browser/testing`
  */
 @Injectable()
 export class TsWindowServiceMock {
