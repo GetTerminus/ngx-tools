@@ -26,7 +26,7 @@ export const TOKEN_NOT_FOUND_ERROR = new Error('Token Not found in response');
 @Injectable()
 export class TokenExtractor<CM = ClaimMap> {
   // tslint:disable-next-line no-any
-  public extractJwtToken<T extends Object | HttpResponse<any>>({tokenName, isDefaultToken}: ExtractTokenParams<CM>) {
+  public extractJwtToken<T extends Object | HttpResponse<any>>({ tokenName, isDefaultToken }: ExtractTokenParams<CM>) {
     return (source: Observable<T>) => source.pipe(
       tap(request => {
         const token = this.extractTokenFromResponse(request);

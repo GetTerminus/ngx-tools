@@ -17,7 +17,7 @@ class TestComponent {
   public myString = 'foo';
 }
 
-@Component({template: `<ts-test></ts-test>`})
+@Component({ template: `<ts-test></ts-test>` })
 class TestHostComponent {}
 
 

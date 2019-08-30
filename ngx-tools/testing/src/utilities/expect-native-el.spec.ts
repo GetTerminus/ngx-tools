@@ -7,7 +7,7 @@ import {
 import { expectNativeEl } from './expect-native-el';
 
 
-@Component({template: `<div class="foo"></div>`})
+@Component({ template: `<div class="foo"></div>` })
 class TestComponent {}
 
 

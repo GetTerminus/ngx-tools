@@ -23,7 +23,7 @@ const MS_IN_DAY = MS_IN_SECONDS * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN
 /**
  * A service to manage browser cookies
  */
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class TsCookieService {
   private readonly documentIsAccessible: boolean;
   private document: Document;

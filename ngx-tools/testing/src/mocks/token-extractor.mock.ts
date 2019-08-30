@@ -33,7 +33,7 @@ export class TokenExtractorMock<CM = ClaimMap> extends TokenExtractor {
 
 
   // tslint:disable-next-line no-any
-  public extractJwtToken<T extends Object | HttpResponse<any>>({tokenName, isDefaultToken}: ExtractTokenParams<CM>) {
+  public extractJwtToken<T extends Object | HttpResponse<any>>({ tokenName, isDefaultToken }: ExtractTokenParams<CM>) {
     return (source: Observable<T>) => source.pipe(
       tap(request => {
         const token = this.extractTokenFromResponse(request);

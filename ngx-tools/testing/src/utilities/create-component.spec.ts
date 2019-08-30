@@ -11,7 +11,7 @@ import { createComponent } from './create-component';
 
 
 // Test Service
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class TestService {
   public foo() {
     return 'foo';
@@ -19,7 +19,7 @@ export class TestService {
 }
 
 // Test Pipe
-@Pipe({name: 'testPipe'})
+@Pipe({ name: 'testPipe' })
 export class TestPipe implements PipeTransform {
   public transform(value: number): number {
     return value * 2;
@@ -41,12 +41,12 @@ export class TestPipe implements PipeTransform {
 export class TestPipesModule {}
 
 // Test Component - Basic
-@Component({template: ``})
+@Component({ template: `` })
 export class TestComponent {
 }
 
 // Test Component - With Service
-@Component({template: ``})
+@Component({ template: `` })
 export class TestComponentWithService {
   constructor(
     public testService: TestService,
@@ -54,7 +54,7 @@ export class TestComponentWithService {
 }
 
 // Test Component - With Pipe
-@Component({template: ``})
+@Component({ template: `` })
 export class TestComponentWithPipe {
   public foo: number;
   constructor(

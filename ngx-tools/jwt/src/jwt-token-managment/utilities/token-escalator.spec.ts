@@ -29,7 +29,7 @@ describe(`TokenEscalator`, function() {
   const authorizeUrl = of('/foobar');
 
   beforeEach(() => {
-    mockHttp = {get: jest.fn()};
+    mockHttp = { get: jest.fn() };
     mockStore = {
       select: jest.fn(),
       dispatch: jest.fn(),
@@ -55,8 +55,8 @@ describe(`TokenEscalator`, function() {
 
 
   test(`should dispatch success on a successful response`, () => {
-    actions = cold('a', {a: new JwtActions.EscalateToken<ClaimMap>(tokenName)});
-    const responseBody = {token: 'asdfkjlslfd'};
+    actions = cold('a', { a: new JwtActions.EscalateToken<ClaimMap>(tokenName) });
+    const responseBody = { token: 'asdfkjlslfd' };
     // tslint:disable-next-line deprecation
     mockHttp.get.mockReturnValue(of(responseBody));
     // tslint:disable-next-line deprecation
@@ -70,12 +70,12 @@ describe(`TokenEscalator`, function() {
           isDefaultToken: true,
         }),
       ) as any
-    ).toBeObservable(cold('a', {a: new JwtActions.EscalationSuccess<ClaimMap>(tokenName)}));
+    ).toBeObservable(cold('a', { a: new JwtActions.EscalationSuccess<ClaimMap>(tokenName) }));
   });
 
 
   test(`should dispatch failed if the token fails to extract`, () => {
-    actions = cold('a', {a: new JwtActions.EscalateToken<ClaimMap>(tokenName)});
+    actions = cold('a', { a: new JwtActions.EscalateToken<ClaimMap>(tokenName) });
     const responseBody = {};
     // tslint:disable-next-line deprecation
     mockHttp.get.mockReturnValue(of(responseBody));
@@ -90,7 +90,7 @@ describe(`TokenEscalator`, function() {
           isDefaultToken: true,
         }),
       ) as any
-    ).toBeObservable(cold('a', {a: new JwtActions.EscalationFailed<ClaimMap>(tokenName)}));
+    ).toBeObservable(cold('a', { a: new JwtActions.EscalationFailed<ClaimMap>(tokenName) }));
   });
 
 });

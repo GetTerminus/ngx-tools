@@ -2,7 +2,7 @@ import { objectDeepGet } from './object-deep-get';
 
 
 describe(`objectDeepGetter`, function() {
-  const objectInput = {foo: {bar: {baz: 'xyz'}}};
+  const objectInput = { foo: { bar: { baz: 'xyz' } } };
   const path1 = 'foo.bar.baz';
   const path2 = 'foo.bar';
   const path3 = 'abc';
@@ -10,7 +10,7 @@ describe(`objectDeepGetter`, function() {
 
   test(`should parse to the lowest level specified`, () => {
     expect(objectDeepGet(objectInput, path1)).toEqual('xyz');
-    expect(objectDeepGet(objectInput, path2)).toEqual({baz: 'xyz'});
+    expect(objectDeepGet(objectInput, path2)).toEqual({ baz: 'xyz' });
   });
 
 

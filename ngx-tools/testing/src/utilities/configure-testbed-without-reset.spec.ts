@@ -11,7 +11,7 @@ import {
 import { configureTestBedWithoutReset } from './configure-testbed-without-reset';
 
 
-@Component({template: ``})
+@Component({ template: `` })
 class TestHostComponent implements OnDestroy {
   public arr: number[] = [];
 

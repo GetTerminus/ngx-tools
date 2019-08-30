@@ -62,7 +62,7 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
     }
   }
 
-  public escalateToken({tokenName, authorizeUrl, isDefaultToken}: EscalateToken<CM>): Observable<any> {
+  public escalateToken({ tokenName, authorizeUrl, isDefaultToken }: EscalateToken<CM>): Observable<any> {
     const observ = new Observable((observer: Observer<any>) => {
       this.escalators[tokenName] = observer;
     }).pipe(
@@ -77,7 +77,7 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
 
         this.requestsForToken[tokenName].push(url);
 
-        return of({type: 'null op'});
+        return of({ type: 'null op' });
       }),
     );
     observ.subscribe(() => {});

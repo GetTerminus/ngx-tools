@@ -3,8 +3,8 @@ import { isHttpResponse } from './is-http-response';
 
 describe(`isHttpResponse`, function() {
   const validResponses = [
-    {headers: {}},
-    {headers: 2},
+    { headers: {} },
+    { headers: 2 },
     {
       foo: 'bar',
       test: () => {},
@@ -17,7 +17,7 @@ describe(`isHttpResponse`, function() {
     undefined,
     1,
     true,
-    {foo: 'bar'},
+    { foo: 'bar' },
   ];
 
 

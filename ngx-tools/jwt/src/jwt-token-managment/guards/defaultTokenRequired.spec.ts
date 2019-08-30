@@ -44,12 +44,12 @@ describe(`JWT Token Effects`, function() {
   describe(`canActivate`, () => {
 
     test(`should wait for the type to change from 'uninitialized'`, () => {
-      const token = cold('a', {a: 'tokenA'});
+      const token = cold('a', { a: 'tokenA' });
       const states = hot('a-----b', {
         a: 'uninitialized',
         b: 'loaded',
       });
-      const expected = cold('------b', {b: true});
+      const expected = cold('------b', { b: true });
 
       guard.currentLoadState = states;
       guard.currentToken = token;
@@ -59,12 +59,12 @@ describe(`JWT Token Effects`, function() {
 
 
     test(`should return false if the token is empty`, () => {
-      const token = cold('a', {a: ''});
+      const token = cold('a', { a: '' });
       const states = hot('a-----b', {
         a: 'uninitialized',
         b: 'loaded',
       });
-      const expected = cold('------b', {b: false});
+      const expected = cold('------b', { b: false });
 
       guard.currentLoadState = states;
       guard.currentToken = token;

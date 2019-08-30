@@ -30,7 +30,7 @@ describe(`RetryWithEscalation`, function() {
 
 
   beforeEach(() => {
-    mockStore = {dispatch: jest.fn()};
+    mockStore = { dispatch: jest.fn() };
 
     TestBed.configureTestingModule({
       providers: [
@@ -74,7 +74,7 @@ describe(`RetryWithEscalation`, function() {
 
     test(`re-throws a non 403 status code`, () => {
       actions = hot('');
-      const error = new HttpErrorResponse({status: 404});
+      const error = new HttpErrorResponse({ status: 404 });
 
       const stream = cold('#', {}, error).pipe(
         retryer.retryWithEscalation('foo'),
@@ -85,17 +85,17 @@ describe(`RetryWithEscalation`, function() {
 
 
     describe(`when the inital action is valid`, () => {
-      const http403Error = new HttpErrorResponse({status: 403});
+      const http403Error = new HttpErrorResponse({ status: 403 });
 
 
       test(`should pass through a success`, () => {
-        actions = hot('a', {a: {}});
+        actions = hot('a', { a: {} });
 
-        const stream = cold('a', {a: {foo: 'bar'}}).pipe(
+        const stream = cold('a', { a: { foo: 'bar' } }).pipe(
           retryer.retryWithEscalation('foo'),
         );
 
-        (expect(stream) as any).toBeObservable(cold('a', {a: {foo: 'bar'}}));
+        (expect(stream) as any).toBeObservable(cold('a', { a: { foo: 'bar' } }));
       });
 
 
@@ -132,10 +132,10 @@ describe(`RetryWithEscalation`, function() {
 
 
       test(`should retry the observable if it succeeds but reraise if it fails again`, () => {
-        const actionStreamActions = {b: new JwtActions.EscalationSuccess<MockClaimMap>('foo')};
+        const actionStreamActions = { b: new JwtActions.EscalationSuccess<MockClaimMap>('foo') };
 
         actions      =  hot('-----b', actionStreamActions);
-        const output = cold('a-----a--#', {a: 1}, http403Error);
+        const output = cold('a-----a--#', { a: 1 }, http403Error);
         const stream = cold('a--#', {
           a: 1,
           b: 2,
