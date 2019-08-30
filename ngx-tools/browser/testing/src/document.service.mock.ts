@@ -8,7 +8,7 @@ const document: unknown = {
     appendChild: noop,
   },
   createElement: noop,
-  createRange: () => ({selectNodeContents: noop}),
+  createRange: () => ({ selectNodeContents: noop }),
   execCommand: noop,
 };
 

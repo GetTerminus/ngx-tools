@@ -3,8 +3,8 @@ import { isTokenResponse } from './is-token-response';
 
 describe(`isTokenResponse`, function() {
   const validResponses = [
-    {token: {}},
-    {token: 2},
+    { token: {} },
+    { token: 2 },
     {
       foo: 'bar',
       test: () => {},
@@ -17,7 +17,7 @@ describe(`isTokenResponse`, function() {
     undefined,
     1,
     true,
-    {foo: 'bar'},
+    { foo: 'bar' },
   ];
 
 

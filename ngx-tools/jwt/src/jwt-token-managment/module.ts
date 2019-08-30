@@ -22,7 +22,7 @@ import { TokenExtractor } from './utilities/token-extractor';
 
 // NOTE: Not sure why this second param is required in strict mode
 // tslint:disable-next-line no-any
-export const reducers: ActionReducerMap<State, any> = {jwtTokens: jwtTokenProviderReducer};
+export const reducers: ActionReducerMap<State, any> = { jwtTokens: jwtTokenProviderReducer };
 
 
 @NgModule({

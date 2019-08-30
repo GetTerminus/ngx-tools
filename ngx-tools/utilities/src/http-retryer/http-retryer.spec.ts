@@ -17,7 +17,7 @@ import { httpRetryer } from './http-retryer';
 
 
 describe(`httpRetryer`, function() {
-  const caughtError = new HttpErrorResponse({status: 503});
+  const caughtError = new HttpErrorResponse({ status: 503 });
   let source: Observable<number>;
   let seenValues: number[];
   let errorAfter: (v: number, e: HttpErrorResponse, n?: number) => Observable<number>;
@@ -58,14 +58,14 @@ describe(`httpRetryer`, function() {
 
 
   test(`should re-throw HTTP errors not considered (404 for example)`, () => {
-    const uncaughtError = new HttpErrorResponse({status: 404});
+    const uncaughtError = new HttpErrorResponse({ status: 404 });
 
     (expect(cold('#', {}, uncaughtError).pipe(httpRetryer({}))) as any).toBeObservable(cold('#', {}, uncaughtError));
   });
 
 
   test(`should retry connection errors`, () => {
-    const retryErrorWithMsDelay = new HttpErrorResponse({status: 0});
+    const retryErrorWithMsDelay = new HttpErrorResponse({ status: 0 });
 
     (expect(
       errorAfter(3, retryErrorWithMsDelay, 1).pipe(
@@ -88,7 +88,7 @@ describe(`httpRetryer`, function() {
   describe(`when receiving a 429`, () => {
 
     test(`should default to backoffStrategy when no header is present`, () => {
-      const retryErrorWithMsDelay = new HttpErrorResponse({status: 429});
+      const retryErrorWithMsDelay = new HttpErrorResponse({ status: 429 });
 
       (expect(
         errorAfter(3, retryErrorWithMsDelay, 2).pipe(
@@ -111,7 +111,7 @@ describe(`httpRetryer`, function() {
     test(`should handle a delay with a specific retry ms time`, () => {
       const retryErrorWithMsDelay = new HttpErrorResponse({
         status: 429,
-        headers: new HttpHeaders({'Retry-After': '40'}),
+        headers: new HttpHeaders({ 'Retry-After': '40' }),
       });
 
       (expect(
@@ -138,14 +138,14 @@ describe(`httpRetryer`, function() {
 
       const retryErrorWithSpecificDelay = new HttpErrorResponse({
         status: 429,
-        headers: new HttpHeaders({'Retry-After': emissionTime.toString()}),
+        headers: new HttpHeaders({ 'Retry-After': emissionTime.toString() }),
       });
 
       getTestScheduler().maxFrames = 1500;
 
       (expect(
         errorAfter(3, retryErrorWithSpecificDelay, 1).pipe(
-          httpRetryer({scheduler: getTestScheduler()}),
+          httpRetryer({ scheduler: getTestScheduler() }),
         ),
       ) as any).toBeObservable(
         // Note the '- 2' account for the time it takes to get to the first error

@@ -12,11 +12,11 @@ describe(`isDragEvent`, function() {
     this.types = [];
   };
   const dragEvent = createMouseEvent('click') as DragEvent;
-  Object.defineProperties(dragEvent, {dataTransfer: {get: () => DataTransferMock}});
+  Object.defineProperties(dragEvent, { dataTransfer: { get: () => DataTransferMock } });
   const mouseEvent = createMouseEvent('click');
 
   const validEvents: any[] = [
-    {dataTransfer: {}},
+    { dataTransfer: {} },
     dragEvent,
   ];
 

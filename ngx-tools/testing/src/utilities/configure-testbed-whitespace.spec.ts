@@ -7,13 +7,13 @@ import {
 } from './configure-testbed-whitespace';
 
 
-@Component({template: ``})
+@Component({ template: `` })
 class TestHostComponent {}
 
 
 describe(`configureTestBedWhitespace`, function() {
   const configure: ConfigureTestBedFn = testBed => {
-    testBed.configureTestingModule({declarations: [TestHostComponent]});
+    testBed.configureTestingModule({ declarations: [TestHostComponent] });
   };
 
 
@@ -26,7 +26,7 @@ describe(`configureTestBedWhitespace`, function() {
   });
 
   test(`should return a configured TestBed`, () => {
-    const options: TestBedCompilerOptions = {preserveWhitespaces: true};
+    const options: TestBedCompilerOptions = { preserveWhitespaces: true };
 
     configureTestBedWhitespace(configure, options).then(testBed => {
       expect(testBed).toEqual(expect.any(Function));

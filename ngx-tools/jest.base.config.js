@@ -21,7 +21,7 @@ module.exports = {
     'js',
     'ts',
   ],
-  moduleNameMapper: {'^@terminus/ngx-tools(.*)$': '<rootDir>/ngx-tools$1/src/public-api.ts'},
+  moduleNameMapper: { '^@terminus/ngx-tools(.*)$': '<rootDir>/ngx-tools$1/src/public-api.ts' },
   preset: 'jest-preset-angular',
   reporters: ['default', ['jest-junit', { output: '<rootDir>/coverage/junit/report.xml' }]],
   roots: ['<rootDir>/ngx-tools/'],
@@ -34,7 +34,7 @@ module.exports = {
   testMatch: [
     '<rootDir>/**/?(*.)spec.ts?(x)',
   ],
-  transform: {'^.+\\.(ts|js|html)$': 'ts-jest'},
+  transform: { '^.+\\.(ts|js|html)$': 'ts-jest' },
   transformIgnorePatterns: [
     'node_modules/(?!@ngrx)',
   ],

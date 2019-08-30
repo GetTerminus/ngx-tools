@@ -40,7 +40,7 @@ export interface EscalateToken<CM = ClaimMap> extends Partial<JwtActions.StoreTo
 export class TokenEscalator<CM = ClaimMap> {
 
   // tslint:disable-next-line no-any
-  public escalateToken({tokenName, authorizeUrl, isDefaultToken}: EscalateToken<CM>): Observable<any> {
+  public escalateToken({ tokenName, authorizeUrl, isDefaultToken }: EscalateToken<CM>): Observable<any> {
     return this.actions$
       .pipe(
         ofType<JwtActions.EscalateToken<CM>>(JwtActions.ActionTypes.EscalateToken),
@@ -50,11 +50,11 @@ export class TokenEscalator<CM = ClaimMap> {
           this.store.select(tokenFor<CM, typeof tokenName>(tokenName)),
         ),
         switchMap(([action, url, currentToken]) => {
-          const headers = new HttpHeaders({Authorization: `Bearer ${currentToken}`});
+          const headers = new HttpHeaders({ Authorization: `Bearer ${currentToken}` });
 
           return this.http.get<{token: string}>(
             url,
-            {headers},
+            { headers },
           ).pipe(
             this.tokenExtractor.extractJwtToken({
               tokenName,

@@ -3,7 +3,7 @@ import { noop } from '@terminus/ngx-tools/utilities';
 
 
 const windowMock: Window = {
-  getComputedStyle: () => ({getPropertyValue: () => 'static'}),
+  getComputedStyle: () => ({ getPropertyValue: () => 'static' }),
   open: noop,
   location: {
     href: 'foo/bar',
