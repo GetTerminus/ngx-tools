@@ -1,3 +1,10 @@
+## [7.2.4](https://github.com/GetTerminus/ngx-tools/compare/v7.2.3...v7.2.4) (2019-09-03)
+
+
+### Bug Fixes
+
+* **All:** Upgrade to latest angular packages ([dc70176](https://github.com/GetTerminus/ngx-tools/commit/dc70176))
+
 ## <small>7.2.3 (2019-08-22)</small>
 
 * fix(Testing): deprecation notices define the correct import change (#329) ([d0d00f2](https://github.com/GetTerminus/ngx-tools/commit/d0d00f2)), closes [#329](https://github.com/GetTerminus/ngx-tools/issues/329)
