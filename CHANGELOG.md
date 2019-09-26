@@ -1,3 +1,10 @@
+## [7.2.5](https://github.com/GetTerminus/ngx-tools/compare/v7.2.4...v7.2.5) (2019-09-26)
+
+
+### Bug Fixes
+
+* **Testing:** createKeyboardEvent now sets keyCode ([#336](https://github.com/GetTerminus/ngx-tools/issues/336)) ([22b40cf](https://github.com/GetTerminus/ngx-tools/commit/22b40cf)), closes [#335](https://github.com/GetTerminus/ngx-tools/issues/335)
+
 ## [7.2.4](https://github.com/GetTerminus/ngx-tools/compare/v7.2.3...v7.2.4) (2019-09-03)
 
 
