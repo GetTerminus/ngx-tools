@@ -1,5 +1,6 @@
 // tslint:disable: no-any
 import { ElementRef } from '@angular/core';
+import { noop } from '@terminus/ngx-tools/utilities';
 
 
 /**
@@ -8,6 +9,10 @@ import { ElementRef } from '@angular/core';
 const defaults = {
   innerText: 'foo',
   style: {},
+  classList: {
+    add: noop,
+    remove: noop,
+  },
 };
 
 
@@ -23,4 +28,4 @@ export class ElementRefMock implements ElementRef {
       ...nativeElementAdditions || {},
     };
   }
-}
+
