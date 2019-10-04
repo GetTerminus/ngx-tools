@@ -28,4 +28,4 @@ export class ElementRefMock implements ElementRef {
       ...nativeElementAdditions || {},
     };
   }
-
+}

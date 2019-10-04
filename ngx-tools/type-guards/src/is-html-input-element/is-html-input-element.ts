@@ -16,5 +16,6 @@ import { isSet } from './../is-set/is-set';
  */
 // tslint:disable-next-line no-any
 export function isHTMLInputElement(x: any): x is HTMLInputElement {
+  // tslint:disable-next-line no-unsafe-any
   return !!x && isSet(x.files);
 }

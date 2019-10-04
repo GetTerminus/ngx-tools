@@ -13,5 +13,6 @@ import { isSet } from './../is-set/is-set';
  */
 // tslint:disable-next-line no-any
 export function isKeyboardEvent(x: any): x is KeyboardEvent {
+  // tslint:disable-next-line no-unsafe-any
   return !!x && isSet(x.code);
 }
