@@ -13,5 +13,6 @@ import { isSet } from './../is-set/is-set';
  */
 // tslint:disable-next-line no-any
 export function isDragEvent(x: any): x is DragEvent {
+  // tslint:disable-next-line no-unsafe-any
   return !!x && isSet(x.dataTransfer);
 }
