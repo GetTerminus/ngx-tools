@@ -14,6 +14,7 @@ A collection of useful utilities.
 - [`compactArray`](#compactarray)
 - [`debounce`](#debounce)
 - [`defineType` and `defineTypeEnum`](#definetype-and-definetypeenum)
+- [`flatten`](#flatten)
 - [`generateUUID`](#generateuuid)
 - [`getFormControlValue`](#getformcontrolvalue)
 - [`groupBy`](#groupby)
@@ -178,6 +179,20 @@ export enum actionTypes {
 };
 
 defineTypeEnum(actionTypes);
+```
+
+
+## `flatten`
+
+[[source]](src/flatten/flatten.ts)
+
+Flatten a nested array.
+
+```typescript
+import { flatten } from '@terminus/ngx-tools/utilities';
+
+const myArray = [1, 2, [3, 4]];
+flatten<number>(myArray); // Returns: `[1, 2, 3, 4]`
 ```
 
 
