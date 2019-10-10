@@ -23,7 +23,16 @@ module.exports = {
   ],
   moduleNameMapper: { '^@terminus/ngx-tools(.*)$': '<rootDir>/ngx-tools$1/src/public-api.ts' },
   preset: 'jest-preset-angular',
-  reporters: ['default', ['jest-junit', { output: '<rootDir>/coverage/junit/report.xml' }]],
+  reporters: [
+    'default',
+    [
+      'jest-junit',
+      {
+        outputDirectory: '<rootDir>/coverage/junit/',
+        outputName: 'report.xml',
+      },
+    ],
+  ],
   roots: ['<rootDir>/ngx-tools/'],
   setupFilesAfterEnv: ['<rootDir>/tools/jest-setup.ts'],
   snapshotSerializers: [
