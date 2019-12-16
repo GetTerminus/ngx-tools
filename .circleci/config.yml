@@ -1,105 +1,162 @@
-version: 2
+version: 2.1
 
-jobs:
-  build:
+orbs:
+  # https://circleci.com/orbs/registry/orb/circleci/aws-s3
+  aws-s3: circleci/aws-s3@1.0.11
 
-    docker:
-      - image: getterminus/terminus-ui-circleci:11.11-20190830194903
-
+#
+# Reusable definitions
+#
+references:
+  # Basic defaults that most jobs will need.
+  defaults: &defaults
     working_directory: ~/ci-build
-
+    docker:
+      - image: circleci/node:12.13.1
     environment:
       TEST_REPORTS: /coverage
 
+  # Filter to run a job on builds for the release branch only.
+  filter_only_release_branch: &filter_only_release_branch
+    filters:
+      branches:
+        only:
+          - /^release$/
+
+  # Filter to run a job on tagged releases.
+  # https://circleci.com/docs/2.0/workflows/#using-regular-expressions-to-filter-tags-and-branches
+  # https://circleci.com/docs/2.0/workflows/#executing-workflows-for-a-git-tag
+  release_tag_filter: &release_tag_filter
+    filters:
+      tags:
+        only: /^v[0-9.]+.*/
+      branches:
+        ignore: /.*/
+
+  # Attach the root workspace
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: '.'
+
+
+#
+# Jobs
+#
+jobs:
+  setup:
+    <<: *defaults
     steps:
       - add_ssh_keys
-
       - checkout
-
       - restore_cache:
           name: Restore Yarn Cache
           keys:
-            - yarn
-
+            - terminusngxtools-yarn-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - terminusngxtools-yarn-deps-{{ .Branch }}
+            - terminusngxtools-yarn-deps-release
+            - terminusngxtools-yarn-deps-
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
-
+          command: yarn install --frozen-lockfile --non-interactive
+      - run:
+          name: Versions
+          command: |
+            echo "Yarn version: "
+            yarn --version
+            npx ng --version
       - save_cache:
           name: Save Yarn Cache
-          key: yarn
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
-
+            - ~/.cache/yarn
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./*
+  lint:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Lint
           command: yarn run lint:ci
-
-
-
-
+  test:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
           name: TEST @terminus/ngx-tools/browser
           command: yarn run test:browser:ci && npx codecov -f coverage/browser/*.json -F browser
-
       - run:
           name: TEST @terminus/ngx-tools/coercion
           command: yarn run test:coercion:ci && npx codecov -f coverage/coercion/*.json -F coercion
-
       - run:
           name: TEST @terminus/ngx-tools/jwt
           command: yarn run test:jwt:ci && npx codecov -f coverage/jwt/*.json -F jwt
-
       - run:
           name: TEST @terminus/ngx-tools/keycodes
           command: yarn run test:keycodes:ci && npx codecov -f coverage/keycodes/*.json -F keycodes
-
       - run:
           name: TEST @terminus/ngx-tools/regex
           command: yarn run test:regex:ci && npx codecov -f coverage/regex/*.json -F regex
-
       - run:
           name: TEST @terminus/ngx-tools/testing
           command: yarn run test:testing:ci && npx codecov -f coverage/testing/*.json -F testing
-
       - run:
           name: TEST @terminus/ngx-tools/type-guards
           command: yarn run test:type-guards:ci && npx codecov -f coverage/type-guards/*.json -F type-guards
-
       - run:
           name: TEST @terminus/ngx-tools/utilities
           command: yarn run test:utilities:ci && npx codecov -f coverage/utilities/*.json -F utilities
-
-
-
-
-      - run:
-          name: Build Project
-          command: yarn run build
-
-      - run:
-          name: Release
-          command: npx semantic-release
-
+      - store_test_results:
+          path: coverage/merged-junit-results.xml
       - store_artifacts:
           path: coverage/
           destination: ~/coverage/
-
-      - store_artifacts:
-          path: dist/
-          destination: ~/dist/
-
+  build:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - run:
+          name: Build Project
+          command: yarn run build
       - store_artifacts:
           path: /home/circleci/.npm/_logs/
           destination: ~/npm_logs/
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist/ngx-tools/*
+  publish_library:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - add_ssh_keys
+      - run:
+          name: Publish Library
+          command: npx semantic-release
 
 
-
-
-# HACK: This will allow tags to kick off the deploy process. Correct syntax support is coming soon:
-# https://discuss.circleci.com/t/git-tag-deploys-in-2-0/9493/8
-deployment:
-  fake_deploy_for_cci2:
-    tag: /.*/
-    commands:
-      - echo "make tags run in 2.0"
+#
+# Workflows
+#
+workflows:
+  version: 2.1
+  build_and_test:
+    jobs:
+      - setup
+      - build:
+          requires:
+            - setup
+      - lint:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
+      - publish_library:
+          <<: *filter_only_release_branch
+          requires:
+            - build
+            - lint
+            - test

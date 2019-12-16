@@ -7,7 +7,17 @@ module.exports = {
     '<rootDir>/ngx-tools/utilities/**/!(public-api|index).ts',
   ],
   coverageDirectory: '<rootDir>/coverage/utilities/',
+  reporters: [
+    'default',
+    [
+      'jest-junit',
+      {
+        outputDirectory: '<rootDir>/coverage/utilities/',
+        outputName: 'report.xml',
+      },
+    ],
+  ],
   testMatch: [
     '<rootDir>/ngx-tools/utilities/**/?(*.)spec.ts?(x)',
   ],
-}
+};
