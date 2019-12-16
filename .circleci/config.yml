@@ -108,6 +108,9 @@ jobs:
       - run:
           name: TEST @terminus/ngx-tools/utilities
           command: yarn run test:utilities:ci && npx codecov -f coverage/utilities/*.json -F utilities
+      - run:
+          name: Combine test coverage files
+          command: yarn run test:merge:junit
       - store_test_results:
           path: coverage/merged-junit-results.xml
       - store_artifacts:
