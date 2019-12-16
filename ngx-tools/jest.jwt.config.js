@@ -8,7 +8,17 @@ module.exports = {
     '!<rootDir>/ngx-tools/jwt/testing/**/*',
   ],
   coverageDirectory: '<rootDir>/coverage/jwt/',
+  reporters: [
+    'default',
+    [
+      'jest-junit',
+      {
+        outputDirectory: '<rootDir>/coverage/jwt/',
+        outputName: 'report.xml',
+      },
+    ],
+  ],
   testMatch: [
     '<rootDir>/ngx-tools/jwt/**/?(*.)spec.ts?(x)',
   ],
-}
+};
