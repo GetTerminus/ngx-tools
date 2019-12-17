@@ -209,7 +209,7 @@
     "@types/jest": "24.0.18",
     "@types/node": "12.12.19",
     "all-contributors-cli": "6.11.2",
-    "codecov": "3.5.0",
+    "codecov": "3.6.1",
     "commitizen": "4.0.3",
     "condition-circle": "2.0.2",
     "cpr": "3.0.1",
