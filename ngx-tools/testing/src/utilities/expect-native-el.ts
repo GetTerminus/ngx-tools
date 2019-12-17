@@ -4,7 +4,7 @@ import { ComponentFixture } from '@angular/core/testing';
 /**
  * Reusable expect statement to check for the nativeElement
  *
- * NOTE: this helper only accesses the 1st-level child within a component.
+ * NOTE: This helper only accesses the 1st-level child within a component.
  *
  * @param fixture - The test fixture
  * @return expect statement
@@ -14,7 +14,7 @@ import { ComponentFixture } from '@angular/core/testing';
  *   expectNativeEl(myEl);
  * });
  */
-export function expectNativeEl<T>(fixture: ComponentFixture<T>): jest.Matchers<HTMLElement> {
+export function expectNativeEl<T>(fixture: ComponentFixture<T>): any {
   fixture.detectChanges();
   return expect(fixture.debugElement.children[0].nativeElement);
 }
