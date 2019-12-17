@@ -1,3 +1,10 @@
+## [7.2.9](https://github.com/GetTerminus/ngx-tools/compare/v7.2.8...v7.2.9) (2019-12-17)
+
+
+### Bug Fixes
+
+* **packages:** update angular monorepo to v8.2.14 ([dced06f](https://github.com/GetTerminus/ngx-tools/commit/dced06f))
+
 ## [7.2.8](https://github.com/GetTerminus/ngx-tools/compare/v7.2.7...v7.2.8) (2019-12-17)
 
 
