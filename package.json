@@ -208,7 +208,7 @@
     "@terminus/tslint-config-frontend": "1.0.7",
     "@types/jest": "24.0.18",
     "@types/node": "12.12.18",
-    "all-contributors-cli": "6.8.1",
+    "all-contributors-cli": "6.11.2",
     "codecov": "3.5.0",
     "commitizen": "4.0.3",
     "condition-circle": "2.0.2",
