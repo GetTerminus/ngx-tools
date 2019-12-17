@@ -237,7 +237,7 @@
     "semantic-release": "15.13.24",
     "ts-node": "8.5.4",
     "tsickle": "0.37.1",
-    "tslint": "5.19.0",
+    "tslint": "5.20.1",
     "typescript": "3.4.5",
     "validate-commit-msg": "2.14.0",
     "window-crypto": "1.1.0"
