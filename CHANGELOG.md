@@ -1,3 +1,10 @@
+## [7.2.7](https://github.com/GetTerminus/ngx-tools/compare/v7.2.6...v7.2.7) (2019-12-17)
+
+
+### Bug Fixes
+
+* **packages:** update dependency core-js to v3.5.0 ([760f492](https://github.com/GetTerminus/ngx-tools/commit/760f492))
+
 ## [7.2.6](https://github.com/GetTerminus/ngx-tools/compare/v7.2.5...v7.2.6) (2019-10-04)
 
 
