@@ -1,3 +1,10 @@
+## [7.2.10](https://github.com/GetTerminus/ngx-tools/compare/v7.2.9...v7.2.10) (2019-12-17)
+
+
+### Bug Fixes
+
+* **packages:** update dependency rxjs to v6.5.3 ([bacb065](https://github.com/GetTerminus/ngx-tools/commit/bacb065))
+
 ## [7.2.9](https://github.com/GetTerminus/ngx-tools/compare/v7.2.8...v7.2.9) (2019-12-17)
 
 
