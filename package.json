@@ -186,7 +186,7 @@
     "@angular/router": "8.2.4",
     "@terminus/ngx-tools": "7.2.3",
     "core-js": "3.5.0",
-    "jsdom": "15.1.1",
+    "jsdom": "15.2.1",
     "rxjs": "6.5.2",
     "zone.js": "0.10.2"
   },
@@ -243,6 +243,6 @@
     "window-crypto": "1.1.0"
   },
   "resolutions": {
-    "jsdom": "14.0.0"
+    "jsdom": "15.2.1"
   }
 }
