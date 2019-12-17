@@ -184,7 +184,7 @@
     "@angular/platform-browser": "8.2.14",
     "@angular/platform-browser-dynamic": "8.2.14",
     "@angular/router": "8.2.14",
-    "@terminus/ngx-tools": "7.2.3",
+    "@terminus/ngx-tools": "7.2.6",
     "jsdom": "15.2.1",
     "rxjs": "6.5.3",
     "zone.js": "0.10.2"
