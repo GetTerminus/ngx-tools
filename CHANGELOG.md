@@ -1,3 +1,10 @@
+## [7.2.13](https://github.com/GetTerminus/ngx-tools/compare/v7.2.12...v7.2.13) (2020-01-10)
+
+
+### Bug Fixes
+
+* **packages:** update dependency @terminus/ngx-tools to v7.2.11 ([3c4d6af](https://github.com/GetTerminus/ngx-tools/commit/3c4d6af))
+
 ## [7.2.12](https://github.com/GetTerminus/ngx-tools/compare/v7.2.11...v7.2.12) (2020-01-08)
 
 
