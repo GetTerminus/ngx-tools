@@ -234,7 +234,7 @@
     "protractor": "5.4.2",
     "rimraf": "3.0.0",
     "semantic-release": "15.13.24",
-    "ts-node": "8.6.0",
+    "ts-node": "8.6.2",
     "tsickle": "0.38.0",
     "tslint": "5.20.1",
     "typescript": "3.4.5",
