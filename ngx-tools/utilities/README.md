@@ -9,6 +9,7 @@ A collection of useful utilities.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [`abbreviateNumber`](#abbreviatenumber)
 - [`applyMixins`](#applymixins)
 - [`arrayContainsObject`](#arraycontainsobject)
 - [`compactArray`](#compactarray)
@@ -39,6 +40,18 @@ A collection of useful utilities.
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## `abbreviateNumber`
+
+[[get source]](src/abbreviate-number/abbreviate-number.ts)
+
+A utility to abbreviate numbers.
+
+```typescript
+import { abbreviateNumber } from '@terminus/ngx-tools/utilities';
+
+const input1 = 1234;
+return abbreviateNumber(input1, 1); // expect to get 1.2K
+```
 
 ## `applyMixins`
 

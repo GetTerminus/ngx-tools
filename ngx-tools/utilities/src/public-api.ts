@@ -1,3 +1,4 @@
+export * from './abbreviate-number/abbreviate-number';
 export * from './apply-mixins/apply-mixins';
 export * from './array-contains-object/array-contains-object';
 export * from './compact-array/compact-array';
