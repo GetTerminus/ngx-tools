@@ -1,3 +1,10 @@
+# [7.3.0](https://github.com/GetTerminus/ngx-tools/compare/v7.2.13...v7.3.0) (2020-01-28)
+
+
+### Features
+
+* **Utilities:** Create number abbreviation function ([6d1848f](https://github.com/GetTerminus/ngx-tools/commit/6d1848f))
+
 ## [7.2.13](https://github.com/GetTerminus/ngx-tools/compare/v7.2.12...v7.2.13) (2020-01-10)
 
 
