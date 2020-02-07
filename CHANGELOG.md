@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/GetTerminus/ngx-tools/compare/v7.3.1...v7.4.0) (2020-02-07)
+
+
+### Features
+
+* **TypeGuard:** Add isValidDate type guard ([197984c](https://github.com/GetTerminus/ngx-tools/commit/197984c))
+
 ## [7.3.1](https://github.com/GetTerminus/ngx-tools/compare/v7.3.0...v7.3.1) (2020-02-07)
 
 
