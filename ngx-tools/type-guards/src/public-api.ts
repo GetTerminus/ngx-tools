@@ -16,3 +16,4 @@ export * from './is-set/is-set';
 export * from './is-string/is-string';
 export * from './is-token-response/is-token-response';
 export * from './is-undefined/is-undefined';
+export * from './is-valid-date/is-valid-date';
