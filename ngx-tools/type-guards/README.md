@@ -27,6 +27,7 @@ A collection of consistent, tested, and well-performing checks for various types
 - [`isString`](#isstring)
 - [`isTokenResponse`](#istokenresponse)
 - [`isUndefined`](#isundefined)
+- [`isValidDate`](#isvaliddate)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -287,4 +288,18 @@ import { isUndefined } from '@terminus/ngx-tools/type-guards';
 isUndefined(undefined) // Returns: true
 isUndefined(null)      // Returns: false
 isUndefined('foo')     // Returns: false
+```
+
+## `isValidDate`
+
+[[source]](src/is-valid-date/is-valid-date.ts)
+
+Determine if an input is a valid date.
+
+```typescript
+import { isValidDate } from '@terminus/ngx-tools/type-guards';
+
+isValidDate('foo')         // Returns: false
+isValidDate(new Date())    // Returns: true
+isValidDate('2020-02-07')  // Returns: true
 ```
