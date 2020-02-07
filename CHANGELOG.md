@@ -1,3 +1,10 @@
+## [7.3.1](https://github.com/GetTerminus/ngx-tools/compare/v7.3.0...v7.3.1) (2020-02-07)
+
+
+### Bug Fixes
+
+* **TypeGuard:** exports all the utilities for consumers. ([7743217](https://github.com/GetTerminus/ngx-tools/commit/7743217))
+
 # [7.3.0](https://github.com/GetTerminus/ngx-tools/compare/v7.2.13...v7.3.0) (2020-01-28)
 
 
