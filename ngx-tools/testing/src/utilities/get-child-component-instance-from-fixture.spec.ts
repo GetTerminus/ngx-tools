@@ -6,7 +6,6 @@ import {
 
 import { getChildComponentInstanceFromFixture } from './get-child-component-instance-from-fixture';
 
-
 @Component({
   selector: `ts-test`,
   template: `
@@ -19,7 +18,6 @@ class TestComponent {
 
 @Component({ template: `<ts-test></ts-test>` })
 class TestHostComponent {}
-
 
 describe(`getChildComponentInstanceFromFixture`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
@@ -35,10 +33,8 @@ describe(`getChildComponentInstanceFromFixture`, function() {
     fixture = TestBed.createComponent(TestHostComponent);
   });
 
-
   test(`should return the component instance`, () => {
     const instance: TestComponent = getChildComponentInstanceFromFixture(fixture, TestComponent);
     expect(instance.myString).toEqual('foo');
   });
-
 });

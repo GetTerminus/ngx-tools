@@ -7,15 +7,13 @@ import {
 /**
  * Helper function to determine if input is unset.
  *
- * @param input - the input being tested
- * @return boolean
+ * @param x - the input being tested
+ * @returns boolean
  *
  * @example
  * isUnset(null);      // Returns: true
  * isUnset(undefined); // Returns: true
  * isUnset('hello');   // Returns: false
  */
-// tslint:disable-next-line no-any
-export function isUnset(x: any): boolean {
-  return isNull(x) || isUndefined(x);
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isUnset = (x: any): boolean => isNull(x) || isUndefined(x);

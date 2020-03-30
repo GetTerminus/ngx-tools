@@ -2,7 +2,6 @@ import { TsWindowService } from '@terminus/ngx-tools/browser';
 
 import { debounce } from './debounce';
 
-
 describe(`debounce`, function() {
   let func: Function;
   let debounced: Function;
@@ -13,7 +12,6 @@ describe(`debounce`, function() {
     debounced = debounce(func, 200);
     windowMock = new TsWindowService().nativeWindow;
   });
-
 
   test(`should debounce all calls for the 'wait' period`, done => {
     for (const i of [1, 2, 3]) {
@@ -26,7 +24,6 @@ describe(`debounce`, function() {
       done();
     }, 201);
   });
-
 
   test(`should allow multiple calls if called after the wait period`, done => {
     const TEST_DELAY = 210;
@@ -45,7 +42,6 @@ describe(`debounce`, function() {
       done();
     }, TEST_DELAY * 2);
   });
-
 
   test(`should fire immediately if specified`, done => {
     const arr1: (string|number)[] = [];
@@ -71,7 +67,6 @@ describe(`debounce`, function() {
     }, 1000);
   });
 
-
   test(`should use the passed in window reference`, done => {
     jest.useFakeTimers();
     const origFunc = () => {};
@@ -90,7 +85,6 @@ describe(`debounce`, function() {
     jest.runAllTimers();
   });
 
-
   test(`should retain this context`, () => {
     class TestClass {
       public debouncedFunc: Function;
@@ -107,12 +101,11 @@ describe(`debounce`, function() {
     }
     const classMock = new TestClass();
     jest.useFakeTimers();
-    for (let i = 0; i < [1, 2, 3].length; i += 1) {
+    for (const i of [1, 2, 3]) {
       classMock.debouncedFunc();
     }
     jest.runAllTimers();
 
     expect(classMock.arr.length).toEqual(1);
   });
-
 });

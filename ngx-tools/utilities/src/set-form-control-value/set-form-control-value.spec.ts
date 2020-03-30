@@ -5,7 +5,6 @@ import {
 
 import { setFormControlValue } from './set-form-control-value';
 
-
 describe(`setFormControlValue`, function() {
   const controlValue = 'new value';
   const formBuilder = new FormBuilder();
@@ -19,12 +18,10 @@ describe(`setFormControlValue`, function() {
     });
   });
 
-
   test(`should return undefined if the form or control name is not passed in`, () => {
     expect(setFormControlValue(null as any, 'control1', controlValue)).toEqual(undefined);
     expect(setFormControlValue(formGroup, null as any, controlValue)).toEqual(undefined);
   });
-
 
   test(`should return undefined if the form control is not found`, () => {
     expect(setFormControlValue(formGroup, 'control99', controlValue)).toEqual(undefined);
@@ -35,5 +32,4 @@ describe(`setFormControlValue`, function() {
     const control = formGroup.get('control1');
     expect(control!.value).toEqual(controlValue);
   });
-
 });

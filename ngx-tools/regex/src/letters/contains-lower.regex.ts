@@ -13,8 +13,6 @@ export const containsLowercaseRegex = /(.*[a-z].*)/;
  * reg.test('aBC#12D') // Returns true
  *
  * @param minimum - The minimum amount of lowercase characters required
- * @return The regex
+ * @returns The regex
  */
-export function createContainsLowercaseRegex(minimum: number): RegExp {
-  return new RegExp(`(.*[a-z].*){${minimum},}`);
-}
+export const createContainsLowercaseRegex = (minimum: number): RegExp => new RegExp(`(.*[a-z].*){${minimum},}`);

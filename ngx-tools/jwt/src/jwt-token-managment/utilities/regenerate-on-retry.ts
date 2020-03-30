@@ -5,9 +5,13 @@ import {
 import { switchMap } from 'rxjs/operators';
 
 
-export function regenerateOnRetry<T>(obs: (() => Observable<T>)): Observable<T> {
-  return of(true).pipe(
-    switchMap(() => obs()),
-  );
-}
+/**
+ * Regenerate on retry
+ *
+ * @param obs
+ * @returns Observable
+ */
+export const regenerateOnRetry = <T>(obs: (() => Observable<T>)): Observable<T> => of(true).pipe(
+  switchMap(() => obs()),
+);
 

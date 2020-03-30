@@ -1,6 +1,5 @@
 import { publicShapeOf } from './public-shape-of';
 
-
 describe('publicShapeOf', function() {
   class Foo {
     foo1(x: string) {}
@@ -15,7 +14,6 @@ describe('publicShapeOf', function() {
     expect(bar.foo1).toBeTruthy();
   });
 
-
   test(`should pass if class implement publicShapeOf with private property of the same name`, () => {
     class Bar implements publicShapeOf<Foo> {
       foo1(x: string) {}
@@ -24,7 +22,6 @@ describe('publicShapeOf', function() {
     const bar = new Bar();
     expect(bar.foo1).toBeTruthy();
   });
-
 
   /**
    *  This is the fail-test. It works, however, it also fails the testing script!
@@ -40,5 +37,4 @@ describe('publicShapeOf', function() {
     expect(baz.foo1).toBeFalsy();
     expect(baz.foo2).toBeFalsy();
   }); */
-
 });

@@ -15,7 +15,6 @@ import {
 
 import { httpRetryer } from './http-retryer';
 
-
 describe(`httpRetryer`, function() {
   const caughtError = new HttpErrorResponse({ status: 503 });
   let source: Observable<number>;
@@ -49,20 +48,17 @@ describe(`httpRetryer`, function() {
     };
   });
 
-
   test(`should re-throw non http errors`, () => {
     const error = new Error('bar');
 
     (expect(cold('#', {}, error).pipe(httpRetryer({}))) as any).toBeObservable(cold('#', {}, error));
   });
 
-
   test(`should re-throw HTTP errors not considered (404 for example)`, () => {
     const uncaughtError = new HttpErrorResponse({ status: 404 });
 
     (expect(cold('#', {}, uncaughtError).pipe(httpRetryer({}))) as any).toBeObservable(cold('#', {}, uncaughtError));
   });
-
 
   test(`should retry connection errors`, () => {
     const retryErrorWithMsDelay = new HttpErrorResponse({ status: 0 });
@@ -84,9 +80,7 @@ describe(`httpRetryer`, function() {
     );
   });
 
-
   describe(`when receiving a 429`, () => {
-
     test(`should default to backoffStrategy when no header is present`, () => {
       const retryErrorWithMsDelay = new HttpErrorResponse({ status: 429 });
 
@@ -106,7 +100,6 @@ describe(`httpRetryer`, function() {
         }),
       );
     });
-
 
     test(`should handle a delay with a specific retry ms time`, () => {
       const retryErrorWithMsDelay = new HttpErrorResponse({
@@ -130,7 +123,6 @@ describe(`httpRetryer`, function() {
         }),
       );
     });
-
 
     test(`should handle a delay with a specific retry date time`, () => {
       const waitTime = time(`${'-'.repeat(100)  }|`);
@@ -157,12 +149,9 @@ describe(`httpRetryer`, function() {
         }),
       );
     });
-
   });
 
-
   describe(`when receiving a recoverable error`, () => {
-
     test(`should handle a delay and retry with backoff and reraise if not fixed`, () => {
       (expect(
         errorAfter(3, caughtError).pipe(
@@ -178,7 +167,6 @@ describe(`httpRetryer`, function() {
         }, caughtError),
       );
     });
-
 
     test(`should retry a configurable number of times`, () => {
       (expect(
@@ -197,7 +185,6 @@ describe(`httpRetryer`, function() {
       );
     });
 
-
     test(`should succeed after errors stop occurring`, () => {
       (expect(
         errorAfter(3, caughtError, 2).pipe(
@@ -215,7 +202,5 @@ describe(`httpRetryer`, function() {
         }),
       );
     });
-
   });
-
 });

@@ -5,7 +5,6 @@ import {
   State,
 } from './state';
 
-
 interface MockClaimMap {
   foo: { fooClaim: string };
   bar: { barClaim: string };
@@ -19,7 +18,6 @@ interface MinimumStoreRequirements {
 
 type MockState = MinimumStoreRequirements | State;
 
-
 describe('JWT Selectors', function() {
   let state: MockState;
   let tokenStorageState: JwtTokenProviderState<MockClaimMap>;
@@ -32,9 +30,7 @@ describe('JWT Selectors', function() {
     state = { [JWT_TOKEN_MANAGEMENT_STATE_TOKEN]: { jwtTokens: tokenStorageState } };
   });
 
-
   describe('getTokens', () => {
-
     test(`returns all tokens`, () => {
       tokenStorageState.tokens.bar = 'FooBar';
 
@@ -42,12 +38,9 @@ describe('JWT Selectors', function() {
         selectors.getTokens<MockClaimMap>()(state as State),
       ).toEqual({ bar: 'FooBar' });
     });
-
   });
 
-
   describe('tokenFor', () => {
-
     test(`returns the token for the specific service`, () => {
       tokenStorageState.tokens.foo = 'FooBar';
 
@@ -56,7 +49,6 @@ describe('JWT Selectors', function() {
       ).toEqual('FooBar');
     });
 
-
     test(`returns the default token if the service token is unset`, () => {
       tokenStorageState.defaultToken = 'FooBarish';
 
@@ -64,12 +56,9 @@ describe('JWT Selectors', function() {
         selectors.tokenFor<MockClaimMap, 'foo'>('foo')(state as State),
       ).toEqual('FooBarish');
     });
-
   });
 
-
   describe(`claimsFor`, () => {
-
     test(`provides the decoded claims`, () => {
       // eslint-disable-next-line max-len
       tokenStorageState.defaultToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb29DbGFpbSI6IjEyMzQ1In0.50A0G9bhMCl27gUlLEJ0PsK0Ce3hnrR71dZ9oh62DqA';
@@ -79,13 +68,11 @@ describe('JWT Selectors', function() {
       ).toEqual({ fooClaim: '12345' });
     });
 
-
     test(`should return null if no token is set`, () => {
       expect(
         selectors.claimsFor<MockClaimMap, 'foo'>('foo')(state as State),
       ).toEqual(null);
     });
-
 
     test(`should be null if the token is garbage`, () => {
       tokenStorageState.defaultToken = 'asdfljsaflkj.asdfsadf.sdfddsf';
@@ -94,12 +81,9 @@ describe('JWT Selectors', function() {
         selectors.claimsFor<MockClaimMap, 'foo'>('foo')(state as State),
       ).toEqual(null);
     });
-
   });
 
-
   describe(`claimValue`, () => {
-
     test(`provides the decoded claims`, () => {
       // eslint-disable-next-line max-len
       tokenStorageState.defaultToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb29DbGFpbSI6IjEyMzQ1In0.50A0G9bhMCl27gUlLEJ0PsK0Ce3hnrR71dZ9oh62DqA';
@@ -111,7 +95,6 @@ describe('JWT Selectors', function() {
       ).toEqual('12345');
     });
 
-
     test(`should return null if no token is set`, () => {
       const selector = selectors.claimValue<MockClaimMap, 'foo', 'fooClaim'>('foo', 'fooClaim');
 
@@ -119,7 +102,6 @@ describe('JWT Selectors', function() {
         selector(state as State),
       ).toEqual(null);
     });
-
 
     test(`should be null if the token is garbage`, () => {
       tokenStorageState.defaultToken = 'asdfljsaflkj.asdfsadf.sdfddsf';
@@ -130,7 +112,5 @@ describe('JWT Selectors', function() {
         selector(state as State),
       ).toEqual(null);
     });
-
   });
-
 });

@@ -79,7 +79,7 @@ jobs:
       - *attach_workspace
       - run:
           name: Lint
-          command: yarn run lint:ci
+          command: yarn run library:lint
   test:
     <<: *defaults
     steps:

@@ -9,7 +9,6 @@ import {
 
 import { queryFor } from './query-for';
 
-
 @Component({
   template: `
     <div class="foo"></div>
@@ -18,9 +17,7 @@ import { queryFor } from './query-for';
 })
 class TestComponent {}
 
-
 describe(`queryFor`, function() {
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -28,7 +25,6 @@ describe(`queryFor`, function() {
       ],
     }).compileComponents();
   }));
-
 
   test(`should return a DebugElement`, () => {
     const fixture = TestBed.createComponent(TestComponent);
@@ -42,5 +38,4 @@ describe(`queryFor`, function() {
     expect(div2).toBeTruthy();
     expect(div2.nativeElement.classList).toContain('baz');
   });
-
 });

@@ -1,10 +1,10 @@
 import { isValid } from 'date-fns';
+
 /**
  * Determine if an item is a valid date
  *
- *
- * @param x - The item to test
- * @return The result
+ * @param value - The item to test
+ * @returns The result
  *
  * @example
  * isValidDate('foo'); // Returns: false

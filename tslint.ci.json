@@ -1,7 +1,0 @@
-{
-  "extends": "@terminus/tslint-config-frontend/development",
-  "rules" : {
-    "no-implicit-dependencies": false,
-    "prefer-on-push-component-change-detection": false
-  }
-}

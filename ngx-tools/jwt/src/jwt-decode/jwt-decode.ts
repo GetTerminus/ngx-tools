@@ -4,13 +4,20 @@ import { base64_url_decode } from './base64-url-decode';
 
 
 export class InvalidTokenError {
-  public constructor(public message: string) {}
+  constructor(public message: string) {}
 }
 
-// tslint:disable-next-line no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (InvalidTokenError.prototype as any).name = 'InvalidTokenError';
 
 
+/**
+ * Decode JWT token
+ *
+ * @param token
+ * @param options
+ * @returns Token
+ */
 export function jwtDecode<T>(token: string, options?: {header?: boolean}): T {
   if (typeof token !== 'string') {
     throw new InvalidTokenError('Invalid token specified');

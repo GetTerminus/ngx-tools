@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {
   TsDocumentService,
   TsWindowService,
-} from '@terminus/ngx-tools';
+} from '@terminus/ngx-tools/browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

@@ -2,7 +2,7 @@
  * Create an array with `null` & `undefined` values removed
  *
  * @param arr - The array to compact
- * @return The compacted array
+ * @returns The compacted array
  *
  * @example
  * compactArray(['hi', null, 2, true, undefined]) // Returns: ['hi', 2, true]

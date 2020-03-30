@@ -1,8 +1,6 @@
 import { urlRegex } from './url.regex';
 
-
 describe(`urlRegex`, function() {
-
   // NOTE: List of URLs found at https://mathiasbynens.be/demo/url-regex
   const validUrls = [
     'http://foo.com/blah_blah',
@@ -81,18 +79,15 @@ describe(`urlRegex`, function() {
     'http://10.1.1.1',
   ];
 
-
   test(`should return true for valid URL`, () => {
     for (const url of validUrls) {
       expect(urlRegex.test(url)).toEqual(true);
     }
   });
 
-
   test(`should return false for invalid URLs`, () => {
     for (const url of invalidUrls) {
       expect(urlRegex.test(url)).toEqual(false);
     }
   });
-
 });

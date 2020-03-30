@@ -2,8 +2,8 @@
  * Return an object containing arrays organized by property
  *
  * @param array - The array to split
- * @param property - The object property to split by
- * @return An object containing arrays separated by property value
+ * @param key - The object property to split by
+ * @returns An object containing arrays separated by property value
  *
  * @example
  * interface MyObj {
@@ -13,16 +13,16 @@
  * const myArray: MyObj[] = [{a: 'foo', b: 1}, {a: 'bar', b: 6}, {a: 'foo', b: 6}];
  * groupBy<MyObj, keyof MyObj>(myArray, 'a');
  * Returns:
- * {
- *   foo: [{a: 'foo', b: 1}, {a: 'foo', b: 6}],
- *   bar: [{a: 'bar', b: 6}],
- * }
+ *   {
+ *     foo: [{a: 'foo', b: 1}, {a: 'foo', b: 6}],
+ *     bar: [{a: 'bar', b: 6}],
+ *   }
  */
 export function groupBy<T, K extends(keyof T & (number | string))>(array: T[], key: K): { [id: string]: T[] } {
-  const initalValue: { [id: string]: T[] } = {};
+  const initialValue: { [id: string]: T[] } = {};
 
   return array.reduce((accumulator, x) => {
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const idx: string = x[key] as any;
 
     // Create an array for the property if one does not exist
@@ -34,5 +34,5 @@ export function groupBy<T, K extends(keyof T & (number | string))>(array: T[], k
     accumulator[idx].push(x);
 
     return accumulator;
-  }, initalValue);
+  }, initialValue);
 }

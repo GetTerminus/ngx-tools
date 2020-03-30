@@ -1,6 +1,6 @@
 import { SimpleChanges } from '@angular/core';
 
-import { objectDeepParse } from './../object-deep-parse/object-deep-parse';
+import { objectDeepParse } from '../object-deep-parse/object-deep-parse';
 
 
 /**
@@ -12,15 +12,14 @@ export class NgChangeObjectValueParser {
    *
    * @param changes - SimpleChanges
    * @param path - string
-   * @return lowest layer value or changes object itself when path cannot be parsed
+   * @returns lowest layer value or changes object itself when path cannot be parsed
    *
    * @example
    * valueParser.getOldValue(myChanges, 'my.path')
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public static getOldValue(changes: SimpleChanges, path: string): any {
     const [keys, key] = this.parsePath(path);
-    // tslint:disable-next-line no-unsafe-any
     return (key && changes[key]) ? objectDeepParse(changes[key].previousValue, keys) : undefined;
   }
 
@@ -30,15 +29,14 @@ export class NgChangeObjectValueParser {
    *
    * @param changes - SimpleChanges
    * @param path - string
-   * @return lowest layer value or changes object itself when path cannot be parsed
+   * @returns lowest layer value or changes object itself when path cannot be parsed
    *
    * @example
    * valueParser.getNewValue(myChanges, 'my.path')
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public static getNewValue(changes: SimpleChanges, path: string): any {
     const [keys, key] = this.parsePath(path);
-    // tslint:disable-next-line no-unsafe-any
     return (key && changes[key]) ? objectDeepParse(changes[key].currentValue, keys) : undefined;
   }
 
@@ -47,7 +45,7 @@ export class NgChangeObjectValueParser {
    * Function to parse path to get keys for each layer
    *
    * @param path - string
-   * @return an array of two elements, one being an array of all the keys except first one, one being the first key
+   * @returns an array of two elements, one being an array of all the keys except first one, one being the first key
    *
    * @example
    * valueParser.parsePath('my.path') // Returns: [['my'], 'path']

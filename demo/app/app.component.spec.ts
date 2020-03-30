@@ -1,22 +1,20 @@
+import { HttpClientModule } from '@angular/common/http';
 import {
   TestBed,
   async,
 } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
 import {
   TsWindowService,
   TsDocumentService,
-} from '@terminus/ngx-tools';
+} from '@terminus/ngx-tools/browser';
 import {
   TsWindowServiceMock,
   TsDocumentServiceMock,
-} from '@terminus/ngx-tools/testing';
+} from '@terminus/ngx-tools/browser/testing';
 
 import { AppComponent } from './app.component';
 
-
 describe('AppComponent', () => {
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -38,19 +36,15 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-
-  it('should create the app', async(() => {
+  test('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-
 });
 
 describe(`test block`, () => {
-
-  it(`should do something`, () => {
+  test(`should do something`, () => {
     expect(true).toEqual(true);
   });
-
 });

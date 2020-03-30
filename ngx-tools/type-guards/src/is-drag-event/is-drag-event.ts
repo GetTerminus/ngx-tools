@@ -1,18 +1,15 @@
-import { isSet } from './../is-set/is-set';
+import { isSet } from '../is-set/is-set';
 
 
 /**
  * Coerce the type to DragEvent
  *
  * @param x - The item to test
- * @return True if the value is a DragEvent
+ * @returns True if the value is a DragEvent
  *
  * @example
  * isDragEvent(myDragEvent);  // Returns: true
  * isDragEvent(myClickEvent); // Returns: false
  */
-// tslint:disable-next-line no-any
-export function isDragEvent(x: any): x is DragEvent {
-  // tslint:disable-next-line no-unsafe-any
-  return !!x && isSet(x.dataTransfer);
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isDragEvent = (x: any): x is DragEvent => !!x && isSet(x.dataTransfer);

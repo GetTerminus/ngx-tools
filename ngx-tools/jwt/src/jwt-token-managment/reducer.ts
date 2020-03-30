@@ -18,6 +18,10 @@ export const initialState: JwtTokenProviderState = {
 };
 
 
+/**
+ * @param state
+ * @param action
+ */
 export function jwtTokenProviderReducer<C = ClaimMap>(
   state = initialState,
   action: JwtTokenProviderActions.Actions<C>,

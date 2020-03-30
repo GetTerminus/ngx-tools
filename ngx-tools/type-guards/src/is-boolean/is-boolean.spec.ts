@@ -1,6 +1,5 @@
 import { isBoolean } from './is-boolean';
 
-
 describe(`isBoolean`, function() {
   const validBooleans: any[] = [
     true,
@@ -18,18 +17,15 @@ describe(`isBoolean`, function() {
     () => true,
   ];
 
-
   test(`should return true for a boolean value`, () => {
     for (const test of validBooleans) {
       expect(isBoolean(test)).toEqual(true);
     }
   });
 
-
   test(`should return false for a non-boolean value`, () => {
     for (const test of invalidBooleans) {
       expect(isBoolean(test)).toEqual(false);
     }
   });
-
 });

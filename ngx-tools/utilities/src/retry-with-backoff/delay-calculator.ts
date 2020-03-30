@@ -24,7 +24,7 @@ const DEFAULT_BASE_WAIT_TIME = 100;
  *   - `jitterFactor`: How widely the jitter effect should vary
  *   - `backOffFactor`: How quickly the duration should back off
  *   - `baseWaitTime`: The base time when determining sleep duration
- * @return The duration to sleep
+ * @returns The duration to sleep
  *
  * @example
  * const calcOpts: DelayCalculator = {

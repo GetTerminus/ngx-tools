@@ -6,15 +6,12 @@ import {
 
 import { retryWithBackoff } from './retry-with-backoff';
 
-
 describe(`retryWithBackoff`, function() {
-
   test(`should retry for x retries and then throw`, done => {
     const linearBackoff = (attempt: number) => 1;
     const error = new Error('bar');
     const seenValues: {[idx: number]: number} = {};
 
-    // tslint:disable-next-line deprecation
     of(1, 2, 3).pipe(
       tap(v => {
         if (!seenValues[v]) {
@@ -34,7 +31,6 @@ describe(`retryWithBackoff`, function() {
         retries: 2,
         delayCalculator: linearBackoff,
       }),
-    // tslint:disable-next-line no-any
     ).subscribe(() => {}, (err: any) => {
       expect(err).toEqual(error);
       expect(seenValues).toEqual({
@@ -45,12 +41,10 @@ describe(`retryWithBackoff`, function() {
     });
   });
 
-
   test(`should retry for x retries and then throw`, done => {
     const error = new Error('bar');
     const seenValues: {[idx: number]: number} = {};
 
-    // tslint:disable-next-line deprecation
     of(1, 2, 3, 4).pipe(
       tap(v => {
         if (!seenValues[v]) {

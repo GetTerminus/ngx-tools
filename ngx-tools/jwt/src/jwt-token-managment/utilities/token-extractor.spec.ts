@@ -14,11 +14,9 @@ import {
   TokenExtractor,
 } from './token-extractor';
 
-
 interface MockClaimMap {
   foo: {bar: number};
 }
-
 
 describe(`TokenExtractor`, function() {
   let mockStore: {dispatch: jest.MockInstance<any, any>};
@@ -38,9 +36,8 @@ describe(`TokenExtractor`, function() {
       ],
     });
 
-    extractor = TestBed.get<TokenExtractor>(TokenExtractor);
+    extractor = TestBed.inject<TokenExtractor>(TokenExtractor);
   });
-
 
   test(`should dispatch a store token action when the header is found`, () => {
     const headers = new HttpHeaders({ Authorization: 'Bearer asdfkjlslfd' });
@@ -60,7 +57,6 @@ describe(`TokenExtractor`, function() {
     );
   });
 
-
   test(`should throw an error if no token is found`, () => {
     const headers = new HttpHeaders({});
     const httpResponse = new HttpResponse({ headers });
@@ -71,7 +67,6 @@ describe(`TokenExtractor`, function() {
 
     (expect(stream) as any).toBeObservable(cold('#', {}, TOKEN_NOT_FOUND_ERROR));
   });
-
 
   test(`should throw an error if the header is funky`, () => {
     const headers = new HttpHeaders({ Authorization: 'dude' });
@@ -85,9 +80,7 @@ describe(`TokenExtractor`, function() {
     (expect(stream) as any).toBeObservable(cold('#', {}, TOKEN_NOT_FOUND_ERROR));
   });
 
-
   test(`should dispatch a store token action when present in the body`, () => {
-
     const responseBody = { token: 'asdfkjlslfd' };
 
     const stream = cold('a', { a: responseBody }).pipe(
@@ -107,5 +100,4 @@ describe(`TokenExtractor`, function() {
       }),
     );
   });
-
 });

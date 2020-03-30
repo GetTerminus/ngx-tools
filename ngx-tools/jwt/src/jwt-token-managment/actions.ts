@@ -30,7 +30,7 @@ export interface StoreTokenConstructor<C> {
 export class InitialTokenExtracted implements Action {
   public type: typeof ActionTypes.InitialTokenExtracted = ActionTypes.InitialTokenExtracted;
 
-  public constructor(public token: string) { }
+  constructor(public token: string) { }
 }
 
 
@@ -52,7 +52,7 @@ export class StoreToken<C> implements Action {
   public token: string;
   public isDefaultToken: boolean;
 
-  public constructor(
+  constructor(
     {
       tokenName,
       token,
@@ -75,7 +75,7 @@ export class TokenExpired<C> implements Action {
   public tokenName: Extract<keyof C, string>;
   public token: string;
 
-  public constructor(
+  constructor(
     {
       tokenName,
       token,
@@ -104,7 +104,7 @@ export class TokenNearingExpiration<C> implements Action {
   public tokenName: Extract<keyof C, string>;
   public token: string;
 
-  public constructor(
+  constructor(
     {
       tokenName,
       token,
@@ -122,7 +122,7 @@ export class TokenNearingExpiration<C> implements Action {
 export class EscalateToken<C> implements Action {
   public type: typeof ActionTypes.EscalateToken = ActionTypes.EscalateToken;
 
-  public constructor(public tokenName: Extract<keyof C, string>) {}
+  constructor(public tokenName: Extract<keyof C, string>) {}
 }
 
 
@@ -132,7 +132,7 @@ export class EscalateToken<C> implements Action {
 export class EscalationSuccess<C> implements Action {
   public type: typeof ActionTypes.EscalationSuccess = ActionTypes.EscalationSuccess;
 
-  public constructor(public tokenName: Extract<keyof C, string>) {}
+  constructor(public tokenName: Extract<keyof C, string>) {}
 }
 
 
@@ -142,7 +142,7 @@ export class EscalationSuccess<C> implements Action {
 export class EscalationFailed<C> implements Action {
   public type: typeof ActionTypes.EscalationFailed = ActionTypes.EscalationFailed;
 
-  public constructor(public tokenName: Extract<keyof C, string>) {}
+  constructor(public tokenName: Extract<keyof C, string>) {}
 }
 
 

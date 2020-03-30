@@ -2,14 +2,11 @@
  * Determine if a value is a string
  *
  * @param x - The value to test
- * @return The result
+ * @returns The result
  *
  * @example
  * isString('foo'); // Returns: true
  * isString({});    // Returns: false
  */
-// tslint:disable-next-line no-any
-export function isString(x: any): x is string {
-  // eslint-disable-next-line no-new-wrappers
-  return !!(typeof x === 'string' || x instanceof String);
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isString = (x: any): x is string => !!(typeof x === 'string' || x instanceof String);

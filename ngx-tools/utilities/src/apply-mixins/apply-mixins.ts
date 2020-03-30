@@ -3,17 +3,16 @@
  *
  * https://www.typescriptlang.org/docs/handbook/mixins.html
  *
- * @param drivedCtor - The mixin target class
+ * @param derivedCtor - The mixin target class
  * @param baseCtors - An array of classes to combine into the target class
- * @return The mixed class
+ * @returns The mixed class
  *
  * @example
  * applyMixins(SmartObject, [Disposable, Activatable]);
  */
-// tslint:disable-next-line no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function applyMixins(derivedCtor: any, baseCtors: any[]) {
   baseCtors.forEach(baseCtor => {
-    // tslint:disable no-unsafe-any
     Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
       derivedCtor.prototype[name] = baseCtor.prototype[name];
     });

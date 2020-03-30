@@ -1,6 +1,5 @@
 import { objectDeepGet } from './object-deep-get';
 
-
 describe(`objectDeepGetter`, function() {
   const objectInput = { foo: { bar: { baz: 'xyz' } } };
   const path1 = 'foo.bar.baz';
@@ -13,19 +12,15 @@ describe(`objectDeepGetter`, function() {
     expect(objectDeepGet(objectInput, path2)).toEqual({ baz: 'xyz' });
   });
 
-
   test(`should return undefined if path doesn't exist`, () => {
     expect(objectDeepGet(objectInput, path3)).toEqual(undefined);
   });
-
 
   test(`should return defaultValue if nothing returns`, () => {
     expect(objectDeepGet(objectInput, path3, defaultValue)).toEqual(defaultValue);
   });
 
-
   test(`should return the default value if no object is passed in`, () => {
     expect(objectDeepGet(null as any, path1, 'foo')).toEqual('foo');
   });
-
 });

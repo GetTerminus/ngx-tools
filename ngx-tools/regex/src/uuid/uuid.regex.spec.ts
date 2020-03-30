@@ -1,8 +1,6 @@
 import { uuidRegex } from './uuid.regex';
 
-
 describe(`uuidRegex`, function() {
-
   const validUuids = [
     '6948DF80-14BD-4E04-8842-7668D9C001F5',
     '4B8302DA-21AD-401F-AF45-1DFD956B80B5',
@@ -28,18 +26,15 @@ describe(`uuidRegex`, function() {
     '',
   ];
 
-
   test(`should return true for valid UUIDs`, () => {
     for (const uuid of validUuids) {
       expect(uuidRegex.test(uuid)).toEqual(true);
     }
   });
 
-
   test(`should return false for invalid UUIDs`, () => {
     for (const uuid of invalidUuids) {
       expect(uuidRegex.test(uuid)).toEqual(false);
     }
   });
-
 });

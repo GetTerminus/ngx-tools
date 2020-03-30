@@ -1,0 +1,42 @@
+{
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "fullTemplateTypeCheck": true,
+    "preserveWhitespaces": false,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
+  },
+  "compileOnSave": false,
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "./",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "incremental": true,
+    "importHelpers": true,
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./dist/out-tsc",
+    "paths": {
+      "@terminus/ngx-tools": [
+        "dist/ngx-tools"
+      ],
+      "@terminus/ngx-tools/*": [
+        "dist/ngx-tools/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es2015",
+    "types": [
+      "jest"
+    ]
+  }
+}

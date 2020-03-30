@@ -1,10 +1,7 @@
+import { FormGroup } from '@angular/forms';
 import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-} from '@angular/forms';
-import {
-  isAbstractControl, isNull,
+  isAbstractControl,
+  isNull,
 } from '@terminus/ngx-tools/type-guards';
 
 
@@ -13,7 +10,7 @@ import {
  *
  * @param form - The FormGroup that contains the control
  * @param controlName - The name of the control
- * @return The value
+ * @returns The value
  *
  * @example
  * getFormControlValue(myFormGroup, 'myControl');
@@ -23,8 +20,6 @@ export function getFormControlValue<T>(form: FormGroup, controlName: string): T 
   if (!form || !controlName) {
     return undefined;
   }
-
   const control = form.get(controlName);
-
   return !isNull(control) && isAbstractControl(control) ? control.value as T : undefined;
 }

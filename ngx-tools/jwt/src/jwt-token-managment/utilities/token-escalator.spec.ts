@@ -8,16 +8,15 @@ import {
   of,
 } from 'rxjs';
 
-import * as JwtActions from './../actions';
-import { ClaimMap } from './../claim-map';
+import * as JwtActions from '../actions';
+import { ClaimMap } from '../claim-map';
+
 import { TokenEscalator } from './token-escalator';
 import { TokenExtractor } from './token-extractor';
-
 
 interface MockClaimMap {
   foo: {bar: number};
 }
-
 
 describe(`TokenEscalator`, function() {
   let mockStore: {select: jest.MockInstance<any, any>; dispatch: jest.MockInstance<any, any>};
@@ -25,7 +24,6 @@ describe(`TokenEscalator`, function() {
   let escalator: TokenEscalator<MockClaimMap>;
   let actions: Observable<any>;
   const tokenName = 'foo';
-  // tslint:disable-next-line deprecation
   const authorizeUrl = of('/foobar');
 
   beforeEach(() => {
@@ -50,16 +48,13 @@ describe(`TokenEscalator`, function() {
       ],
     });
 
-    escalator = TestBed.get<TokenEscalator>(TokenEscalator);
+    escalator = TestBed.inject<TokenEscalator>(TokenEscalator);
   });
-
 
   test(`should dispatch success on a successful response`, () => {
     actions = cold('a', { a: new JwtActions.EscalateToken<ClaimMap>(tokenName) });
     const responseBody = { token: 'asdfkjlslfd' };
-    // tslint:disable-next-line deprecation
     mockHttp.get.mockReturnValue(of(responseBody));
-    // tslint:disable-next-line deprecation
     mockStore.select.mockReturnValue(of('currentToken'));
 
     (
@@ -73,13 +68,10 @@ describe(`TokenEscalator`, function() {
     ).toBeObservable(cold('a', { a: new JwtActions.EscalationSuccess<ClaimMap>(tokenName) }));
   });
 
-
   test(`should dispatch failed if the token fails to extract`, () => {
     actions = cold('a', { a: new JwtActions.EscalateToken<ClaimMap>(tokenName) });
     const responseBody = {};
-    // tslint:disable-next-line deprecation
     mockHttp.get.mockReturnValue(of(responseBody));
-    // tslint:disable-next-line deprecation
     mockStore.select.mockReturnValue(of('currentToken'));
 
     (
@@ -92,5 +84,4 @@ describe(`TokenEscalator`, function() {
       ) as any
     ).toBeObservable(cold('a', { a: new JwtActions.EscalationFailed<ClaimMap>(tokenName) }));
   });
-
 });

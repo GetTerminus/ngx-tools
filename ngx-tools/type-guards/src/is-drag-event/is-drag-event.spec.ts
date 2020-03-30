@@ -2,7 +2,6 @@ import { createMouseEvent } from '@terminus/ngx-tools/testing';
 
 import { isDragEvent } from './is-drag-event';
 
-
 describe(`isDragEvent`, function() {
   const DataTransferMock = function() {
     this.dataByFormat = {};
@@ -30,18 +29,15 @@ describe(`isDragEvent`, function() {
     mouseEvent,
   ];
 
-
   test(`should return true for a drag event value`, () => {
     for (const test of validEvents) {
       expect(isDragEvent(test)).toEqual(true);
     }
   });
 
-
   test(`should return false for a non-drag event value`, () => {
     for (const test of invalidEvents) {
       expect(isDragEvent(test)).toEqual(false);
     }
   });
-
 });

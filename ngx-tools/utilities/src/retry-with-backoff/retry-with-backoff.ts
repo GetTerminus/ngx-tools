@@ -30,7 +30,7 @@ const DEFAULT_RETRY_COUNT = 3;
  * @param options - The options object
  *   - `retries`: How many times it should retry before throwing an error
  *   - `delayCalculator`: The calculator to determine the delay timing
- * @return The observable timer
+ * @returns The observable timer
  *
  * @example
  * return this.exampleDatabase.getSomething()
@@ -46,21 +46,18 @@ const DEFAULT_RETRY_COUNT = 3;
  *   )
  * ;
  */
-export function retryWithBackoff<T>({
+export const retryWithBackoff = <T>({
   retries = DEFAULT_RETRY_COUNT,
   delayCalculator = exponentialBackoffDelayCalculator({}),
-}: Partial<RetryWithBackoff>): MonoTypeOperatorFunction<T> {
-
-  return retryWhen(errors => zip(
+}: Partial<RetryWithBackoff>): MonoTypeOperatorFunction<T> => retryWhen(errors => zip(
     errors,
     range(1, retries),
-  ).pipe(
-    mergeMap(([err, retry]) => {
-      if (retry >= retries) {
-        return throwError(err);
-      }
-
-      return timer(delayCalculator(retry));
-    }),
-  ),);
-}
+  )
+    .pipe(
+      mergeMap(([err, retry]) => {
+        if (retry >= retries) {
+          return throwError(err);
+        }
+        return timer(delayCalculator(retry));
+      }),
+    ));

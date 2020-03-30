@@ -3,7 +3,7 @@
  *
  * @param el - HTMLElement
  * @param attr - Desired attribute
- * @return attribute's value
+ * @returns attribute's value
  *
  * @example
  * getDomAttribute(myElement, 'id'); // Returns: the element ID

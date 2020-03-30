@@ -6,16 +6,13 @@ import {
   TestBedCompilerOptions,
 } from './configure-testbed-whitespace';
 
-
 @Component({ template: `` })
 class TestHostComponent {}
-
 
 describe(`configureTestBedWhitespace`, function() {
   const configure: ConfigureTestBedFn = testBed => {
     testBed.configureTestingModule({ declarations: [TestHostComponent] });
   };
-
 
   test(`should return a configured TestBed`, () => {
     configureTestBedWhitespace(configure).then(testBed => {
@@ -34,5 +31,4 @@ describe(`configureTestBedWhitespace`, function() {
       expect(bed.ngModule).toEqual(null);
     });
   });
-
 });

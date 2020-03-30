@@ -19,15 +19,16 @@ import {
   take,
 } from 'rxjs/operators';
 
-import { exponentialBackoffDelayCalculator } from './../retry-with-backoff/delay-calculator';
+import { exponentialBackoffDelayCalculator } from '../retry-with-backoff/delay-calculator';
 
 
 export interface HttpRetryWithBackoff {
   retries: number;
   delayCalculator: (attempt: number) => number;
-  // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
-  // 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
-  // tslint:disable-next-line no-any deprecation
+  // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from
+  //  what I can tell. The 'correct' path would be to create our own class extending `SchedulerLike`.
+  //  https://github.com/GetTerminus/ngx-tools/issues/287
+  // eslint-disable-next-line deprecation/deprecation, @typescript-eslint/no-explicit-any
   scheduler: Scheduler | any;
 }
 
@@ -36,13 +37,11 @@ const ERROR_CODE_TOO_MANY_REQUESTS = 429;
 const ERROR_CODE_500_MIN = 500;
 const ERROR_CODE_500_MAX = 599;
 
-
-export function httpRetryer<T>({
+export const httpRetryer = <T>({
   retries = DEFAULT_RETRY_COUNT,
   delayCalculator = exponentialBackoffDelayCalculator({}),
   scheduler = async,
-}: Partial<HttpRetryWithBackoff>): MonoTypeOperatorFunction<T> {
-  return retryWhen((errors: Observable<HttpErrorResponse | Error>) => zip(
+}: Partial<HttpRetryWithBackoff>): MonoTypeOperatorFunction<T> => retryWhen((errors: Observable<HttpErrorResponse | Error>) => zip(
     errors,
     range(1, retries + 1),
   ).pipe(
@@ -58,13 +57,13 @@ export function httpRetryer<T>({
         waitTime = headerWaitTime || waitTime;
       }
 
-      // tslint:disable-next-line no-unsafe-any
       return timer(waitTime, scheduler).pipe(take(1));
     }),
   ));
-}
 
-
+/**
+ * @param err
+ */
 function extractRetryAfterTime(err: HttpErrorResponse): number | Date | null {
   const retryHeaderValue = err.headers.get('Retry-After');
 
@@ -73,10 +72,11 @@ function extractRetryAfterTime(err: HttpErrorResponse): number | Date | null {
       || coerceDateProperty(retryHeaderValue, null);
   }
   return null;
-
 }
 
-
+/**
+ * @param err
+ */
 function isConsideredError(err: HttpErrorResponse | Error): err is HttpErrorResponse {
   if (err.hasOwnProperty('status') && err.hasOwnProperty('headers')) {
     const e = err as HttpErrorResponse;
@@ -85,6 +85,4 @@ function isConsideredError(err: HttpErrorResponse | Error): err is HttpErrorResp
       || (e.status >= ERROR_CODE_500_MIN && e.status <= ERROR_CODE_500_MAX);
   }
   return false;
-
-
 }

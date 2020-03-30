@@ -1,6 +1,5 @@
 import { isTokenResponse } from './is-token-response';
 
-
 describe(`isTokenResponse`, function() {
   const validResponses = [
     { token: {} },
@@ -20,18 +19,15 @@ describe(`isTokenResponse`, function() {
     { foo: 'bar' },
   ];
 
-
   test(`should return true for a valid response`, function() {
     for (const test of validResponses) {
       expect(isTokenResponse(test)).toEqual(true);
     }
   });
 
-
   test(`should return false for non-valid responses`, () => {
     for (const test of invalidResponses) {
       expect(isTokenResponse(test as any)).toEqual(false);
     }
   });
-
 });

@@ -7,9 +7,7 @@ import {
 
 import { regenerateOnRetry } from './regenerate-on-retry';
 
-
 describe(`Regenerate on retry`, function() {
-
   test(`should call the function once per retry`, () => {
     const err = new Error('foo');
     let calls = 0;
@@ -24,5 +22,4 @@ describe(`Regenerate on retry`, function() {
     (expect(stream) as any).toBeObservable(cold('|'));
     expect(calls).toEqual(2);
   });
-
 });

@@ -14,10 +14,10 @@
     "experimentalDecorators": true,
     "incremental": true,
     "lib": [
-      "es2016",
-      "es2015",
+      "es2018",
       "dom"
     ],
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./dist/out-tsc",
     "paths": {
@@ -32,12 +32,9 @@
       "@terminus/ngx-tools/type-guards":     ["./../ngx-tools/type-guards/src/public-api.ts"],
       "@terminus/ngx-tools/utilities":       ["./../ngx-tools/utilities/src/public-api.ts"]
     },
-    "plugins": [
-      {"name": "typescript-tslint-plugin"}
-    ],
     "sourceMap": true,
     "strict": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ]

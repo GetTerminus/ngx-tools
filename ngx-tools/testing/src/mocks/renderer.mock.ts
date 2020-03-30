@@ -1,6 +1,5 @@
 import { noop } from '@terminus/ngx-tools/utilities';
 
-
 /**
  * A mock of the Angular Renderer
  */

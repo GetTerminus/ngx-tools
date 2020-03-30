@@ -12,7 +12,7 @@ export class Version {
   public readonly minor: string;
   public readonly patch: string;
 
-  public constructor(public full: string) {
+  constructor(public full: string) {
     const parts = full.split('.');
     const itemsToRemoveForPatch = 2;
 

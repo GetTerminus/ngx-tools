@@ -5,7 +5,6 @@ import { createComponent } from '@terminus/ngx-tools/testing';
 
 import { getDomAttribute } from './get-dom-attribute';
 
-
 @Component({
   template: `
   <div tsVerticalSpacing="small--2"
@@ -14,7 +13,6 @@ import { getDomAttribute } from './get-dom-attribute';
   `,
 })
 class TestHostComponent {}
-
 
 describe(`getDomAttribute`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
@@ -41,5 +39,4 @@ describe(`getDomAttribute`, function() {
   test('should return undefined if attribute is not present', () => {
     expect(getDomAttribute(el, 'name')).toEqual(undefined);
   });
-
 });

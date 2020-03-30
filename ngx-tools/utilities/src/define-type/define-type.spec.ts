@@ -4,24 +4,19 @@ import {
   resetTypeCache,
 } from './define-type';
 
-
 describe(`defineType`, function() {
-
   beforeEach(() => {
     resetTypeCache();
   });
-
 
   test(`returns the passed value`, () => {
     expect(defineType('foo')).toEqual('foo');
   });
 
-
   test(`throws an error when called twice`, () => {
     defineType('bar');
     expect(() => defineType('bar')).toThrowError();
   });
-
 
   test(`should set from an enum`, function() {
     enum actionTypes {
@@ -32,5 +27,4 @@ describe(`defineType`, function() {
 
     expect(() => defineType('[mock-meta-reducer] Assign State')).toThrowError();
   });
-
 });

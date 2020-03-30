@@ -13,8 +13,6 @@ export const containsNumbersRegex = /(.*([0-9]+\.?[0-9]*).*)/;
  * reg.test('abc#12d') // Returns true
  *
  * @param minimum - The minimum amount of number characters required
- * @return The regex
+ * @returns The regex
  */
-export function createContainsNumbersRegex(minimum: number): RegExp {
-  return new RegExp(`(.*([0-9]+\.?[0-9]*).*){${minimum},}`);
-}
+export const createContainsNumbersRegex = (minimum: number): RegExp => new RegExp(`(.*([0-9]+\.?[0-9]*).*){${minimum},}`);

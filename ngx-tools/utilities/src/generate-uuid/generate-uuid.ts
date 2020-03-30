@@ -1,8 +1,8 @@
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 /**
  * Generate a canonically formatted UUID that is Version 1 through 5 and is the appropriate Variant as per RFC4122.
  *
- * @return The UUID
+ * @returns The UUID
  *
  * @example
  * generateUUID() // Returns a UUID such as: `f4ee5eed-ed19-3681-713e-907a23ed7858`

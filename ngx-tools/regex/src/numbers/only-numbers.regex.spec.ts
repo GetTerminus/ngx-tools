@@ -1,6 +1,5 @@
 import { onlyNumbersRegex } from './only-numbers.regex';
 
-
 const validNumbers = [
   '0',
   '12.5',
@@ -23,21 +22,17 @@ const invalidNumbers: any = [
   true,
 ];
 
-
 describe(`onlyNumbersRegex`, function() {
-
   test(`should return true for strings containing only numbers`, () => {
     for (const num of validNumbers) {
       expect(onlyNumbersRegex.test(num)).toEqual(true);
     }
   });
 
-
   test(`should return false for strings containing anything other than only numbers`, () => {
     for (const num of invalidNumbers) {
       expect(onlyNumbersRegex.test(num)).toEqual(false);
     }
   });
-
 });
 

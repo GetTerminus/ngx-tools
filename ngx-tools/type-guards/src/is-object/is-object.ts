@@ -2,13 +2,11 @@
  * Determine if an item is an object
  *
  * @param x - The item to test
- * @return The result
+ * @returns The result
  *
  * @example
  * isObject({});    // Returns: true
  * isObject('foo'); // Returns: false
  */
-// tslint:disable-next-line no-any
-export function isObject(x: any): x is object {
-  return Object.prototype.toString.call(x) === '[object Object]';
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isObject = (x: any): x is object => Object.prototype.toString.call(x) === '[object Object]';

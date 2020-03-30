@@ -23,6 +23,7 @@ export function configureTestBedWithoutReset(moduleDef: TestModuleMetadata) {
     return TestBed.resetTestingModule;
   };
 
+  // eslint-disable-next-line no-undef
   beforeAll(async(
     async function() {
       resetTestingModule();
@@ -32,5 +33,6 @@ export function configureTestBedWithoutReset(moduleDef: TestModuleMetadata) {
     },
   ));
 
+  // eslint-disable-next-line no-undef
   afterAll(() => allowAngularToReset());
 }

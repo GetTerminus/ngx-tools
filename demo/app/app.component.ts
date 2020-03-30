@@ -1,13 +1,8 @@
-/* eslint-disable no-console */
-import { HttpClient } from '@angular/common/http';
 import {
   Component,
   OnInit,
 } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { VERSION } from '@terminus/ngx-tools';
+import { VERSION } from '@terminus/ngx-tools/utilities';
 console.log('ngx-tools VERSION: ', VERSION);
 
 

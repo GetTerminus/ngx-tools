@@ -4,7 +4,7 @@
  * See https://github.com/angular/angular/issues/8348
  *
  * @param e - The error
- * @return The regex
+ * @returns The regex
  */
 export function wrappedErrorMessage(e: Error): RegExp {
   const escapedMessage = e.message.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');

@@ -1,8 +1,6 @@
 import { abbreviateNumber } from './abbreviate-number';
 
-
 describe(`abbreviateNumber`, function() {
-
   test(`should parse to the lowest level specified`, () => {
     const input1 = 1234;
     const input2 = 1234567;
@@ -21,5 +19,4 @@ describe(`abbreviateNumber`, function() {
     expect(abbreviateNumber(input6, 1)).toEqual('450');
     expect(abbreviateNumber(input7, 2)).toEqual('123.46K');
   });
-
 });

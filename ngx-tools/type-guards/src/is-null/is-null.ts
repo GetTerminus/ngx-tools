@@ -2,13 +2,11 @@
  * Determine if an item is null
  *
  * @param x - The value to test
- * @return The result
+ * @returns The result
  *
  * @example
  * isNull(null) // Returns: true
  * isNull(1)    // Returns: false
  */
-// tslint:disable-next-line no-any
-export function isNull(x: any): x is null {
-  return x === null;
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isNull = (x: any): x is null => x === null;

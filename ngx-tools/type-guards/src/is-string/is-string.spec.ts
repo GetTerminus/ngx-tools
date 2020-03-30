@@ -1,6 +1,5 @@
 import { isString } from './is-string';
 
-
 describe(`isString`, function() {
   const obj = { foo: 'bar' };
   const myString = 'foo';
@@ -19,18 +18,15 @@ describe(`isString`, function() {
     undefined,
   ];
 
-
   test(`should return true for string values`, () => {
     for (const test of validStrings) {
       expect(isString(test)).toEqual(true);
     }
   });
 
-
   test(`should return false for non-string values`, () => {
     for (const test of invalidStrings) {
       expect(isString(test)).toEqual(false);
     }
   });
-
 });

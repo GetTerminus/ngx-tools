@@ -4,7 +4,7 @@
  * @param obj - The object to modify.
  * @param keys - The path of the property to set.
  * @param value - The value to set.
- * @return The updated object
+ * @returns The updated object
  *
  * @example
  * const myObj: MyObjType = {
@@ -17,7 +17,7 @@
  * const updatedObject = objectDeepSet(myObj, 'foo.bar.baz', false);
  * const updatedObject = objectDeepSet<boolean, MyObjType>(myObj, 'foo.bar.baz', false);
  */
-// tslint:disable-next-line no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function objectDeepSet<ValueType, ObjectType extends object>(obj: any, keys: string, value: ValueType): ObjectType {
   const paths: string[] = keys.split('.');
 
@@ -30,7 +30,6 @@ export function objectDeepSet<ValueType, ObjectType extends object>(obj: any, ke
     }) as ObjectType;
   }
   const [path, ...remainingPaths] = paths;
-  // tslint:disable-next-line no-unsafe-any
   const nestedObj = obj[path];
   const newNestedObj = objectDeepSet(nestedObj, remainingPaths.join('.'), value);
 

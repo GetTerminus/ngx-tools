@@ -1,6 +1,5 @@
 import { returnValuesByKeys } from './return-values-by-keys';
 
-
 describe(`returnValuesByKeys`, function() {
   interface Tactic {
     id: number;
@@ -22,24 +21,19 @@ describe(`returnValuesByKeys`, function() {
     2: tactic2,
   };
 
-
   test(`should return array of object with matched key with array of numbers`, () => {
     expect(returnValuesByKeys<Tactic>([1], tactics)).toEqual([tactic1]);
   });
-
 
   test(`should return array of object with matched key with array of strings`, () => {
     expect(returnValuesByKeys<Tactic>(['1'], tactics)).toEqual([tactic1]);
   });
 
-
   test(`should only return matched object`, () => {
     expect(returnValuesByKeys<Tactic>([1, 3], tactics)).toEqual([tactic1]);
   });
 
-
   test(`should return empty array if no keys matched`, () => {
     expect(returnValuesByKeys<Tactic>([3], tactics)).toEqual([]);
   });
-
 });

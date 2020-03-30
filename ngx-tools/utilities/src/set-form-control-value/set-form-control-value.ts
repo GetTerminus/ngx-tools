@@ -11,12 +11,10 @@ import { FormGroup } from '@angular/forms';
  * @example
  * setFormControlValue<number>(myForm, 'budget', 50);
  */
-// tslint:disable-next-line no-any
 export function setFormControlValue<T>(form: FormGroup, controlName: string, controlValue: T): void {
   if (!form || !controlName) {
     return;
   }
-
   const control = form.get(controlName);
 
   if (control) {

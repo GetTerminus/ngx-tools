@@ -1,6 +1,5 @@
 import { onlyLettersRegex } from './only-letters.regex';
 
-
 const validStrings = [
   'foo',
   'KEOSInjdiuw',
@@ -15,20 +14,16 @@ const invalidStrings = [
   '&',
 ];
 
-
 describe(`lettersRegex`, function() {
-
   test(`should return true for strings with only letters`, () => {
     for (const str of validStrings) {
       expect(onlyLettersRegex.test(str)).toEqual(true);
     }
   });
 
-
   test(`should return false for strings with anything other than letters`, () => {
     for (const str of invalidStrings) {
       expect(onlyLettersRegex.test(str)).toEqual(false);
     }
   });
-
 });

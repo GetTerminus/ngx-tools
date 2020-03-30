@@ -8,12 +8,11 @@ import { dispatchEvent } from './dispatch-event';
  * @param node - The Node that should dispatch the fake event
  * @param type - The event type
  * @param canBubble - Define if the event can bubble up the DOM
- * @return The event
+ * @returns The event
  *
  * @example
  * dispatchFakeEvent(myNativeElement, 'mousedown');
  * dispatchFakeEvent(myNativeElement, 'mousedown', true);
  */
-export function dispatchFakeEvent(node: Node | Window, type: string, canBubble?: boolean): Event {
-  return dispatchEvent(node, createFakeEvent(type, canBubble));
-}
+export const dispatchFakeEvent =
+  (node: Node | Window, type: string, canBubble?: boolean): Event => dispatchEvent(node, createFakeEvent(type, canBubble));

@@ -1,6 +1,5 @@
 import { isObject } from './is-object';
 
-
 describe(`isObject`, function() {
   class Car {
     make: string;
@@ -31,18 +30,15 @@ describe(`isObject`, function() {
     undefined,
   ];
 
-
   test(`should return true for objects`, () => {
     for (const test of validObjects) {
       expect(isObject(test)).toEqual(true);
     }
   });
 
-
   test(`should return false for non-objects`, () => {
     for (const test of invalidObjects) {
       expect(isObject(test)).toEqual(false);
     }
   });
-
 });
