@@ -185,7 +185,7 @@
     "@angular/platform-browser-dynamic": "8.2.14",
     "@angular/router": "8.2.14",
     "@terminus/ngx-tools": "7.2.11",
-    "jsdom": "15.2.1",
+    "jsdom": "16.2.2",
     "rxjs": "6.5.4",
     "zone.js": "0.10.2"
   },
@@ -242,6 +242,6 @@
     "window-crypto": "1.1.0"
   },
   "resolutions": {
-    "jsdom": "15.2.1"
+    "jsdom": "16.2.2"
   }
 }
