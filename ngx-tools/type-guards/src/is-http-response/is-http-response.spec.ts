@@ -1,6 +1,5 @@
 import { isHttpResponse } from './is-http-response';
 
-
 describe(`isHttpResponse`, function() {
   const validResponses = [
     { headers: {} },
@@ -20,18 +19,15 @@ describe(`isHttpResponse`, function() {
     { foo: 'bar' },
   ];
 
-
   test(`should return true for a valid response`, function() {
     for (const test of validResponses) {
       expect(isHttpResponse(test)).toEqual(true);
     }
   });
 
-
   test(`should return false for non-valid responses`, () => {
     for (const test of invalidResponses) {
       expect(isHttpResponse(test as any)).toEqual(false);
     }
   });
-
 });

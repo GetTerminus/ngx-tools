@@ -17,17 +17,14 @@ import {
   SCHEDULER,
 } from './retry-with-escalation';
 
-
 interface MockClaimMap {
   foo: {bar: number};
 }
-
 
 describe(`RetryWithEscalation`, function() {
   let mockStore: {dispatch: jest.MockInstance<any, any>};
   let actions: Observable<any>;
   let retryer: RetryWithEscalation;
-
 
   beforeEach(() => {
     mockStore = { dispatch: jest.fn() };
@@ -51,12 +48,10 @@ describe(`RetryWithEscalation`, function() {
       ],
     });
 
-    retryer = TestBed.get<RetryWithEscalation>(RetryWithEscalation);
+    retryer = TestBed.inject<RetryWithEscalation>(RetryWithEscalation);
   });
 
-
   describe(`when an unhandled exception occurs`, () => {
-
     test(`should throw the error`, () => {
       const error = new Error('foobar');
 
@@ -66,12 +61,9 @@ describe(`RetryWithEscalation`, function() {
 
       (expect(stream) as any).toBeObservable(cold('#', {}, error));
     });
-
   });
 
-
   describe(`when an http exception occurs`, () => {
-
     test(`re-throws a non 403 status code`, () => {
       actions = hot('');
       const error = new HttpErrorResponse({ status: 404 });
@@ -83,10 +75,8 @@ describe(`RetryWithEscalation`, function() {
       (expect(stream) as any).toBeObservable(cold('#', {}, error));
     });
 
-
     describe(`when the inital action is valid`, () => {
       const http403Error = new HttpErrorResponse({ status: 403 });
-
 
       test(`should pass through a success`, () => {
         actions = hot('a', { a: {} });
@@ -97,7 +87,6 @@ describe(`RetryWithEscalation`, function() {
 
         (expect(stream) as any).toBeObservable(cold('a', { a: { foo: 'bar' } }));
       });
-
 
       test(`should retry the observable if it succeeds`, () => {
         const err = new Error('Failed to escalate token');
@@ -130,7 +119,6 @@ describe(`RetryWithEscalation`, function() {
         (expect(stream) as any).toBeObservable(output);
       });
 
-
       test(`should retry the observable if it succeeds but reraise if it fails again`, () => {
         const actionStreamActions = { b: new JwtActions.EscalationSuccess<MockClaimMap>('foo') };
 
@@ -145,7 +133,6 @@ describe(`RetryWithEscalation`, function() {
 
         (expect(stream) as any).toBeObservable(output);
       });
-
 
       test(`should throw an error if the escalation fails`, () => {
         const err = new Error('Failed to escalate token');
@@ -167,7 +154,6 @@ describe(`RetryWithEscalation`, function() {
         (expect(stream) as any).toBeObservable(output);
       });
 
-
       test(`should automatically fail a escalation request that goes unfulfilled`, () => {
         const err = new Error('Failed to escalate token');
 
@@ -180,9 +166,6 @@ describe(`RetryWithEscalation`, function() {
 
         (expect(stream) as any).toBeObservable(output);
       });
-
     });
-
   });
-
 });

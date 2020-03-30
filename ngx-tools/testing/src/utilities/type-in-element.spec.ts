@@ -1,6 +1,5 @@
 import { typeInElement } from './type-in-element';
 
-
 describe(`typeInElement`, function() {
   let nodeMock: HTMLInputElement;
 
@@ -10,10 +9,8 @@ describe(`typeInElement`, function() {
     nodeMock.dispatchEvent = jest.fn();
   });
 
-
   test(`should dispatch an event`, () => {
     typeInElement('foo', nodeMock);
     expect(nodeMock.dispatchEvent).toHaveBeenCalled();
   });
-
 });

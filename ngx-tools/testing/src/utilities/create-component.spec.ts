@@ -1,4 +1,3 @@
-// tslint:disable: component-class-suffix
 import {
   Component,
   Injectable,
@@ -8,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { createComponent } from './create-component';
-
 
 // Test Service
 @Injectable({ providedIn: 'root' })
@@ -64,28 +62,20 @@ export class TestComponentWithPipe {
   }
 }
 
-
 describe(`createComponent`, function() {
-
   test(`should return a TestBed fixture`, function() {
     const fixture = createComponent(TestComponent);
-
     expect(fixture).toBeTruthy();
     expect(fixture.detectChanges).toEqual(expect.any(Function));
   });
 
-
   test(`should include any passed providers`, function() {
     const fixture = createComponent(TestComponentWithService, [TestService]);
-
     expect(fixture.componentInstance.testService.foo()).toEqual('foo');
   });
 
-
   test(`should include any passed imports`, function() {
     const fixture = createComponent(TestComponentWithPipe, undefined, [TestPipesModule]);
-
     expect(fixture.componentInstance.foo).toEqual(10);
   });
-
 });

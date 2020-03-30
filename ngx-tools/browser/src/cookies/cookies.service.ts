@@ -26,11 +26,11 @@ const MS_IN_DAY = MS_IN_SECONDS * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN
 @Injectable({ providedIn: 'root' })
 export class TsCookieService {
   private readonly documentIsAccessible: boolean;
-  private document: Document;
+  private readonly document: Document;
 
-  public constructor(
+  constructor(
     // HACK: This `any` is required. See comment inside constructor.
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Inject(DOCUMENT) private _document: any,
     @Inject(PLATFORM_ID) private platformId: InjectionToken<Object>,
   ) {
@@ -41,7 +41,6 @@ export class TsCookieService {
     // The PLATFORM_ID allows us to check if we're in a browser
     this.documentIsAccessible = isPlatformBrowser(platformId);
   }
-
 
   /**
    * Set a cookie
@@ -98,12 +97,11 @@ export class TsCookieService {
     this.document.cookie = cookieString;
   }
 
-
   /**
    * Verify if a cookie exists
    *
    * @param name - Cookie name
-   * @return boolean
+   * @returns boolean
    */
   public check(name: string): boolean {
     if (!this.documentIsAccessible) {
@@ -114,9 +112,8 @@ export class TsCookieService {
     return regExp.test(this.document.cookie);
   }
 
-
   /**
-   * @param name Cookie name
+   * @param name - Cookie name
    * @returns any
    */
   public get(name: string): string {
@@ -129,19 +126,18 @@ export class TsCookieService {
     return '';
   }
 
-
   /**
    * Get all cookies
    *
    * @returns Object containing all cookies
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getAll(): Record<string, any> {
     if (!this.documentIsAccessible) {
       return {};
     }
 
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cookies: Record<string, any> = {};
     const document = this.document;
 
@@ -149,9 +145,9 @@ export class TsCookieService {
     if (document.cookie && document.cookie !== '') {
       const split: string[] = document.cookie.split(';').filter(v => v !== '');
 
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for (let i = 0; i < split.length; i += 1) {
         const currentCookie: string[] = split[i].split('=');
-
         currentCookie[0] = currentCookie[0].replace(/^ /, '');
         cookies[decodeURIComponent(currentCookie[0])] = decodeURIComponent(currentCookie[1]);
       }
@@ -159,7 +155,6 @@ export class TsCookieService {
 
     return cookies;
   }
-
 
   /**
    * Delete a cookie
@@ -175,10 +170,8 @@ export class TsCookieService {
     if (!this.documentIsAccessible) {
       return;
     }
-
     this.set(name, '', new Date('Thu, 01 Jan 1970 00:00:01 GMT'), path, domain);
   }
-
 
   /**
    * Delete all cookies
@@ -191,7 +184,7 @@ export class TsCookieService {
       return;
     }
 
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cookies: Record<string, any> = this.getAll();
 
     for (const cookieName in cookies) {
@@ -202,12 +195,11 @@ export class TsCookieService {
     }
   }
 
-
   /**
    * Get a regular expression based on a cookie name
    *
    * @param name - Cookie name
-   * @return RegExp
+   * @returns RegExp
    */
   private getCookieRegExp(name: string): RegExp {
     const escapedName: string = name.replace(/([\[\]\{\}\(\)\|\=\;\+\?\,\.\*\^\$])/ig, '\\$1');

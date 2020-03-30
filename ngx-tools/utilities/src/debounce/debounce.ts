@@ -6,7 +6,7 @@
  * @param wait - The length of time to wait between calls (ms)
  * @param immediate - Whether the debounced function should be fired immediately
  * @param windowRef - A reference to the global window object
- * @return The debounced function
+ * @returns The debounced function
  *
  * @example
  * const myFunc = () => {console.log('hi!')};

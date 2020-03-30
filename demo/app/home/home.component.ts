@@ -1,28 +1,26 @@
-/* eslint-disable no-console */
 import { HttpClient } from '@angular/common/http';
 import {
   Component,
   OnInit,
 } from '@angular/core';
 import {
+  TsDocumentService,
+  TsWindowService,
+} from '@terminus/ngx-tools/browser';
+import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
+import { ZERO } from '@terminus/ngx-tools/keycodes';
+import { emailRegex } from '@terminus/ngx-tools/regex';
+import {
   DelayCalculator,
   exponentialBackoffDelayCalculator,
   retryWithBackoff,
-  TsDocumentService,
-  TsWindowService,
-} from '@terminus/ngx-tools';
-import { emailRegex } from '@terminus/ngx-tools/regex';
+} from '@terminus/ngx-tools/utilities';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 console.log('emailRegex: ', emailRegex.test('foo@bar.com'), emailRegex.test('foo'));
-
-import { ZERO } from '@terminus/ngx-tools/keycodes';
 console.log('ZERO: ', ZERO);
-
-import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 console.log('coerceBooleanProperty: ', coerceBooleanProperty(''));
-
-
 
 
 export interface GithubApi {
@@ -66,8 +64,6 @@ export class ExampleHttpDao {
 }
 
 
-
-
 @Component({
   selector: 'demo-home',
   templateUrl: './home.component.html',
@@ -87,7 +83,6 @@ export class HomeComponent implements OnInit {
   ) {
     this.exampleDatabase = new ExampleHttpDao(this.http);
     this.window = this.windowService.nativeWindow;
-    // tslint:disable-next-line no-unsafe-any
     this.document = this.documentService.document;
 
     /*

@@ -13,7 +13,6 @@ import { of } from 'rxjs';
 import { FailedToActivateRoute } from './../actions';
 import { DefaultTokenRequired } from './defaultTokenRequired';
 
-
 describe(`JWT Token Effects`, function() {
   let guard: DefaultTokenRequired;
   let mockStore: {
@@ -37,12 +36,10 @@ describe(`JWT Token Effects`, function() {
       ],
     });
 
-    guard = TestBed.get<DefaultTokenRequired>(DefaultTokenRequired);
+    guard = TestBed.inject<DefaultTokenRequired>(DefaultTokenRequired);
   }));
 
-
   describe(`canActivate`, () => {
-
     test(`should wait for the type to change from 'uninitialized'`, () => {
       const token = cold('a', { a: 'tokenA' });
       const states = hot('a-----b', {
@@ -56,7 +53,6 @@ describe(`JWT Token Effects`, function() {
 
       expect(guard.canActivate()).toBeObservable(expected);
     });
-
 
     test(`should return false if the token is empty`, () => {
       const token = cold('a', { a: '' });
@@ -72,7 +68,5 @@ describe(`JWT Token Effects`, function() {
       expect(guard.canActivate()).toBeObservable(expected);
       expect(mockStore.dispatch).toHaveBeenCalledWith(new FailedToActivateRoute());
     });
-
   });
-
 });

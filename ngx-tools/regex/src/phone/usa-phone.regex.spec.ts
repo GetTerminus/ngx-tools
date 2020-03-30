@@ -15,20 +15,16 @@ const invalidNumbers: any = [
   '(021) 53524999',
 ];
 
-
 describe(`usaPhoneRegex`, function() {
-
   test(`should return true for valid US phone numbers`, () => {
     for (const num of validNumbers) {
       expect(usaPhoneRegex.test(num)).toEqual(true);
     }
   });
 
-
   test(`should return false for invalid US phone numbers`, () => {
     for (const num of invalidNumbers) {
       expect(usaPhoneRegex.test(num)).toEqual(false);
     }
   });
-
 });

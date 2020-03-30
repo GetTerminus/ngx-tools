@@ -1,8 +1,6 @@
 /**
  * Placeholder function.
  *
- * @return Undefined
+ * @returns Undefined
  */
-export function noop(): void {
-  return;
-}
+export const noop = (): undefined => void 0;

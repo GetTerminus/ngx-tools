@@ -1,10 +1,10 @@
-// tslint:disable: no-any
+/* eslint-disable @typescript-eslint/no-explicit-any, jsdoc/require-jsdoc, prefer-arrow/prefer-arrow-functions */
 /**
  * Coerces a data-bound value (typically a string) to a date.
  *
  * @param value - The value to coerce to a Date
  * @param fallbackValue - The value to fall back to if the passed in value is not a valid date
- * @return A Date object
+ * @returns A Date object
  *
  * @example
  * coerceDateProperty('Wed, 21 Oct 2015 07:28:00 GMT'); // Returns: Date object
@@ -19,9 +19,9 @@ export function coerceDateProperty(value: any, fallbackValue: any = new Date()) 
 
 /**
  * Whether the provided value is considered a date.
- * @docs-private
+ *
+ * @private
+ * @param value
+ * @returns Boolean
  */
-export function isDateValue(value: any): value is Date {
-  // tslint:disable-next-line no-unsafe-any
-  return !isNaN(Date.parse(value));
-}
+export const isDateValue = (value: any): value is Date => !isNaN(Date.parse(value));

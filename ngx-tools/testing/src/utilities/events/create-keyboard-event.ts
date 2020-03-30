@@ -7,7 +7,7 @@ import { KeyCode } from '@terminus/ngx-tools/keycodes';
  * @param type - The event type
  * @param key - The KeyCode type
  * @param target - The target element
- * @return The event
+ * @returns The event
  *
  * @example
  * createKeyboardEvent('keydown', ENTER, myInputNativeElement);
@@ -17,9 +17,8 @@ export function createKeyboardEvent(
   key: KeyCode,
   target?: Element,
 ): KeyboardEvent {
-  // tslint:disable: no-unsafe-any
   // NOTE: Cannot 'type' the event here due to the note about FireFox below
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const event = document.createEvent('KeyboardEvent') as any;
   event.initEvent(type, true, false);
   const originalPreventDefault: () => void = event.preventDefault;
@@ -29,8 +28,6 @@ export function createKeyboardEvent(
   Object.defineProperties(event, {
     code: { get: () => key.code },
     key: { get: () => key.code },
-    // NOTE: While this is deprecated, the CDK still uses it so we need to leave it in.
-    // tslint:disable-next-line deprecation
     keyCode: { get: () => key.keyCode },
     target: { get: () => target },
   });
@@ -39,10 +36,9 @@ export function createKeyboardEvent(
   event.preventDefault = function(): void {
     Object.defineProperty(event, 'defaultPrevented', { get: () => true });
     // FIXME: Not sure why this `as any` is needed now
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return originalPreventDefault.apply(this, arguments as any);
   };
 
   return event as KeyboardEvent;
-  // tslint:enable: no-unsafe-any
 }

@@ -9,12 +9,10 @@ import { dispatchEvent } from './dispatch-event';
  * @param type - The event type
  * @param x - The location on the X axis
  * @param y - The location on the Y axis
- * @return The touch event
+ * @returns The touch event
  *
  * @example
  * dispatchTouchEvent(myNativeElement, 'touchstart');
  * dispatchTouchEvent(myNativeElement, 'touchstart', 10, 10);
  */
-export function dispatchTouchEvent(node: Node, type: string, x = 0, y = 0): Event {
-  return dispatchEvent(node, createTouchEvent(type, x, y));
-}
+export const dispatchTouchEvent = (node: Node, type: string, x = 0, y = 0): Event => dispatchEvent(node, createTouchEvent(type, x, y));

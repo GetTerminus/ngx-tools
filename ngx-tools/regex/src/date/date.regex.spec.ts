@@ -23,9 +23,7 @@ const invalidDates: any = [
   '18/03/03',
 ];
 
-
 describe(`dateRegex`, function() {
-
   test(`should return true for all valid dates`, () => {
     for (const date of validDates) {
       expect(dateRegex.test(date)).toEqual(true);
@@ -33,12 +31,10 @@ describe(`dateRegex`, function() {
     expect.assertions(9);
   });
 
-
   test(`should return false for all invalid dates`, () => {
     for (const date of invalidDates) {
       expect(dateRegex.test(date)).toEqual(false);
     }
     expect.assertions(9);
   });
-
 });

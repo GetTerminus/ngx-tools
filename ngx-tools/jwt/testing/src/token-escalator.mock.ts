@@ -1,9 +1,5 @@
-// tslint:disable: no-any
 import { HttpClient } from '@angular/common/http';
-import {
-  Injectable,
-  InjectionToken,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import {
@@ -24,15 +20,10 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 
-import { ESCALATION_WAIT_TIME } from './escalation-wait-time';
-import { SCHEDULER } from './scheduler';
-
-
 export interface EscalateToken<CM = ClaimMap> extends Partial<StoreTokenConstructor<CM>> {
   authorizeUrl: Observable<string>;
   tokenName: Extract<keyof CM, string>;
 }
-
 
 @Injectable()
 export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
@@ -49,6 +40,8 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
 
   /**
    * deprecated Please use the correctly spelled function `simulateEscalationRequest`
+   *
+   * @param tokenName
    */
   public simulateEsclationRequest(tokenName: Extract<keyof CM, string>) {
     if (this.escalators[tokenName]) {
@@ -96,6 +89,10 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
   ) {}
 }
 
+/**
+ * Return mock
+ */
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export function tokenEscalatorFactory() {
   return new TokenEscalatorMock(undefined as any, undefined as any, undefined as any, undefined as any);
 }

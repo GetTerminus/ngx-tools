@@ -16,20 +16,16 @@ const invalidNumbers = [
   `424242424242424242`,
 ];
 
-
 describe(`creditCardRegex`, function() {
-
   test(`should return true for valid card numbers`, () => {
     for (const num of validNumbers) {
       expect(creditCardRegex.test(num)).toEqual(true);
     }
   });
 
-
   test(`should return false for invalid card numbers`, () => {
     for (const num of invalidNumbers) {
       expect(creditCardRegex.test(num)).toEqual(false);
     }
   });
-
 });

@@ -10,7 +10,6 @@ import {
 
 import { untilComponentDestroyed } from './until-component-destroyed';
 
-
 @Component({ template: `` })
 class TestHostComponent implements OnDestroy, OnInit {
   public stub = jest.fn();
@@ -44,9 +43,7 @@ class TestHostDoubleComponent implements OnDestroy, OnInit {
   public ngOnDestroy() {}
 }
 
-
 describe(`untilComponentDestroyed`, function() {
-
   test(`should cancel an observable stream during the destroy cycle`, () => {
     const testComponent: TestHostComponent = new TestHostComponent();
     jest.useFakeTimers();
@@ -67,7 +64,6 @@ describe(`untilComponentDestroyed`, function() {
       expect(testComponent.stub).toHaveBeenCalledTimes(3);
     }, 5000);
   });
-
 
   test(`should cancel an observable stream during the destroy cycle`, () => {
     const testComponent: TestHostDoubleComponent = new TestHostDoubleComponent();
@@ -91,5 +87,4 @@ describe(`untilComponentDestroyed`, function() {
       expect(testComponent.stub2).toHaveBeenCalledTimes(3);
     }, 5000);
   });
-
 });

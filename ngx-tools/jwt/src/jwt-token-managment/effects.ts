@@ -8,7 +8,6 @@ import {
   Actions,
   Effect,
   ofType,
-  ROOT_EFFECTS_INIT,
 } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { TsCookieService } from '@terminus/ngx-tools/browser';
@@ -26,14 +25,13 @@ import {
   map,
   mergeMap,
   take,
-  tap,
   withLatestFrom,
 } from 'rxjs/operators';
 
-import { jwtDecode } from './../jwt-decode/jwt-decode';
+import { jwtDecode } from '../jwt-decode/jwt-decode';
+
 import * as JwtTokenProviderActions from './actions';
 import {
-  getDefaultToken,
   getJwtTokenRoot,
   getTokens,
 } from './selectors';
@@ -70,9 +68,9 @@ type FullClaimsTuple = [
 @Injectable()
 export class JwtTokenProviderEffects {
 
-  public constructor(
+  constructor(
     private actions$: Actions<JwtTokenProviderActions.Actions<MinimalClaimMap>>,
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private store: Store<any>,
     private cookieService: TsCookieService,
 
@@ -81,9 +79,10 @@ export class JwtTokenProviderEffects {
 
     @Optional()
     @Inject(SCHEDULER)
-    // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
-    // 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
-    // tslint:disable-next-line deprecation
+    // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from
+    // what I can tell. The 'correct' path would be to create our own class extending `SchedulerLike`.
+    // https://github.com/GetTerminus/ngx-tools/issues/287
+    // eslint-disable-next-line deprecation/deprecation
     private scheduler: Scheduler,
 
     @Optional()
@@ -164,8 +163,6 @@ export class JwtTokenProviderEffects {
             this.buildDelayedExpirationObservable(expiresIn * MS_IN_SECONDS, action, true),
           );
         }
-        // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
-        // tslint:disable-next-line deprecation
         return of(new JwtTokenProviderActions.TokenExpired<MinimalClaimMap>({
           tokenName: action.tokenName,
           token: action.token,
@@ -179,8 +176,6 @@ export class JwtTokenProviderEffects {
   @Effect()
   public initialCookieLoader$ = ({
     currentState = this.store.select(getJwtTokenRoot()),
-    // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
-    // tslint:disable-next-line deprecation
   } = {}) => of(true).pipe(
     take(1),
     withLatestFrom(currentState),
@@ -202,13 +197,12 @@ export class JwtTokenProviderEffects {
       ];
 
     }),
-  )
+  );
 
 
   /*
-   * This next function is being excluded from coverage due the complexities of
-   * testing the `delay` function. In order to test as much as possible, each
-   * peice has been separated into smaller testable functions.
+   * This next function is being excluded from coverage due the complexities of testing the `delay` function.
+   * In order to test as much as possible, each piece has been separated into smaller testable functions.
    */
   public buildDelayedExpirationObservable(
     emitTime: number | Date,
@@ -224,7 +218,7 @@ export class JwtTokenProviderEffects {
       take(1),
       map(() => (expired
         ? new JwtTokenProviderActions.TokenExpired<MinimalClaimMap>(outputActionArgs)
-        : new JwtTokenProviderActions.TokenNearingExpiration<MinimalClaimMap>(outputActionArgs)),),
+        : new JwtTokenProviderActions.TokenNearingExpiration<MinimalClaimMap>(outputActionArgs))),
     );
   }
 }

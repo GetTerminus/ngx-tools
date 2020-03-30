@@ -11,7 +11,6 @@
   },
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "module": "es2015",
     "baseUrl": "",
     "types": [],
     "paths": {
@@ -22,8 +21,11 @@
       "@terminus/ngx-tools/testing": ["./../dist/ngx-tools/testing/public-api.ts"]
     }
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "demo/**/*.d.ts"
   ]
 }

@@ -7,7 +7,7 @@
  * Function that preserves camel case
  *
  * @param input - The string input
- * @return The adjusted string
+ * @returns The adjusted string
  */
 function preserveCamelCase(input: string): string {
   let isLastCharLower = false;
@@ -34,7 +34,6 @@ function preserveCamelCase(input: string): string {
       isLastCharUpper = c.toUpperCase() === c;
     }
   }
-
   return input;
 }
 
@@ -44,11 +43,10 @@ function preserveCamelCase(input: string): string {
  *
  * @param x - The string
  * @param pascalCase - A boolean representing if the string should be converted to PascalCase
- * @return The final string
+ * @returns The final string
  */
-function postProcess(x: string, pascalCase: boolean): string {
-  return pascalCase ? x.charAt(0).toUpperCase() + x.slice(1) : x;
-}
+const postProcess =
+  (x: string, pascalCase: boolean): string => (pascalCase ? x.charAt(0).toUpperCase() + x.slice(1) : x);
 
 
 /**
@@ -56,7 +54,7 @@ function postProcess(x: string, pascalCase: boolean): string {
  *
  * @param input - The string to convert
  * @param pascalCase - A boolean representing if the string should be converted to PascalCase
- * @return The camelCase version of the string
+ * @returns The camelCase version of the string
  *
  * @example
  * toCamelCase('MY_TEXT')       // Returns: `myText`

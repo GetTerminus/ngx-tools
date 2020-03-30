@@ -3,7 +3,7 @@
  *
  * @param node - The Node that should dispatch the event
  * @param event - The event to be dispatched
- * @return The dispatched event
+ * @returns The dispatched event
  *
  * @example
  * dispatchEvent(myNativeElement, 'blur');

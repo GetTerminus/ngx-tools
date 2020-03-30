@@ -2,10 +2,7 @@ import {
   HttpClient,
   HttpHeaders,
 } from '@angular/common/http';
-import {
-  Injectable,
-  InjectionToken,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   Actions,
   ofType,
@@ -23,10 +20,10 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 
-import * as JwtActions from './../actions';
-import { ClaimMap } from './../claim-map';
-import { tokenFor } from './../selectors';
-import { ESCALATION_WAIT_TIME } from './retry-with-escalation';
+import * as JwtActions from '../actions';
+import { ClaimMap } from '../claim-map';
+import { tokenFor } from '../selectors';
+
 import { TokenExtractor } from './token-extractor';
 
 
@@ -39,7 +36,7 @@ export interface EscalateToken<CM = ClaimMap> extends Partial<JwtActions.StoreTo
 @Injectable()
 export class TokenEscalator<CM = ClaimMap> {
 
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public escalateToken({ tokenName, authorizeUrl, isDefaultToken }: EscalateToken<CM>): Observable<any> {
     return this.actions$
       .pipe(
@@ -61,8 +58,6 @@ export class TokenEscalator<CM = ClaimMap> {
               isDefaultToken,
             }),
             map(() => new JwtActions.EscalationSuccess(tokenName)),
-            // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
-            // tslint:disable-next-line deprecation
             catchError(() => of(
               new JwtActions.EscalationFailed<CM>(tokenName),
             )),
@@ -72,9 +67,9 @@ export class TokenEscalator<CM = ClaimMap> {
     ;
   }
 
-  public constructor(
+  constructor(
     public actions$: Actions,
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public store: Store<any>,
     public http: HttpClient,
     public tokenExtractor: TokenExtractor<CM>,

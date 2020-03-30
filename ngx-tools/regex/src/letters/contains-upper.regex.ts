@@ -13,8 +13,6 @@ export const containsUppercaseRegex = /(.*[A-Z].*)/;
  * reg.test('Abc#12D') // Returns true
  *
  * @param minUppercaseCount - The minimum amount of uppercase characters required
- * @return The regex
+ * @returns The regex
  */
-export function createContainsUppercaseRegex(minUppercaseCount: number): RegExp {
-  return new RegExp(`(.*[A-Z].*){${minUppercaseCount},}`);
-}
+export const createContainsUppercaseRegex = (minUppercaseCount: number): RegExp => new RegExp(`(.*[A-Z].*){${minUppercaseCount},}`);

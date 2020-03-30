@@ -27,13 +27,13 @@ import {
   take,
 } from 'rxjs/operators';
 
-import * as JwtActions from './../actions';
-import { ClaimMap } from './../claim-map';
+import * as JwtActions from '../actions';
+import { ClaimMap } from '../claim-map';
 
 
 // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
 // 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
-// tslint:disable-next-line deprecation
+// eslint-disable-next-line deprecation/deprecation
 export const SCHEDULER = new InjectionToken<Scheduler>('scheduler');
 export const ESCALATION_WAIT_TIME = new InjectionToken<number>('wait time');
 
@@ -45,7 +45,7 @@ const DEFAULT_ESCALATION_WAIT_TIME = 30000;
 export class RetryWithEscalation<CM = ClaimMap> {
 
   public retryWithEscalation(tokenName: Extract<keyof CM, string>) {
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (source: Observable<any>) => source.pipe(
       retryWhen((errors: Observable<HttpErrorResponse | Error>) => {
         const DELAY_MS = 10;
@@ -73,7 +73,6 @@ export class RetryWithEscalation<CM = ClaimMap> {
     );
   }
 
-
   private waitForResult(tokenName: Extract<keyof CM, string>) {
     return this.actions$
       .pipe(
@@ -93,7 +92,6 @@ export class RetryWithEscalation<CM = ClaimMap> {
     ;
   }
 
-
   private expirationTimer() {
     return timer(
       this.waitTime  || DEFAULT_ESCALATION_WAIT_TIME,
@@ -101,19 +99,18 @@ export class RetryWithEscalation<CM = ClaimMap> {
     ).pipe(switchMap(() => this.failureError()));
   }
 
-
   private failureError() {
     return throwError(new Error('Failed to escalate token'));
   }
 
-
-  public constructor(
+  constructor(
     private actions$: Actions,
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public store: Store<any>,
-    // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
-    // 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
-    // tslint:disable-next-line deprecation
+    // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated
+    // from what I can tell. The 'correct' path would be to create our own class extending `SchedulerLike`.
+    // https://github.com/GetTerminus/ngx-tools/issues/287
+    // eslint-disable-next-line deprecation/deprecation
     @Optional() @Inject(SCHEDULER) private scheduler: Scheduler,
     @Optional() @Inject(ESCALATION_WAIT_TIME) private waitTime: number,
   ) {}

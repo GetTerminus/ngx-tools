@@ -1,9 +1,9 @@
 /**
  * Helper function to return an array of values from an hash object
  *
- * @param keys The array containing the key values (number|string) to retrieve from the hash
- * @param hash The object to pull values from
- * @return The array of values that match keys
+ * @param keys - The array containing the key values (number|string) to retrieve from the hash
+ * @param hash - The object to pull values from
+ * @returns The array of values that match keys
  *
  * @example
  * const tactic1: MyType = {

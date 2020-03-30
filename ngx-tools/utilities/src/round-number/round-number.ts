@@ -8,7 +8,7 @@ import { isNumber } from '@terminus/ngx-tools/type-guards';
  *
  * @param num - The number to round (also accepting strings for exponential support)
  * @param precision - How precise to make the rounding
- * @return The rounded number
+ * @returns The rounded number
  *
  * @example
  * roundNumber(1.050, 1)      // Returns: `1.1`

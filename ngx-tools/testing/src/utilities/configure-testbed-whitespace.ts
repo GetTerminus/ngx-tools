@@ -5,7 +5,7 @@ import { TestBed } from '@angular/core/testing';
  * Define the structure of the options object passed to `configureTestBed`
  */
 export type TestBedCompilerOptions = Partial<{
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   providers: any[];
   useJit: boolean;
   preserveWhitespaces: boolean;
@@ -24,7 +24,8 @@ export type ConfigureTestBedFn = (testBed: typeof TestBed) => void;
  * Create an instance of the TestBed and compile components
  *
  * @param configureFn - The configuration function for the TestBed
- * @return A promise-wrapped TestBed instance
+ * @param compilerOptions
+ * @returns A promise-wrapped TestBed instance
  */
 export function configureTestBedWhitespace(
   configureFn: ConfigureTestBedFn,

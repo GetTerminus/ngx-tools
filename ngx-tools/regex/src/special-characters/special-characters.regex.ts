@@ -15,8 +15,6 @@ export const containsSpecialCharacterRegex = /.*(?:[!@#$%^&*_=+()-].*)/;
  * reg.test('a^bc$d') // Returns true
  *
  * @param minimum - The minimum amount of number characters required
- * @return The regex
+ * @returns The regex
  */
-export function createContainsSpecialCharacterRegex(minimum: number): RegExp {
-  return new RegExp(`.*(?:[!@#$%^&*_=+()-].*){${minimum},}`);
-}
+export const createContainsSpecialCharacterRegex = (minimum: number): RegExp => new RegExp(`.*(?:[!@#$%^&*_=+()-].*){${minimum},}`);

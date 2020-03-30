@@ -1,16 +1,10 @@
-/* eslint-disable no-console */
 import {
   Component,
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { interval } from 'rxjs';
-import {
-  delay,
-  map,
-  tap,
-} from 'rxjs/operators';
 
 
 @Component({

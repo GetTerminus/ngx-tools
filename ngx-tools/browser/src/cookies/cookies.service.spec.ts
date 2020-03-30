@@ -7,14 +7,12 @@ import { TestBed } from '@angular/core/testing';
 
 import { TsCookieService } from './cookies.service';
 
-
 @Component({
   selector: 'test-host',
   template: ``,
 })
 export class TestHostComponent {
 }
-
 
 const create = (isBrowser = true): any[] => {
   class DocumentMock {
@@ -62,28 +60,23 @@ const create = (isBrowser = true): any[] => {
     providers,
   }).compileComponents();
 
-  return [TestBed.get<TsCookieService>(TsCookieService), TestBed.get<Document>(DOCUMENT)];
+  return [TestBed.inject<TsCookieService>(TsCookieService), TestBed.inject<Document>(DOCUMENT)];
 };
 
-
 describe(`TsCookieService`, function() {
-
   test(`should be created properly`, function() {
     const [service, document] = create();
 
     expect(service).toBeTruthy();
   });
 
-
   describe(`set`, function() {
-
     test(`should create a minimal cookie with name & value`, function() {
       const [service, document] = create();
       service.set('foo', 'bar');
 
       expect(document.cookie).toEqual(`foo=bar;`);
     });
-
 
     test(`should set expires from a number if it exists`, function() {
       const [service, document] = create();
@@ -93,7 +86,6 @@ describe(`TsCookieService`, function() {
       expect(document.cookie).toEqual(`bar=baz;expires=${expectedDate};`);
     });
 
-
     test(`should set expires from a Date if it exists`, function() {
       const [service, document] = create();
       const date = new Date();
@@ -102,14 +94,12 @@ describe(`TsCookieService`, function() {
       expect(document.cookie).toEqual(`foo=bar;expires=${date.toUTCString()};`);
     });
 
-
     test(`should set path if it exists`, function() {
       const [service, document] = create();
       service.set('baz', 'bing', undefined, 'a/b/c');
 
       expect(document.cookie).toEqual(`baz=bing;path=a/b/c;`);
     });
-
 
     test(`should set domain if it exists`, function() {
       const [service, document] = create();
@@ -118,14 +108,12 @@ describe(`TsCookieService`, function() {
       expect(document.cookie).toEqual(`bing=boom;domain=test.com;`);
     });
 
-
     test(`should set secure if true`, function() {
       const [service, document] = create();
       service.set('bar', 'baz', undefined, undefined, undefined, true);
 
       expect(document.cookie).toEqual(`bar=baz;secure;`);
     });
-
 
     test(`should not set secure if false`, function() {
       const [service, document] = create();
@@ -134,14 +122,12 @@ describe(`TsCookieService`, function() {
       expect(document.cookie).toEqual(`foo=bar;`);
     });
 
-
     test(`should set same site if it exists`, function() {
       const [service, document] = create();
       service.set('bar', 'baz', undefined, undefined, undefined, undefined, 'Strict');
 
       expect(document.cookie).toEqual(`bar=baz;sameSite=Strict;`);
     });
-
 
     test(`should set all items`, function() {
       const [service, document] = create();
@@ -151,18 +137,14 @@ describe(`TsCookieService`, function() {
       expect(document.cookie).toEqual(`baz=bing;expires=${date.toUTCString()};path=a/b/c;domain=test.com;secure;sameSite=Lax;`);
     });
 
-
     test(`should return undefined without setting if the document is inaccessible`, function() {
       const [service, document] = create(false);
       expect(service.set('foo', 'bar')).toEqual(undefined);
       expect(document.cookie).toEqual('');
     });
-
   });
 
-
   describe(`check`, function() {
-
     test(`should verify if a cookie exists`, function() {
       const [service, document] = create();
       service.set('foo', 'bar');
@@ -171,17 +153,13 @@ describe(`TsCookieService`, function() {
       expect(service.check('foo')).toEqual(true);
     });
 
-
     test(`should return false if the document is inaccessible`, function() {
       const [service] = create(false);
       expect(service.check('foo')).toEqual(false);
     });
-
   });
 
-
   describe(`get`, function() {
-
     test(`should return a cookie if it exists`, function() {
       const [service, document] = create();
       service.set('foo', 'bar');
@@ -192,25 +170,20 @@ describe(`TsCookieService`, function() {
       expect(service.get('baz')).toEqual(`bing`);
     });
 
-
     test(`should return an empty string if no cookie is found`, function() {
       const [service] = create();
 
       expect(service.get('foo')).toEqual('');
     });
 
-
     test(`should return an empty string if the document is inaccessible`, function() {
       const [service] = create(false);
 
       expect(service.get('foo')).toEqual('');
     });
-
   });
 
-
   describe(`getAll`, function() {
-
     test(`should return an object containing all cookies`, function() {
       const [service] = create();
       service.set('foo', 'bar');
@@ -223,18 +196,14 @@ describe(`TsCookieService`, function() {
       expect(service.getAll()).toEqual(match);
     });
 
-
     test(`should return an empty object if the document is inaccessible`, function() {
       const [service] = create(false);
 
       expect(service.getAll()).toEqual({});
     });
-
   });
 
-
   describe(`deleteAll`, function() {
-
     test(`should overwrite all cookies for deletion`, function() {
       const [service, document] = create();
       service.set('foo', 'bar');
@@ -247,23 +216,17 @@ describe(`TsCookieService`, function() {
       expect(document.cookie).toEqual(`foo=;expires=${date};baz=;expires=${date};`);
     });
 
-
     test(`should return undefined if the document is inaccessible`, function() {
       const [service, document] = create(false);
       expect(service.deleteAll()).toEqual(undefined);
     });
-
   });
 
-
   describe(`delete`, function() {
-
     test(`should return undefined if the document is inaccessible`, function() {
       const [service] = create(false);
 
       expect(service.delete('foo')).toEqual(undefined);
     });
-
   });
-
 });

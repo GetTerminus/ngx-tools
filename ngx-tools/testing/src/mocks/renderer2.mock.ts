@@ -1,7 +1,5 @@
-// tslint:disable: no-any no-unsafe-any
 import { Renderer2 } from '@angular/core';
 import { noop } from '@terminus/ngx-tools/utilities';
-
 
 /**
  * A mock of the Angular Renderer2

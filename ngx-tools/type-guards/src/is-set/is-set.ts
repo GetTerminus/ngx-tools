@@ -1,17 +1,14 @@
-import { isUndefined } from './../is-undefined/is-undefined';
-
+import { isUndefined } from '../is-undefined/is-undefined';
 
 /**
  * Determine if the item has a value
  *
  * @param x - The value being tested
- * @return The result
+ * @returns The result
  *
  * @example
  * isSet<string>('hi')   // Returns: true
  * isSet<number>(void 0) // Returns: false
  */
-// tslint:disable-next-line no-any
-export function isSet<T>(x: any): x is T {
-  return !isUndefined(x);
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isSet = <T>(x: any): x is T => !isUndefined(x);

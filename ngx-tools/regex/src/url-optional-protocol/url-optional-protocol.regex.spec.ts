@@ -80,20 +80,16 @@ const invalidUrls = [
   'http://10.1.1.1',
 ];
 
-
 describe(`urlOptionalProtocolRegex`, function() {
-
   test(`should return true for valid URL with or without a protocol`, () => {
     for (const url of validUrls) {
       expect(urlOptionalProtocolRegex.test(url)).toEqual(true);
     }
   });
 
-
   test(`should return false for invalid URLs`, () => {
     for (const url of invalidUrls) {
       expect(urlOptionalProtocolRegex.test(url)).toEqual(false);
     }
   });
-
 });

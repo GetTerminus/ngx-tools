@@ -6,7 +6,6 @@ import {
   StoreModule,
 } from '@ngrx/store';
 
-import { ClaimMap } from './claim-map';
 import { JwtTokenProviderEffects } from './effects';
 import { DefaultTokenRequired } from './guards/defaultTokenRequired';
 import { jwtTokenProviderReducer } from './reducer';
@@ -21,7 +20,7 @@ import { TokenExtractor } from './utilities/token-extractor';
 
 
 // NOTE: Not sure why this second param is required in strict mode
-// tslint:disable-next-line no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const reducers: ActionReducerMap<State, any> = { jwtTokens: jwtTokenProviderReducer };
 
 

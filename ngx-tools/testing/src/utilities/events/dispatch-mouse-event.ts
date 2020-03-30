@@ -12,18 +12,16 @@ import { dispatchEvent } from './dispatch-event';
  * @param x - The location on the X axis
  * @param y - The location on the Y axis
  * @param event - The event
- * @return The mouse event
+ * @returns The mouse event
  *
  * @example
  * dispatchMouseEvent(myNativeElement, 'mousedown');
  * dispatchMouseEvent(myNativeElement, 'mousedown', 10, 10, myCustomEvent);
  */
-export function dispatchMouseEvent(
+export const dispatchMouseEvent = (
   node: Node,
   type: string,
   x = 0,
   y = 0,
   event = createMouseEvent(type, x, y),
-): MouseEvent {
-  return dispatchEvent(node, event) as MouseEvent;
-}
+): MouseEvent => dispatchEvent(node, event) as MouseEvent;

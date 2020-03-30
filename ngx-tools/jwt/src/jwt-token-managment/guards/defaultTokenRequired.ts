@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  Params,
-} from '@angular/router';
+import { CanActivate } from '@angular/router';
 import {
   select,
   Store,
@@ -15,11 +12,11 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 
-import { FailedToActivateRoute } from './../actions';
+import { FailedToActivateRoute } from '../actions';
 import {
   getDefaultToken,
   getJwtTokenRoot,
-} from './../selectors';
+} from '../selectors';
 
 
 @Injectable()
@@ -34,12 +31,10 @@ export class DefaultTokenRequired implements CanActivate {
     map(s => s || ''),
   );
 
-
-  public constructor(
-    // tslint:disable-next-line no-any
+  constructor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public store: Store<any>,
   ) {}
-
 
   public canActivate(): Observable<boolean> {
     return this.currentLoadState.pipe(
@@ -52,7 +47,5 @@ export class DefaultTokenRequired implements CanActivate {
         }
       }),
     );
-
   }
-
 }

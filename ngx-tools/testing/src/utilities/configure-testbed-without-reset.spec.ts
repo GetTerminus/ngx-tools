@@ -10,7 +10,6 @@ import {
 
 import { configureTestBedWithoutReset } from './configure-testbed-without-reset';
 
-
 @Component({ template: `` })
 class TestHostComponent implements OnDestroy {
   public arr: number[] = [];
@@ -19,7 +18,6 @@ class TestHostComponent implements OnDestroy {
     this.arr.push(new Date().getTime());
   }
 }
-
 
 describe(`configureTestBedWithoutReset`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
@@ -38,14 +36,11 @@ describe(`configureTestBedWithoutReset`, function() {
     fixture.detectChanges();
   });
 
-
   test(`should not reset the TestBed between tests part 1`, () => {
     expect(testComponent.arr.length).toEqual(0);
   });
 
-
   test(`should not reset the TestBed between tests part 2`, () => {
     expect(testComponent.arr.length).toEqual(0);
   });
-
 });

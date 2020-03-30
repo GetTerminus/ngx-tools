@@ -11,8 +11,8 @@ import { tap } from 'rxjs/operators';
 import {
   StoreToken,
   StoreTokenConstructor,
-} from './../actions';
-import { ClaimMap } from './../claim-map';
+} from '../actions';
+import { ClaimMap } from '../claim-map';
 
 
 export interface ExtractTokenParams<C = ClaimMap> extends Partial<StoreTokenConstructor<C>> {
@@ -25,7 +25,7 @@ export const TOKEN_NOT_FOUND_ERROR = new Error('Token Not found in response');
 
 @Injectable()
 export class TokenExtractor<CM = ClaimMap> {
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public extractJwtToken<T extends Object | HttpResponse<any>>({ tokenName, isDefaultToken }: ExtractTokenParams<CM>) {
     return (source: Observable<T>) => source.pipe(
       tap(request => {
@@ -44,7 +44,7 @@ export class TokenExtractor<CM = ClaimMap> {
     );
   }
 
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public extractTokenFromResponse<T extends Object | HttpResponse<any>>(input: T): string {
     let token = '';
 
@@ -62,8 +62,8 @@ export class TokenExtractor<CM = ClaimMap> {
     return token;
   }
 
-  public constructor(
-    // tslint:disable-next-line no-any
+  constructor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public store: Store<any>,
   ) {}
 

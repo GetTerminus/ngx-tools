@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import * as jwtActions from './actions';
 import {
   initialState,
@@ -10,11 +11,8 @@ interface MockClaimMap {
   bar: { baz?: number };
 }
 
-
 describe('jwtTokenProviderReducer', function() {
-
   describe('token expiration', () => {
-
     test(`rejects the action if the state is already loaded`, () => {
       const startingState = {
         initialTokenStatus: 'loaded' as 'loaded',
@@ -28,7 +26,6 @@ describe('jwtTokenProviderReducer', function() {
         ),
       ).toEqual(startingState);
     });
-
 
     test(`rejects the action if the state is already empty`, () => {
       const startingState = {
@@ -44,7 +41,6 @@ describe('jwtTokenProviderReducer', function() {
       ).toEqual(startingState);
     });
 
-
     test(`changes the InitialTokenExtracted to empty of the cookie is empty`, () => {
       const startingState = {
         initialTokenStatus: 'uninitialized' as 'uninitialized',
@@ -58,7 +54,6 @@ describe('jwtTokenProviderReducer', function() {
         ).initialTokenStatus,
       ).toEqual('empty');
     });
-
 
     test(`should store the initial token`, () => {
       const startingState = {
@@ -77,12 +72,9 @@ describe('jwtTokenProviderReducer', function() {
         tokens: {},
       });
     });
-
   });
 
-
   describe('token expiration', () => {
-
     test('clears the default token', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(
@@ -101,7 +93,6 @@ describe('jwtTokenProviderReducer', function() {
         tokens: {},
       });
     });
-
 
     test('clears sub tokens', () => {
       expect(
@@ -123,12 +114,9 @@ describe('jwtTokenProviderReducer', function() {
         tokens: { bar: '123' },
       });
     });
-
   });
 
-
   describe('a storing a token', () => {
-
     test('stores a new token', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(
@@ -146,7 +134,6 @@ describe('jwtTokenProviderReducer', function() {
         tokens: { foo: 'abcd' },
       });
     });
-
 
     test('stores a new token as a default it set', () => {
       expect(
@@ -168,7 +155,6 @@ describe('jwtTokenProviderReducer', function() {
       });
     });
 
-
     test('updates an existing token', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(
@@ -186,9 +172,7 @@ describe('jwtTokenProviderReducer', function() {
         tokens: { foo: 'abcd' },
       });
     });
-
   });
-
 
   describe('a non recognized action', () => {
     class UnknownAction implements Action {
@@ -197,13 +181,11 @@ describe('jwtTokenProviderReducer', function() {
     }
     const action = new UnknownAction();
 
-
     test('returns the initial state', () => {
       expect(
         jwtTokenProviderReducer<MockClaimMap>(undefined, action as any),
       ).toEqual(initialState);
     });
-
 
     test('returns the current state', () => {
       expect(
@@ -216,8 +198,6 @@ describe('jwtTokenProviderReducer', function() {
         tokens: { foo: 'sadf' },
       });
     });
-
   });
-
 });
 

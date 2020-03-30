@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { noop } from '@terminus/ngx-tools/utilities';
 
-
 /**
  * A mock of the Angular ChangeDetectorRefMock class
  */

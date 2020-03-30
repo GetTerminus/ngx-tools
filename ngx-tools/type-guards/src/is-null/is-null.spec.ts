@@ -1,15 +1,12 @@
 import { isNull } from './is-null';
 
-
 describe(`isNull`, function() {
-
   const itemsShouldReturnFalse = [
     undefined,
     2,
     'foo',
     false,
   ];
-
 
   test(`should should return false`, function() {
     for (const value of itemsShouldReturnFalse) {
@@ -18,9 +15,7 @@ describe(`isNull`, function() {
     expect.assertions(itemsShouldReturnFalse.length);
   });
 
-
   test(`should return true when passed null`, () => {
     expect(isNull(null)).toEqual(true);
   });
-
 });

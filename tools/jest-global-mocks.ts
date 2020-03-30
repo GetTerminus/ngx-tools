@@ -1,7 +1,6 @@
 // Polyfill `window.crypto`
 import 'window-crypto';
 
-// tslint:disable no-any no-unsafe-any
 const mock = () => {
   let storage: Record<string, any> = {};
   return {
@@ -14,7 +13,6 @@ const mock = () => {
     clear: () => (storage = {}),
   };
 };
-// tslint:enable no-any no-unsafe-any
 
 Object.defineProperty(window, 'localStorage', {value: mock()});
 Object.defineProperty(window, 'sessionStorage', {value: mock()});

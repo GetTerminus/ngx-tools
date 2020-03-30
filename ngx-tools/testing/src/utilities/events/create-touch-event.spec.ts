@@ -1,8 +1,6 @@
 import { createTouchEvent } from './create-touch-event';
 
-
 describe(`createTouchEvent`, function() {
-
   test(`should create event at default x/y coords`, () => {
     const actual: UIEvent = createTouchEvent('click');
     expect((actual as any).touches[0].pageX).toEqual(0);
@@ -14,5 +12,4 @@ describe(`createTouchEvent`, function() {
     expect((actual as any).touches[0].pageX).toEqual(100);
     expect((actual as any).touches[0].pageY).toEqual(100);
   });
-
 });

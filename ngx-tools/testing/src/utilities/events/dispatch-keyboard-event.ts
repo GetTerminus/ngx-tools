@@ -11,13 +11,11 @@ import { dispatchEvent } from './dispatch-event';
  * @param type - The event type
  * @param key - The KeycodesConst type (contains code and keyCode)
  * @param target - The target event element
- * @return The keyboard event
+ * @returns The keyboard event
  *
  * @example
  * dispatchKeyboardEvent(myNativeElement, 'keyup', ENTER);
  * dispatchKeyboardEvent(myNativeElement, 'keyup', ENTER, myTargetElement);
  */
-export function dispatchKeyboardEvent(node: Node, type: string, key: KeyCode, target?: Element):
-    KeyboardEvent {
-  return dispatchEvent(node, createKeyboardEvent(type, key, target)) as KeyboardEvent;
-}
+export const dispatchKeyboardEvent = (node: Node, type: string, key: KeyCode, target?: Element):
+    KeyboardEvent => dispatchEvent(node, createKeyboardEvent(type, key, target)) as KeyboardEvent;

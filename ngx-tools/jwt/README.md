@@ -394,7 +394,7 @@ TestBed.configureTestingModule({
   ],
 });
 
-retryMock = TestBed.get(RetryWithEscalation);
+retryMock = TestBed.inject(RetryWithEscalation);
 ```
 
 
@@ -413,7 +413,7 @@ TestBed.configureTestingModule({
   ],
 });
 
-extractorMock = TestBed.get(TokenExtractor);
+extractorMock = TestBed.inject(TokenExtractor);
 ```
 
 

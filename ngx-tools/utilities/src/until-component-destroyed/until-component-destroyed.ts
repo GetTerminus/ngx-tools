@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
 export interface WithOnDestroy {
   ngOnDestroy(): void;
   componentDestroyed$?: Observable<true>;
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
@@ -20,16 +20,18 @@ export interface WithOnDestroy {
  * Patch the component with unsubscribe behavior
  *
  * @param component - The component class (`this` context)
- * @return An observable representing the unsubscribe event
+ * @returns An observable representing the unsubscribe event
  */
 export function componentDestroyed(component: WithOnDestroy): Observable<true> {
   if (component.componentDestroyed$) {
     return component.componentDestroyed$;
   }
 
+  // eslint-disable-next-line @angular-eslint/no-lifecycle-call
   const oldNgOnDestroy: Function | undefined = component.ngOnDestroy;
   const stop$: ReplaySubject<true> = new ReplaySubject<true>();
 
+  // eslint-disable-next-line @angular-eslint/no-lifecycle-call
   component.ngOnDestroy = () => {
     // istanbul ignore else
     if (oldNgOnDestroy) {
@@ -49,11 +51,11 @@ export function componentDestroyed(component: WithOnDestroy): Observable<true> {
  * A pipe-able operator to unsubscribe during OnDestroy lifecycle event
  *
  * @param component - The component class (`this` context)
- * @return The component wrapped in an Observable
+ * @returns The component wrapped in an Observable
  *
  * @example
  * source.pipe(untilComponentDestroyed(this)).subscribe...
  */
-export function untilComponentDestroyed<T>(component: WithOnDestroy): (source: Observable<T>) => Observable<T> {
-  return (source: Observable<T>) => source.pipe(takeUntil(componentDestroyed(component)));
-}
+export const untilComponentDestroyed =
+  // eslint-disable-next-line max-len
+  <T>(component: WithOnDestroy): (source: Observable<T>) => Observable<T> => (source: Observable<T>) => source.pipe(takeUntil(componentDestroyed(component)));

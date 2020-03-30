@@ -1,18 +1,15 @@
-import { isSet } from './../is-set/is-set';
+import { isSet } from '../is-set/is-set';
 
 
 /**
  * Coerce the type to MouseEvent
  *
  * @param x - The item to test
- * @return True if the value is a MouseEvent
+ * @returns True if the value is a MouseEvent
  *
  * @example
  * isMouseEvent(myMouseEvent);    // Returns: true
  * isMouseEvent(myKeyboardEvent); // Returns: false
  */
-// tslint:disable-next-line no-any
-export function isMouseEvent(x: any): x is MouseEvent {
-  // tslint:disable-next-line no-unsafe-any
-  return !!x && isSet(x.relatedTarget);
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isMouseEvent = (x: any): x is MouseEvent => !!x && isSet(x.relatedTarget);

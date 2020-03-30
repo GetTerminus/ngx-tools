@@ -8,7 +8,7 @@ let typeCache: {[label: string]: boolean} = {};
  * Ensure you only define an action once in the entirety of the application
  *
  * @param label - The action label
- * @return uniqueLabel - The unique label
+ * @returns uniqueLabel - The unique label
  *
  * @example
  * defineType('[log-in] User log in') as '[log-in] User log in';
@@ -16,7 +16,7 @@ let typeCache: {[label: string]: boolean} = {};
 export function defineType<T extends string>(label: T): T {
   // Verify the label does not already exist in the cache
   if (typeCache[label]) {
-    throw new Error(`Action type '${label}' is not unqiue!`);
+    throw new Error(`Action type '${label}' is not unique!`);
   }
 
   // Save the label to the cache
@@ -37,7 +37,7 @@ export function defineType<T extends string>(label: T): T {
  * };
  * defineTypeEnum(actionTypes);
  */
-// tslint:disable-next-line no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function defineTypeEnum(typeEnum: Record<string, any>): void  {
   for (const val in typeEnum) {
     // istanbul ignore else

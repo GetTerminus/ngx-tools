@@ -3,8 +3,8 @@
  *
  * @param type - The event type
  * @param canBubble - Define if the event can bubble up the DOM
- * @param type - Define if the event is cancelable
- * @return The event
+ * @param cancelable
+ * @returns The event
  *
  * @example
  * createFakeEvent('focus');
@@ -17,6 +17,5 @@ export function createFakeEvent(
 ): Event {
   const event: Event = document.createEvent('Event');
   event.initEvent(type, canBubble, cancelable);
-
   return event;
 }

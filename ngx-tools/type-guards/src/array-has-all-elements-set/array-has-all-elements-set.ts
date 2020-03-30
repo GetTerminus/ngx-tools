@@ -1,12 +1,12 @@
-import { isArray } from './../is-array/is-array';
-import { isNull } from './../is-null/is-null';
+import { isArray } from '../is-array/is-array';
+import { isNull } from '../is-null/is-null';
 
 
 /**
  * Determine if all items of an array are set to a type
  *
  * @param arr - The array to test
- * @return The result
+ * @returns The result
  *
  * @example
  * arrayHasAllElementsSet<number>([1, 4, 6])             // Returns: true
@@ -19,7 +19,13 @@ export function arrayHasAllElementsSet<A, B, C>(arr: [A | undefined | null, B | 
 export function arrayHasAllElementsSet<A, B, C, D>(
   arr: [A | undefined | null, B | undefined | null, C | undefined | null, D | undefined | null],
 ): arr is [A, B, C, D];
-// tslint:disable-next-line no-any
+/**
+ * Check that all elements are set
+ *
+ * @param arr - The array
+ * @returns Boolean
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function arrayHasAllElementsSet<T>(arr: any): arr is Array<T> {
   if (!isArray(arr)) {
     return false;

@@ -53,7 +53,6 @@ import {
   ZERO,
 } from './keycodes.const';
 
-
 describe(`keycodes`, function() {
   const codes: number[] = [
     BACKSPACE,
@@ -109,7 +108,6 @@ describe(`keycodes`, function() {
     COMMA,
   ];
 
-
   test(`should all be valid numbers`, () => {
     for (const code in codes) {
       if (codes[code]) {
@@ -118,7 +116,6 @@ describe(`keycodes`, function() {
     }
   });
 
-
   test('should all be valid strings', () => {
     Object.keys(KEYS).forEach(k => {
       const value = KEYS[k];
@@ -126,5 +123,4 @@ describe(`keycodes`, function() {
       expect(value.keyCode).toEqual(expect.any(Number));
     });
   });
-
 });

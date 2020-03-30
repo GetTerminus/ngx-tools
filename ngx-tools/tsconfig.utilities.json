@@ -1,0 +1,20 @@
+{
+  "extends": "./../tsconfig.json",
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "flatModuleId": "@terminus/ngx-tools"
+  },
+  "compilerOptions": {
+    "baseUrl": "",
+    "experimentalDecorators": true,
+    "rootDir": ".",
+    "target": "es2015",
+    "types": []
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "**/testing/*"
+  ]
+}

@@ -1,6 +1,6 @@
 import { SimpleChanges } from '@angular/core';
 
-import { NgChangeObjectValueParser } from './../ngchange-object-value-parser/ngchange-object-value-parser';
+import { NgChangeObjectValueParser } from '../ngchange-object-value-parser/ngchange-object-value-parser';
 
 
 /**
@@ -8,7 +8,7 @@ import { NgChangeObjectValueParser } from './../ngchange-object-value-parser/ngc
  *
  * @param changes - The object of changes
  * @param path - The object path in question
- * @return True if the value has changed
+ * @returns True if the value has changed
  *
  * @example
  * inputHasChanged(changesObject, 'myInputName')
@@ -17,12 +17,7 @@ export function inputHasChanged(changes: SimpleChanges, path: string): boolean |
   if (!changes || !path) {
     return undefined;
   }
-
   const oldValue = NgChangeObjectValueParser.getOldValue(changes, path);
   const newValue = NgChangeObjectValueParser.getNewValue(changes, path);
-
-  if (oldValue !== newValue) {
-    return true;
-  }
-  return false;
+  return oldValue !== newValue;
 }

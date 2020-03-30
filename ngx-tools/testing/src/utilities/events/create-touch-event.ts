@@ -17,12 +17,8 @@ export function createTouchEvent(type: string, pageX = 0, pageY = 0): UIEvent {
     pageX,
     pageY,
   };
-
-  event.initUIEvent(type, true, true, window, 0);
-
-  // NOTE: Most of the browsers don't have a "initTouchEvent" method that can be used to define
-  // the touch details.
+  event.initEvent(type, true, true);
+  // NOTE: Most of the browsers don't have a "initTouchEvent" method that can be used to define the touch details.
   Object.defineProperties(event, { touches: { value: [touchDetails] } });
-
   return event;
 }

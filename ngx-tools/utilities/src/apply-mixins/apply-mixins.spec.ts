@@ -1,13 +1,11 @@
 import { applyMixins } from './apply-mixins';
 
-
 // Disposable Mixin
 class Disposable {
   public isDisposed!: boolean;
   public dispose() {
     this.isDisposed = true;
   }
-
 }
 
 // Activatable Mixin
@@ -37,15 +35,11 @@ class SmartObject implements Disposable, Activatable {
 }
 applyMixins(SmartObject, [Disposable, Activatable]);
 
-
-
 describe(`applyMixins`, function() {
-
   test(`should combine properties to base class`, () => {
     const smartObj = new SmartObject();
 
     smartObj.interact();
     expect(smartObj.isActive).toEqual(true);
   });
-
 });

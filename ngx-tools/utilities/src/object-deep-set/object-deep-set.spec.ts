@@ -1,8 +1,6 @@
 import { objectDeepSet } from './object-deep-set';
 
-
 describe(`objectDeepSetter`, function() {
-
   test(`should set the value to desired if path exists`, () => {
     const objectInput = { foo: { bar: 1 } };
     const path = 'foo.bar';
@@ -11,7 +9,6 @@ describe(`objectDeepSetter`, function() {
 
     expect(objectDeepSet(objectInput, path, newValue)).toEqual(objectOutput);
   });
-
 
   test(`should set when path cannot be found`, () => {
     const objectInput2 = { foo: 1 };
@@ -26,5 +23,4 @@ describe(`objectDeepSetter`, function() {
     expect(objectDeepSet(objectInput2, path2, newValue2)).toEqual(objectOutput2);
     expect(objectDeepSet(objectInput2, 'bar', 3)).toEqual(objectOutput3);
   });
-
 });

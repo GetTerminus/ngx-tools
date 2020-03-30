@@ -1,9 +1,5 @@
-// tslint:disable: no-any
 import { HttpErrorResponse } from '@angular/common/http';
-import {
-  Injectable,
-  InjectionToken,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   ClaimMap,
   RetryWithEscalation,
@@ -17,14 +13,8 @@ import {
   retryWhen,
 } from 'rxjs/operators';
 
-
-import { ESCALATION_WAIT_TIME } from './escalation-wait-time';
-import { SCHEDULER } from './scheduler';
-
-
 @Injectable()
 export class RetryWithEscalationMock<CM = ClaimMap> extends RetryWithEscalation implements RetryWithEscalation {
-
   public tokenEscalationsRequested: string[] = [];
   public escalationSuccessful = true;
 
@@ -65,7 +55,10 @@ export class RetryWithEscalationMock<CM = ClaimMap> extends RetryWithEscalation 
   }
 }
 
-
+/**
+ * Return mock
+ */
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export function retryWithEscalationFactory() {
   return new RetryWithEscalationMock(undefined as any, undefined as any, undefined as any, undefined as any);
 }

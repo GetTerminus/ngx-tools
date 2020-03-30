@@ -1,8 +1,8 @@
 import { SimpleChanges } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
-import { inputHasChanged } from './../input-has-changed/input-has-changed';
-import { NgChangeObjectValueParser } from './../ngchange-object-value-parser/ngchange-object-value-parser';
+import { inputHasChanged } from '../input-has-changed/input-has-changed';
+import { NgChangeObjectValueParser } from '../ngchange-object-value-parser/ngchange-object-value-parser';
 
 
 /**
@@ -11,13 +11,13 @@ import { NgChangeObjectValueParser } from './../ngchange-object-value-parser/ngc
  * @param changes - The object of changes
  * @param path - A string with keys defined, separate with '.'
  * @param control - The formControl
- * @return True if the value has changed
+ * @returns True if the value has changed
  *
  * @example
  * ...
- *   @Input
+ *   AngularInput:
  *   public myInput;
- *   @Input
+ *   AngularInput:
  *   public myFormControl;
  *
  *   ngOnChanges(changes: SimpleChanges) {

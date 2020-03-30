@@ -4,7 +4,7 @@
  * @param type - The event type
  * @param x - The location on the X axis
  * @param y - The location on the Y axis
- * @return The event
+ * @returns The event
  *
  * @example
  * createMouseEvent('click');

@@ -1,8 +1,6 @@
 import { toCamelCase } from './to-camel-case';
 
-
 describe(`toCamelCase`, function() {
-
   test(`should return undefined if no value is passed in`, () => {
     const values: any[] = [null, undefined, ''];
 
@@ -10,7 +8,6 @@ describe(`toCamelCase`, function() {
       expect(toCamelCase(value)).toEqual(undefined);
     }
   });
-
 
   test(`should return the string converted to camelcase`, () => {
     const values = [
@@ -32,7 +29,6 @@ describe(`toCamelCase`, function() {
     expect(toCamelCase('E')).toEqual('e');
   });
 
-
   test(`should return the string in pascal case`, () => {
     const values = [
       'EquipmentClass name',
@@ -47,14 +43,11 @@ describe(`toCamelCase`, function() {
     expect(toCamelCase('e', true)).toEqual('E');
   });
 
-
   test(`should convert a string containing numbers`, () => {
     expect(toCamelCase('FOO2BAR3')).toEqual('foo2Bar3');
   });
 
-
   test(`should handle a string containing only lowercase letters`, () => {
     expect(toCamelCase('foobar')).toEqual('foobar');
   });
-
 });

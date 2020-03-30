@@ -4,7 +4,7 @@
  *
  * @param input - The number to be abbreviated.
  * @param decimalPlace - The decimals users define for final abbreviated number. Default to 1.
- * @return The abbreviated number
+ * @returns The abbreviated number
  *
  * @example
  * abbreviateNumber(1234, '1')              // Returns: '1.2K'

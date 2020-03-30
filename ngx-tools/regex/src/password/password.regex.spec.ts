@@ -23,20 +23,16 @@ const invalidPasswords = [
   `FQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdNFQ49j6BQ2BqerBnFMkeL7hfMw83fVsseAMV9xDJrTWd9J8xsdN1`,
 ];
 
-
 describe(`passwordRegex`, function() {
-
   test(`should return true for valid passwords`, () => {
     for (const password of validPasswords) {
       expect(passwordRegex.test(password)).toEqual(true);
     }
   });
 
-
   test(`should return false for invalid passwords`, () => {
     for (const password of invalidPasswords) {
       expect(passwordRegex.test(password)).toEqual(false);
     }
   });
-
 });

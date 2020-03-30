@@ -1,8 +1,6 @@
 import { roundNumber } from './round-number';
 
-
 describe(`roundNumber`, function() {
-
   test(`should correctly round the number`, () => {
     expect(roundNumber(1.050)).toEqual(1);
     expect(roundNumber(1.050, 1)).toEqual(1.1);
@@ -21,7 +19,6 @@ describe(`roundNumber`, function() {
     expect(roundNumber(3456.3456, -3)).toEqual(3000);
   });
 
-
   test(`should return undefined for missing or incorrect parameters`, () => {
     const invalidCases = [
       [undefined, 1],
@@ -33,5 +30,4 @@ describe(`roundNumber`, function() {
       expect(roundNumber(v[0] as any, v[1] as any)).toEqual(undefined);
     }
   });
-
 });

@@ -1,4 +1,4 @@
-// tslint:disable: no-any
+/* eslint-disable @typescript-eslint/no-explicit-any, jsdoc/require-jsdoc, prefer-arrow/prefer-arrow-functions */
 /**
  * Coerces a data-bound value (typically a string) to a number.
  *
@@ -17,13 +17,14 @@ export function coerceNumberProperty(value: any, fallbackValue = 0) {
 
 /**
  * Whether the provided value is considered a number.
- * @docs-private
+ *
+ * ParseFloat(value) handles most of the cases we're interested in (it treats null, empty string,
+ * and other non-number values as NaN, where Number just uses 0) but it considers the string
+ * '123hello' to be a valid number. Therefore we also check if Number(value) is NaN.
+ * NOTE: TypeScript seems to consider `parseFloat(value)` unsafe. In my tests there are no values which `parseFloat`
+ * cannot handle safely.
+ *
+ * @private
+ * @param value
  */
-export function isNumberValue(value: any): boolean {
-  // parseFloat(value) handles most of the cases we're interested in (it treats null, empty string,
-  // and other non-number values as NaN, where Number just uses 0) but it considers the string
-  // '123hello' to be a valid number. Therefore we also check if Number(value) is NaN.
-  // NOTE: TypeScript seems to consider `parseFloat(value)` unsafe. In my tests there are no values which `pareFloat` cannot handle safely.
-  // tslint:disable-next-line no-unsafe-any
-  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
-}
+export const isNumberValue = (value: any): boolean => !isNaN(parseFloat(value)) && !isNaN(Number(value));

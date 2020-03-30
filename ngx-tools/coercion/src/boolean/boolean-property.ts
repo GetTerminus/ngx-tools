@@ -2,12 +2,10 @@
  * Coerces a data-bound value (typically a string) to a boolean.
  *
  * @param value - The value to coerce to a boolean
- * @return The boolean
+ * @returns The boolean
  *
  * @example
  * coerceBooleanProperty('true'); // Returns: true
  */
-// tslint:disable-next-line no-any
-export function coerceBooleanProperty(value: any): boolean {
-  return value != null && `${value}` !== 'false';
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const coerceBooleanProperty = (value: any): boolean => value != null && `${value}` !== 'false';

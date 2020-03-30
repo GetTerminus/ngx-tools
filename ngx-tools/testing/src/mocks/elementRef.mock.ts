@@ -1,7 +1,5 @@
-// tslint:disable: no-any
 import { ElementRef } from '@angular/core';
 import { noop } from '@terminus/ngx-tools/utilities';
-
 
 /**
  * Default stubbed items for `nativeElement`
@@ -14,7 +12,6 @@ const defaults = {
     remove: noop,
   },
 };
-
 
 /**
  * A mock of the Angular ElementRef class

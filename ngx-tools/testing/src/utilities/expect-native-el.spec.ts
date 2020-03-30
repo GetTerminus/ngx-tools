@@ -6,13 +6,10 @@ import {
 
 import { expectNativeEl } from './expect-native-el';
 
-
 @Component({ template: `<div class="foo"></div>` })
 class TestComponent {}
 
-
 describe(`expectNativeEl`, function() {
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -21,12 +18,10 @@ describe(`expectNativeEl`, function() {
     }).compileComponents();
   }));
 
-
   test(`should return a DebugElement`, () => {
     const fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
 
     expectNativeEl(fixture).toBeTruthy();
   });
-
 });

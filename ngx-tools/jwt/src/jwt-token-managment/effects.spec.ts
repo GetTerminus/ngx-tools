@@ -5,7 +5,7 @@ import {
 import { ROOT_EFFECTS_INIT } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Store } from '@ngrx/store';
-import { TsCookieService } from '@terminus/ngx-tools';
+import { TsCookieService } from '@terminus/ngx-tools/browser';
 import {
   cold,
   getTestScheduler,
@@ -26,21 +26,21 @@ import { State } from './state';
 import { INITIAL_TOKEN_NAME } from './tokens';
 import { SCHEDULER } from './utilities/retry-with-escalation';
 
-
-function createFakeJwt(
+/**
+ * @param payload
+ * @param headers
+ */
+const createFakeJwt = (
   payload: object,
   headers: object = {
     alg: 'HS256',
     typ: 'JWT',
   },
-) {
-  return [
-    window.btoa(JSON.stringify(headers)),
-    window.btoa(JSON.stringify(payload)),
-    'fakeSignature',
-  ].join('.');
-}
-
+) => [
+  window.btoa(JSON.stringify(headers)),
+  window.btoa(JSON.stringify(payload)),
+  'fakeSignature',
+].join('.');
 
 describe(`JWT Token Effects`, function() {
   let actions: any;
@@ -83,9 +83,9 @@ describe(`JWT Token Effects`, function() {
       ],
     });
 
-    effects = TestBed.get<JwtTokenProviderEffects>(JwtTokenProviderEffects);
+    effects = TestBed.inject<JwtTokenProviderEffects>(JwtTokenProviderEffects);
+    effects['cookieService'].get = jest.fn((v: string) => 'foobar');
   }));
-
 
   describe(`initialCookieLoader$`, () => {
     const blankState: State = {
@@ -96,15 +96,13 @@ describe(`JWT Token Effects`, function() {
     };
 
     test(`should provide a cookie and store cookie message if the cookie is set`, () => {
-      // tslint:disable-next-line deprecation
       const currentState = of<State>(blankState);
-      mockCookieService.get.mockReturnValue('abcd');
 
       const expected = cold('(ab|)', {
-        a: new Actions.InitialTokenExtracted('abcd'),
+        a: new Actions.InitialTokenExtracted('foobar'),
         b: new Actions.StoreToken({
           tokenName: 'initToken',
-          token: 'abcd',
+          token: 'foobar',
           isDefaultToken: true,
         }),
       });
@@ -115,7 +113,6 @@ describe(`JWT Token Effects`, function() {
     });
 
     test(`should emit nothing if state is loaded`, () => {
-      // tslint:disable-next-line deprecation
       const currentState = of<State>({
         ...blankState,
         jwtTokens: {
@@ -123,7 +120,7 @@ describe(`JWT Token Effects`, function() {
           initialTokenStatus: 'loaded',
         },
       });
-      mockCookieService.get.mockReturnValue('abcd');
+      mockCookieService.get.mockReturnValue('foobar');
 
       const expected = cold('|');
 
@@ -133,7 +130,6 @@ describe(`JWT Token Effects`, function() {
     });
 
     test(`should emit nothing if state is empty`, () => {
-      // tslint:disable-next-line deprecation
       const currentState = of<State>({
         ...blankState,
         jwtTokens: {
@@ -142,7 +138,7 @@ describe(`JWT Token Effects`, function() {
         },
       });
 
-      mockCookieService.get.mockReturnValue('abcd');
+      mockCookieService.get.mockReturnValue('foobar');
 
       const expected = cold('|');
 
@@ -152,9 +148,8 @@ describe(`JWT Token Effects`, function() {
     });
 
     it(`it should only announce the initial if the cookie is empty`, () => {
-      // tslint:disable-next-line deprecation
       const currentState = of<State>(blankState);
-      mockCookieService.get.mockReturnValue('');
+      effects['cookieService'].get = jest.fn((v: string) => '');
 
       const expected = cold('(a|)', { a: new Actions.InitialTokenExtracted('') });
 
@@ -165,7 +160,6 @@ describe(`JWT Token Effects`, function() {
   });
 
   describe(`initializationCleanup$`, () => {
-
     test(`should dispatch a nothing if the exp is unset`, () => {
       actions = hot('a', { a: { type: ROOT_EFFECTS_INIT } });
 
@@ -190,7 +184,6 @@ describe(`JWT Token Effects`, function() {
       ) as any).toBeObservable(expected);
     });
 
-
     test(`should dispatch only truthy values`, () => {
       actions = hot('a', { a: { type: ROOT_EFFECTS_INIT } });
 
@@ -212,9 +205,7 @@ describe(`JWT Token Effects`, function() {
     });
   });
 
-
   describe(`allTokensExpired$`, () => {
-
     test(`should dispatch a message when the last token expires`, () => {
       actions = hot('a', {
         a: new Actions.TokenExpired<MinimalClaimMap>({
@@ -232,7 +223,6 @@ describe(`JWT Token Effects`, function() {
       ) as any).toBeObservable(expected);
     });
 
-
     test(`should not dispatch a message when a token remains`, () => {
       actions = hot('a', {
         a: new Actions.TokenExpired<MinimalClaimMap>({
@@ -249,16 +239,13 @@ describe(`JWT Token Effects`, function() {
         effects.allTokensExpired$,
       ) as any).toBeObservable(expected);
     });
-
   });
 
-
   describe('notifyOfTokenExpiration$', () => {
-
     test(`should dispatch a nothing if the exp is unset`, () => {
       actions = hot('a', {
-        a: new Actions.StoreToken<{Foobr: string}>({
-          tokenName: 'Foobr',
+        a: new Actions.StoreToken<{Foobar: string}>({
+          tokenName: 'Foobar',
           token: createFakeJwt({ foo: 'bar' }),
         }),
       });
@@ -269,8 +256,7 @@ describe(`JWT Token Effects`, function() {
       ) as any).toBeObservable(expected);
     });
 
-
-    test(`should dispatch a token expired action if the exp is  in the past`, () => {
+    test(`should dispatch a token expired action if the expiration is in the past`, () => {
       const params = {
         tokenName: 'Foobar',
         token: createFakeJwt({
@@ -286,11 +272,10 @@ describe(`JWT Token Effects`, function() {
       ) as any).toBeObservable(expected);
     });
 
-
     test(`should dispatch expiration and nearing expiration actions`, () => {
       getTestScheduler().maxFrames = 3500;
       const params = {
-        tokenName: 'Foobr',
+        tokenName: 'Foobar',
         token: createFakeJwt({
           foo: 'bar',
           exp: currentEpoch() + 3,
@@ -311,11 +296,10 @@ describe(`JWT Token Effects`, function() {
       ) as any).toBeObservable(expected);
     });
 
-
     test(`should dispatch nearing expiration right away if within the timeout`, () => {
       getTestScheduler().maxFrames = 2500;
       const params = {
-        tokenName: 'Foobr',
+        tokenName: 'Foobar',
         token: createFakeJwt({
           foo: 'bar',
           exp: currentEpoch() + 1,
@@ -335,7 +319,5 @@ describe(`JWT Token Effects`, function() {
         effects.notifyOfTokenExpiration$,
       ) as any).toBeObservable(expected);
     });
-
   });
-
 });
