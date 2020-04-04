@@ -186,7 +186,7 @@
     "@angular/router": "8.2.14",
     "@terminus/ngx-tools": "7.2.11",
     "jsdom": "15.2.1",
-    "rxjs": "6.5.4",
+    "rxjs": "6.5.5",
     "zone.js": "0.10.2"
   },
   "devDependencies": {
