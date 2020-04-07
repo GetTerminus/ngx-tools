@@ -44,10 +44,10 @@
     "yarn": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@angular/core": "^8.0.0",
-    "@angular/common": "^8.0.0",
-    "@angular/forms": "^8.0.0",
-    "@angular/platform-browser": "^8.0.0",
+    "@angular/core": "^8.0.0 || ^9.0.0",
+    "@angular/common": "^8.0.0 || ^9.0.0",
+    "@angular/forms": "^8.0.0 || ^9.0.0",
+    "@angular/platform-browser": "^8.0.0 || ^9.0.0",
     "@ngrx/store": "^8.0.0",
     "@ngrx/effects": "^8.0.0",
     "rxjs": "^6.5.0",
