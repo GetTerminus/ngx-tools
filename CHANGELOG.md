@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/GetTerminus/ngx-tools/compare/v8.0.0...v8.0.1) (2020-04-09)
+
+
+### Bug Fixes
+
+* **Packages:** update self dependency ([1de1a21](https://github.com/GetTerminus/ngx-tools/commit/1de1a21504861af757612f5be79c49959db9a2d4))
+
 # [8.0.0](https://github.com/GetTerminus/ngx-tools/compare/v7.5.0...v8.0.0) (2020-04-09)
 
 ### BREAKING CHANGES
