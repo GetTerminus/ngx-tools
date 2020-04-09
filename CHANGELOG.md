@@ -1,3 +1,17 @@
+# [7.5.0](https://github.com/GetTerminus/ngx-tools/compare/v7.4.0...v7.5.0) (2020-04-09)
+
+
+### Features
+
+* **Packages:** update primary dependencies ([192ab8a](https://github.com/GetTerminus/ngx-tools/commit/192ab8a1086954d5f588b05115e42710269b6a55))
+
+
+### BREAKING CHANGES
+
+* **Packages:** - Angular >=9
+- NGRX >=9
+- TypeScript 8.3.8
+
 # [7.4.0](https://github.com/GetTerminus/ngx-tools/compare/v7.3.1...v7.4.0) (2020-02-07)
 
 
