@@ -1,4 +1,7 @@
 module.exports = {
+  // HACK: The ConditionCircle plugin hasn't been updated for the breaking changes in semantic-release v16. So it expects the key
+  // `branch` to exist despite semantic-release switching to `branches` in v16
+  branch: 'release',
   branches: 'release',
   plugins: [
     [
