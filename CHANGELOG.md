@@ -1,3 +1,10 @@
+## [8.0.2](https://github.com/GetTerminus/ngx-tools/compare/v8.0.1...v8.0.2) (2020-04-10)
+
+
+### Bug Fixes
+
+* **CI:** hotfix missmatch between semantic release tools ([cac185e](https://github.com/GetTerminus/ngx-tools/commit/cac185e1ef5c18ca31eddee11b07a54cf61c9e63))
+
 ## [8.0.1](https://github.com/GetTerminus/ngx-tools/compare/v8.0.0...v8.0.1) (2020-04-09)
 
 
