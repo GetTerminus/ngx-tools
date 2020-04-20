@@ -16,6 +16,10 @@
     {
       "packagePatterns": ["^@terminus"],
       "groupName": "Terminus Packages"
+    },
+    {
+      "packagePatterns": ["eslint"],
+      "groupName": "ESLint Packages"
     }
   ],
   "prConcurrentLimit": 0,
