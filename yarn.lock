@@ -140,6 +140,13 @@
   dependencies:
     "@typescript-eslint/experimental-utils" "2.19.2"
 
+"@angular-eslint/eslint-plugin@0.0.1-alpha.29":
+  version "0.0.1-alpha.29"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-0.0.1-alpha.29.tgz#187e9f4beb0ebfbd7f4cfdf9142601c5fd4f7838"
+  integrity sha512-K9inFXN5YJHjPWrE5wNPdJ1E3FDdrlZ61qDUJioO2WoAeWYHhqKXx20LRDEiAO3l96gNVCm8SByO+KUQkkc2yQ==
+  dependencies:
+    "@typescript-eslint/experimental-utils" "2.19.2"
+
 "@angular-eslint/template-parser@0.0.1-alpha.27":
   version "0.0.1-alpha.27"
   resolved "https://registry.yarnpkg.com/@angular-eslint/template-parser/-/template-parser-0.0.1-alpha.27.tgz#03c814172e1dfa58eaad40ea82d73d6b6b8c505c"
