@@ -119,7 +119,7 @@
     "@angular-devkit/schematics": "9.1.1",
     "@angular-eslint/eslint-plugin": "0.0.1-alpha.27",
     "@angular-eslint/eslint-plugin-template": "0.0.1-alpha.28",
-    "@angular-eslint/template-parser": "0.0.1-alpha.27",
+    "@angular-eslint/template-parser": "0.0.1-alpha.29",
     "@angular/cli": "9.1.1",
     "@angular/compiler-cli": "9.1.1",
     "@angular/language-service": "9.1.1",
