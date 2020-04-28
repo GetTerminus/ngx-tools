@@ -1604,10 +1604,10 @@
     "@typescript-eslint/eslint-plugin" "2.25.0"
     "@typescript-eslint/parser" "2.25.0"
 
-"@terminus/ngx-tools@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-8.0.1.tgz#14443bb3ccc5b1ee0bcd975a55ce71b0cdc14568"
-  integrity sha512-dUPXk+z9naI8kXB5aDw9ee13o9RjCzK2bBQVvW9NLKm98x9c4vTkGH7r8gEa/gXxJqJIVB/liz+VvzK6AUdnlQ==
+"@terminus/ngx-tools@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-8.0.2.tgz#e72dc88b610a379ebad3e19209b164006c6df2d2"
+  integrity sha512-+7SW6+JrUjqyh7oqvUpWh/k1aM2hACjEh/I/5PnLqL1+WqQh+csloJ85ong0bngyn2jQv2GEcMcIILxlhfVSUQ==
 
 "@textlint/ast-node-types@^4.0.3":
   version "4.2.5"
