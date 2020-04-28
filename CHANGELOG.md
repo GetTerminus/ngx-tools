@@ -1,3 +1,10 @@
+## [8.0.3](https://github.com/GetTerminus/ngx-tools/compare/v8.0.2...v8.0.3) (2020-04-28)
+
+
+### Bug Fixes
+
+* **packages:** update angular monorepo to v9.1.3 ([c25f7f5](https://github.com/GetTerminus/ngx-tools/commit/c25f7f5b6c2166323d7289ce56733b56d5745444))
+
 ## [8.0.2](https://github.com/GetTerminus/ngx-tools/compare/v8.0.1...v8.0.2) (2020-04-10)
 
 
