@@ -136,7 +136,7 @@
     "@types/node": "13.13.4",
     "@typescript-eslint/eslint-plugin": "2.29.0",
     "@typescript-eslint/parser": "2.29.0",
-    "all-contributors-cli": "6.14.1",
+    "all-contributors-cli": "6.14.2",
     "codecov": "3.6.5",
     "commitizen": "4.0.4",
     "condition-circle": "2.0.2",
