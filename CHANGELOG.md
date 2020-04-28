@@ -1,3 +1,10 @@
+## [8.0.4](https://github.com/GetTerminus/ngx-tools/compare/v8.0.3...v8.0.4) (2020-04-28)
+
+
+### Bug Fixes
+
+* **packages:** update dependency @terminus/ngx-tools to v8.0.2 ([3fe77f3](https://github.com/GetTerminus/ngx-tools/commit/3fe77f38ef77c44fd08062059331f82191351d89))
+
 ## [8.0.3](https://github.com/GetTerminus/ngx-tools/compare/v8.0.2...v8.0.3) (2020-04-28)
 
 
