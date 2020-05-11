@@ -1,3 +1,10 @@
+## [8.0.5](https://github.com/GetTerminus/ngx-tools/compare/v8.0.4...v8.0.5) (2020-05-11)
+
+
+### Bug Fixes
+
+* **packages:** update dependency tslib to v1.11.2 ([e6dff0b](https://github.com/GetTerminus/ngx-tools/commit/e6dff0b900a32952a5cf850ad26f23f6e7f78c33))
+
 ## [8.0.4](https://github.com/GetTerminus/ngx-tools/compare/v8.0.3...v8.0.4) (2020-04-28)
 
 
