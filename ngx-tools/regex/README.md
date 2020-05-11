@@ -279,7 +279,7 @@ urlRegex.test('http://foo.com/blah_blah/'); // true
 This regex can be used when a URL needs to be validated but the protocol (ie `http`) is not required.
 
 ```typescript
-import { urlRegex } from '@terminus/ngx-tools/regex';
+import { urlOptionalProtocolRegex } from '@terminus/ngx-tools/regex';
 
 urlOptionalProtocolRegex.test('http://0.0.0.0');            // false
 urlOptionalProtocolRegex.test('foo.com/blah_blah/');        // true
