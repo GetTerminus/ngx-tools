@@ -141,7 +141,7 @@
     "commitizen": "4.1.2",
     "condition-circle": "2.0.2",
     "cpr": "3.0.1",
-    "cz-customizable": "6.2.0",
+    "cz-customizable": "6.2.1",
     "doctoc": "1.4.0",
     "eslint": "6.8.0",
     "eslint-import-resolver-typescript": "2.0.0",
