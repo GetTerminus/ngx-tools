@@ -1,5 +1,26 @@
 # @terminus/ngx-tools
 
+---
+
+<h2>:rotating_light: ATTENTION: THIS REPO HAS MOVED :rotating_light:</h2>
+
+We have moved to separately published packages from within a monorepo. Please update any bookmarks to point to the [new repo][new-repo].
+
+NOTE: This package is being split into 3 packages:
+
+- `@terminus/fe-utilities`
+  - [View `fe-utilities` ↗](https://github.com/GetTerminus/terminus-oss/tree/release/libs/fe-utilities)
+- `@terminus/fe-jwt`
+  - [View `fe-jwt` ↗](https://github.com/GetTerminus/terminus-oss/tree/release/libs/fe-jwt)
+- `@terminus/testing`
+  - [View `fe-testing` ↗](https://github.com/GetTerminus/terminus-oss/tree/release/libs/fe-testing)
+
+See https://github.com/GetTerminus/terminus-oss/issues/217 for full migration notes.
+
+<h2>:rotating_light:</h2>
+
+---
+
 [![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
 [![semantic-release][semantic-release-badge]][semantic-release]
@@ -234,6 +255,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [codecov-badge]:          https://codecov.io/gh/GetTerminus/ngx-tools/branch/release/graph/badge.svg
 [codecov-project]:        https://codecov.io/gh/GetTerminus/ngx-tools
 [all-contributors-key]:   https://github.com/kentcdodds/all-contributors#emoji-key
+[new-repo]:               https://github.com/GetTerminus/terminus-oss
 
 <!-- FILE SIZE -->
 [fs-badge-browser]:     http://img.badgesize.io/https://unpkg.com/@terminus/ngx-tools/bundles/terminus-ngx-tools-browser.umd.min.js?compression=gzip
