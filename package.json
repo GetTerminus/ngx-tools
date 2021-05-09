@@ -149,7 +149,7 @@
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-jsdoc": "24.0.6",
     "eslint-plugin-prefer-arrow": "1.2.1",
-    "husky": "4.2.5",
+    "husky": "6.0.0",
     "jasmine-core": "3.5.0",
     "jasmine-marbles": "0.6.0",
     "jasmine-spec-reporter": "5.0.2",
