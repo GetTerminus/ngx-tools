@@ -137,7 +137,7 @@
     "@typescript-eslint/eslint-plugin": "2.32.0",
     "@typescript-eslint/parser": "2.32.0",
     "all-contributors-cli": "6.14.2",
-    "codecov": "3.7.1",
+    "codecov": "3.8.2",
     "commitizen": "4.1.2",
     "condition-circle": "2.0.2",
     "cpr": "3.0.1",
