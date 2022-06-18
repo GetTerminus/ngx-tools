@@ -8289,10 +8289,10 @@ karma-coverage-istanbul-reporter@3.0.2:
     istanbul-reports "^3.0.2"
     minimatch "^3.0.4"
 
-karma-jasmine-html-reporter@1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.5.3.tgz#c724078436ed7b7d17a47e79164af36eed2d2713"
-  integrity sha512-ci0VrjuCaFj+9d1tYlTE3KIPUCp0rz874zWWU3JgCMqGIyw5ke+BXWFPOAGAqUdCJcrMwneyvp1zFXA74MiPUA==
+karma-jasmine-html-reporter@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-2.0.0.tgz#76c26ce40e217dc36a630fbcd7b31c3462948bf2"
+  integrity sha512-SB8HNNiazAHXM1vGEzf8/tSyEhkfxuDdhYdPBX2Mwgzt0OuF2gicApQ+uvXLID/gXyJQgvrM9+1/2SxZFUUDIA==
 
 karma-jasmine@3.1.1:
   version "3.1.1"
