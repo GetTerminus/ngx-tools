@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   # https://circleci.com/orbs/registry/orb/circleci/aws-s3
-  aws-s3: circleci/aws-s3@1.0.11
+  aws-s3: circleci/aws-s3@4.0.0
 
 #
 # Reusable definitions
