@@ -102,7 +102,7 @@
     "yarn": ">= 1.0.0"
   },
   "dependencies": {
-    "@angular/common": "9.1.6",
+    "@angular/common": "19.2.16",
     "@angular/compiler": "9.1.6",
     "@angular/core": "9.1.6",
     "@angular/forms": "9.1.6",
