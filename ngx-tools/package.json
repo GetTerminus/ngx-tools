@@ -44,7 +44,7 @@
     "yarn": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@angular/core": "^9.0.0",
+    "@angular/core": "^9.0.0 || ^22.0.0",
     "@angular/common": "^9.0.0",
     "@angular/forms": "^9.0.0",
     "@angular/platform-browser": "^9.0.0",
